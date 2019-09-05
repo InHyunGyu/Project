@@ -12,10 +12,10 @@ public class MemberController {
 	@Autowired
 	MemberRepository repo;
 	
-	/*@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
 		
 		
-		return "home";
-	}*/
+		return "index";
+	}
 }
