@@ -95,8 +95,8 @@
                                         <!-- Column 2-->
                                         <li class="menu-item-has-children mega-menu-col"><a href="#">Pages 2</a>
                                             <ul class="sub-menu">
-                                                <li><a href="sign-in.html">Sign in</a></li>
-                                                <li><a href="sign-up.html">Sign Up</a></li>
+                                                <li><a href="signin">Sign in</a></li>
+                                                <li><a href="signup">Sign Up</a></li>
                                                 <li><a href="recover-password.html">Password</a></li>
                                                 <li><a href="contact-3.html">Contact</a></li>
                                                 <li><a href="contact-2.html">Map Contact</a></li>

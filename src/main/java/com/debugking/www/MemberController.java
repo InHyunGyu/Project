@@ -13,10 +13,9 @@ public class MemberController {
 	@Autowired
 	MemberRepository repo;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String signup() {
 		
-		
-		return "index";
+		return "Member/signup";
 	}
 }
