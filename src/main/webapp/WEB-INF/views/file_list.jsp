@@ -1,25 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+     
+ <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>SignupPage</title>
+        <title>UtaJJang</title>
         <!-- Favicons-->
-        <link rel="shortcut icon" href="assets/images/favicon.png">
-        <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-touch-icon-114x114.png">
+        <link rel="shortcut icon" href="resources/assets/images/favicon.png">
+        <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="resources/assets/images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="resources/assets/images/apple-touch-icon-114x114.png">
         <!-- Web Fonts-->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600%7cPlayfair+Display:400i" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <!-- Plugins-->
-        <link href="assets/css/plugins.min.css" rel="stylesheet">
+        <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
-        <link href="assets/css/template.css" rel="stylesheet">
+        <link href="resources/assets/css/template.css" rel="stylesheet">
     </head>
     <body>
 
@@ -38,18 +41,18 @@
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="index.html">utazzang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="/uta">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
-                    <div class="inner-nav">
+                    <div class="inner-nav"> 
                         <ul>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
                                 <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-3.jpg">
+                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-3.jpg">
                                         <!-- Column 1-->
                                         <li class="menu-item-has-children mega-menu-col"><a href="#">Multi Page</a>
                                             <ul class="sub-menu">
-                                                <li><a href="index.html">Parallax</a></li>
+                                                <li><a href="/uta">Parallax</a></li>
                                                 <li><a href="index-3.html">Slider - Fade</a></li>
                                                 <li><a href="index-2.html">Slider - Slide</a></li>
                                                 <li><a href="index-7.html">Gradient Style 1</a></li>
@@ -77,11 +80,11 @@
                             </li>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Pages</span></a>
                                 <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-1.jpg">
+                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-1.jpg">
                                         <!-- Column 1-->
                                         <li class="menu-item-has-children mega-menu-col"><a href="#">Pages 1</a>
                                             <ul class="sub-menu">
-                                                <li><a href="about-1.html">About Us 1</a></li>
+                                                <li><a href="about-1.html">A Us 1</a></li>
                                                 <li><a href="about-2.html">About Us 2</a></li>
                                                 <li><a href="services-1.html">Services 1</a></li>
                                                 <li><a href="services-2.html">Services 2</a></li>
@@ -175,9 +178,9 @@
                                     <li><a href="shop-cart-1.html">Cart</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Components</span></a>
+                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="current_music"><span class="menu-item-span">Components</span></a>
                                 <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-2.jpg">
+                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-2.jpg">
                                         <!-- Column 1-->
                                         <li class="menu-item-has-children mega-menu-col"><a href="#">Group 1</a>
                                             <ul class="sub-menu">
@@ -236,35 +239,119 @@
 
         <!-- Wrapper-->
         <div class="wrapper">
-            <!-- Hero-->
-            <section class="module-cover parallax text-center fullscreen" data-background="assets/images/module-5.jpg" data-overlay="0.6">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 m-auto">
-                            <div class="m-b-20">
-                                <h6>Create a new account</h6>
+                        <div class="col-md-12">
+                            <div class="space" data-mY="60px"></div> 
+                            <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
+                            <p class="m-b-40">Quickly create your One or Multi Page website in fastest<br> and easiest way with SASS and Pug based template.</p>
+                            <div class="space" data-MY="60px"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="module p-t-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 m-auto">
+                            <div class="space" data-mY="-120px"></div>
+                            <p><img src="resources/assets/images/main/macbook.png" alt=""></p>
+                            <div class="space" data-mY="80px"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid" style="max-width: 1600px;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-special text-center m-b-40">Multi Page Demos</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
+                                        <h6>Parallax</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="index-2.html"><img src="resources/assets/images/demo/2.jpg" alt=""></a>
+                                        <h6>Slider - Slide</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="index-3.html"><img src="resources/assets/images/demo/3.jpg" alt=""></a>
+                                        <h6>Slider - Fade</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="index-4.html"><img src="resources/assets/images/demo/4.jpg" alt=""></a>
+                                        <h6>Youtube</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="index-5.html"><img src="resources/assets/images/demo/5.jpg" alt=""></a>
+                                        <h6>Vimeo</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="index-6.html"><img src="resources/assets/images/demo/6.jpg" alt=""></a>
+                                        <h6>Local Video</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="index-7.html"><img src="resources/assets/images/demo/7.jpg" alt=""></a>
+                                        <h6>Gradient Style 1</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="index-8.html"><img src="resources/assets/images/demo/8.jpg" alt=""></a>
+                                        <h6>Gradient Style 2</h6>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="m-b-20">
-                                <form method="post">
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" name=""placeholder="Name">
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-special text-center m-b-40">One Page Demos</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="op-index.html"><img src="resources/assets/images/demo/op-1.jpg" alt=""></a>
+                                        <h6>Parallax</h6>
                                     </div>
-                                    <div class="form-group">
-                                        <input class="form-control" type="email" placeholder="E-mail">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="op-index-2.html"><img src="resources/assets/images/demo/op-2.jpg" alt=""></a>
+                                        <h6>Slider - Slide</h6>
                                     </div>
-                                    <div class="form-group">
-                                        <input class="form-control" type="password" placeholder="Pasword">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="op-index-3.html"><img src="resources/assets/images/demo/op-3.jpg" alt=""></a>
+                                        <h6>Slider - Fade</h6>
                                     </div>
-                                    <div class="form-group">
-                                        <input class="form-control" type="password" placeholder="Confirm password">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="op-index-4.html"><img src="resources/assets/images/demo/op-4.jpg" alt=""></a>
+                                        <h6>Youtube</h6>
                                     </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-block btn-round btn-brand" type="submit">Sign Up</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="op-index-5.html"><img src="resources/assets/images/demo/op-5.jpg" alt=""></a>
+                                        <h6>Vimeo</h6>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="m-b-20">
-                                <p><small>By signing up, you agree to the<a href="#">terms of service</a></small></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="op-index-6.html"><img src="resources/assets/images/demo/op-6.jpg" alt=""></a>
+                                        <h6>Local Video</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="op-index-7.html"><img src="resources/assets/images/demo/op-7.jpg" alt=""></a>
+                                        <h6>Gradient Style 1</h6>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="demo-item"><a href="op-index-8.html"><img src="resources/assets/images/demo/op-8.jpg" alt=""></a>
+                                        <h6>Gradient Style 2</h6>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -327,12 +414,12 @@
                                         <h6>Portfolio</h6>
                                     </div>
                                     <ul>
-                                        <li><a href="#"><img src="assets/images/widgets/1.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/2.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/3.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/7.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/8.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/6.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
                                     </ul>
                                 </aside>
                             </div>
@@ -362,22 +449,22 @@
                     <!-- Text widget-->
                     <aside class="widget widget-text">
                         <div class="textwidget">
-                            <p class="text-center"><img src="assets/images/logo-light-2.png" alt="" width="80px"></p>
+                            <p class="text-center"><img src="resources/assets/images/logo-light-2.png" alt="" width="80px"></p>
                             <p class="text-center">See how users experience your website in realtime to see changes.</p>
                         </div>
                     </aside>
                     <!-- Recent portfolio widget-->
                     <aside class="widget widget-recent-works">
                         <ul>
-                            <li><a href="#"><img src="assets/images/widgets/1.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/2.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/3.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/4.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/5.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/6.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/7.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/8.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/9.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/4.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/5.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/9.jpg" alt=""></a></li>
                         </ul>
                     </aside>
                     <!-- Social Icons-->
@@ -395,11 +482,11 @@
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->
-        <script src="assets/js/custom/jquery.min.js"></script>
-        <script src="assets/js/custom/popper.min.js"></script>
-        <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+        <script src="resources/assets/js/custom/jquery.min.js"></script>
+        <script src="resources/assets/js/custom/popper.min.js"></script>
+        <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
-        <script src="assets/js/custom/plugins.min.js"></script>
-        <script src="assets/js/custom/custom.min.js"></script>
+        <script src="resources/assets/js/custom/plugins.min.js"></script>
+        <script src="resources/assets/js/custom/custom.min.js"></script>
     </body>
-</html>
+</html>    

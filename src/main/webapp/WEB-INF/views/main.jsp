@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>hakim</title>
+        <title>Debugking_Project</title>
         <!-- Favicons-->
         <link rel="shortcut icon" href="assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
@@ -40,7 +40,7 @@
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="index.html">Boomerang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="/uta">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
@@ -51,7 +51,7 @@
                                         <!-- Column 1-->
                                         <li class="menu-item-has-children mega-menu-col"><a href="#">Multi Page</a>
                                             <ul class="sub-menu">
-                                                <li><a href="index.html">Parallax</a></li>
+                                                <li><a href="/uta">Parallax</a></li>
                                                 <li><a href="index-3.html">Slider - Fade</a></li>
                                                 <li><a href="index-2.html">Slider - Slide</a></li>
                                                 <li><a href="index-7.html">Gradient Style 1</a></li>
@@ -136,37 +136,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Blog</span></a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item-has-children"><a href="#">Classic</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-1.html">Right Sidebar</a></li>
-                                            <li><a href="blog-2.html">Left Sidebar</a></li>
-                                            <li><a href="blog-3.html">No Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Masonry</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-4.html">Right Sidebar</a></li>
-                                            <li><a href="blog-5.html">Left Sidebar</a></li>
-                                            <li><a href="blog-6.html">No Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Side Image</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-7.html">Right Sidebar</a></li>
-                                            <li><a href="blog-8.html">Left Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Single Post</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-single-1.html">Right Sidebar</a></li>
-                                            <li><a href="blog-single-2.html">Left Sidebar</a></li>
-                                            <li><a href="blog-single-3.html">No Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                  
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Shop</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="shop-grid-1.html">Shop 2 Columns</a></li>
@@ -177,7 +147,7 @@
                                     <li><a href="shop-cart-1.html">Cart</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Components</span></a>
+                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="current_music"><span class="menu-item-span">Components</span></a>
                                 <div class="mega-menu">
                                     <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-2.jpg">
                                         <!-- Column 1-->
@@ -221,7 +191,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href="filelist"><span class="menu-item-span">Demos</span></a></li>
+                            <li><a href="file_list"><span class="menu-item-span">Demos</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -315,7 +285,7 @@
                                 <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/1.jpg" alt=""></div>
                                 <div class="portfolio-item-caption">
                                     <h6 class="portfolio-item-title">Solave Cleanser</h6><span class="portfolio-item-subtitle serif">Digital</span>
-                                </div><a class="portfolio-item-link" href="portfolio-single-1.html"></a>
+                                </div><a class="portfolio-item-link" href="file_detail"></a>
                             </div>
                         </div>
                         <div class="portfolio-item digital">
@@ -323,7 +293,7 @@
                                 <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/4.jpg" alt=""></div>
                                 <div class="portfolio-item-caption">
                                     <h6 class="portfolio-item-title">Monochrome</h6><span class="portfolio-item-subtitle serif">Branding</span>
-                                </div><a class="portfolio-item-link" href="portfolio-single-1.html"></a>
+                                </div><a class="portfolio-item-link" href="file_detail"></a>
                             </div>
                         </div>
                         <div class="portfolio-item packaging">
@@ -331,7 +301,7 @@
                                 <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/3.jpg" alt=""></div>
                                 <div class="portfolio-item-caption">
                                     <h6 class="portfolio-item-title">Ellie Cashman</h6><span class="portfolio-item-subtitle serif">Packaging</span>
-                                </div><a class="portfolio-item-link" href="portfolio-single-1.html"></a>
+                                </div><a class="portfolio-item-link" href="file_detail"></a>
                             </div>
                         </div>
                         <div class="portfolio-item branding">
@@ -339,7 +309,7 @@
                                 <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/6.jpg" alt=""></div>
                                 <div class="portfolio-item-caption">
                                     <h6 class="portfolio-item-title">White Sleeve</h6><span class="portfolio-item-subtitle serif">Digital</span>
-                                </div><a class="portfolio-item-link" href="portfolio-single-1.html"></a>
+                                </div><a class="portfolio-item-link" href="file_detail"></a>
                             </div>
                         </div>
                         <div class="portfolio-item digital">
@@ -347,7 +317,7 @@
                                 <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/5.jpg" alt=""></div>
                                 <div class="portfolio-item-caption">
                                     <h6 class="portfolio-item-title">Classic Socks</h6><span class="portfolio-item-subtitle serif">Branding</span>
-                                </div><a class="portfolio-item-link" href="portfolio-single-1.html"></a>
+                                </div><a class="portfolio-item-link" href="file_detail"></a>
                             </div>
                         </div>
                         <div class="portfolio-item packaging">
@@ -355,7 +325,7 @@
                                 <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/2.jpg" alt=""></div>
                                 <div class="portfolio-item-caption">
                                     <h6 class="portfolio-item-title">Expirience</h6><span class="portfolio-item-subtitle serif">Packaging</span>
-                                </div><a class="portfolio-item-link" href="portfolio-single-1.html"></a>
+                                </div><a class="portfolio-item-link" href="file_detail"></a>
                             </div>
                         </div>
                     </div>
