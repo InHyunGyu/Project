@@ -29,10 +29,6 @@ public class HomeController {
 		return "file_detail";
 	}
 	 
-	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		return "signup";
-	}
+
 	
 }
