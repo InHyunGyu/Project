@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Boomerang - Template</title>
+        <title>Boomeddddd</title>
         <!-- Favicons-->
         <link rel="shortcut icon" href="assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
