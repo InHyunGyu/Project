@@ -40,51 +40,51 @@
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="/www">UtaJJang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="/uta">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
                         <ul>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
-                                <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-3.jpg">
-                                      
-                                       
-                                    </ul>
-                                </div>
                             </li>
                             
-                            
-                            
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Pages</span></a>
-                                <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-1.jpg">
-                                       <li><a href="signupmove">Sign-up</a></li>
-                                      
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Portfolio</span></a>
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                     
+                                    <li><a href="portfolio-7.html">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="portfolio-1.html">Daily</a></li>
+                                            <li><a href="portfolio-2.html">Weekly</a></li>
+                                            <li><a href="portfolio-3.html">Monthly</a></li>
+                                        </ul>
+                                    </li>
                                     
                                 </ul>
                             </li>
                   
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Shop</span></a>
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
                                 <ul class="sub-menu">
-                                   
+                                    <li><a href="portfolio-7.html">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="portfolio-1.html">Daily</a></li>
+                                            <li><a href="portfolio-2.html">Weekly</a></li>
+                                            <li><a href="portfolio-3.html">Monthly</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="current_music"><span class="menu-item-span">Components</span></a>
-                                <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-2.jpg">
-                                        
-                                      
-                                    </ul>
-                                </div>
+                  
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Streaming</span></a>
                             </li>
-                            <li><a href="file_list"><span class="menu-item-span">Demos</span></a></li>
+                            
+                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="portfolio-7.html">Board</a></li>
+                                    <li><a href="portfolio-7.html">My Blog</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="file_list"><span class="menu-item-span">Notice</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                     </ul>
                 </div>
             </div>
-        </header> 
+        </header>
         <!-- Header end-->
 
         <!-- Wrapper-->
