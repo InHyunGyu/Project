@@ -59,14 +59,14 @@
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Pages</span></a>
                                 <div class="mega-menu">
                                     <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-1.jpg">
-                                       
+                                       <li><a href="signupmove">Sign-up</a></li>
                                       
                                     </ul>
                                 </div>
                             </li>
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Portfolio</span></a>
                                 <ul class="sub-menu">
-                                    
+                                     
                                     
                                 </ul>
                             </li>

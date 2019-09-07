@@ -13,5 +13,5 @@ public class Member {
 	private int userpoint;
 	private String isManger;
 	
-	
+
 }

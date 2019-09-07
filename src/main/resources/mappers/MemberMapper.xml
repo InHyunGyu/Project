@@ -4,6 +4,40 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.debugking.www.dao.MemberMapper">
-	
+<!-- 	<select id="searchOne" parameterType="Member" resultType="Member">
+		select 
+			userNum
+			,userid
+			,userpwd
+			,username
+			,userphone
+			,userbirth
+			,signupDate
+			,userAddress
+			,userEmail
+			,userpoint
+			,isManger
+		From
+			Member
+		Where
+			userid = #{userid}
+	</select>
+	<insert id="signup" parameterType="Member">
+		insert into Member
+		values
+		(
+			memberseq.nextval,
+			,userid
+			,userpwd
+			,username
+			,userphone
+			,userbirth
+			,signupDate
+			,userAddress
+			,userEmail
+			,userpoint
+			,isManger
+		)
+	</insert> -->
 </mapper>
 
