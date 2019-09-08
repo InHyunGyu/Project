@@ -1,4 +1,7 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,17 +11,17 @@
         <meta name="author" content="">
         <title>Boomerang - Template</title>
         <!-- Favicons-->
-        <link rel="shortcut icon" href="assets/images/favicon.png">
-        <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-touch-icon-114x114.png">
+        <link rel="shortcut icon" href="resources/assets/images/favicon.png">
+        <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="resources/assets/images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="resources/assets/images/apple-touch-icon-114x114.png">
         <!-- Web Fonts-->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600%7cPlayfair+Display:400i" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <!-- Plugins-->
-        <link href="assets/css/plugins.min.css" rel="stylesheet">
+        <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
-        <link href="assets/css/template.css" rel="stylesheet">
+        <link href="resources/assets/css/template.css" rel="stylesheet">
     </head>
     <body>
 
@@ -44,7 +47,7 @@
                         <ul>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
                                 <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-3.jpg">
+                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-3.jpg">
                                         <!-- Column 1-->
                                         <li class="menu-item-has-children mega-menu-col"><a href="#">Multi Page</a>
                                             <ul class="sub-menu">
@@ -76,7 +79,7 @@
                             </li>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Pages</span></a>
                                 <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-1.jpg">
+                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-1.jpg">
                                         <!-- Column 1-->
                                         <li class="menu-item-has-children mega-menu-col"><a href="#">Pages 1</a>
                                             <ul class="sub-menu">
@@ -176,7 +179,7 @@
                             </li>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Components</span></a>
                                 <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-2.jpg">
+                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-2.jpg">
                                         <!-- Column 1-->
                                         <li class="menu-item-has-children mega-menu-col"><a href="#">Group 1</a>
                                             <ul class="sub-menu">
@@ -236,11 +239,11 @@
         <!-- Wrapper-->
         <div class="wrapper">
             <!-- Hero-->
-            <section class="module-cover parallax text-center" data-background="assets/images/module-19.jpg" data-overlay="0.3">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-17.jpg" data-overlay="0.3">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>Left Sidebar</h2>
+                            <h2>Right Sidebar</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Quisque eget mi at eros venenatis</p>
                         </div>
                     </div>
@@ -252,11 +255,11 @@
             <section class="module">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 order-lg-2">
+                        <div class="col-lg-8">
 
                             <!-- Post-->
                             <article class="post">
-                                <div class="post-preview"><a href="#"><img src="assets/images/blog/1.jpg" alt=""></a></div>
+                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/1.jpg" alt=""></a></div>
                                 <div class="post-wrapper">
                                     <div class="post-header">
                                         <h2 class="post-title"><a href="blog-single.html">Bluetooth Speaker</a></h2>
@@ -276,7 +279,7 @@
 
                             <!-- Post-->
                             <article class="post">
-                                <div class="post-preview"><a href="#"><img src="assets/images/blog/3.jpg" alt=""></a></div>
+                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/3.jpg" alt=""></a></div>
                                 <div class="post-wrapper">
                                     <div class="post-header">
                                         <h2 class="post-title"><a href="blog-single.html">Minimalist Chandelier</a></h2>
@@ -296,7 +299,7 @@
 
                             <!-- Post-->
                             <article class="post">
-                                <div class="post-preview"><a href="#"><img src="assets/images/blog/5.jpg" alt=""></a></div>
+                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/5.jpg" alt=""></a></div>
                                 <div class="post-wrapper">
                                     <div class="post-header">
                                         <h2 class="post-title"><a href="blog-single.html">Standard Shape</a></h2>
@@ -316,7 +319,7 @@
 
                             <!-- Post-->
                             <article class="post">
-                                <div class="post-preview"><a href="#"><img src="assets/images/blog/7.jpg" alt=""></a></div>
+                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/7.jpg" alt=""></a></div>
                                 <div class="post-wrapper">
                                     <div class="post-header">
                                         <h2 class="post-title"><a href="blog-single.html">Street Fashion</a></h2>
@@ -351,9 +354,36 @@
                             </div>
                             <!-- Page Navigation end-->
                         </div>
-                        <div class="col-lg-4 order-lg-1">
+                       
+                        
+                        <div class="col-lg-4">
                             <div class="sidebar">
-
+								 <!-- Customer Sidebar-->
+          <div class="col-xl-3 col-lg-4 mb-5">
+            <div class="customer-sidebar card border-0"> 
+              <div class="customer-profile"><a href="#" class="d-inline-block"><img src="https://d19m59y37dris4.cloudfront.net/sell/1-2-5/img/photo/kyle-loftus-589739-unsplash-avatar.e60f8a91.jpg" class="img-fluid rounded-circle customer-image"></a>
+                <h5>Julie Svestkova</h5>
+                <p class="text-muted text-sm mb-0">Ostrava, Czech republic</p>
+              </div>
+              <nav class="list-group customer-nav"><a href="customer-orders.html" class="list-group-item d-flex justify-content-between align-items-center"><span>
+                    <svg class="svg-icon svg-icon-heavy mr-2">
+                      <use xlink:href="#paper-bag-1"> </use>
+                    </svg>Orders</span>
+                  <div class="badge badge-pill badge-dark font-weight-normal px-3">5</div></a><a href="customer-account.html" class="active list-group-item d-flex justify-content-between align-items-center"><span>
+                    <svg class="svg-icon svg-icon-heavy mr-2">
+                      <use xlink:href="#male-user-1"> </use>
+                    </svg>Profile</span></a><a href="customer-addresses.html" class="list-group-item d-flex justify-content-between align-items-center"><span>
+                    <svg class="svg-icon svg-icon-heavy mr-2">
+                      <use xlink:href="#navigation-map-1"> </use>
+                    </svg>Addresses</span></a><a href="customer-login.html" class="list-group-item d-flex justify-content-between align-items-center"><span>
+                    <svg class="svg-icon svg-icon-heavy mr-2">
+                      <use xlink:href="#exit-1"> </use>
+                    </svg>Log out</span></a>
+              </nav>
+            </div>
+          </div>
+          <!-- /Customer Sidebar-->
+								
                                 <!-- Search widget-->
                                 <aside class="widget widget-search">
                                     <form>
@@ -383,15 +413,15 @@
                                     </div>
                                     <ul>
                                         <li class="clearfix">
-                                            <div class="wi"><a href="#"><img src="assets/images/widgets/1.jpg" alt=""></a></div>
+                                            <div class="wi"><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
                                             <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
                                         </li>
                                         <li class="clearfix">
-                                            <div class="wi"><a href="#"><img src="assets/images/widgets/2.jpg" alt=""></a></div>
+                                            <div class="wi"><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></div>
                                             <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
                                         </li>
                                         <li class="clearfix">
-                                            <div class="wi"><a href="#"><img src="assets/images/widgets/3.jpg" alt=""></a></div>
+                                            <div class="wi"><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></div>
                                             <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
                                         </li>
                                     </ul>
@@ -475,12 +505,12 @@
                                         <h6>Portfolio</h6>
                                     </div>
                                     <ul>
-                                        <li><a href="#"><img src="assets/images/widgets/1.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/2.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/3.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/7.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/8.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/images/widgets/6.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
                                     </ul>
                                 </aside>
                             </div>
@@ -510,22 +540,22 @@
                     <!-- Text widget-->
                     <aside class="widget widget-text">
                         <div class="textwidget">
-                            <p class="text-center"><img src="assets/images/logo-light-2.png" alt="" width="80px"></p>
+                            <p class="text-center"><img src="resources/assets/images/logo-light-2.png" alt="" width="80px"></p>
                             <p class="text-center">See how users experience your website in realtime to see changes.</p>
                         </div>
                     </aside>
                     <!-- Recent portfolio widget-->
                     <aside class="widget widget-recent-works">
                         <ul>
-                            <li><a href="#"><img src="assets/images/widgets/1.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/2.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/3.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/4.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/5.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/6.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/7.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/8.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="assets/images/widgets/9.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/4.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/5.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="resources/assets/images/widgets/9.jpg" alt=""></a></li>
                         </ul>
                     </aside>
                     <!-- Social Icons-->
@@ -543,11 +573,11 @@
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->
-        <script src="assets/js/custom/jquery.min.js"></script>
-        <script src="assets/js/custom/popper.min.js"></script>
-        <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+        <script src="resources/assets/js/custom/jquery.min.js"></script>
+        <script src="resources/assets/js/custom/popper.min.js"></script>
+        <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
-        <script src="assets/js/custom/plugins.min.js"></script>
-        <script src="assets/js/custom/custom.min.js"></script>
+        <script src="resources/assets/js/custom/plugins.min.js"></script>
+        <script src="resources/assets/js/custom/custom.min.js"></script>
     </body>
 </html>
