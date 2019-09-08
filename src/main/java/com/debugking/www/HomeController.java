@@ -19,16 +19,10 @@ public class HomeController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/file_list", method = RequestMethod.GET)
-	public String file_list() {
-		return "file_list";
+	@RequestMapping(value="main", method=RequestMethod.GET)
+	public String main(){
+		return "main";
 	}
 	
-	@RequestMapping(value = "/file_detail", method = RequestMethod.GET)
-	public String file_detail() {
-		return "file_detail";
-	}
-	 
 
-	
 }

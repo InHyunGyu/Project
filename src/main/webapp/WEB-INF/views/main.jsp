@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -23,6 +22,74 @@
         <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
+        <!-- JavaScripts -->
+		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	
+	<script>
+	$(function(){
+		$("#loginBTN").on('click', function(){
+			var userid = $("#userid").val();
+			var userpwd = $("#userpwd").val();
+			
+			if(userid.length == 0 || userpwd.length == 0) {
+				alert("다시입력해주세요.");
+				return;
+			}
+			
+			var send = {
+					"userid" : userid,
+					"userpwd" : userpwd
+			}
+			
+			$.ajax({
+				method:'post',
+				url:'login',
+				data:send,
+				success: function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$("#signup").on('click', function(){
+			location.href="signup"
+		})
+	})
+	
+	
+	
+	function voice_new(){
+		location.href="voice_new";
+	}
+	
+	function voice_weekly(){
+		location.href="voice_weekly";
+	}
+	
+	function voice_monthly(){
+		location.href="voice_monthly";
+	}
+	
+	function voice_all(){
+		location.href="voice_all";
+	}
+	
+	function video_new(){
+		location.href="video_new";
+	}
+	
+	function video_weekly(){
+		location.href="video_weekly";
+	}
+	
+	function video_monthly(){
+		location.href="video_monthly";
+	}
+	
+	function video_all(){
+		location.href="video_all";
+	}
+	</script>
     </head>
     <body>
         <!-- Preloader-->
@@ -50,32 +117,31 @@
                             
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="portfolio-7.html">New</a></li>
+                                    <li><a href="#" onclick="voice_new();">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="portfolio-1.html">Daily</a></li>
-                                            <li><a href="portfolio-2.html">Weekly</a></li>
-                                            <li><a href="portfolio-3.html">Monthly</a></li>
+                                            <li><a href="#" onclick="voice_weekly();">Weekly</a></li>
+                                            <li><a href="#" onclick="voice_monthly();">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    
+                                    <li><a href="#" onclick="voice_all();">ALL</a></li>
                                 </ul>
                             </li>
                   
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="portfolio-7.html">New</a></li>
+                                    <li><a href="#" onclick="video_new();">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="portfolio-1.html">Daily</a></li>
-                                            <li><a href="portfolio-2.html">Weekly</a></li>
-                                            <li><a href="portfolio-3.html">Monthly</a></li>
+                                            <li><a href="#" onclick="video_weekly();">Weekly</a></li>
+                                            <li><a href="#" onclick="video_monthly();">Monthly</a></li>
                                         </ul>
                                     </li>
+                                    <li><a href="#" onclick="video_all();">ALL</a></li>
                                 </ul>
                             </li>
                   
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="#"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
@@ -84,7 +150,7 @@
                                     <li><a href="portfolio-7.html">My Blog</a></li>
                                 </ul>
                             </li>
-                            <li><a href="file_list"><span class="menu-item-span">Notice</span></a></li>
+                            <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -162,10 +228,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="filters serif">
-                                <li><a class="current" href="#" data-filter="*">All</a></li>
-                                <li><a href="#" data-filter=".branding">Branding</a></li>
-                                <li><a href="#" data-filter=".digital">Digital</a></li>
-                                <li><a href="#" data-filter=".packaging">Packaging</a></li>
+                                <li><a href="#" data-filter=".packaging">New</a></li>
+                                <li><a class="current" href="#" data-filter="*">Weekly</a></li>
+                                <li><a href="#" data-filter=".branding">Monhly</a></li>
+                                <li><a href="#" data-filter=".digital">ALL</a></li>
                             </ul>
                         </div>
                     </div>
@@ -529,33 +595,30 @@
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
+                    <c:if test="${sessionScope.userid != null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
-                            <p class="text-center"><img src="resources/assets/images/logo-light-2.png" alt="" width="80px"></p>
-                            <p class="text-center">See how users experience your website in realtime to see changes.</p>
+                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
+                            <p class="text-center">로그인한아이디</p>
+                            <p class="text-center">n 번 방문</p>
+                            <p class="text-center">내 블로그 </p>
+                            <p class="text-center">정보 수정</p>
                         </div>
                     </aside>
-                    <!-- Recent portfolio widget-->
-                    <aside class="widget widget-recent-works">
-                        <ul>
-                            <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/4.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/5.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/9.jpg" alt=""></a></li>
-                        </ul>
+                    </c:if>
+                    <c:if test="${sessionScope.userid == null}">
+                    <aside class="widget widget-text">
+                        <div class="textwidget">
+                        	<div class="form-group">
+                        	<p class="text-center">Login</p>
+                            <p class="text-center"><input class="form-control" type="text" id="userid" name="userid" placeholder="loginId"></p>
+                            <p class="text-center"><input class="form-control" type="password" id="userpwd" name="userpwd" placeholder="password"></p>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN">login</button>
+                            <button type="button" class="btn btn-outline-secondary" name="signup" id="signup">signup</button></p>
+                            </div> 
+                        </div>
                     </aside>
-                    <!-- Social Icons-->
-                    <ul class="social-icons text-center">
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                    </ul>
+                    </c:if>
                 </div>
             </div>
         </div>
