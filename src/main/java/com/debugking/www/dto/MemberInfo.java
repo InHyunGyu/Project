@@ -5,15 +5,15 @@ import lombok.Data;
 @Data
 public class MemberInfo {
 	private int memberNum;
-	private String memberid;//
-	private String memberpwd;//
-	private String membername;
-	private String memberphone;//
-	private String memberbirth;
+	private String memberId;
+	private String memberPwd;
+	private String memberName;
+	private String memberPhone;//
+	private String memberBirth;//
 	private String signupDate;
-	private String memberAddress;
+	//private String memberAddress;
 	private String memberEmail;//
-	private int memberpoint;
+	private int memberPoint;
 	private int isManager;
 	private String recommender;
 	private String clubNum;

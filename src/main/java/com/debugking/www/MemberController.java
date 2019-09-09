@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.debugking.www.dao.MemberRepository;
 import com.debugking.www.dto.MemberInfo;
 import com.debugking.www.service.MemberService;
 
@@ -15,6 +16,8 @@ import com.debugking.www.service.MemberService;
 public class MemberController {
 	@Autowired
 	MemberService serivce;
+	@Autowired
+	MemberRepository repo;
 	
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -27,9 +30,9 @@ public class MemberController {
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup(){
 		
-		return "signup";
+		return "Member/signup";
 	}
-	
+	//회원 등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signupPro(MemberInfo member){
 		System.out.println(member);
@@ -46,4 +49,20 @@ public class MemberController {
 	public String myblog(){
 		return "myblog";
 	}
+	
+	//ID체크 한명불러오기
+	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
+	@ResponseBody
+	public String idCheck(MemberInfo member){
+		System.out.println("idcheck"+member);
+		MemberInfo result = repo.idCheck(member);
+		if(result!=null){
+			return "true";
+		}
+		else{
+			return "false";
+		}
+	}
+	
+	
 }

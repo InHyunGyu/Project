@@ -16,14 +16,14 @@ public class MemberService {
 	PointslogRepository logrepo;*/
 	public int signup(MemberInfo member) {
 		if(member.getRecommender()!=null){
-			member.setMemberpoint(1000);
+			member.setMemberPoint(1000);
 			//logrepo.insertpointslog(member);
 			
 			//Update id + point
 			MemberInfo temp = new MemberInfo();
-			temp.setMemberid(member.getRecommender());
-			temp.setRecommender(member.getMemberid());
-			temp.setMemberpoint(1000);
+			temp.setMemberId(member.getRecommender());
+			temp.setRecommender(member.getMemberId());
+			temp.setMemberPoint(1000);
 			//logrepo.updatepointslog(temp);
 		}
 		
