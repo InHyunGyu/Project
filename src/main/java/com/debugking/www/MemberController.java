@@ -53,7 +53,7 @@ public class MemberController {
 	
 
 	//ID체크 한명불러오기
-	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
+	@RequestMapping(value="idCheck", method=RequestMethod.GET)
 	@ResponseBody
 	public String idCheck(MemberInfo member){
 		System.out.println("idcheck"+member);

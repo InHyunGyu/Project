@@ -56,10 +56,11 @@
 			}
 		});
 		$("#checkid").on("click",function(){
+			var checkpwd = 	$("#checkpwd").val();
 			$.ajax({
-				method:"GET",
-				url:"idCheck",
-				data: "memberId="+ memberid,
+				method : "GET",
+				url : "idCheck",
+				data : "memberId="+ memberid,
 				success: function(result){
 					if(result=="true"){
 						alert("동일한 ID가 존재합니다.");
