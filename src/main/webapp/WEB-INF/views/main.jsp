@@ -156,7 +156,6 @@
                 </div>
                 <div class="extra-nav">
                     <ul>
-                        <li><a class="top-bar-cart" href="shop-cart-1.html"><span class="menu-item-span"><i class="ti-shopping-cart"></i><span>3</span></span></a></li>
                         <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
                         <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
                     </ul>
@@ -595,7 +594,7 @@
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
-                    <c:if test="${sessionScope.userid != null}">
+                    <c:if test="${sessionScope.userid == null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
