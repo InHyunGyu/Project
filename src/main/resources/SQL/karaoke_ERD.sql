@@ -12,22 +12,12 @@ DROP TABLE clubs CASCADE CONSTRAINTS;
 
 
 
-/* Drop Sequences */
-
-DROP SEQUENCE SEQ_memberInfo_memberNum;
-DROP SEQUENCE SEQ_NEW_TABLE_userNum;
-DROP SEQUENCE SEQ_pointslog_logid;
-DROP SEQUENCE SEQ_userinfo_userNum;
-
-
-
-
 /* Create Sequences */
 
-CREATE SEQUENCE SEQ_memberInfo_memberNum INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_NEW_TABLE_userNum INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_pointslog_logid INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_userinfo_userNum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_memberInfo INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_userNum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_logid INCREMENT BY 1 START WITH 1;
+
 
 
 
@@ -112,7 +102,9 @@ CREATE TABLE memberInfo
 	isManager number(1) DEFAULT 0,
 	recommender varchar2(50),
 	-- 각 클럽의 일련번호. 난수를 발생시켜 일련번호를 생성할 계획. 
-	clubNum varchar2(200) NOT NULL
+	clubNum varchar2(200) NOT NULL,
+	--포인트 타입
+	purchaseType varchar2(30)
 );
 
 
