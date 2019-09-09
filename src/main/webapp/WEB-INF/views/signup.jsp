@@ -61,39 +61,7 @@
 		})
 	})
 	
-	
-	
-	function voice_new(){
-		location.href="voice_new";
-	}
-	
-	function voice_weekly(){
-		location.href="voice_weekly";
-	}
-	
-	function voice_monthly(){
-		location.href="voice_monthly";
-	}
-	
-	function voice_all(){
-		location.href="voice_all";
-	}
-	
-	function video_new(){
-		location.href="video_new";
-	}
-	
-	function video_weekly(){
-		location.href="video_weekly";
-	}
-	
-	function video_monthly(){
-		location.href="video_monthly";
-	}
-	
-	function video_all(){
-		location.href="video_all";
-	}
+
 	</script>
 </head>
 <body>
@@ -109,69 +77,66 @@
 	</div>
 	<!-- Preloader end-->
 
-	<!-- Header-->
-	<header class="header header-transparent">
-		<div class="container-fluid">
-			<!-- Brand-->
-			<div class="inner-header">
-				<a class="inner-brand" href="/uta">UtaJJang</a>
-			</div>
-			<!-- Navigation-->
-			<div class="inner-navigation collapse">
-				<div class="inner-nav">
-					<ul>
-						<li class="menu-item-has-children menu-item-has-mega-menu"><a
-							href="#"><span class="menu-item-span">Home</span></a></li>
-
-						<li class="menu-item-has-children"><a href="#"><span
-								class="menu-item-span">Voice</span></a>
-							<ul class="sub-menu">
-								<li><a href="#" onclick="voice_new();">New</a></li>
-								<li class="menu-item-has-children"><a href="#">Best</a>
-									<ul class="sub-menu">
-										<li><a href="#" onclick="voice_weekly();">Weekly</a></li>
-										<li><a href="#" onclick="voice_monthly();">Monthly</a></li>
-									</ul></li>
-								<li><a href="#" onclick="voice_all();">ALL</a></li>
-							</ul></li>
-
-						<li class="menu-item-has-children"><a href="#"><span
-								class="menu-item-span">Video</span></a>
-							<ul class="sub-menu">
-								<li><a href="#" onclick="video_new();">New</a></li>
-								<li class="menu-item-has-children"><a href="#">Best</a>
-									<ul class="sub-menu">
-										<li><a href="#" onclick="video_weekly();">Weekly</a></li>
-										<li><a href="#" onclick="video_monthly();">Monthly</a></li>
-									</ul></li>
-								<li><a href="#" onclick="video_all();">ALL</a></li>
-							</ul></li>
-
-						<li><a href="#"><span class="menu-item-span">Streaming</span></a>
-						</li>
-
-						<li class="menu-item-has-children"><a href="#"><span
-								class="menu-item-span">Community</span></a>
-							<ul class="sub-menu">
-								<li><a href="portfolio-7.html">Board</a></li>
-								<li><a href="portfolio-7.html">My Blog</a></li>
-							</ul></li>
-						<li><a href="#"><span class="menu-item-span">Notice</span></a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="extra-nav">
-				<ul>
-					<li><a class="off-canvas-open" href="#"><span
-							class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-					<li class="nav-toggle"><a href="#" data-toggle="collapse"
-						data-target=".inner-navigation"><span class="menu-item-span"><i
-								class="ti-menu"></i></span></a></li>
-				</ul>
-			</div>
-		</div>
-	</header>
-	<!-- Header end-->
+	        <!-- Header-->
+        <header class="header header-transparent">
+            <div class="container-fluid">
+                <!-- Brand-->
+                <div class="inner-header"><a class="inner-brand" href="/uta">UtaJJang</a></div>
+                <!-- Navigation-->
+                <div class="inner-navigation collapse">
+                    <div class="inner-nav">
+                        <ul>
+                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
+                            </li>
+                            
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="voice_mew">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="voice_weekly">Weekly</a></li>
+                                            <li><a href="voice_monthly">Monthly</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="voice_all">ALL</a></li>
+                                </ul>
+                            </li>
+                  
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="video_new">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="video_weelky">Weekly</a></li>
+                                            <li><a href="video_monthly">Monthly</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="video_all">ALL</a></li>
+                                </ul>
+                            </li>
+                  
+                            <li><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            </li>
+                            
+                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="portfolio-7.html">Board</a></li>
+                                    <li><a href="myblog">My Blog</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="extra-nav">
+                    <ul>
+                        <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- Header end-->
 
 
 	<!-- Wrapper-->

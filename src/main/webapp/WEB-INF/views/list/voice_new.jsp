@@ -27,41 +27,35 @@
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 	
 	<script>
-	function voice_new(){
-		location.href="voice_new";
-	}
-	
-	function voice_weekly(){
-		location.href="voice_weekly";
-	}
-	
-	function voice_monthly(){
-		location.href="voice_monthly";
-	}
-	
-	function voice_all(){
-		location.href="voice_all";
+	$(function(){
+		$("#loginBTN").on('click', function(){
+			var userid = $("#userid").val();
+			var userpwd = $("#userpwd").val();
+			
+			if(userid.length == 0 || userpwd.length == 0) {
+				alert("다시입력해주세요.");
+				return;
+			}
+			
+			var send = {
+					"userid" : userid,
+					"userpwd" : userpwd
+			}
+			
+			$.ajax({
+				method:'post',
+				url:'login',
+				data:send,
+				success: function(){
+					location.reload();
+				}
+			})
+		})
 		
-	}
-	function video_new(){
-		location.href="video_new";
-	}
-	
-	function video_weekly(){
-		location.href="video_weekly";
-	}
-	
-	function video_monthly(){
-		location.href="video_monthly";
-	}
-	
-	function video_all(){
-		location.href="video_all";
-	}
-	
-	function home(){
-		location.href="main";
-	}
+		$("#signup").on('click', function(){
+			location.href="signup"
+		})
+	})
 	</script>        
     </head>
     <body>
@@ -86,42 +80,42 @@
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
                         <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a onclick="home();"><span class="menu-item-span">Home</span></a>
+                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
                             </li>
                             
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#" onclick="voice_new();">New</a></li>
+                                    <li><a href="voice_mew">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#" onclick="voice_weekly();">Weekly</a></li>
-                                            <li><a href="#" onclick="voice_monthly();">Monthly</a></li>
+                                            <li><a href="voice_weekly">Weekly</a></li>
+                                            <li><a href="voice_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#" onclick="voice_all();">ALL</a></li>
+                                    <li><a href="voice_all">ALL</a></li>
                                 </ul>
                             </li>
                   
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#" onclick="video_new();">New</a></li>
+                                    <li><a href="video_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#" onclick="video_weekly();">Weekly</a></li>
-                                            <li><a href="#" onclick="video_monthly();">Monthly</a></li>
+                                            <li><a href="video_weelky">Weekly</a></li>
+                                            <li><a href="video_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#" onclick="video_all();">ALL</a></li>
+                                    <li><a href="video_all">ALL</a></li>
                                 </ul>
                             </li>
                   
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="#"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="portfolio-7.html">Board</a></li>
-                                    <li><a href="portfolio-7.html">My Blog</a></li>
+                                    <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
                             <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
@@ -366,8 +360,8 @@
                         	<p class="text-center">Login</p>
                             <p class="text-center"><input class="form-control" type="text" id="userid" name="userid" placeholder="loginId"></p>
                             <p class="text-center"><input class="form-control" type="password" id="userpwd" name="userpwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-lg btn-circle btn-outline-new-white" type="button"  name="loginBTN" id="loginBTN">login</button>
-                            <button type="button" class="btn btn-lg btn-circle btn-outline-new-white" name="join" id="join">join</button></p>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN">login</button>
+                            <button type="button" class="btn btn-outline-secondary" name="signup" id="signup">signup</button></p>
                             </div> 
                         </div>
                     </aside>

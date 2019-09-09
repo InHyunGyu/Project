@@ -89,6 +89,11 @@
 	function video_all(){
 		location.href="video_all";
 	}
+	
+	function myblog(){
+		location.href="myblog";
+	}
+		
 	</script>
     </head>
     <body>
@@ -120,7 +125,7 @@
                                     <li><a href="#" onclick="voice_new();">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#" onclick="voice_weekly();">Weekly</a></li>
+                                            <li><a href="voice_weekly" ">Weekly</a></li>
                                             <li><a href="#" onclick="voice_monthly();">Monthly</a></li>
                                         </ul>
                                     </li>
@@ -147,7 +152,7 @@
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="portfolio-7.html">Board</a></li>
-                                    <li><a href="portfolio-7.html">My Blog</a></li>
+                                    <li><a onclick="myblog();">My Blog</a></li>
                                 </ul>
                             </li>
                             <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
@@ -594,7 +599,7 @@
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
-                    <c:if test="${sessionScope.userid == null}">
+                    <c:if test="${sessionScope.userid != null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>

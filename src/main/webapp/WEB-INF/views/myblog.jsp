@@ -22,6 +22,41 @@
         <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
+        <!-- JavaScripts -->
+		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	
+	<script>
+	$(function(){
+		$("#loginBTN").on('click', function(){
+			var userid = $("#userid").val();
+			var userpwd = $("#userpwd").val();
+			
+			if(userid.length == 0 || userpwd.length == 0) {
+				alert("다시입력해주세요.");
+				return;
+			}
+			
+			var send = {
+					"userid" : userid,
+					"userpwd" : userpwd
+			}
+			
+			$.ajax({
+				method:'post',
+				url:'login',
+				data:send,
+				success: function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$("#signup").on('click', function(){
+			location.href="signup"
+		})
+	})
+	
+	</script>
     </head>
     <body>
 
@@ -40,188 +75,50 @@
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="index.html">Boomerang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="/uta">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
                         <ul>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
-                                <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-3.jpg">
-                                        <!-- Column 1-->
-                                        <li class="menu-item-has-children mega-menu-col"><a href="#">Multi Page</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="index.html">Parallax</a></li>
-                                                <li><a href="index-3.html">Slider - Fade</a></li>
-                                                <li><a href="index-2.html">Slider - Slide</a></li>
-                                                <li><a href="index-7.html">Gradient Style 1</a></li>
-                                                <li><a href="index-8.html">Gradient Style 2</a></li>
-                                                <li><a href="index-6.html">Local Video</a></li>
-                                                <li><a href="index-5.html">Vimeo Video</a></li>
-                                                <li><a href="index-4.html">Youtube Video</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Column 2-->
-                                        <li class="menu-item-has-children mega-menu-col"><a href="#">One Page</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="op-index.html">Parallax</a></li>
-                                                <li><a href="op-index-3.html">Slider - Fade</a></li>
-                                                <li><a href="op-index-2.html">Slider - Slide</a></li>
-                                                <li><a href="op-index-7.html">Gradient Style 1</a></li>
-                                                <li><a href="op-index-8.html">Gradient Style 2</a></li>
-                                                <li><a href="op-index-6.html">Local Video</a></li>
-                                                <li><a href="op-index-5.html">Vimeo Video</a></li>
-                                                <li><a href="op-index-4.html">Youtube Video</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Pages</span></a>
-                                <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-1.jpg">
-                                        <!-- Column 1-->
-                                        <li class="menu-item-has-children mega-menu-col"><a href="#">Pages 1</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="about-1.html">About Us 1</a></li>
-                                                <li><a href="about-2.html">About Us 2</a></li>
-                                                <li><a href="services-1.html">Services 1</a></li>
-                                                <li><a href="services-2.html">Services 2</a></li>
-                                                <li><a href="timeline.html">Timeline</a></li>
-                                                <li><a href="pricing-1.html">Pricing</a></li>
-                                                <li><a href="faqs.html">FAQs</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Column 2-->
-                                        <li class="menu-item-has-children mega-menu-col"><a href="#">Pages 2</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="sign-in.html">Sign in</a></li>
-                                                <li><a href="sign-up.html">Sign Up</a></li>
-                                                <li><a href="recover-password.html">Password</a></li>
-                                                <li><a href="contact-3.html">Contact</a></li>
-                                                <li><a href="contact-2.html">Map Contact</a></li>
-                                                <li><a href="contact-1.html">Image Contact</a></li>
-                                                <li><a href="invoice.html">Invoice</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Portfolio</span></a>
+                            
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="portfolio-7.html">Carousel</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Wide</a>
+                                    <li><a href="voice_mew">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="portfolio-1.html">5 Columns</a></li>
-                                            <li><a href="portfolio-2.html">4 Columns</a></li>
-                                            <li><a href="portfolio-3.html">3 Columns</a></li>
+                                            <li><a href="voice_weekly">Weekly</a></li>
+                                            <li><a href="voice_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children"><a href="#">Boxed</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="portfolio-4.html">4 Columns</a></li>
-                                            <li><a href="portfolio-5.html">3 Columns</a></li>
-                                            <li><a href="portfolio-6.html">2 Columns</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Single</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="portfolio-single-1.html">Sidebar Stack</a></li>
-                                            <li><a href="portfolio-single-2.html">Sidebar Slides</a></li>
-                                            <li><a href="portfolio-single-3.html">Sidebar Gallery</a></li>
-                                            <li><a href="portfolio-single-4.html">Centered Stack</a></li>
-                                            <li><a href="portfolio-single-5.html">Centered Slides</a></li>
-                                            <li><a href="portfolio-single-6.html">Centered Gallery</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="voice_all">ALL</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Blog</span></a>
+                  
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
                                 <ul class="sub-menu">
-                                    <li class="menu-item-has-children"><a href="#">Classic</a>
+                                    <li><a href="video_new">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="blog-1.html">Right Sidebar</a></li>
-                                            <li><a href="blog-2.html">Left Sidebar</a></li>
-                                            <li><a href="blog-3.html">No Sidebar</a></li>
+                                            <li><a href="video_weelky">Weekly</a></li>
+                                            <li><a href="video_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children"><a href="#">Masonry</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-4.html">Right Sidebar</a></li>
-                                            <li><a href="blog-5.html">Left Sidebar</a></li>
-                                            <li><a href="blog-6.html">No Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Side Image</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-7.html">Right Sidebar</a></li>
-                                            <li><a href="blog-8.html">Left Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Single Post</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-single-1.html">Right Sidebar</a></li>
-                                            <li><a href="blog-single-2.html">Left Sidebar</a></li>
-                                            <li><a href="blog-single-3.html">No Sidebar</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="video_all">ALL</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Shop</span></a>
+                  
+                            <li><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            </li>
+                            
+                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="shop-grid-1.html">Shop 2 Columns</a></li>
-                                    <li><a href="shop-grid-2.html">Shop 3 Columns</a></li>
-                                    <li><a href="shop-grid-3.html">Shop 4 Columns</a></li>
-                                    <li><a href="shop-single-1.html">Single Product</a></li>
-                                    <li><a href="shop-checkout.html">Checkout</a></li>
-                                    <li><a href="shop-cart-1.html">Cart</a></li>
+                                    <li><a href="portfolio-7.html">Board</a></li>
+                                    <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Components</span></a>
-                                <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-2.jpg">
-                                        <!-- Column 1-->
-                                        <li class="menu-item-has-children mega-menu-col"><a href="#">Group 1</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="components-alerts.html"><i class="fas fa-exclamation-triangle"></i> Alerts</a></li>
-                                                <li><a href="components-accordion.html"><i class="fas fa-plus-square"></i> Accordion</a></li>
-                                                <li><a href="components-buttons.html"><i class="fas fa-link"></i> Buttons</a></li>
-                                                <li><a href="components-clients.html"><i class="fab fa-amazon"></i> Clients</a></li>
-                                                <li><a href="components-counters.html"><i class="fas fa-superscript"></i> Counters</a></li>
-                                                <li><a href="components-maps.html"><i class="fas fa-map"></i> Google Maps</a></li>
-                                                <li><a href="components-grid.html"><i class="fas fa-th"></i> Grid</a></li>
-                                                <li><a href="components-hero.html"><i class="fas fa-object-ungroup"></i> Hero</a></li>
-                                                <li><a href="components-iconbox.html"><i class="fas fa-bold"></i> IсonBox</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Column 2-->
-                                        <li class="menu-item-has-children mega-menu-col"><a href="#">Group 2</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="components-forms.html"><i class="fas fa-align-justify"></i> Inputs</a></li>
-                                                <li><a href="components-modal.html"><i class="fas fa-plus-square"></i> Modal</a></li>
-                                                <li><a href="components-pie.html"><i class="fas fa-chart-pie"></i> Pie charts</a></li>
-                                                <li><a href="components-pricing.html"><i class="fas fa-dollar-sign"></i> Pricing Tables</a></li>
-                                                <li><a href="components-progress.html"><i class="fas fa-tasks"></i> Progress Bars</a></li>
-                                                <li><a href="components-sections.html"><i class="fas fa-object-ungroup"></i> Sections</a></li>
-                                                <li><a href="components-sliders.html"><i class="fas fa-images"></i> Sliders</a></li>
-                                                <li><a href="components-tabs.html"><i class="fas fa-columns"></i> Tabs</a></li>
-                                                <li><a href="components-team.html"><i class="far fa-user-circle"></i> Team</a></li>
-                                            </ul>
-                                        </li>
-                                        <!-- Column 3-->
-                                        <li class="menu-item-has-children mega-menu-col"><a href="#">Group 3</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="components-testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a></li>
-                                                <li><a href="components-tooltips.html"><i class="far fa-question-circle"></i> Tooltips</a></li>
-                                                <li><a href="components-typography.html"><i class="fas fa-font"></i> Typography</a></li>
-                                                <li><a href="components-video.html"><i class="fab fa-youtube"></i> Video</a></li>
-                                                <li><a href="documentation.html"><i class="fas fa-info-circle"></i> Documentation</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li><a href="start.html"><span class="menu-item-span">Demos</span></a></li>
+                            <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -355,33 +252,12 @@
                         </div>
                        
                         
+                        
+                        
                         <div class="col-lg-4">
+                        
                             <div class="sidebar">
-								 <!-- Customer Sidebar-->
-          <div class="col-xl-3 col-lg-4 mb-5">
-            <div class="customer-sidebar card border-0"> 
-              <div class="customer-profile"><a href="#" class="d-inline-block"><img src="https://d19m59y37dris4.cloudfront.net/sell/1-2-5/img/photo/kyle-loftus-589739-unsplash-avatar.e60f8a91.jpg" class="img-fluid rounded-circle customer-image"></a>
-                <h5>Julie Svestkova</h5>
-                <p class="text-muted text-sm mb-0">Ostrava, Czech republic</p>
-              </div>
-              <nav class="list-group customer-nav"><a href="customer-orders.html" class="list-group-item d-flex justify-content-between align-items-center"><span>
-                    <svg class="svg-icon svg-icon-heavy mr-2">
-                      <use xlink:href="#paper-bag-1"> </use>
-                    </svg>Orders</span>
-                  <div class="badge badge-pill badge-dark font-weight-normal px-3">5</div></a><a href="customer-account.html" class="active list-group-item d-flex justify-content-between align-items-center"><span>
-                    <svg class="svg-icon svg-icon-heavy mr-2">
-                      <use xlink:href="#male-user-1"> </use>
-                    </svg>Profile</span></a><a href="customer-addresses.html" class="list-group-item d-flex justify-content-between align-items-center"><span>
-                    <svg class="svg-icon svg-icon-heavy mr-2">
-                      <use xlink:href="#navigation-map-1"> </use>
-                    </svg>Addresses</span></a><a href="customer-login.html" class="list-group-item d-flex justify-content-between align-items-center"><span>
-                    <svg class="svg-icon svg-icon-heavy mr-2">
-                      <use xlink:href="#exit-1"> </use>
-                    </svg>Log out</span></a>
-              </nav>
-            </div>
-          </div>
-          <!-- /Customer Sidebar-->
+								 
 								
                                 <!-- Search widget-->
                                 <aside class="widget widget-search">
@@ -537,33 +413,30 @@
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
+                    <c:if test="${sessionScope.userid != null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
-                            <p class="text-center"><img src="resources/assets/images/logo-light-2.png" alt="" width="80px"></p>
-                            <p class="text-center">See how users experience your website in realtime to see changes.</p>
+                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
+                            <p class="text-center">로그인한아이디</p>
+                            <p class="text-center">n 번 방문</p>
+                            <p class="text-center">내 블로그 </p>
+                            <p class="text-center">정보 수정</p>
                         </div>
                     </aside>
-                    <!-- Recent portfolio widget-->
-                    <aside class="widget widget-recent-works">
-                        <ul>
-                            <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/4.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/5.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/9.jpg" alt=""></a></li>
-                        </ul>
+                    </c:if>
+                    <c:if test="${sessionScope.userid == null}">
+                    <aside class="widget widget-text">
+                        <div class="textwidget">
+                        	<div class="form-group">
+                        	<p class="text-center">Login</p>
+                            <p class="text-center"><input class="form-control" type="text" id="userid" name="userid" placeholder="loginId"></p>
+                            <p class="text-center"><input class="form-control" type="password" id="userpwd" name="userpwd" placeholder="password"></p>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN">login</button>
+                            <button type="button" class="btn btn-outline-secondary" name="signup" id="signup">signup</button></p>
+                            </div> 
+                        </div>
                     </aside>
-                    <!-- Social Icons-->
-                    <ul class="social-icons text-center">
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                    </ul>
+                    </c:if>
                 </div>
             </div>
         </div>

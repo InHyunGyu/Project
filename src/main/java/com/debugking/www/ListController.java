@@ -12,7 +12,7 @@ public class ListController {
 		return "list/voice_new";
 	}
 	
-	@RequestMapping(value="/voice_weekly", method=RequestMethod.GET)
+ 	@RequestMapping(value="/voice_weekly", method=RequestMethod.GET)
 	public String voice_weekly(){
 		return "list/voice_weekly";
 	}
