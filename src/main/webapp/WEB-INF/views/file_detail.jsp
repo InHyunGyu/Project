@@ -25,7 +25,37 @@
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 	
 	<script>
-
+	$(function(){
+		$("#loginBTN").on('click', function(){
+			var userid = $("#userid").val();
+			var userpwd = $("#userpwd").val();
+			
+			if(userid.length == 0 || userpwd.length == 0) {
+				alert("다시입력해주세요.");
+				return;
+			}
+			
+			var send = {
+					"userid" : userid,
+					"userpwd" : userpwd
+			}
+			
+			$.ajax({
+				method:'post',
+				url:'login',
+				data:send,
+				success: function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$("#signup").on('click', function(){
+			location.href="signup"
+		})
+	})
+	
+		
 	</script>
     </head>
     <body>
@@ -70,7 +100,7 @@
                                     <li><a href="video_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="video_weelky">Weekly</a></li>
+                                            <li><a href="video_weekly">Weekly</a></li>
                                             <li><a href="video_monthly">Monthly</a></li>
                                         </ul>
                                     </li>

@@ -101,7 +101,7 @@ $(function(){
                                     <li><a href="video_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="video_weelky">Weekly</a></li>
+                                            <li><a href="video_weekly">Weekly</a></li>
                                             <li><a href="video_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
