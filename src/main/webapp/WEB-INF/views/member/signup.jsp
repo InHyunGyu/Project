@@ -106,28 +106,31 @@
 		//추천인 유효성 검사 이거까지 해야됩니까?
 		$("#recocheckbtn").on("click",function(){
 			var recommender=$("#recommender").val();
-			
-			$.ajax({
-				method:"GET",
-				url:"idCheck",
-				data: "memberId="+ recommender,
-				success: function(result){
-					if(result=="true"){
-						flagreco=true;
-						alert("확인");
-						
+			if(recommender != "" || recommender!=null){
+				$.ajax({
+					method:"GET",
+					url:"idCheck",
+					data: "memberId="+ recommender,
+					success: function(result){
+						if(result=="true"){
+							flagreco=true;
+							alert("확인");
+							
+						}
+						else {
+							flagreco=false;
+							alert("동일한 ID가 존재하지 않습니다.");
+						}
 					}
-					else {
-						flagreco=false;
-						alert("동일한 ID가 존재하지 않습니다.");
-					}
-				}
-			})
-		})
+				})
+
+			}
+		});
+		
 		//이름, 전화번호 , 생일,추천자
 		//회원 등록하기
 		$("#signupbtn").on('click',function(){
-			//var memberEmail = $("#memberEmail").val();
+			var memberEmail = $("#memberEmail").val();
 			//var memberphone = $("#memberphone").val();
 			var memberphone= $("#memberphone").val();
 			var membername =$("#membername").val();
@@ -157,7 +160,7 @@
 					alert("추천인 확인버튼을 누르세요");
 					return false;
 				}else{
-					alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
+					//alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
 		 			
 					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
 						$.ajax({

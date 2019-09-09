@@ -36,8 +36,8 @@ CREATE SEQUENCE SEQ_userinfo_userNum INCREMENT BY 1 START WITH 1;
 CREATE TABLE announcement
 (
 	annNo number NOT NULL,
-	anndate date DEFAULT sysdate,
-	anntitle varchar2(500),
+	annDate date DEFAULT sysdate,
+	annTitle varchar2(500),
 	anncontent varchar2(1000),
 	PRIMARY KEY (annNo)
 );
@@ -50,9 +50,9 @@ CREATE TABLE clubs
 	-- 
 	-- 
 	clubName varchar2(100) NOT NULL,
-	club_date date,
+	club_Date date,
 	-- 총 클럽멤버 수
-	cbtotal number DEFAULT 0,
+	cbTotal number DEFAULT 0,
 	PRIMARY KEY (clubNum)
 );
 
@@ -78,7 +78,7 @@ CREATE TABLE Files
 CREATE TABLE levels
 (
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberid varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL UNIQUE,
 	-- 'manager', 'regular member', 'beginner' 
 	-- 매니저,     정회원             ,  준회원
 	levels varchar2(20)
@@ -118,43 +118,42 @@ CREATE TABLE memberInfo
 
 CREATE TABLE pointslog
 (
-	logid number NOT NULL,
+	logId number NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberid varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL UNIQUE,
 	theOtherId varchar2(50),
-	eventdate date,
+	eventDate date,
 	amount number,
 	-- 포인트를 상대방에게 주고 난 뒤 얼마나 남아있는지 추적하기 위한 칼럼
 	balance number,
-	PRIMARY KEY (logid)
+	PRIMARY KEY (logId)
 );
-
 
 CREATE TABLE posts
 (
 	-- 게시물번호
-	postno number NOT NULL 게시물 번호. 기본키,
+	postNo number NOT NULL 게시물 번호. 기본키,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberid varchar2(50) NOT NULL UNIQUE,
-	postview number DEFAULT 0,
-	postlike number DEFAULT 0,
+	memberId varchar2(50) NOT NULL UNIQUE,
+	postView number DEFAULT 0,
+	postLike number DEFAULT 0,
 	-- 베스트 게시물 등재 여부
 	-- 
 	-- 
 	isBest char(2),
-	filename varchar2(500) NOT NULL UNIQUE,
-	PRIMARY KEY (postno)
+	fileName varchar2(500) NOT NULL UNIQUE,
+	PRIMARY KEY (postNo)
 );
 
 
 CREATE TABLE replies
 (
-	replyno number NOT NULL,
+	replyNo number NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberid varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL UNIQUE,
 	replyContent varchar2(500),
 	replyDate date DEFAULT sysdate,
-	PRIMARY KEY (replyno)
+	PRIMARY KEY (replyNo)
 );
 
 
@@ -168,50 +167,50 @@ ALTER TABLE memberInfo
 
 
 ALTER TABLE posts
-	ADD FOREIGN KEY (filename)
-	REFERENCES Files (filename)
+	ADD FOREIGN KEY (fileName)
+	REFERENCES Files (fileName)
 ;
 
 
 ALTER TABLE Files
-	ADD FOREIGN KEY (memberid)
-	REFERENCES memberInfo (memberid)
+	ADD FOREIGN KEY (memberId)
+	REFERENCES memberInfo (memberId)
 ;
 
 
 ALTER TABLE levels
-	ADD FOREIGN KEY (memberid)
-	REFERENCES memberInfo (memberid)
+	ADD FOREIGN KEY (memberId)
+	REFERENCES memberInfo (memberId)
 ;
 
 
 ALTER TABLE pointslog
-	ADD FOREIGN KEY (memberid)
-	REFERENCES memberInfo (memberid)
+	ADD FOREIGN KEY (memberId)
+	REFERENCES memberInfo (memberId)
 ;
 
 
 ALTER TABLE posts
-	ADD FOREIGN KEY (memberid)
-	REFERENCES memberInfo (memberid)
+	ADD FOREIGN KEY (memberId)
+	REFERENCES memberInfo (memberId)
 ;
 
 
 ALTER TABLE replies
-	ADD FOREIGN KEY (memberid)
-	REFERENCES memberInfo (memberid)
+	ADD FOREIGN KEY (memberId)
+	REFERENCES memberInfo (memberId)
 ;
 
 ---------------------더미 데이터 CRUD 쿼리문들----------------------------
 --멤버 insert
-INSERT INTO memberinfo
+INSERT INTO memberInfo
 VALUES(SEQ_memberInfo_memberNum.nextval, 'asdf', 'asdf', 'gyu', '010-9292-1919','1993-09-09', to_date(sysdate,'yyyy-mm-dd'), 
 '서울 종로구 혜암로113 301호', 'dididi@daum.net', 0, 0, 'hans', '45642');
 
 --멤버 1명 select
-SELECT memberid "멤버아이디", membername
-FROM memberinfo
-WHERE memberid = 'asdf'; 
+SELECT memberId "멤버아이디", memberName
+FROM memberInfo
+WHERE memberId = 'asdf'; 
 
 
 
