@@ -59,6 +59,52 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		
+		$("#signupBTN").on('click',function(){
+			var memberId = $("#memberId").val();
+			var memberPwd = $("#memberPwd").val();
+			var pwdcheck = $("#pwdcheck").val();
+			var memberName = $("#memberName").val();
+			var memberPhone = $("#memberPhone").val();
+			var memberBirth = $("#memberBirth").val();
+			var memberEmail = $("#memberEmail").val();
+			var recommender = $("#recommender").val();
+			
+			if(member.length == 0 || memberPwd.length ==0 || memberName.length == 0 || memberPhone.length == 0 || memberBirth.length == 0
+					|| memberEmail.length == 0 || recommender.length == 0) {
+				alert("모두 빠짐없이 입력해주세요.");
+				return;
+			}
+			
+			if(isNaN(memberPhone)) {
+				alert("핸드폰 번호는 숫자로 입력해주세요.");
+				return;
+			}
+			
+			if(memberPwd != pwdcheck) {
+				alert("비밀번호를 같게 입력해주세요.");
+				return;
+			}
+			
+			var send = {
+					"memberId" : memberId,
+					"memberPwd" : memberPwd,
+					"memberName" : memberName,
+					"memberphone" : memberphone,
+					"memberBirth" : memberBirth,
+					"memberEmail" : memberEmail,
+					"recommender" : recommender
+			}
+			
+			$.ajax({
+				mehtod:'post',
+				data:send,
+				url:'signup',
+				success:function(){
+					location.href="main"
+				}
+			})
+		})
 	})
 	
 
@@ -86,12 +132,12 @@
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
                         <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
+                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
                             </li>
                             
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="voice_mew">New</a></li>
+                                    <li><a href="voice_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
                                             <li><a href="voice_weekly">Weekly</a></li>
@@ -120,11 +166,11 @@
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="portfolio-7.html">Board</a></li>
+                                    <li><a href="#">Board</a></li>
                                     <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
+                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -153,22 +199,35 @@
 						</div>
 						<div class="m-b-20">
 							<form method="post">
-								<div class="form-group">
-									<input class="form-control" type="text" placeholder="Name">
+								
+								<div class="form-group" >
+									<input class="form-control .col-xs-12 .col-md-8" type="text" placeholder="Id" name="memberId" id="memberId" >
+									<input class="form-control .col-xs-6 .col-md-4" type="button" value="중복확인">
 								</div>
-								<div class="form-group">
-									<input class="form-control" type="email" placeholder="E-mail">
-								</div>
+								
 								<div class="form-group">
 									<input class="form-control" type="password"
-										placeholder="Pasword">
-								</div>
-								<div class="form-group">
+										placeholder="Pasword" name="memberPwd" id="memberPwd">
 									<input class="form-control" type="password"
-										placeholder="Confirm password">
+										placeholder="Pasword" id="pwdcheck">
 								</div>
 								<div class="form-group">
-									<button class="btn btn-block btn-round btn-brand" type="submit">Sign
+									<input class="form-control" type="text" placeholder="Name" name="memberName" id="memberName">
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="text" placeholder="Phone" name="memberPhone" id="memberPhone">
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="date" placeholder="Birth" name="memberBirth" id="memberBirth">
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="email" placeholder="E-mail" name="memberEmail" id="memberEmail">
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="text" placeholder="Recommender" name="recommender" id="recommender">
+								</div>
+								<div class="form-group">
+									<button class="btn btn-block btn-round btn-brand" type="button" id="signupBTN">Sign
 										Up</button>
 								</div>
 							</form>
@@ -283,55 +342,41 @@
 		<!-- Footer end-->
 	</div>
 	<!-- Wrapper end-->
-	<!-- Off canvas-->
-	<div class="off-canvas-sidebar">
-		<div class="off-canvas-sidebar-wrapper">
-			<div class="off-canvas-header">
-				<a class="off-canvas-close" href="#"><span class="ti-close"></span></a>
-			</div>
-			<div class="off-canvas-content">
-				<!-- Text widget-->
-				<c:if test="${sessionScope.memberId != null}">
-					<aside class="widget widget-text">
-						<div class="textwidget">
-							<p class="text-center">
-								<img src="resources/assets/images/person.png" alt=""
-									width="80px">
-							</p>
-							<p class="text-center">로그인한아이디</p>
-							<p class="text-center">n 번 방문</p>
-							<p class="text-center">내 블로그</p>
-							<p class="text-center">정보 수정</p>
-						</div>
-					</aside>
-				</c:if>
-				<c:if test="${sessionScope.memberId == null}">
-					<aside class="widget widget-text">
-						<div class="textwidget">
-							<div class="form-group">
-								<p class="text-center">Login</p>
-								<p class="text-center">
-									<input class="form-control" type="text" id="memberId"
-										name="memberId" placeholder="loginId">
-								</p>
-								<p class="text-center">
-									<input class="form-control" type="password" id="memberPwd"
-										name="memberPwd" placeholder="password">
-								</p>
-								<p class="text-center">
-									<button class="btn btn-outline-secondary" type="button"
-										name="loginBTN" id="loginBTN">login</button>
-									<button type="button" class="btn btn-outline-secondary"
-										name="signup" id="signup">signup</button>
-								</p>
-							</div>
-						</div>
-					</aside>
-				</c:if>
-			</div>
-		</div>
-	</div>
-	<!-- Off canvas end-->
+     <!-- Off canvas-->
+        <div class="off-canvas-sidebar">
+            <div class="off-canvas-sidebar-wrapper">
+                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
+                <div class="off-canvas-content">
+                    <!-- Text widget-->
+                    <c:if test="${sessionScope.memberId != null}">
+                    <aside class="widget widget-text">
+                        <div class="textwidget">
+                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
+                            <p class="text-center">로그인한아이디</p>
+                            <p class="text-center">n 번 방문</p>
+                            <p class="text-center">내 블로그 </p>
+                            <p class="text-center">정보 수정</p>
+                        </div>
+                    </aside>
+                    </c:if>
+                    <c:if test="${sessionScope.memberId == null}">
+                    <aside class="widget widget-text">
+                        <div class="textwidget">
+                        	<div class="form-group">
+                        	<p class="text-center">Login</p>
+                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
+                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
+                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
+
+                            </div> 
+                        </div>
+                    </aside>
+                    </c:if>
+                </div>
+            </div>
+        </div>
+        <!-- Off canvas end-->
 
 	<!-- To top button-->
 	<a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>

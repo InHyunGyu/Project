@@ -85,7 +85,7 @@
                             
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="voice_mew">New</a></li>
+                                    <li><a href="voice_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
                                             <li><a href="voice_weekly">Weekly</a></li>

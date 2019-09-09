@@ -80,12 +80,12 @@ $(function(){
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
                         <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
+                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
                             </li>
                             
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="voice_mew">New</a></li>
+                                    <li><a href="voice_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
                                             <li><a href="voice_weekly">Weekly</a></li>
@@ -118,7 +118,7 @@ $(function(){
                                     <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
+                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -336,7 +336,7 @@ $(function(){
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
-                <!-- Off canvas-->
+   <!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
@@ -360,8 +360,9 @@ $(function(){
                         	<p class="text-center">Login</p>
                             <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
                             <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN">login</button>
-                            <button type="button" class="btn btn-outline-secondary" name="signup" id="signup">signup</button></p>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
+                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
+
                             </div> 
                         </div>
                     </aside>
