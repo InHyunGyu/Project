@@ -27,11 +27,5 @@ public class HomeController {
 		return "file_list";
 	}
 	
-	@RequestMapping(value = "/file_detail", method = RequestMethod.GET)
-	public String file_detail() {
-		return "file_detail";
-	}
-	 
 
-	
 }

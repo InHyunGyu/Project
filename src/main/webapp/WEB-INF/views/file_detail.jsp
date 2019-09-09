@@ -21,6 +21,34 @@
         <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
+        <!-- JavaScripts -->
+		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	
+	<script>
+	function voice_new(){
+		location.href="voice_new";
+	}
+	
+	function voice_weekly(){
+		location.href="voice_weekly";
+	}
+	
+	function voice_monthly(){
+		location.href="voice_monthly";
+	}
+	
+	function video_new(){
+		location.href="video_new";
+	}
+	
+	function video_weekly(){
+		location.href="video_weekly";
+	}
+	
+	function video_monthly(){
+		location.href="video_monthly";
+	}
+	</script>
     </head>
     <body>
 
@@ -35,7 +63,7 @@
         </div>
         <!-- Preloader end-->
 
-        <!-- Header-->
+          <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -46,31 +74,45 @@
                         <ul>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
                                 <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-3.jpg">
-                                       
-                                    </ul> 
+                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-3.jpg"></ul> 
                                 </div>
                             </li>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Pages</span></a>
                                 <div class="mega-menu">
-                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-1.jpg">
-                                       
-                                    </ul>
+                                    <ul class="sub-menu mega-menu-row" data-background="resources/assets/images/menu-1.jpg"></ul>
                                 </div>
                             </li>
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Portfolio</span></a>
-                                <ul class="sub-menu">
-                                    
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
+                                <ul class="sub-menu">                    
+                                    <li><a href="#" onclick="voice_new();">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="#" onclick="voice_weekly();">Weekly</a></li>
+                                            <li><a href="#" onclick="voice_monthly();">Monthly</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="list/voice_all">ALL</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Blog</span></a>
+                  
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
                                 <ul class="sub-menu">
-                                   
+                                    <li><a href="#" onclick="video_new();">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="#" onclick="video_weekly();">Weekly</a></li>
+                                            <li><a href="#" onclick="video_monthly();">Monthly</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#" onclick="video_all();">ALL</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Shop</span></a>
-                                <ul class="sub-menu">
-                                  
+                  
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            </li>
+                            
+                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
+                                <ul class="sub-menu">               
                                 </ul>
                             </li>
                             <li class="menu-item-has-children menu-item-has-mega-menu"><a href="current_music"><span class="menu-item-span">Components</span></a>
@@ -81,12 +123,14 @@
                                 </div>
                             </li>
                             <li><a href="file_list"><span class="menu-item-span">Demos</span></a></li>
+                                    <li><a href="portfolio-7.html">Board</a></li>
+                                    <li><a href="portfolio-7.html">My Blog</a></li>
+                            <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="extra-nav">
                     <ul>
-                        <li><a class="top-bar-cart" href="shop-cart-1.html"><span class="menu-item-span"><i class="ti-shopping-cart"></i><span>3</span></span></a></li>
                         <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
                         <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
                     </ul>
@@ -94,7 +138,7 @@
             </div>
         </header>
         <!-- Header end-->
-
+        
         <!-- Wrapper-->
         <div class="wrapper">
             <!-- Hero-->
@@ -385,33 +429,30 @@
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
+                    <c:if test="${sessionScope.userid != null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
-                            <p class="text-center"><img src="resources/assets/images/logo-light-2.png" alt="" width="80px"></p>
-                            <p class="text-center">See how users experience your website in realtime to see changes.</p>
+                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
+                            <p class="text-center">로그인한아이디</p>
+                            <p class="text-center">n 번 방문</p>
+                            <p class="text-center">내 블로그 </p>
+                            <p class="text-center">정보 수정</p>
                         </div>
                     </aside>
-                    <!-- Recent portfolio widget-->
-                    <aside class="widget widget-recent-works">
-                        <ul>
-                            <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/4.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/5.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="resources/assets/images/widgets/9.jpg" alt=""></a></li>
-                        </ul>
+                    </c:if>
+                    <c:if test="${sessionScope.userid == null}">
+                    <aside class="widget widget-text">
+                        <div class="textwidget">
+                        	<div class="form-group">
+                        	<p class="text-center">Login</p>
+                            <p class="text-center"><input class="form-control" type="text" id="userid" name="userid" placeholder="loginId"></p>
+                            <p class="text-center"><input class="form-control" type="password" id="userpwd" name="userpwd" placeholder="password"></p>
+                            <p class="text-center"><button class="btn btn-lg btn-circle btn-outline-new-white" type="button"  name="loginBTN" id="loginBTN">login</button>
+                            <button type="button" class="btn btn-lg btn-circle btn-outline-new-white" name="join" id="join">join</button></p>
+                            </div> 
+                        </div>
                     </aside>
-                    <!-- Social Icons-->
-                    <ul class="social-icons text-center">
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                    </ul>
+                    </c:if>
                 </div>
             </div>
         </div>
