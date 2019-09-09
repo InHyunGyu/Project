@@ -46,4 +46,10 @@ public class ListController {
 	public String video_all(){
 		return "list/video_all";
 	}
+	
+	@RequestMapping(value="/notice", method=RequestMethod.GET)
+	public String notice(){
+		
+		return "notice";
+	}
 }

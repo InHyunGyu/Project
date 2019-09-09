@@ -75,7 +75,7 @@
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="/uta">UtaJJang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
@@ -159,7 +159,7 @@
                 <div class="container-fluid" style="max-width: 1600px;">
                     <div class="row">
                         <div class="col-md-6">
-                            <h6 class="text-special text-center m-b-40">Multi Page Demos</h6>
+                            <h6 class="text-special text-center m-b-40"></h6>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
@@ -204,7 +204,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h6 class="text-special text-center m-b-40">One Page Demos</h6>
+                            <h6 class="text-special text-center m-b-40"></h6>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="demo-item"><a href="op-index.html"><img src="resources/assets/images/demo/op-1.jpg" alt=""></a>

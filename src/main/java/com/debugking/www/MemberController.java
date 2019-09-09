@@ -25,7 +25,7 @@ public class MemberController {
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup(){
 		
-		return "signup";
+		return "member/signup";
 	}
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
@@ -37,5 +37,22 @@ public class MemberController {
 	@RequestMapping(value="/myblog", method=RequestMethod.GET)
 	public String myblog(){
 		return "myblog";
+	}
+	
+	@RequestMapping(value="/id_pwd", method=RequestMethod.GET)
+	public String id_pwd(){
+		return "member/id_pwd";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/findid", method=RequestMethod.POST)
+	public String findid(){
+		return "";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/findpwd", method=RequestMethod.POST)
+	public String findpwd(){
+		return "";
 	}
 }

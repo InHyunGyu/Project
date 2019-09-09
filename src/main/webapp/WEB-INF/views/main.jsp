@@ -75,7 +75,7 @@
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="/uta">UtaJJang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="#">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
@@ -118,7 +118,7 @@
                                     <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
+                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -580,8 +580,9 @@
                         	<p class="text-center">Login</p>
                             <p class="text-center"><input class="form-control" type="text" id="userid" name="userid" placeholder="loginId"></p>
                             <p class="text-center"><input class="form-control" type="password" id="userpwd" name="userpwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN">login</button>
-                            <button type="button" class="btn btn-outline-secondary" name="signup" id="signup">signup</button></p>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
+                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
+
                             </div> 
                         </div>
                     </aside>

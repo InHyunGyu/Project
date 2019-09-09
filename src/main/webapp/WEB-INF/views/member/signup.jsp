@@ -81,7 +81,7 @@
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="/uta">UtaJJang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
