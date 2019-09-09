@@ -18,10 +18,13 @@ public class HomeController {
 	public String home() {
 		return "main";
 	}
-	
-	@RequestMapping(value="main", method=RequestMethod.GET)
-	public String main(){
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String home2() {
 		return "main";
+	}
+	@RequestMapping(value = "/file_list", method = RequestMethod.GET)
+	public String file_list() {
+		return "file_list";
 	}
 	
 

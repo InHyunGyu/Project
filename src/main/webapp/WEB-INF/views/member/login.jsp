@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Singup</title>
+        <title>Login</title>
         <!-- Favicons-->
         <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
@@ -20,179 +20,6 @@
         <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
-        <link href="resources/assets/signup.css" rel="signup">
-        
-        <!-- JQuery -->
-        <script src="resources/jquery-3.3.1.min.js"></script>
-        
-<script >
-	$(function(){
-		var flagid = false;
-		var flagpwd = false;
-		var flagreco = true;
-		
-		var memberid = $("#memberid").val();
-		var memberpwd = $("#memberpwd").val();
-		/*var checkpwd = 	$("#checkpwd").val();
-		var recocheckbtn = $("#recocheckbtn").val();
-		var memberEmail =$("#memberEmail").val();
-		var memberphone = $("#memberphone").val();
-		
-		var tel1 = 	$("#tel1").val();
-		var tel2 = 	$("#tel2").val();
-		var tel3 = 	$("#tel3").val(); */
-		/* var userBirth= $("#userBirth").val();
-		var userAddress = 	$("#userAddress").val(); */
-		
-		//아이디 유효성 검사 + 중복검사
-		$("#memberid").on("keyup",function(){
-			memberid = $("#memberid").val();
-			if(memberid.length<3 || memberid.length>15){
-				$("#checkidline").html("id는 3~15사이입니다.");
-				return false;
-			}
-			else{
-				$("#checkidline").html("");
-			}
-		});
-		$("#checkid").on("click",function(){
-			$.ajax({
-				method:"GET",
-				url:"idCheck",
-				data: "memberId="+ memberid,
-				success: function(result){
-					if(result=="true"){
-						alert("동일한 ID가 존재합니다.");
-					}
-					else {
-						flagid=true;
-						alert("사용 가능합니다.");
-					}
-				}
-			});
-		}); 
-		
-		//비밀번호 유효성 검사
-		$("#memberpwd").on("keyup",function(){
-			memberpwd = $("#memberpwd").val();
-			if(memberpwd.length <3 || memberpwd.length > 15){
-				$("#checkpwdline").html("Password 는 3~15사이입니다.");
-				return false;
-			}
-			else{
-				$("#checkpwdline").html("");
-			}
-			
-			//비밀번호 동일한지 검사
-			$("#checkpwd").on("keyup",function(){
-				var checkpwd = $("#checkpwd").val();
-				if(memberpwd !== checkpwd){
-					$("#checkpwdline2").html("비밀번호가 일치하지 않습니다.");
-					return false;
-				}else{
-					$("#checkpwdline2").html("");
-					flagpwd=true;
-				}
-			});
-		});
-		
-		//이메일 유효성 검사 아오 눈아퍼
-		$("#memberEmail").on("click",function(){
-			return true; //일단 패스합니다.
-		});
-		$("#recommender").on("keyup",function(){
-			flagreco=false;
-		})
-		//추천인 유효성 검사 이거까지 해야됩니까?
-		$("#recocheckbtn").on("click",function(){
-			var recommender=$("#recommender").val();
-			
-			$.ajax({
-				method:"GET",
-				url:"idCheck",
-				data: "memberId="+ recommender,
-				success: function(result){
-					if(result=="true"){
-						flagreco=true;
-						alert("확인");
-						
-					}
-					else {
-						flagreco=false;
-						alert("동일한 ID가 존재하지 않습니다.");
-					}
-				}
-			})
-		})
-		//이름, 전화번호 , 생일,추천자
-		//회원 등록하기
-		$("#signupbtn").on('click',function(){
-			//var memberEmail = $("#memberEmail").val();
-			//var memberphone = $("#memberphone").val();
-			var memberphone= $("#memberphone").val();
-			var membername =$("#membername").val();
-			var tel1 = 	$("#tel1").val();
-			var tel2 = 	$("#tel2").val();
-			var tel3 = 	$("#tel3").val();
-			var memberbirth = $("#memberbirth").val();
-			var recommender =$("#recommender").val();
-			
-			//alert("tel2"+tel2+"tel3"+tel3);
-			
-			if(tel2 == "" || tel3 == ""||tel2 == null||tel3 == null ||isNaN(tel2) || isNaN(tel3)){
-				alert("전화번호 제대로 입력하세요");
-				tel2.select();
-				return false;
-			}else{
-				memberphone = tel1+tel2+tel3;
-				if(membername==null){
-					alert("이름을 입력하세요");
-					membername.select();
-					return false;
-				}else if(memberbirth==null){
-					alert("생일을 입력하세요");
-					memberbirth.select();
-					return false;
-				}else if(flagreco==false){
-					alert("추천인 확인버튼을 누르세요");
-					return false;
-				}else{
-					alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
-		 			
-					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
-						$.ajax({
-							method:"POST",
-							url:"signup",
-							data:{
-								"memberId" : memberid,
-								"memberPwd" : memberpwd,
-								"memberEmail" : memberEmail,
-								"memberName" :membername,
-								"memberPhone" : memberphone,
-								"memberBirth" :memberbirth,
-								"recommender" : recommender
-							},
-							success: function(mesa){
-								if(mesa=='success'){
-									alert("등록 성공하였습니다. 화면 이동합니다.");
-									location.href ="main"
-								}
-								else{
-									alert("등록 실패하였습니다. 화면 이동합니다.");
-									location.href ="main"
-								}
-							}
-						}); 
-					}
-					else{
-						alert("다시 확인하세요.");
-					} 
-				}
-			}
-		});
-	});
-	</script>
-	
     </head>
     <body>
 
@@ -411,73 +238,31 @@
         <div class="wrapper">
             <!-- Hero-->
             <section class="module-cover parallax text-center fullscreen" data-background="resources/assets/images/module-5.jpg" data-overlay="0.6">
-                <div class="container"style="padding-top:100px;">
+                <div class="container">
                     <div class="row">
                         <div class="col-lg-4 col-md-6 m-auto">
                             <div class="m-b-20">
-                                <h6>Create a new account</h6>
+                                <h6>Sign into your account</h6>
                             </div>
                             <div class="m-b-20">
-                            
-                            <!-- <<회원가입 입력받기 -->
-                                <form method="signup" action="POST" id="signup">
-                                    <div class="form-group" style="display:inline-flex;">
-                                        <input class="form-control" type="text" name="memberId" id="memberid" placeholder="ID">
-                                        <button type="button" class="form-control" id="checkid">중복확인</button>
-                                    </div>
-                                    <p id="checkidline"></p>
-                                    <div class="form-group" >
-                                        <input class="form-control" type="password" name="memberPwd" id="memberpwd" placeholder="Pasword">
-                                        <span id="checkpwdline"></span>
+                            	
+                            						<!-- 로그인 -->
+                                <form method="post">
+                                    <div class="form-group">
+                                        <input class="form-control" type="email" placeholder="Email">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="password" id="checkpwd" placeholder="Confirm password">
-                                        <span id="checkpwdline2"></span>
-                                    </div>
-                                    <div class="form-group" style="display:inline-flex;">
-                                        <input class="form-control" type="email" name="memberEmail" id="memberEmail" placeholder="E-mail">
-                                        <button class="form-control" type="button" id="checkEmail">Email Check</button>
+                                        <input class="form-control" type="password" placeholder="Pasword">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="memberName" id="membername" placeholder="Name">
+                                        <button class="btn btn-block btn-round btn-brand" type="submit">Login</button>
                                     </div>
- 	                                <div style="display:inline-flex;"> 
-										<select class="form-control" id="tel1" name="tel1">
-											<option value="010">010</option>
-											<option value="011">011</option>
-											<option value="016">016</option>
-											<option value="017">017</option>
-											<option value="018">018</option>
-											<option value="019">017</option>
-										</select>
-										<input type="text" class="form-control" id="tel2" maxlength="4">
-										<input type="text" class="form-control" name="tel3" id="tel3" maxlength="4">
-									</div>
-									<div class="form-group"style="display:inline-flex;" >
-										<input class="form-control" type="text" value="Birth" readonly>
-                                        <input type="date" class="form-control" name="memberBirth" id="memberbirth" placeholder="Birth"/>
-                                    </div>
-									 <div class="form-group">
-                                        <input class="form-control" type="text" name="recommender" id="recommender" placeholder="recommender">
-                                        <input type="button" id="recocheckbtn" value="추천인 검사">
-                                    </div>
-                                     <div class="form-group">
-                                        <button class="btn btn-block btn-round btn-brand" type="button"id="signupbtn">Sign Up</button>
-                                    </div>
-                                    <!--정보 여닫이  -->
-                        			 <!-- <details close>
-                       				 <summary>Additional</summary>
-	 									 <div class="add_info">
-		                              		 <div class="form-group">
-					                         	<label for="email">userBirth</label>
-					                            <input type="date" class="form-input" name="memberbirth" id="memberbirth"/>
-					                         </div>
-                        			     </div>
-                       				 </details> -->
                                 </form>
+                                
+                                
                             </div>
                             <div class="m-b-20">
-                                <p><small>By signing up, you agree to the<a href="#">terms of service</a></small></p>
+                                <p><small>Dont have an account yet? <a href="#">Create account</a><br>Forgot your username or password? <a href="#">Recover account</a></small></p>
                             </div>
                         </div>
                     </div>
@@ -485,9 +270,9 @@
             </section>
 
             <!-- Footer-->
-            <footer class="footer" >
-                <div class="footer-widgets" style="padding-top:100px;">
-                    <div class="container" >
+            <footer class="footer">
+                <div class="footer-widgets">
+                    <div class="container">
                         <div class="row">
                             <div class="col-md-3">
                                 <!-- Text widget-->
@@ -615,6 +400,5 @@
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
         <script src="resources/jquery-3.3.1.min.js"></script>
-        
     </body>
 </html>

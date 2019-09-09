@@ -81,20 +81,20 @@ CREATE TABLE memberInfo
 	-- 유저 아이디와 별도로 만들 user number. 시퀀스처리
 	memberNum number NOT NULL PRIMARY KEY,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberid varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL UNIQUE,
 	-- 유저 비밀번호
-	memberpwd varchar2(40) NOT NULL,
+	memberPwd varchar2(40) NOT NULL,
 	-- 유저가 회원 가입할 때 입력한 실명
-	membername varchar2(30) NOT NULL,
+	memberName varchar2(30) NOT NULL,
 	-- 유저 휴대폰 번호. 
-	memberphone varchar2(20) NOT NULL,
-	memberbirth varchar2(20),
+	memberPhone varchar2(20) NOT NULL,
+	memberBirth varchar2(20),
 	-- 가입날짜
 	signupDate date DEFAULT sysdate,
 	
 	memberEmail varchar2(50),
 	-- 유저의 포인트 보유수 
-	memberpoint number(10),
+	memberPoint number(10),
 	-- number타입. 
 	-- 0-false / 매니저아님
 	-- 1-true / 매니저
