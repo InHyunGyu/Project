@@ -29,17 +29,17 @@
 <script>
 $(function(){
 	$("#loginBTN").on('click', function(){
-		var userid = $("#userid").val();
-		var userpwd = $("#userpwd").val();
+		var memberId = $("#memberId").val();
+		var memberPwd = $("#memberPwd").val();
 		
-		if(userid.length == 0 || userpwd.length == 0) {
+		if(memberId.length == 0 || memberPwd.length == 0) {
 			alert("다시입력해주세요.");
 			return;
 		}
 		
 		var send = {
-				"userid" : userid,
-				"userpwd" : userpwd
+				"memberId" : memberId,
+				"memberPwd" : memberPwd
 		}
 		
 		$.ajax({
@@ -340,7 +340,7 @@ $(function(){
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
-                    <c:if test="${sessionScope.userid != null}">
+                    <c:if test="${sessionScope.memberId != null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
@@ -351,13 +351,13 @@ $(function(){
                         </div>
                     </aside>
                     </c:if>
-                    <c:if test="${sessionScope.userid == null}">
+                    <c:if test="${sessionScope.memberId == null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                         	<div class="form-group">
                         	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="userid" name="userid" placeholder="loginId"></p>
-                            <p class="text-center"><input class="form-control" type="password" id="userpwd" name="userpwd" placeholder="password"></p>
+                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
+                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
                             <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN">login</button>
                             <button type="button" class="btn btn-outline-secondary" name="signup" id="signup">signup</button></p>
                             </div> 
