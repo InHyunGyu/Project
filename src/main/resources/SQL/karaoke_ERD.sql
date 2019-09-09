@@ -91,7 +91,7 @@ CREATE TABLE memberInfo
 	memberbirth varchar2(20),
 	-- 가입날짜
 	signupDate date DEFAULT sysdate,
-	memberAddress varchar2(100),
+	
 	memberEmail varchar2(50),
 	-- 유저의 포인트 보유수 
 	memberpoint number(10),
@@ -198,7 +198,7 @@ ALTER TABLE replies
 --멤버 insert
 INSERT INTO memberinfo
 VALUES(SEQ_memberInfo_memberNum.nextval, 'asdf', 'asdf', 'gyu', '010-9292-1919','1993-09-09', to_date(sysdate,'yyyy-mm-dd'), 
-'서울 종로구 혜암로113 301호', 'dididi@daum.net', 0, 0, 'hans', '45642');
+ 'dididi@daum.net', 0, 0, 'hans', '45642');
 
 --멤버 1명 select
 SELECT memberid "멤버아이디", membername
