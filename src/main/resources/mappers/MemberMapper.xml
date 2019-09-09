@@ -21,23 +21,26 @@
 			Member
 		Where
 			userid = #{userid}
-	</select>
+	</select>-->
+	<!-- 회원가입  -->
 	<insert id="signup" parameterType="Member">
 		insert into Member
 		values
 		(
-			memberseq.nextval,
-			,userid
-			,userpwd
-			,username
-			,userphone
-			,userbirth
-			,signupDate
-			,userAddress
-			,userEmail
-			,userpoint
-			,isManger
+			SEQ_memberInfo_memberNum.nextval
+			,#{memberid}
+			,#{memberpwd}
+			,#{membername}
+			,#{memberphone}
+			,memberbirth}
+			,sysdate
+			,memberAddress}
+			,memberEmail}
+			,memberpoint}
+			,isManager
+			,recommender
+			,clubNum
 		)
-	</insert> -->
+	</insert> 
 </mapper>
 
