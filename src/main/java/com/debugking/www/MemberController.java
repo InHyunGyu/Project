@@ -16,19 +16,6 @@ public class MemberController {
 	@Autowired
 	MemberService serivce;
 	
-
-	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	@ResponseBody
-	public String signup(MemberInfo member) {
-		System.out.println(member);
-		int result = serivce.signup(member);
-		if(result==1){
-			return "success";
-		}
-		else{
-			return "fail";
-		}
-	}
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model model) {
@@ -44,9 +31,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
-	public String signupPro(){
-		
-		return "main";
+	public String signupPro(MemberInfo member){
+		System.out.println(member);
+		int result = serivce.signup(member);
+		if(result==1){
+			return "success";
+		}
+		else{
+			return "fail";
+		}
 	}
 	
 	@RequestMapping(value="/myblog", method=RequestMethod.GET)
