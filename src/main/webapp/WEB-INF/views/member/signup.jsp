@@ -100,7 +100,7 @@
 		$("#memberEmail").on("click",function(){
 			return true; //일단 패스합니다.
 		});
-		$("#recommender").on("keyup".function(){
+		$("#recommender").on("keyup",function(){
 			flagreco=false;
 		})
 		//추천인 유효성 검사 이거까지 해야됩니까?
