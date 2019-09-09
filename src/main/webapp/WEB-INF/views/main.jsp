@@ -28,17 +28,17 @@
 	<script>
 	$(function(){
 		$("#loginBTN").on('click', function(){
-			var userid = $("#userid").val();
-			var userpwd = $("#userpwd").val();
+			var memberId = $("#memberId").val();
+			var memberPwd = $("#memberPwd").val();
 			
-			if(userid.length == 0 || userpwd.length == 0) {
+			if(memberId.length == 0 || memberPwd.length == 0) {
 				alert("다시입력해주세요.");
 				return;
 			}
 			
 			var send = {
-					"userid" : userid,
-					"userpwd" : userpwd
+					"memberId" : memberId,
+					"memberPwd" : memberPwd
 			}
 			
 			$.ajax({
@@ -56,39 +56,7 @@
 		})
 	})
 	
-	
-	
-	function voice_new(){
-		location.href="voice_new";
-	}
-	
-	function voice_weekly(){
-		location.href="voice_weekly";
-	}
-	
-	function voice_monthly(){
-		location.href="voice_monthly";
-	}
-	
-	function voice_all(){
-		location.href="voice_all";
-	}
-	
-	function video_new(){
-		location.href="video_new";
-	}
-	
-	function video_weekly(){
-		location.href="video_weekly";
-	}
-	
-	function video_monthly(){
-		location.href="video_monthly";
-	}
-	
-	function video_all(){
-		location.href="video_all";
-	}
+		
 	</script>
     </head>
     <body>
@@ -107,7 +75,7 @@
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="/uta">UtaJJang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="#">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
@@ -117,27 +85,27 @@
                             
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#" onclick="voice_new();">New</a></li>
+                                    <li><a href="voice_mew">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#" onclick="voice_weekly();">Weekly</a></li>
-                                            <li><a href="#" onclick="voice_monthly();">Monthly</a></li>
+                                            <li><a href="voice_weekly">Weekly</a></li>
+                                            <li><a href="voice_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#" onclick="voice_all();">ALL</a></li>
+                                    <li><a href="voice_all">ALL</a></li>
                                 </ul>
                             </li>
                   
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#" onclick="video_new();">New</a></li>
+                                    <li><a href="video_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#" onclick="video_weekly();">Weekly</a></li>
-                                            <li><a href="#" onclick="video_monthly();">Monthly</a></li>
+                                            <li><a href="video_weekly">Weekly</a></li>
+                                            <li><a href="video_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#" onclick="video_all();">ALL</a></li>
+                                    <li><a href="video_all">ALL</a></li>
                                 </ul>
                             </li>
                   
@@ -147,10 +115,10 @@
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="portfolio-7.html">Board</a></li>
-                                    <li><a href="portfolio-7.html">My Blog</a></li>
+                                    <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
+                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -594,7 +562,7 @@
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
-                    <c:if test="${sessionScope.userid == null}">
+                    <c:if test="${sessionScope.memberId != null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
@@ -605,15 +573,16 @@
                         </div>
                     </aside>
                     </c:if>
-                    <c:if test="${sessionScope.userid == null}">
+                    <c:if test="${sessionScope.memberId == null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                         	<div class="form-group">
                         	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="userid" name="userid" placeholder="loginId"></p>
-                            <p class="text-center"><input class="form-control" type="password" id="userpwd" name="userpwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN">login</button>
-                            <button type="button" class="btn btn-outline-secondary" name="signup" id="signup">signup</button></p>
+                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
+                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
+                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
+
                             </div> 
                         </div>
                     </aside>

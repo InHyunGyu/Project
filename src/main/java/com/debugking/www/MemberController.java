@@ -29,8 +29,9 @@ public class MemberController {
 	//화면이동
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup(){
-		
-		return "Member/signup";
+
+		return "member/signup";
+
 	}
 	//회원 등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
@@ -50,6 +51,7 @@ public class MemberController {
 		return "myblog";
 	}
 	
+
 	//ID체크 한명불러오기
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
 	@ResponseBody
@@ -64,5 +66,20 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value="/id_pwd", method=RequestMethod.GET)
+	public String id_pwd(){
+		return "member/id_pwd";
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="/findid", method=RequestMethod.POST)
+	public String findid(){
+		return "";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/findpwd", method=RequestMethod.POST)
+	public String findpwd(){
+		return "";
+	}
 }
