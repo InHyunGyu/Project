@@ -13,11 +13,35 @@ DROP TABLE clubs CASCADE CONSTRAINTS;
 
 
 
+/* Drop Sequences */
+
+DROP SEQUENCE SEQ_announcement_annNo;
+DROP SEQUENCE SEQ_clubs_clubNum;
+DROP SEQUENCE SEQ_Files_fileno;
+DROP SEQUENCE SEQ_MemberClubs_memberClubNum;
+DROP SEQUENCE SEQ_memberInfo_memberNum;
+DROP SEQUENCE SEQ_NEW_TABLE_userNum;
+DROP SEQUENCE SEQ_pointslog_logid;
+DROP SEQUENCE SEQ_pointslog_lognum;
+DROP SEQUENCE SEQ_posts_postno;
+DROP SEQUENCE SEQ_replies_replyno;
+DROP SEQUENCE SEQ_userinfo_userNum;
+
+
+
+
 /* Create Sequences */
 
-CREATE SEQUENCE SEQ_memberInfoNCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_userNum INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_logid INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_announcement_annNo INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_clubs_clubNum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_Files_fileno INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_MemberClubs_memberClubNum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_memberInfo_memberNum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_NEW_TABLE_userNum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_pointslog_logid INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_pointslog_lognum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_posts_postno INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_replies_replyno INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_userinfo_userNum INCREMENT BY 1 START WITH 1;
 
 
@@ -27,19 +51,19 @@ CREATE SEQUENCE SEQ_userinfo_userNum INCREMENT BY 1 START WITH 1;
 CREATE TABLE announcement
 (
 	annNo number NOT NULL,
+	-- 게시물번호
+	postno number NOT NULL 게시물 번호. 기본키,
 	anndate date DEFAULT sysdate,
 	anntitle varchar2(500),
 	anncontent varchar2(1000),
-	-- 게시물번호
-	postno number NOT NULL 게시물 번호. 기본키,
 	PRIMARY KEY (annNo)
 );
 
 
 CREATE TABLE clubs
 (
-	-- 각 클럽의 일련번호. 난수를 발생시켜 일련번호를 생성할 계획. 
-	clubNum varchar2(200) NOT NULL,
+	-- 각 클럽의 일련번호. 
+	clubNum number NOT NULL,
 	-- 
 	-- 
 	clubName varchar2(100) NOT NULL,
@@ -81,11 +105,11 @@ CREATE TABLE levels
 CREATE TABLE MemberClubs
 (
 	-- 이 테이블은 멤버들이 가입한 클럽들을 관리하도록 만든 테이블이다. 각각 튜블을 구별하기 위해 일련번호 시퀀스를 추가하였다. 
-	memberClubNum  NOT NULL,
+	memberClubNum number NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
-	-- 각 클럽의 일련번호. 난수를 발생시켜 일련번호를 생성할 계획. 
-	clubNum varchar2(200) NOT NULL,
+	-- 각 클럽의 일련번호. 
+	clubNum number NOT NULL,
 	PRIMARY KEY (memberClubNum)
 );
 
@@ -95,6 +119,8 @@ CREATE TABLE memberInfo
 (
 	-- 유저 아이디와 별도로 만들 user number. 시퀀스처리
 	memberNum number NOT NULL 기본키,
+	-- 각 클럽의 일련번호. 
+	clubNum number,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	-- 유저 비밀번호
@@ -115,15 +141,13 @@ CREATE TABLE memberInfo
 	-- 
 	isManager number(1) DEFAULT 0,
 	recommender varchar2(50),
-	-- 각 클럽의 일련번호. 난수를 발생시켜 일련번호를 생성할 계획. 
-	clubNum varchar2(200),
 	PRIMARY KEY (memberNum)
 );
 
 
 CREATE TABLE pointslog
 (
-	logid number NOT NULL,
+	lognum number NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	theOtherId varchar2(50),
@@ -131,7 +155,8 @@ CREATE TABLE pointslog
 	amount number,
 	-- 포인트를 상대방에게 주고 난 뒤 얼마나 남아있는지 추적하기 위한 칼럼
 	balance number,
-	PRIMARY KEY (logid)
+	pointtype varchar2(30),
+	PRIMARY KEY (lognum)
 );
 
 
@@ -141,13 +166,15 @@ CREATE TABLE posts
 	postno number NOT NULL 게시물 번호. 기본키,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
+	filename varchar2(500) NOT NULL UNIQUE,
+	postTitle varchar2(500) NOT NULL,
+	postcontent varchar2(4000),
 	postview number DEFAULT 0,
 	postlike number DEFAULT 0,
 	-- 베스트 게시물 등재 여부
 	-- 
 	-- 
-	isBest char(2),
-	filename varchar2(500) NOT NULL UNIQUE,
+	isBest char(2) DEFAULT '''N''',
 	PRIMARY KEY (postno)
 );
 
@@ -224,18 +251,5 @@ ALTER TABLE announcement
 	ADD FOREIGN KEY (postno)
 	REFERENCES posts (postno)
 ;
-
-
----------------------더미 데이터 CRUD 쿼리문들----------------------------
---멤버 insert
-INSERT INTO memberInfo
-VALUES(SEQ_memberInfo_memberNum.nextval, 'asdf', 'asdf', 'gyu', '010-9292-1919','1993-09-09', to_date(sysdate,'yyyy-mm-dd'), 
-'서울 종로구 혜암로113 301호', 'dididi@daum.net', 0, 0, 'hans', '45642');
-
---멤버 1명 select
-SELECT memberId "멤버아이디", memberName
-FROM memberInfo
-WHERE memberId = 'asdf'; 
-
 
 
