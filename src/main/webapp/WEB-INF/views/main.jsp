@@ -71,16 +71,16 @@
         </div>
         <!-- Preloader end-->
 
-        <!-- Header-->
+         <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="#">UtaJJang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
                         <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
+                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
                             </li>
                             
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
@@ -109,12 +109,12 @@
                                 </ul>
                             </li>
                   
-                            <li><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="portfolio-7.html">Board</a></li>
+                                    <li><a href="community">Board</a></li>
                                     <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
@@ -562,13 +562,13 @@
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
-                    <c:if test="${sessionScope.memberId == null}">
+                    <c:if test="${sessionScope.memberId != null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
                             <p class="text-center">로그인한아이디</p>
                             <p class="text-center">n 번 방문</p>
-                            <p class="text-center">내 블로그 </p>
+                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
                         </div>
                     </aside>

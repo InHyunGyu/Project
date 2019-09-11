@@ -123,7 +123,7 @@
 	</div>
 	<!-- Preloader end-->
 
-	        <!-- Header-->
+	               <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -161,12 +161,12 @@
                                 </ul>
                             </li>
                   
-                            <li><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">Board</a></li>
+                                    <li><a href="community">Board</a></li>
                                     <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
@@ -337,7 +337,7 @@
 		<!-- Footer end-->
 	</div>
 	<!-- Wrapper end-->
-     <!-- Off canvas-->
+	<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
@@ -349,8 +349,8 @@
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
                             <p class="text-center">로그인한아이디</p>
                             <p class="text-center">n 번 방문</p>
-                            <p class="text-center">내 블로그 </p>
-                            <p class="text-center">정보 수정</p>
+                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
+                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
                         </div>
                     </aside>
                     </c:if>

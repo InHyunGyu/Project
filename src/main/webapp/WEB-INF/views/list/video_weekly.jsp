@@ -71,7 +71,7 @@
         </div>
         <!-- Preloader end-->
 
-        <!-- Header-->
+                <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -85,7 +85,7 @@
                             
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="voice_mew">New</a></li>
+                                    <li><a href="voice_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
                                             <li><a href="voice_weekly">Weekly</a></li>
@@ -101,7 +101,7 @@
                                     <li><a href="video_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
-                                            <li><a href="video_weelky">Weekly</a></li>
+                                            <li><a href="video_weekly">Weekly</a></li>
                                             <li><a href="video_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
@@ -109,12 +109,12 @@
                                 </ul>
                             </li>
                   
-                            <li><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="portfolio-7.html">Board</a></li>
+                                    <li><a href="community">Board</a></li>
                                     <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
@@ -348,8 +348,8 @@
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
                             <p class="text-center">로그인한아이디</p>
                             <p class="text-center">n 번 방문</p>
-                            <p class="text-center">내 블로그 </p>
-                            <p class="text-center">정보 수정</p>
+                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
+                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
                         </div>
                     </aside>
                     </c:if>

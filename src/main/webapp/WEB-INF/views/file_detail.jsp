@@ -108,12 +108,12 @@
                                 </ul>
                             </li>
                   
-                            <li><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="portfolio-7.html">Board</a></li>
+                                    <li><a href="community">Board</a></li>
                                     <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
@@ -244,15 +244,6 @@
                                     <h5 class="comment-reply-title">Leave a Reply</h5>
                                     <p class="comment-notes">Your email address will not be published. Required fields are marked</p>
                                     <form class="comment-form row">
-                                        <div class="form-group col-md-4">
-                                            <input class="form-control" type="text" placeholder="Name">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <input class="form-control" type="text" placeholder="Email">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <input class="form-control" type="url" placeholder="Website">
-                                        </div>
                                         <div class="form-group col-md-12">
                                             <textarea class="form-control" rows="8" placeholder="Comment"></textarea>
                                         </div>
@@ -282,10 +273,6 @@
                                     </div>
                                     <ul>
                                         <li><a href="#">Journey <span class="float-right">112</span></a></li>
-                                        <li><a href="#">Development <span class="float-right">86</span></a></li>
-                                        <li><a href="#">Sport <span class="float-right">10</span></a></li>
-                                        <li><a href="#">Photography <span class="float-right">144</span></a></li>
-                                        <li><a href="#">Symphony <span class="float-right">18</span></a></li>
                                     </ul>
                                 </aside>
 
@@ -299,24 +286,9 @@
                                             <div class="wi"><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
                                             <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
                                         </li>
-                                        <li class="clearfix">
-                                            <div class="wi"><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></div>
-                                            <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
-                                        </li>
-                                        <li class="clearfix">
-                                            <div class="wi"><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></div>
-                                            <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
-                                        </li>
                                     </ul>
                                 </aside>
 
-                                <!-- Twitter widget-->
-                                <aside class="widget twitter-feed-widget">
-                                    <div class="widget-title">
-                                        <h6>Twitter Feed</h6>
-                                    </div>
-                                    <div class="twitter-feed" data-twitter="345170787868762112" data-number="2"></div>
-                                </aside>
 
                                 <!-- Tags widget-->
                                 <aside class="widget widget-tag-cloud">
@@ -389,11 +361,6 @@
                                     </div>
                                     <ul>
                                         <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
                                     </ul>
                                 </aside>
                             </div>
@@ -415,7 +382,7 @@
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
- <!-- Off canvas-->
+ 		<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
@@ -427,8 +394,8 @@
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
                             <p class="text-center">로그인한아이디</p>
                             <p class="text-center">n 번 방문</p>
-                            <p class="text-center">내 블로그 </p>
-                            <p class="text-center">정보 수정</p>
+                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
+                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
                         </div>
                     </aside>
                     </c:if>

@@ -164,69 +164,66 @@ function init(){
 	</div>
 	<!-- Preloader end-->
 
-	<!-- Header-->
-	<header class="header header-transparent">
-		<div class="container-fluid">
-			<!-- Brand-->
-			<div class="inner-header">
-				<a class="inner-brand" href="main">UtaJJang</a>
-			</div>
-			<!-- Navigation-->
-			<div class="inner-navigation collapse">
-				<div class="inner-nav">
-					<ul>
-						<li class="menu-item-has-children menu-item-has-mega-menu"><a
-							href="main"><span class="menu-item-span">Home</span></a></li>
-
-						<li class="menu-item-has-children"><a href="#"><span
-								class="menu-item-span">Voice</span></a>
-							<ul class="sub-menu">
-								<li><a href="voice_new">New</a></li>
-								<li class="menu-item-has-children"><a href="#">Best</a>
-									<ul class="sub-menu">
-										<li><a href="voice_weekly">Weekly</a></li>
-										<li><a href="voice_monthly">Monthly</a></li>
-									</ul></li>
-								<li><a href="voice_all">ALL</a></li>
-							</ul></li>
-
-						<li class="menu-item-has-children"><a href="#"><span
-								class="menu-item-span">Video</span></a>
-							<ul class="sub-menu">
-								<li><a href="video_new">New</a></li>
-								<li class="menu-item-has-children"><a href="#">Best</a>
-									<ul class="sub-menu">
-										<li><a href="video_weekly">Weekly</a></li>
-										<li><a href="video_monthly">Monthly</a></li>
-									</ul></li>
-								<li><a href="video_all">ALL</a></li>
-							</ul></li>
-
-						<li><a href="#"><span class="menu-item-span">Streaming</span></a>
-						</li>
-
-						<li class="menu-item-has-children"><a href="#"><span
-								class="menu-item-span">Community</span></a>
-							<ul class="sub-menu">
-								<li><a href="portfolio-7.html">Board</a></li>
-								<li><a href="myblog">My Blog</a></li>
-							</ul></li>
-						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="extra-nav">
-				<ul>
-					<li><a class="off-canvas-open" href="#"><span
-							class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-					<li class="nav-toggle"><a href="#" data-toggle="collapse"
-						data-target=".inner-navigation"><span class="menu-item-span"><i
-								class="ti-menu"></i></span></a></li>
-				</ul>
-			</div>
-		</div>
-	</header>
-	<!-- Header end-->
+	        <!-- Header-->
+        <header class="header header-transparent">
+            <div class="container-fluid">
+                <!-- Brand-->
+                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
+                <!-- Navigation-->
+                <div class="inner-navigation collapse">
+                    <div class="inner-nav">
+                        <ul>
+                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
+                            </li>
+                            
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="voice_new">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="voice_weekly">Weekly</a></li>
+                                            <li><a href="voice_monthly">Monthly</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="voice_all">ALL</a></li>
+                                </ul>
+                            </li>
+                  
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="video_new">New</a></li>
+                                    <li class="menu-item-has-children"><a href="#">Best</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="video_weekly">Weekly</a></li>
+                                            <li><a href="video_monthly">Monthly</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="video_all">ALL</a></li>
+                                </ul>
+                            </li>
+                  
+                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+                            </li>
+                            
+                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="community">Board</a></li>
+                                    <li><a href="myblog">My Blog</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="extra-nav">
+                    <ul>
+                        <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- Header end-->
 
 	<!-- Wrapper-->
 	<div class="wrapper">
@@ -357,57 +354,40 @@ function init(){
 	</div>
 	<!-- Wrapper end-->
 	<!-- Off canvas-->
-	<div class="off-canvas-sidebar">
-		<div class="off-canvas-sidebar-wrapper">
-			<div class="off-canvas-header">
-				<a class="off-canvas-close" href="#"><span class="ti-close"></span></a>
-			</div>
-			<div class="off-canvas-content">
-				<!-- Text widget-->
-				<c:if test="${sessionScope.memberId != null}">
-					<aside class="widget widget-text">
-						<div class="textwidget">
-							<p class="text-center">
-								<img src="resources/assets/images/person.png" alt=""
-									width="80px">
-							</p>
-							<p class="text-center">로그인한아이디</p>
-							<p class="text-center">n 번 방문</p>
-							<p class="text-center">내 블로그</p>
-							<p class="text-center">정보 수정</p>
-						</div>
-					</aside>
-				</c:if>
-				<c:if test="${sessionScope.memberId == null}">
-					<aside class="widget widget-text">
-						<div class="textwidget">
-							<div class="form-group">
-								<p class="text-center">Login</p>
-								<p class="text-center">
-									<input class="form-control" type="text" id="memberId"
-										name="memberId" placeholder="memberId">
-								</p>
-								<p class="text-center">
-									<input class="form-control" type="password" id="memberPwd"
-										name="memberPwd" placeholder="memberPwd">
-								</p>
-								<p class="text-center">
-									<button class="btn btn-outline-secondary" type="button"
-										name="loginBTN" id="loginBTN"
-										style="width: 320px; height: 54px;">login</button>
-								<p class="text-center">
-									<a href="signup" style="color: #788487">signup</a> &ensp; <a
-										href="findpwd" style="color: #788487">id/pwd</a>
-								</p>
+        <div class="off-canvas-sidebar">
+            <div class="off-canvas-sidebar-wrapper">
+                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
+                <div class="off-canvas-content">
+                    <!-- Text widget-->
+                    <c:if test="${sessionScope.memberId != null}">
+                    <aside class="widget widget-text">
+                        <div class="textwidget">
+                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
+                            <p class="text-center">로그인한아이디</p>
+                            <p class="text-center">n 번 방문</p>
+                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
+                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
+                        </div>
+                    </aside>
+                    </c:if>
+                    <c:if test="${sessionScope.memberId == null}">
+                    <aside class="widget widget-text">
+                        <div class="textwidget">
+                        	<div class="form-group">
+                        	<p class="text-center">Login</p>
+                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
+                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
+                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
 
-							</div>
-						</div>
-					</aside>
-				</c:if>
-			</div>
-		</div>
-	</div>
-	<!-- Off canvas end-->
+                            </div> 
+                        </div>
+                    </aside>
+                    </c:if>
+                </div>
+            </div>
+        </div>
+        <!-- Off canvas end-->
 
 	<!-- To top button-->
 	<a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
