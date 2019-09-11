@@ -12,22 +12,12 @@ DROP TABLE clubs CASCADE CONSTRAINTS;
 
 
 
-/* Drop Sequences */
-
-DROP SEQUENCE SEQ_memberInfo_memberNum;
-DROP SEQUENCE SEQ_NEW_TABLE_userNum;
-DROP SEQUENCE SEQ_pointslog_logid;
-DROP SEQUENCE SEQ_userinfo_userNum;
-
-
-
-
 /* Create Sequences */
 
-CREATE SEQUENCE SEQ_memberInfo_memberNum INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_NEW_TABLE_userNum INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_pointslog_logid INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_userinfo_userNum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_memberInfo INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_userNum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_logid INCREMENT BY 1 START WITH 1;
+
 
 
 
@@ -101,7 +91,7 @@ CREATE TABLE memberInfo
 	memberBirth varchar2(20),
 	-- 가입날짜
 	signupDate date DEFAULT sysdate,
-	memberAddress varchar2(100),
+	
 	memberEmail varchar2(50),
 	-- 유저의 포인트 보유수 
 	memberPoint number(10),
@@ -112,7 +102,9 @@ CREATE TABLE memberInfo
 	isManager number(1) DEFAULT 0,
 	recommender varchar2(50),
 	-- 각 클럽의 일련번호. 난수를 발생시켜 일련번호를 생성할 계획. 
-	clubNum varchar2(200) NOT NULL
+	clubNum varchar2(200) NOT NULL,
+	--포인트 타입
+	purchaseType varchar2(30)
 );
 
 
@@ -205,7 +197,7 @@ ALTER TABLE replies
 --멤버 insert
 INSERT INTO memberInfo
 VALUES(SEQ_memberInfo_memberNum.nextval, 'asdf', 'asdf', 'gyu', '010-9292-1919','1993-09-09', to_date(sysdate,'yyyy-mm-dd'), 
-'서울 종로구 혜암로113 301호', 'dididi@daum.net', 0, 0, 'hans', '45642');
+ 'dididi@daum.net', 0, 0, 'hans', '45642');
 
 --멤버 1명 select
 SELECT memberId "멤버아이디", memberName
