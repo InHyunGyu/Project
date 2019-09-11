@@ -201,7 +201,7 @@
 							<form method="post">
 								
 								<div class="form-group" >
-									<input class="form-control col-xs-12 col-md-8" type="text" value="${vo.memberId}" name="memberId" id="memberId" disabled="disabled" >
+									<input class="form-control" type="text" value="${vo.memberId}" name="memberId" id="memberId" disabled="disabled" >
 								</div>
 								
 								<div class="form-group">

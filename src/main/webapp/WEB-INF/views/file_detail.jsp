@@ -53,6 +53,10 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		
+		$("#post_modifyBTN").on('click', function(){
+			location.href="post_modify";
+		})
 	})
 	
 		
@@ -245,13 +249,22 @@
                                     <p class="comment-notes">Your email address will not be published. Required fields are marked</p>
                                     <form class="comment-form row">
                                         <div class="form-group col-md-12">
-                                            <textarea class="form-control" rows="8" placeholder="Comment"></textarea>
+                                             <textarea class="form-control" rows="4" cols="100" placeholder="Comment" style="margin: 5px;"></textarea>
                                         </div>
                                         <div class="form-submit col-md-12">
-                                            <button class="btn btn-dark" type="submit">Post Comment</button>
+											<button class="btn btn-dark" type="submit" >Comment</button>
                                         </div>
                                     </form>
+                                    <div style="margin-top: 30px;">
+		                          	<div class="form-group col-md-12">
+		                               <button class="btn btn-outline-dark" type="button" id="post_modifyBTN">Modify</button>
+		                               <button class="btn btn-outline-dark" type="button" >Delete</button>
+		                            </div>
+                               	  </div>
                                 </div>
+                                
+                                  
+                               	
                             </div>
                             <!-- Comments area end-->
                         </div>

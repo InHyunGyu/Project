@@ -119,6 +119,13 @@
                                 </ul>
                             </li>
                             <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
+                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Admin</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Member</a></li>
+                                    <li><a href="#">Notice</a></li>
+                                    <li><a href="#">Board</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>

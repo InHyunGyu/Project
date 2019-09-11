@@ -67,4 +67,14 @@ public class ListController {
 	public String file_detail(){
 		return"file_detail";
 	}
+	
+	@RequestMapping(value="/write", method=RequestMethod.GET)
+	public String write(){
+		return"write";
+	}
+	
+	@RequestMapping(value="/post_modify", method=RequestMethod.GET)
+	public String post_modify(){
+		return "post_modify";
+	}
 }

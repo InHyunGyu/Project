@@ -58,6 +58,10 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		
+		$("#btnWriteForm").on('click',function(){
+			location.href="write";``
+		})
 	})
 	
 		
@@ -224,7 +228,7 @@
 					</table>
 				</div>
 				<div>
-
+					
 					<button type="button" class="btn btn-sm btn-primary"
 						id="btnWriteForm">글쓰기</button>
 

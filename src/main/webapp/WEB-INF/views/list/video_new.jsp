@@ -167,41 +167,6 @@ $(function(){
                                         <h6>Parallax</h6>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-2.html"><img src="resources/assets/images/demo/2.jpg" alt=""></a>
-                                        <h6>Slider - Slide</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-3.html"><img src="resources/assets/images/demo/3.jpg" alt=""></a>
-                                        <h6>Slider - Fade</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-4.html"><img src="resources/assets/images/demo/4.jpg" alt=""></a>
-                                        <h6>Youtube</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-5.html"><img src="resources/assets/images/demo/5.jpg" alt=""></a>
-                                        <h6>Vimeo</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-6.html"><img src="resources/assets/images/demo/6.jpg" alt=""></a>
-                                        <h6>Local Video</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-7.html"><img src="resources/assets/images/demo/7.jpg" alt=""></a>
-                                        <h6>Gradient Style 1</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-8.html"><img src="resources/assets/images/demo/8.jpg" alt=""></a>
-                                        <h6>Gradient Style 2</h6>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -212,45 +177,14 @@ $(function(){
                                         <h6>Parallax</h6>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-2.html"><img src="resources/assets/images/demo/op-2.jpg" alt=""></a>
-                                        <h6>Slider - Slide</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-3.html"><img src="resources/assets/images/demo/op-3.jpg" alt=""></a>
-                                        <h6>Slider - Fade</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-4.html"><img src="resources/assets/images/demo/op-4.jpg" alt=""></a>
-                                        <h6>Youtube</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-5.html"><img src="resources/assets/images/demo/op-5.jpg" alt=""></a>
-                                        <h6>Vimeo</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-6.html"><img src="resources/assets/images/demo/op-6.jpg" alt=""></a>
-                                        <h6>Local Video</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-7.html"><img src="resources/assets/images/demo/op-7.jpg" alt=""></a>
-                                        <h6>Gradient Style 1</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-8.html"><img src="resources/assets/images/demo/op-8.jpg" alt=""></a>
-                                        <h6>Gradient Style 2</h6>
-                                    </div>
-                                </div>
+                                
+                                
                             </div>
+                            <a class="btn btn-outline-primary" href="write">Write</a>
                         </div>
                     </div>
                 </div>
+                
             </section>
 
             <!-- Footer-->
