@@ -31,7 +31,7 @@
 		var flagpwd = false;
 		var flagreco = true;
 		
-		var memberid = $("#memberid").val();
+		var memberId = $("#memberId").val();
 		var memberpwd = $("#memberpwd").val();
 		/*var checkpwd = 	$("#checkpwd").val();
 		var recocheckbtn = $("#recocheckbtn").val();
@@ -45,9 +45,9 @@
 		var userAddress = 	$("#userAddress").val(); */
 		
 		//아이디 유효성 검사 + 중복검사
-		$("#memberid").on("keyup",function(){
-			memberid = $("#memberid").val();
-			if(memberid.length<3 || memberid.length>15){
+		$("#memberId").on("keyup",function(){
+			memberId = $("#memberId").val();
+			if(memberId.length<3 || memberId.length>15){
 				$("#checkidline").html("id는 3~15사이입니다.");
 				return false;
 			}
@@ -56,21 +56,28 @@
 			}
 		});
 		$("#checkid").on("click",function(){
-			var checkpwd = 	$("#checkpwd").val();
-			$.ajax({
-				method : "GET",
-				url : "idCheck",
-				data : "memberId="+ memberid,
-				success: function(result){
-					if(result=="true"){
-						alert("동일한 ID가 존재합니다.");
+			memberId = 	$("#memberId").val();
+			if(memberId=="" || memberId==null){
+				alert("ID입력하세요");
+				checkId.select();
+				return false;
+			}
+			else{
+				$.ajax({
+					method : "GET",
+					url : "idCheck",
+					data : "memberId="+ memberId,
+					success: function(result){
+						if(result=="true"){
+							alert("동일한 ID가 존재합니다.");
+						}
+						else {
+							flagid=true;
+							alert("사용 가능합니다.");
+						}
 					}
-					else {
-						flagid=true;
-						alert("사용 가능합니다.");
-					}
-				}
-			});
+				});
+			}
 		}); 
 		
 		//비밀번호 유효성 검사
@@ -168,7 +175,7 @@
 							method:"POST",
 							url:"signup",
 							data:{
-								"memberId" : memberid,
+								"memberId" : memberId,
 								"memberPwd" : memberpwd,
 								"memberEmail" : memberEmail,
 								"memberName" :membername,
@@ -426,7 +433,7 @@
                             <!-- <<회원가입 입력받기 -->
                                 <form method="signup" action="POST" id="signup">
                                     <div class="form-group" style="display:inline-flex;">
-                                        <input class="form-control" type="text" name="memberId" id="memberid" placeholder="ID">
+                                        <input class="form-control" type="text" name="memberId" id="memberId" placeholder="ID">
                                         <button type="button" class="form-control" id="checkid">중복확인</button>
                                     </div>
                                     <p id="checkidline"></p>
