@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.debugking.www.dao.MemberRepository;
+import com.debugking.www.dto.MemberInfo;
+import com.debugking.www.service.MemberService;
+
 
 @Controller
 public class MemberController {
+	@Autowired
+	MemberService serivce;
 	@Autowired
 	MemberRepository repo;
 	
@@ -21,22 +26,44 @@ public class MemberController {
 		
 		return "Ok";
 	}
-	
+	//화면이동
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup(){
-		
+
 		return "member/signup";
+
 	}
-	
+	//회원 등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
-	public String signupPro(){
-		
-		return "main";
+	public String signupPro(MemberInfo member){
+		System.out.println(member);
+		int result = serivce.signup(member);
+		if(result==1){
+			return "success";
+		}
+		else{
+			return "fail";
+		}
 	}
 	
 	@RequestMapping(value="/myblog", method=RequestMethod.GET)
 	public String myblog(){
 		return "myblog";
+	}
+	
+
+	//ID체크 한명불러오기
+	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
+	@ResponseBody
+	public String idCheck(MemberInfo member){
+		System.out.println("idcheck"+member);
+		MemberInfo result = repo.idCheck(member);
+		if(result!=null){
+			return "true";
+		}
+		else{
+			return "false";
+		}
 	}
 	
 	@RequestMapping(value="/id_pwd", method=RequestMethod.GET)
