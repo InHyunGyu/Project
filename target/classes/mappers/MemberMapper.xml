@@ -29,16 +29,17 @@
 		values
 		(
 			SEQ_memberInfo_memberNum.nextval
-			,#{memberid}
-			,#{memberpwd}
-			,#{membername}
-			,#{memberphone}
-			,#{memberbirth}
+			,#{memberId}
+			,#{memberPwd}
+			,#{memberName}
+			,#{memberPhone}
+			,#{memberBirth}
 			,sysdate
 			,#{memberEmail}
-			,#{memberpoint}
-			,#{isManager}
+			,#{memberPoint}
 			,#{recommender}
+			,#{isManager}
+			
 			,#{clubNum}
 		)
 	</insert> 
