@@ -29,7 +29,7 @@ DROP SEQUENCE SEQ_userinfo_userNum;
 
 
 
-
+d
 /* Create Sequences */
 
 CREATE SEQUENCE SEQ_announcement_annNo INCREMENT BY 1 START WITH 1;
