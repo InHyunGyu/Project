@@ -71,7 +71,7 @@
         </div>
         <!-- Preloader end-->
 
-        <!-- Header-->
+                <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -80,12 +80,12 @@
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
                         <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
+                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
                             </li>
                             
                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="voice_mew">New</a></li>
+                                    <li><a href="voice_new">New</a></li>
                                     <li class="menu-item-has-children"><a href="#">Best</a>
                                         <ul class="sub-menu">
                                             <li><a href="voice_weekly">Weekly</a></li>
@@ -109,16 +109,16 @@
                                 </ul>
                             </li>
                   
-                            <li><a href="#"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="portfolio-7.html">Board</a></li>
+                                    <li><a href="community">Board</a></li>
                                     <li><a href="myblog">My Blog</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><span class="menu-item-span">Notice</span></a></li>
+                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -168,70 +168,12 @@
                                     <div class="post-content">
                                         <p>Just then her head struck against the roof of the hall in fact she was now more than nine feet high and she at once took up the little golden key and hurried off to the garden door.	The first question of course was, how to get dry again: they had a consultation about this, and after a few minutes it seemed quite natural to Alice to find herself talking familiarly with them.</p>
                                     </div>
-                                    <div class="post-more"><a href="#">Read more</a></div>
+                                    <div class="post-more"><a href="file_detail">Read more</a></div>
                                 </div>
                             </article>
                             <!-- Post end-->
 
-                            <!-- Post-->
-                            <article class="post">
-                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/3.jpg" alt=""></a></div>
-                                <div class="post-wrapper">
-                                    <div class="post-header">
-                                        <h2 class="post-title"><a href="blog-single.html">Minimalist Chandelier</a></h2>
-                                        <ul class="post-meta">
-                                            <li>November 18, 2016</li>
-                                            <li><a href="#">Branding</a>, <a href="#">Design</a></li>
-                                            <li><a href="#">3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-content">
-                                        <p>Just then her head struck against the roof of the hall in fact she was now more than nine feet high and she at once took up the little golden key and hurried off to the garden door.	The first question of course was, how to get dry again: they had a consultation about this, and after a few minutes it seemed quite natural to Alice to find herself talking familiarly with them.</p>
-                                    </div>
-                                    <div class="post-more"><a href="#">Read more</a></div>
-                                </div>
-                            </article>
-                            <!-- Post end-->
-
-                            <!-- Post-->
-                            <article class="post">
-                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/5.jpg" alt=""></a></div>
-                                <div class="post-wrapper">
-                                    <div class="post-header">
-                                        <h2 class="post-title"><a href="blog-single.html">Standard Shape</a></h2>
-                                        <ul class="post-meta">
-                                            <li>November 18, 2016</li>
-                                            <li><a href="#">Branding</a>, <a href="#">Design</a></li>
-                                            <li><a href="#">3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-content">
-                                        <p>Just then her head struck against the roof of the hall in fact she was now more than nine feet high and she at once took up the little golden key and hurried off to the garden door.	The first question of course was, how to get dry again: they had a consultation about this, and after a few minutes it seemed quite natural to Alice to find herself talking familiarly with them.</p>
-                                    </div>
-                                    <div class="post-more"><a href="#">Read more</a></div>
-                                </div>
-                            </article>
-                            <!-- Post end-->
-
-                            <!-- Post-->
-                            <article class="post">
-                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/7.jpg" alt=""></a></div>
-                                <div class="post-wrapper">
-                                    <div class="post-header">
-                                        <h2 class="post-title"><a href="blog-single.html">Street Fashion</a></h2>
-                                        <ul class="post-meta">
-                                            <li>November 18, 2016</li>
-                                            <li><a href="#">Branding</a>, <a href="#">Design</a></li>
-                                            <li><a href="#">3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-content">
-                                        <p>Just then her head struck against the roof of the hall in fact she was now more than nine feet high and she at once took up the little golden key and hurried off to the garden door.	The first question of course was, how to get dry again: they had a consultation about this, and after a few minutes it seemed quite natural to Alice to find herself talking familiarly with them.</p>
-                                    </div>
-                                    <div class="post-more"><a href="#">Read more</a></div>
-                                </div>
-                            </article>
-                            <!-- Post end-->
+                           
 
                             <!-- Page Navigation-->
                             <div class="row">
@@ -274,10 +216,6 @@
                                     </div>
                                     <ul>
                                         <li><a href="#">Journey <span class="float-right">112</span></a></li>
-                                        <li><a href="#">Development <span class="float-right">86</span></a></li>
-                                        <li><a href="#">Sport <span class="float-right">10</span></a></li>
-                                        <li><a href="#">Photography <span class="float-right">144</span></a></li>
-                                        <li><a href="#">Symphony <span class="float-right">18</span></a></li>
                                     </ul>
                                 </aside>
 
@@ -291,23 +229,7 @@
                                             <div class="wi"><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
                                             <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
                                         </li>
-                                        <li class="clearfix">
-                                            <div class="wi"><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></div>
-                                            <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
-                                        </li>
-                                        <li class="clearfix">
-                                            <div class="wi"><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></div>
-                                            <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
-                                        </li>
                                     </ul>
-                                </aside>
-
-                                <!-- Twitter widget-->
-                                <aside class="widget twitter-feed-widget">
-                                    <div class="widget-title">
-                                        <h6>Twitter Feed</h6>
-                                    </div>
-                                    <div class="twitter-feed" data-twitter="345170787868762112" data-number="2"></div>
                                 </aside>
 
                                 <!-- Tags widget-->
@@ -315,7 +237,7 @@
                                     <div class="widget-title">
                                         <h6>Tags</h6>
                                     </div>
-                                    <div class="tag-cloud"><a href="#">e-commerce</a><a href="#">portfolio</a><a href="#">responsive</a><a href="#">bootstrap</a><a href="#">business</a><a href="#">corporate</a></div>
+                                    <div class="tag-cloud"><a href="#">e-commerce</a></div>
                                 </aside>
                             </div>
                         </div>
@@ -407,7 +329,7 @@
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
-        <!-- Off canvas-->
+		<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
@@ -419,8 +341,8 @@
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
                             <p class="text-center">로그인한아이디</p>
                             <p class="text-center">n 번 방문</p>
-                            <p class="text-center">내 블로그 </p>
-                            <p class="text-center">정보 수정</p>
+                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
+                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
                         </div>
                     </aside>
                     </c:if>
@@ -431,8 +353,9 @@
                         	<p class="text-center">Login</p>
                             <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
                             <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN">login</button>
-                            <button type="button" class="btn btn-outline-secondary" name="signup" id="signup">signup</button></p>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
+                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
+
                             </div> 
                         </div>
                     </aside>

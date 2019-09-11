@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>UtaJJang</title>
+        <title>Debugking_Project</title>
         <!-- Favicons-->
-        <link rel="shortcut icon" href="resources/assets/images/favicon.png">
+        <link rel="shortcut icon" href="assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="resources/assets/images/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="resources/assets/images/apple-touch-icon-114x114.png">
@@ -61,7 +60,6 @@
 	</script>
     </head>
     <body>
-
         <!-- Preloader-->
         <div class="page-loader">
             <div class="page-loader-inner">
@@ -73,8 +71,7 @@
         </div>
         <!-- Preloader end-->
 
-
-                <!-- Header-->
+        <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -143,7 +140,7 @@
                         <div class="col-md-12">
                             <div class="space" data-mY="60px"></div> 
                             <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-                            <p class="m-b-40"><br>Voice List<br> Weekly </p>
+                            <p class="m-b-40"><br>Streaming<br> Now </p>
                             <div class="space" data-MY="60px"></div>
                         </div>
                     </div>
@@ -170,41 +167,7 @@
                                         <h6>Parallax</h6>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-2.html"><img src="resources/assets/images/demo/2.jpg" alt=""></a>
-                                        <h6>Slider - Slide</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-3.html"><img src="resources/assets/images/demo/3.jpg" alt=""></a>
-                                        <h6>Slider - Fade</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-4.html"><img src="resources/assets/images/demo/4.jpg" alt=""></a>
-                                        <h6>Youtube</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-5.html"><img src="resources/assets/images/demo/5.jpg" alt=""></a>
-                                        <h6>Vimeo</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-6.html"><img src="resources/assets/images/demo/6.jpg" alt=""></a>
-                                        <h6>Local Video</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-7.html"><img src="resources/assets/images/demo/7.jpg" alt=""></a>
-                                        <h6>Gradient Style 1</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-8.html"><img src="resources/assets/images/demo/8.jpg" alt=""></a>
-                                        <h6>Gradient Style 2</h6>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -215,41 +178,7 @@
                                         <h6>Parallax</h6>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-2.html"><img src="resources/assets/images/demo/op-2.jpg" alt=""></a>
-                                        <h6>Slider - Slide</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-3.html"><img src="resources/assets/images/demo/op-3.jpg" alt=""></a>
-                                        <h6>Slider - Fade</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-4.html"><img src="resources/assets/images/demo/op-4.jpg" alt=""></a>
-                                        <h6>Youtube</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-5.html"><img src="resources/assets/images/demo/op-5.jpg" alt=""></a>
-                                        <h6>Vimeo</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-6.html"><img src="resources/assets/images/demo/op-6.jpg" alt=""></a>
-                                        <h6>Local Video</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-7.html"><img src="resources/assets/images/demo/op-7.jpg" alt=""></a>
-                                        <h6>Gradient Style 1</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-8.html"><img src="resources/assets/images/demo/op-8.jpg" alt=""></a>
-                                        <h6>Gradient Style 2</h6>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -339,7 +268,7 @@
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
- 		<!-- Off canvas-->
+        <!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
@@ -374,6 +303,7 @@
             </div>
         </div>
         <!-- Off canvas end-->
+
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->
@@ -384,4 +314,4 @@
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
     </body>
-</html>    
+</html>  
