@@ -1,11 +1,9 @@
 
 /* Drop Tables */
 
-DROP TABLE announcement CASCADE CONSTRAINTS;
 DROP TABLE MemberClubs CASCADE CONSTRAINTS;
 DROP TABLE posts CASCADE CONSTRAINTS;
 DROP TABLE Files CASCADE CONSTRAINTS;
-DROP TABLE levels CASCADE CONSTRAINTS;
 DROP TABLE pointslog CASCADE CONSTRAINTS;
 DROP TABLE replies CASCADE CONSTRAINTS;
 DROP TABLE memberInfo CASCADE CONSTRAINTS;
@@ -29,7 +27,7 @@ DROP SEQUENCE SEQ_userinfo_userNum;
 
 
 
-d
+
 /* Create Sequences */
 
 CREATE SEQUENCE SEQ_announcement_annNo INCREMENT BY 1 START WITH 1;
@@ -48,36 +46,23 @@ CREATE SEQUENCE SEQ_userinfo_userNum INCREMENT BY 1 START WITH 1;
 
 /* Create Tables */
 
-CREATE TABLE announcement
-(
-	annNo number NOT NULL,
-	-- 게시물번호
-	postno number NOT NULL 게시물 번호. 기본키,
-	anndate date DEFAULT sysdate,
-	anntitle varchar2(500),
-	anncontent varchar2(1000),
-	PRIMARY KEY (annNo)
-);
-
-
 CREATE TABLE clubs
 (
 	-- 각 클럽의 일련번호. 
-	clubNum number NOT NULL,
+	clubNum number PRIMARY KEY NOT NULL,
 	-- 
 	-- 
 	clubName varchar2(100) NOT NULL,
 	club_date date,
 	-- 총 클럽멤버 수
 	cbtotal number DEFAULT 0,
-	PRIMARY KEY (clubNum)
 );
 
 
 CREATE TABLE Files
 (
 	-- 파일들을 관리하기 위한 고유 번호
-	fileno number NOT NULL,
+	fileno number PRIMARY KEY NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	-- 파일크기
@@ -88,29 +73,17 @@ CREATE TABLE Files
 	postno number NOT NULL 게시물 번호. 기본키,
 	-- 신고받은 수
 	Reported number DEFAULT 0,
-	PRIMARY KEY (fileno)
-);
-
-
-CREATE TABLE levels
-(
-	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberid varchar2(50) NOT NULL UNIQUE,
-	-- 'manager', 'regular member', 'beginner' 
-	-- 매니저,     정회원             ,  준회원
-	levels varchar2(20)
 );
 
 
 CREATE TABLE MemberClubs
 (
 	-- 이 테이블은 멤버들이 가입한 클럽들을 관리하도록 만든 테이블이다. 각각 튜블을 구별하기 위해 일련번호 시퀀스를 추가하였다. 
-	memberClubNum number NOT NULL,
+	memberClubNum number PRIMARY KEY NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	-- 각 클럽의 일련번호. 
 	clubNum number NOT NULL,
-	PRIMARY KEY (memberClubNum)
 );
 
 
@@ -118,7 +91,7 @@ CREATE TABLE MemberClubs
 CREATE TABLE memberInfo
 (
 	-- 유저 아이디와 별도로 만들 user number. 시퀀스처리
-	memberNum number NOT NULL 기본키,
+	memberNum number NOT NULL PRIMARY KEY,
 	-- 각 클럽의 일련번호. 
 	clubNum number,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
@@ -141,13 +114,15 @@ CREATE TABLE memberInfo
 	-- 
 	isManager number(1) DEFAULT 0,
 	recommender varchar2(50),
-	PRIMARY KEY (memberNum)
+	-- 'manager', 'regular member', 'beginner' 
+	-- 매니저,     정회원             ,  준회원
+	memberLevel varchar2(20) DEFAULT '''beginner''',
 );
 
 
 CREATE TABLE pointslog
 (
-	lognum number NOT NULL,
+	lognum number PRIMARY KEY NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	theOtherId varchar2(50),
@@ -156,14 +131,13 @@ CREATE TABLE pointslog
 	-- 포인트를 상대방에게 주고 난 뒤 얼마나 남아있는지 추적하기 위한 칼럼
 	balance number,
 	pointtype varchar2(30),
-	PRIMARY KEY (lognum)
 );
 
 
 CREATE TABLE posts
 (
 	-- 게시물번호
-	postno number NOT NULL 게시물 번호. 기본키,
+	postno number PRIMARY KEY NOT NULL 게시물 번호. 기본키,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	filename varchar2(500) NOT NULL UNIQUE,
@@ -175,18 +149,18 @@ CREATE TABLE posts
 	-- 
 	-- 
 	isBest char(2) DEFAULT '''N''',
-	PRIMARY KEY (postno)
+	postdate date DEFAULT sysdate,
+	isAnnouncement char(2) DEFAULT '''N''',
 );
 
 
 CREATE TABLE replies
 (
-	replyno number NOT NULL,
+	replyno number PRIMARY KEY NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	replyContent varchar2(500),
 	replyDate date DEFAULT sysdate,
-	PRIMARY KEY (replyno)
 );
 
 
@@ -217,12 +191,6 @@ ALTER TABLE Files
 ;
 
 
-ALTER TABLE levels
-	ADD FOREIGN KEY (memberid)
-	REFERENCES memberInfo (memberid)
-;
-
-
 ALTER TABLE MemberClubs
 	ADD FOREIGN KEY (memberid)
 	REFERENCES memberInfo (memberid)
@@ -246,10 +214,5 @@ ALTER TABLE replies
 	REFERENCES memberInfo (memberid)
 ;
 
-
-ALTER TABLE announcement
-	ADD FOREIGN KEY (postno)
-	REFERENCES posts (postno)
-;
 
 
