@@ -116,6 +116,7 @@ CREATE TABLE pointslog
 	theOtherId varchar2(50),
 	eventDate date,
 	amount number,
+	pointtype varchar2(30);
 	-- 포인트를 상대방에게 주고 난 뒤 얼마나 남아있는지 추적하기 위한 칼럼
 	balance number,
 	PRIMARY KEY (logId)

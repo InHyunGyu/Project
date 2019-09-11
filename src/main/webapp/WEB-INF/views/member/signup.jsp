@@ -62,6 +62,10 @@
 				checkId.select();
 				return false;
 			}
+			else if(flagid=false){
+				alert("중복하세요");
+				return false;
+			}
 			else{
 				$.ajax({
 					method : "GET",

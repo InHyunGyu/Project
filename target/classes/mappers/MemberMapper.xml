@@ -5,7 +5,7 @@
   
 <mapper namespace="com.debugking.www.dao.MemberMapper">
 	<!-- 한명 찾기  -->
- 	<select id="selectOne" parameterType="Member" resultType="Member">
+ 	<select id="selectOne" parameterType="String" resultType="Member">
 		select 
 			memberNum
 			,memberId
@@ -39,9 +39,10 @@
 			,#{memberPoint}
 			,#{recommender}
 			,#{isManager}
-			
+			<if test="clubNum != null">
 			,#{clubNum}
+			</if>
 		)
-	</insert> 
+	</insert>
 </mapper>
 

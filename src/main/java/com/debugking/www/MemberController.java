@@ -55,9 +55,9 @@ public class MemberController {
 	//ID체크 한명불러오기
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
 	@ResponseBody
-	public String idCheck(MemberInfo member){
-		System.out.println("idcheck"+member);
-		MemberInfo result = repo.idCheck(member);
+	public String idCheck(String memberId){
+		System.out.println("idcheck"+memberId);
+		MemberInfo result = repo.idCheck(memberId);
 		if(result!=null){
 			return "true";
 		}

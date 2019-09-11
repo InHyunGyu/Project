@@ -12,10 +12,10 @@ public class MemberRepository {
 	@Autowired
 	SqlSession session;
 	//회원 찾기 -한 명 찾기
-	public MemberInfo idCheck(MemberInfo member) {
+	public MemberInfo idCheck(String memberId) {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
 		//마지막엔 try 걸어야됌
-		MemberInfo result = mapper.selectOne(member);
+		MemberInfo result = mapper.selectOne(memberId);
 		return result;
 	}
 	//회원등록하기
