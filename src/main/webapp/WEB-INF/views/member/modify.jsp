@@ -190,7 +190,7 @@
 		<!-- Hero-->
 		<section class="module-cover parallax text-center fullscreen"
 			data-background="resources/assets/images/module-5.jpg"
-			data-overlay="0.6" style="height: 1130px;">
+			data-overlay="0.6" style="height: 1000px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4 col-md-6 m-auto">
@@ -201,8 +201,7 @@
 							<form method="post">
 								
 								<div class="form-group" >
-									<input class="form-control col-md-8" type="text" placeholder="Id" name="memberId" id="memberId">
-									<input class="form-control col-md-3" type="button" value="중복확인">
+									<input class="form-control col-xs-12 col-md-8" type="text" value="${vo.memberId}" name="memberId" id="memberId" disabled="disabled" >
 								</div>
 								
 								<div class="form-group">
@@ -212,23 +211,19 @@
 										placeholder="Pasword" id="pwdcheck">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" placeholder="Name" name="memberName" id="memberName">
+									<input class="form-control" type="text" value="${vo.memberName}" disabled="disabled" name="memberName" id="memberName">
 								</div>
 								<div class="form-group">
 									<input class="form-control" type="text" placeholder="Phone" name="memberPhone" id="memberPhone">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="date" placeholder="Birth" name="memberBirth" id="memberBirth">
+									<input class="form-control" type="date" placeholder="Birth" name="memberBirth" id="memberBirth" value="${vo.memberBirth}" disabled="disabled">
 								</div>
 								<div class="form-group">
 									<input class="form-control" type="email" placeholder="E-mail" name="memberEmail" id="memberEmail">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" placeholder="Recommender" name="recommender" id="recommender">
-								</div>
-								<div class="form-group">
-									<button class="btn btn-block btn-round btn-brand" type="button" id="signupBTN">Sign
-										Up</button>
+									<button class="btn btn-block btn-round btn-brand" type="button" id="modiBTN">Modify</button>
 								</div>
 							</form>
 						</div>

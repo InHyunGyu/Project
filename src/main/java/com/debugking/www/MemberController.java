@@ -55,4 +55,14 @@ public class MemberController {
 	public String findpwd(){
 		return "";
 	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	public String modify(){
+		return"member/modify";
+	}
+	
+	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
+	public String follow(){
+		return"follow_page";
+	}
 }
