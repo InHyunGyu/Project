@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>UtaJJang</title>
+        <title>Debugking_Project</title>
         <!-- Favicons-->
-        <link rel="shortcut icon" href="resources/assets/images/favicon.png">
+        <link rel="shortcut icon" href="assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="resources/assets/images/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="resources/assets/images/apple-touch-icon-114x114.png">
@@ -56,10 +55,11 @@
 			location.href="signup"
 		})
 	})
-	</script>        
+	
+		
+	</script>
     </head>
     <body>
-
         <!-- Preloader-->
         <div class="page-loader">
             <div class="page-loader-inner">
@@ -71,7 +71,7 @@
         </div>
         <!-- Preloader end-->
 
-                <!-- Header-->
+        <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -131,7 +131,7 @@
             </div>
         </header>
         <!-- Header end-->
-        
+
         <!-- Wrapper-->
         <div class="wrapper">
             <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
@@ -140,14 +140,14 @@
                         <div class="col-md-12">
                             <div class="space" data-mY="60px"></div> 
                             <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-                            <p class="m-b-40"><br>Voice List<br> New </p>
+                            <p class="m-b-40"><br>Streaming<br> Now </p>
                             <div class="space" data-MY="60px"></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-           <section class="module p-t-0">
+            <section class="module p-t-0">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 m-auto">
@@ -167,6 +167,7 @@
                                         <h6>Parallax</h6>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -178,13 +179,10 @@
                                     </div>
                                 </div>
                                 
-                                
                             </div>
-                            <a class="btn btn-outline-primary" href="write">Write</a>
                         </div>
                     </div>
                 </div>
-                
             </section>
 
             <!-- Footer-->
@@ -270,7 +268,7 @@
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
-		<!-- Off canvas-->
+        <!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
@@ -316,4 +314,4 @@
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
     </body>
-</html>    
+</html>  
