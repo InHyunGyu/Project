@@ -36,14 +36,19 @@ public class MemberController {
 	//회원 등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signupPro(MemberInfo member){
-		System.out.println(member);
-		int result = serivce.signup(member);
-		if(result==1){
-			return "success";
+		int temp = serivce.signup(member);
+		String result = "";
+		switch(temp){
+		case 1:
+			System.out.println("안들어왔엉?");
+			result = "success";
+			break;
+		case 0:
+			System.out.println("안들어왔엉?실패야?");
+			result = "fail";
+			break;
 		}
-		else{
-			return "fail";
-		}
+		return result;
 	}
 	
 	@RequestMapping(value="/myblog", method=RequestMethod.GET)
@@ -56,7 +61,6 @@ public class MemberController {
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
 	@ResponseBody
 	public String idCheck(String memberId){
-		System.out.println("idcheck"+memberId);
 		MemberInfo result = repo.idCheck(memberId);
 		if(result!=null){
 			return "true";

@@ -21,6 +21,7 @@ public class MemberRepository {
 	//회원등록하기
 	public int signup(MemberInfo member) {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		System.out.println("member"+member);
 		//마지막엔 try 걸어야됌
 		int result = mapper.signup(member);
 		return result;

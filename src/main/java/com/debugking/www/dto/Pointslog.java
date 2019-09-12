@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class Pointslog {
-	private int lognum;
-	private String memberid;
+	private int logNum;
+	private String memberId;
 	private String theOtherId;
 	private String eventdate;
 	private int amount;

@@ -8,23 +8,31 @@
 	<insert id="insertpointslog" parameterType="Pointlog">
 		insert into pointslog
 		(
-			logid
-			,memberid;
-			,theOtherId;
-			,sysdate
-			,amount;
-			,balance;
+			logNum
+			,memberId
+			<if test="theOtherId!=null">
+			,theOtherId
+			</if>
+			,eventdate
+			,amount
+			,balance
+			,pointtype
 		)
 		values
 		(
 			SEQ_pointslog_logid.nextval
-			,#{memberid}
-			,#{recommender}
+			,#{memberId}
+			<if test="theOtherId!=null">
+			,#{theOtherId}
+			</if>
+			
 			,sysdate
-			,#{memberpoint}
-			,balance + #{memberpoint}
+			,#{amount}
+			,#{amount}
+			,#{pointtype}
 		)
 	</insert>
+	
 	<!-- 로그 업데이트 (로그저장하기) -->
 	<update id="updatepointslog" parameterType="Pointlog">
 		update pointlog

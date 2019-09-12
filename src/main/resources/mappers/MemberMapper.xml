@@ -25,21 +25,39 @@
 	</select>
 	<!-- 회원가입  -->
 	<insert id="signup" parameterType="Member">
-		insert into Member
+		insert into MemberInfo
+		(
+			memberNum
+			,memberId		
+			,memberPwd		
+			,memberName
+			,memberPhone
+			,memberBirth
+			,signupDate			
+			,memberEmail	
+			,memberPoint
+			<if test="recommender !=null">	
+				,recommender
+			</if>
+			<if test="clubNum !=null">
+				,#{clubNum}
+			</if>
+		)
 		values
 		(
 			SEQ_memberInfo_memberNum.nextval
-			,#{memberId}
-			,#{memberPwd}
-			,#{memberName}
-			,#{memberPhone}
+			,#{memberId}		
+			,#{memberPwd}		
+			,#{memberName}	
+			,#{memberPhone}		
 			,#{memberBirth}
 			,sysdate
-			,#{memberEmail}
+			,#{memberEmail}		
 			,#{memberPoint}
-			,#{recommender}
-			,#{isManager}
-			<if test="clubNum != null">
+			<if test="recommender !=null">
+				,#{recommender}		
+			</if>
+			<if test="clubNum !=null">
 			,#{clubNum}
 			</if>
 		)
