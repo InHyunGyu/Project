@@ -171,7 +171,7 @@
 					alert("추천인 확인버튼을 누르세요");
 					return false;
 				}else{
-					//alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
+					alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
 		 			
 					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
 						alert("들어왔엉?11111111");
@@ -486,9 +486,9 @@
 
         <!-- Scripts-->
        <!--  <script src="resources/assets/js/custom/jquery.min.js"></script> -->
-        <script src="resources/assets/js/custom/popper.min.js"></script>
-        <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
+       <!--  <script src="resources/assets/js/custom/popper.min.js"></script> -->
+       <!--  <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script> -->
+       <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script> -->
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
         

@@ -35,6 +35,7 @@ public class MemberController {
 	}
 	//회원 등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
+	@ResponseBody
 	public String signupPro(MemberInfo member){
 		int temp = serivce.signup(member);
 		String result = "";
@@ -48,6 +49,7 @@ public class MemberController {
 			result = "fail";
 			break;
 		}
+		System.out.println(result+"45ewr5wqe");
 		return result;
 	}
 	
