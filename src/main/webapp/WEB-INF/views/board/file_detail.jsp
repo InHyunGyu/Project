@@ -167,6 +167,7 @@
                                         <h1 class="post-title">Minimalist Chandelier</h1>
                                         <ul class="post-meta">
                                             <li>November 18, 2016</li>
+                                            <li><a href="follow_page">작성자</a></li>
                                             <li>In <a href="#">Branding</a>, <a href="#">Design</a></li>
                                             <li><a href="#">3 Comments</a></li>
                                         </ul>
@@ -204,7 +205,7 @@
                                         <div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/1.jpg" alt=""></div>
                                         <div class="comment-body">
                                             <div class="comment-meta">
-                                                <div class="comment-meta-author"><a href="#">Jason Ford</a></div>
+                                                <div class="comment-meta-author"><a href="follow_page">Jason Ford</a></div>
                                                 <div class="comment-meta-date"><a href="#">May 5, 2015 at 4:51 am</a></div>
                                             </div>
                                             <div class="comment-content">
@@ -218,7 +219,7 @@
                                                 <div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/2.jpg" alt=""></div>
                                                 <div class="comment-body">
                                                     <div class="comment-meta">
-                                                        <div class="comment-meta-author"><a href="#">Harry Benson</a></div>
+                                                        <div class="comment-meta-author"><a href="follow_page">Harry Benson</a></div>
                                                         <div class="comment-meta-date"><a href="#">May 5, 2015 at 4:51 am</a></div>
                                                     </div>
                                                     <div class="comment-content">
@@ -234,7 +235,7 @@
                                         <div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/3.jpg" alt=""></div>
                                         <div class="comment-body">
                                             <div class="comment-meta">
-                                                <div class="comment-meta-author"><a href="#">Henry Cain</a></div>
+                                                <div class="comment-meta-author"><a href="follow_page">Henry Cain</a></div>
                                                 <div class="comment-meta-date"><a href="#">May 5, 2015 at 4:51 am</a></div>
                                             </div>
                                             <div class="comment-content">
@@ -253,21 +254,24 @@
                                         </div>
                                         <div class="form-submit col-md-12">
 											<button class="btn btn-dark" type="submit" >Comment</button>
+											 
+											 <button class="btn btn-outline-dark" type="button" id="post_modifyBTN" style="float: right;">Modify</button>
+		                               		<button class="btn btn-outline-dark" type="button" style="float: right;">Delete</button>
+		                               	
                                         </div>
                                     </form>
                                     <div style="margin-top: 30px;">
-		                          	<div class="form-group col-md-12">
-		                               <button class="btn btn-outline-dark" type="button" id="post_modifyBTN">Modify</button>
-		                               <button class="btn btn-outline-dark" type="button" >Delete</button>
-		                            </div>
                                	  </div>
                                 </div>
                                 
-                                  
+                                 
                                	
                             </div>
                             <!-- Comments area end-->
                         </div>
+                        
+                        
+                        
                         <div class="col-lg-4">
                             <div class="sidebar">
 

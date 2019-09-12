@@ -131,8 +131,101 @@
             </div>
         </header>
         <!-- Header end-->
+	
+        <!-- Wrapper-->
+        <div class="wrapper">
+            <!-- Hero-->
+            <section class="module-cover parallax text-center" data-background="assets/images/module-22.jpg" data-overlay="0.2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Spacé Đecor</h1>
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Portfolio</a></li>
+                                <li class="breadcrumb-item active">Sidebar Stack</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Hero end-->
 
+                      <!-- Portfolio Single-->
+            <section class="module">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>동영상 목록</p>
+                            <p><a href="file_detail"><img src="resources/assets/images/portfolio/5.jpg" alt=""></a></p>
+                           
+                        </div>
+                        <div class="col-md-4">
+                            <div class="sticky-sidebar">
+                                <h6 class="single-portfolio-title">유저 이름 </h6>
+                                <p>설명 1</p>
+                                <p>설명 2</p>
+                                <hr class="m-t-30 m-b-30">
+                                <div class="info-list">
+                                    <li><span class="info-list-title">Date:</span><span>가입일 </span></li>
+                                    <li><span class="info-list-title">Follow:</span><span><a href="#">n</a></span></li>
+                                    <li><span class="info-list-title">Comment:</span><span><a href="#">n</a></span></li>
+                                </div>
+                                <hr class="m-t-30 m-b-30">
+                                <div class="info-list">
+                                    <button type="button" class="form-control btn btn-outline-dark col-md-5">Follow</button>
+                                    <button type="button" class="form-control btn btn-outline-dark col-md-5">Block</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Portfolio Single end-->
 
+            <!-- Related Products-->
+            <section class="module divider-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-9 m-auto text-center">
+                            <h5>You may also like:</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="space" data-MY="40px"></div>
+                        </div>
+                    </div>
+                    <div class="row row-portfolio" data-columns="3">
+                        <div class="grid-sizer"></div>
+                        <div class="portfolio-item branding">
+                            <div class="portfolio-item-wrapper">
+                                <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/1.jpg" alt=""></div>
+                                <div class="portfolio-item-caption">
+                                    <h6 class="portfolio-item-title">Solave Cleanser</h6><span class="portfolio-item-subtitle serif">Digital</span>
+                                </div><a class="portfolio-item-link" href="portfolio-single-1.html"></a>
+                            </div>
+                        </div>
+                        <div class="portfolio-item digital">
+                            <div class="portfolio-item-wrapper">
+                                <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/2.jpg" alt=""></div>
+                                <div class="portfolio-item-caption">
+                                    <h6 class="portfolio-item-title">Monochrome</h6><span class="portfolio-item-subtitle serif">Branding</span>
+                                </div><a class="portfolio-item-link" href="portfolio-single-1.html"></a>
+                            </div>
+                        </div>
+                        <div class="portfolio-item packaging">
+                            <div class="portfolio-item-wrapper">
+                                <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/3.jpg" alt=""></div>
+                                <div class="portfolio-item-caption">
+                                    <h6 class="portfolio-item-title">Ellie Cashman</h6><span class="portfolio-item-subtitle serif">Packaging</span>
+                                </div><a class="portfolio-item-link" href="portfolio-single-1.html"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Related Products end-->
 
             <!-- Footer-->
             <footer class="footer">

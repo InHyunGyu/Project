@@ -18,10 +18,7 @@ public class HomeController {
 	public String home2() {
 		return "main";
 	}
-	@RequestMapping(value = "/file_list", method = RequestMethod.GET)
-	public String file_list() {
-		return "file_list";
-	}
+	
 	
 
 }
