@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,7 +164,7 @@
 		 			
 					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
 						$.ajax({
-							method:"POST",
+							method:"post",
 							url:"signup",
 							data:{
 								"memberId" : memberid,

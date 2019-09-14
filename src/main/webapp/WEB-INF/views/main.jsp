@@ -58,6 +58,7 @@
 	
 		
 	</script>
+
     </head>
     <body>
         <!-- Preloader-->
@@ -151,33 +152,56 @@
             <!-- Hero end-->
 
             <!-- About-->
-            <section class="module divider-bottom">
+            <!-- Sliders-->
+            <section class="module">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 m-auto text-center">
-                            <h1>Your Site, Your Way.</h1>
-                            <p class="lead">See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>
+                        <div class="col-md-6">
+                            <div class="image-slider owl-carousel"><img src="resources/assets/images/portfolio/6.jpg" alt=""><img src="resources/assets/images/portfolio/5.jpg" alt=""><img src="assets/images/portfolio/4.jpg" alt=""><img src="resources/assets/images/portfolio/3.jpg" alt=""></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="image-slider owl-carousel" data-carousel-options='{"dots": false, "nav": false, "autoplay": true, "autoplayTimeout": 2000}'><img src="resources/assets/images/portfolio/6.jpg" alt=""><img src="resources/assets/images/portfolio/5.jpg" alt=""><img src="resources/assets/images/portfolio/4.jpg" alt=""><img src="resources/assets/images/portfolio/3.jpg" alt=""></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="space" data-MY="60px"></div>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-1-1">
+                                        <h6>HTML</h6></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-1-2">
+                                        <h6>PUG</h6></a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane show active" id="tab-1-1">
+                                    <pre><code class="language-markup">&lt;div class=&quot;image-slider owl-carousel&quot;&gt;
+   &lt;img src=&quot;assets/images/portfolio/6.jpg&quot; alt=&quot;&quot;&gt;
+   &lt;img src=&quot;assets/images/portfolio/5.jpg&quot; alt=&quot;&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;image-slider owl-carousel&quot; data-carousel-options='{"dots": false, "nav": false, "autoplay": true, "autoplayTimeout": 2000}'&gt;
+   &lt;img src=&quot;assets/images/portfolio/6.jpg&quot; alt=&quot;&quot;&gt;
+   &lt;img src=&quot;assets/images/portfolio/5.jpg&quot; alt=&quot;&quot;&gt;
+&lt;/div&gt;</code></pre>
+                                </div>
+                                <div class="tab-pane" id="tab-1-2">
+                                    <pre><code class="language-pug">.image-slider.owl-carousel
+   img(src="assets/images/portfolio/6.jpg" alt="")
+   img(src="assets/images/portfolio/5.jpg" alt="")
+   img(src="assets/images/portfolio/4.jpg" alt="")
+   img(src="assets/images/portfolio/3.jpg" alt="")
+
+.image-slider.owl-carousel(data-carousel-options='{"dots": false, "nav": false, "autoplay": true, "autoplayTimeout": 2000}')
+   img(src="assets/images/portfolio/6.jpg" alt="")
+   img(src="assets/images/portfolio/5.jpg" alt="")
+   img(src="assets/images/portfolio/4.jpg" alt="")
+   img(src="assets/images/portfolio/3.jpg" alt="")</code></pre>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p><img src="resources/assets/images/main/mega-mockup.png" alt=""></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="space" data-mY="30px"></div>
-                        </div>
-                    </div>
-                   
-                       
-                    </div>
+                </div>
             </section>
+            <!-- Sliders end-->
             <!-- About end-->
 
             <!-- Portfolio-->

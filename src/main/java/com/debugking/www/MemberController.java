@@ -34,6 +34,7 @@ public class MemberController {
 
 	}
 	//회원 등록하기
+	@ResponseBody
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signupPro(MemberInfo member){
 		System.out.println(member);
