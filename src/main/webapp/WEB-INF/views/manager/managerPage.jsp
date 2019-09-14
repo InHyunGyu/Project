@@ -142,7 +142,7 @@
 		tag4 += '<option value="streaming">streaming</option>'
 		tag4 += '<option value="community">community</option>'
 		tag4 += '</select>'
-		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Type Search Words" >'
+		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Search" >'
 		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
 		
 		$("#content_title").html(tag1);
@@ -204,7 +204,7 @@
 		tag4 += '<option value="streaming">streaming</option>'
 		tag4 += '<option value="community">community</option>'
 		tag4 += '</select>'
-		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Type Search Words" >'
+		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Search" >'
 		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
 		
 		$("#content_title").html(tag1);
@@ -268,11 +268,22 @@
 		tag3 += '<a href="#" onclick="stop_activity();">stop</a>'
 		tag3 += '</div>'
 		
-		
+		var tag4 = '';
+		tag4 += '<select class="form-control col-lg-4" >'
+		tag4 += '<option value="1">1</option>'
+		tag4 += '<option value="2">2</option>'
+		tag4 += '<option value="3">3</option>'
+		tag4 += '<option value="4">4</option>'
+		tag4 += '<option value="5">5</option>'
+		tag4 += '</select>'
+		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Search" >'
+		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
 		
 		$("#content_title").html(tag1);
+		$("#add").html(tag4);
 		$("#content_table").html(tag2);
 		$("#content_select").html(tag3);
+		
 		
 	}
 		

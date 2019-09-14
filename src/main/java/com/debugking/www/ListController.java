@@ -78,9 +78,9 @@ public class ListController {
 		return "userBoard/post_modify";
 	}
 	
-	@RequestMapping(value="/streamingPage", method=RequestMethod.GET)
+	@RequestMapping(value="/streaming_write", method=RequestMethod.GET)
 	public String streamingPage(){
-		return "userBoard/streamingPage";
+		return "userBoard/streaming_write";
 	}
 	
 	@RequestMapping(value="/streaming_detail", method=RequestMethod.GET)

@@ -150,17 +150,57 @@
                 </div>
             </section>
             <!-- Hero end-->
-
-                      <!-- Portfolio Single-->
+				
+			<!-- Blog-->
             <section class="module">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8">
-                            <p>동영상 목록</p>
-                            <p><a href="file_detail"><img src="resources/assets/images/portfolio/5.jpg" alt=""></a></p>
+                        <div class="col-lg-8">
+
+                            <!-- Post-->
+                            <article class="post">
+                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/1.jpg" alt=""></a></div>
+                                <div class="post-wrapper">
+                                    <div class="post-header">
+                                        <h2 class="post-title"><a href="blog-single.html">Bluetooth Speaker</a></h2>
+                                        <ul class="post-meta">
+                                            <li>November 18, 2016</li>
+                                            <li><a href="#">Branding</a>, <a href="#">Design</a></li>
+                                            <li><a href="#">3 Comments</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="post-content">
+                                        <p>Just then her head struck against the roof of the hall in fact she was now more than nine feet high and she at once took up the little golden key and hurried off to the garden door.	The first question of course was, how to get dry again: they had a consultation about this, and after a few minutes it seemed quite natural to Alice to find herself talking familiarly with them.</p>
+                                    </div>
+                                    <div class="post-more"><a href="file_detail">Read more</a></div>
+                                </div>
+                            </article>
+                            <!-- Post end-->
+
                            
+
+                            <!-- Page Navigation-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <nav>
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item"><a class="page-link" href="#"><span class="fas fa-angle-left"></span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                            <li class="page-item"><a class="page-link" href="#"><span class="fas fa-angle-right"></span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- Page Navigation end-->
                         </div>
-                        <div class="col-md-4">
+                       
+                        
+                        
+                        
+                         <div class="col-md-4">
                             <div class="sticky-sidebar">
                                 <h6 class="single-portfolio-title">유저 이름 </h6>
                                 <p>설명 1</p>
@@ -181,8 +221,13 @@
                     </div>
                 </div>
             </section>
-            <!-- Portfolio Single end-->
-
+            <!-- Blog end-->	
+				
+				
+				
+				
+				
+				
             <!-- Related Products-->
             <section class="module divider-top">
                 <div class="container">

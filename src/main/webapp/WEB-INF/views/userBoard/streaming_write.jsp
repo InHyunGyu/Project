@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Streaming Page</h1>
+<h1>Streaming Start</h1>
 </body>
 </html>

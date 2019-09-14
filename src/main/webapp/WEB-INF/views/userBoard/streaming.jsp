@@ -180,7 +180,7 @@
                                 </div>
                                 
                             </div>
-                            <a class="btn btn-outline-primary" href="streamingPage" style="float: right; margin-right: 50px;">Start</a>
+                            <a class="btn btn-outline-primary" href="streaming_write" style="float: right; margin-right: 50px;">Start</a>
                         </div>
                     </div>
                 </div>
