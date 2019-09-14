@@ -119,12 +119,7 @@
                                 </ul>
                             </li>
                             <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Admin</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="memberList">Member</a></li>
-                                    <li><a href="#">Notice</a></li>
-                                    <li><a href="#">Board</a></li>
-                                </ul>
+                            <li class="menu-item-has-children"><a href="managerPage"><span class="menu-item-span">Admin</span></a>
                             </li>
                         </ul>
                     </div>

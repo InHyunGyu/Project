@@ -180,7 +180,7 @@ $(function(){
                                 
                                 
                             </div>
-                            <a class="btn btn-outline-primary" href="write">Write</a>
+                            <a class="btn btn-outline-primary" href="write" style="float: right; margin-right: 50px;">Write</a>
                         </div>
                     </div>
                 </div>

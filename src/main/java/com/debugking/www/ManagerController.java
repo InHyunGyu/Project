@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ManagerController {
 
-	@RequestMapping(value="/admin", method=RequestMethod.GET)
+	@RequestMapping(value="/managerPage", method=RequestMethod.GET)
 	public String manager(){
-		return "manager_board";
+		return "/manager/managerPage";
+	}
+	
+	@RequestMapping(value="/notice_write", method=RequestMethod.GET)
+	public String notice_write(){
+		return "/manager/notice_write";
 	}
 }

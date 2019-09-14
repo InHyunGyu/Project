@@ -9,72 +9,82 @@ public class ListController {
 	
 	@RequestMapping(value="/voice_new", method=RequestMethod.GET)
 	public String voice_new(){
-		return "board/voice_new";
+		return "userBoard/voice_new";
 	}
 	
  	@RequestMapping(value="/voice_weekly", method=RequestMethod.GET)
 	public String voice_weekly(){
-		return "board/voice_weekly";
+		return "userBoard/voice_weekly";
 	}
 	
 	@RequestMapping(value="/voice_monthly", method=RequestMethod.GET)
 	public String voice_monthly(){
-		return "board/voice_monthly";
+		return "userBoard/voice_monthly";
 	}
 	
 	@RequestMapping(value="/voice_all", method=RequestMethod.GET)
 	public String voice_all(){
-		return "board/voice_all";
+		return "userBoard/voice_all";
 	}
 	
 	@RequestMapping(value="/video_new", method=RequestMethod.GET)
 	public String video_new(){
-		return "board/video_new";
+		return "userBoard/video_new";
 	}
 	
 	@RequestMapping(value="/video_weekly", method=RequestMethod.GET)
 	public String video_weekly(){
-		return "board/video_weekly";
+		return "userBoard/video_weekly";
 	}
 	
 	@RequestMapping(value="/video_monthly", method=RequestMethod.GET)
 	public String video_monthly(){
-		return "board/video_monthly";
+		return "userBoard/video_monthly";
 	}
 	
 	@RequestMapping(value="/video_all", method=RequestMethod.GET)
 	public String video_all(){
-		return "board/video_all";
+		return "userBoard/video_all";
 	}
 	
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
 	public String notice(){
 		
-		return "board/notice";
+		return "userBoard/notice";
 	}
 	
 	@RequestMapping(value="/streaming", method=RequestMethod.GET)
 	public String streaming(){
-		return"board/streaming";
+		return"userBoard/streaming";
 	}
 	
 	@RequestMapping(value="/community", method=RequestMethod.GET)
 	public String community(){
-		return "board/community";
+		return "userBoard/community";
 	}
 	
-	@RequestMapping(value="file_detail", method=RequestMethod.GET)
+	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
 	public String file_detail(){
-		return"board/file_detail";
+		return "userBoard/file_detail";
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String write(){
-		return"board/write";
+		return "userBoard/write";
 	}
 	
 	@RequestMapping(value="/post_modify", method=RequestMethod.GET)
 	public String post_modify(){
-		return "board/post_modify";
+		return "userBoard/post_modify";
+	}
+	
+	@RequestMapping(value="/streamingPage", method=RequestMethod.GET)
+	public String streamingPage(){
+		return "userBoard/streamingPage";
+	}
+	
+	@RequestMapping(value="/streaming_detail", method=RequestMethod.GET)
+	public String streaming_detail(){
+		return "userBoard/streaming_detail";
 	}
 }

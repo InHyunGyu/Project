@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,9 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Debugking_Project</title>
+        <title>Boomerang - Template</title>
         <!-- Favicons-->
-        <link rel="shortcut icon" href="assets/images/favicon.png">
+        <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="resources/assets/images/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="resources/assets/images/apple-touch-icon-114x114.png">
@@ -25,8 +24,29 @@
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 	
+	<style>
+		.module a {
+			color: #788487;
+		}
+		
+		.set_list {
+    width: 769px;
+    height: 48px;
+    padding: 12px 20px 0;
+    border-top: 1px solid #E4E4E4;
+    background: #FAFAFA;
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+}
+
+
+
+
+	
+	</style>
 	<script>
 	$(function(){
+		writingList();
 		$("#loginBTN").on('click', function(){
 			var memberId = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
@@ -54,12 +74,291 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		
+		
+		
 	})
 	
+	function writingList(){	
+		var tag1="게시글 관리";
 		
+		var tag2 =''
+		tag2 = '<colgroup>'
+		tag2 += '<col style="width: 5%;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '<col style="width: 15%;" />'
+		tag2 += '<col style="width: auto;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '</colgroup>'
+		tag2 += '<thead>'
+		tag2 += '<tr>'		
+		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th>게시판</th>'
+		tag2 += '<th>글제목</th>'
+		tag2 += '<th>작성자</th>'
+		tag2 += '<th>조회</th>'
+		tag2 += '<th>작성일</th>'
+		tag2 += '</tr>'
+		tag2 += '</thead>'
+		tag2 += '<tbody>'
+		tag2 += '<c:if test="${empty list}">'	
+		tag2 += '<tr>'
+		tag2 += '<td colspan="6" align="center">데이터가 없습니다.</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:if>'
+		tag2 += '<c:if test="${not empty list}">'
+		tag2 += '<c:forEach var="board" items="${list}" varStatus="stat">'
+		tag2 += '<tr>'
+		tag2 += '<td><input type="checkbox"></td>'
+		tag2 += '<td>${board.column}</td>'
+		tag2 += '<td>${board.title}</td>'		
+		tag2 += '<td>${board.userid}</td>'
+		tag2 += '<td>${board.viewcount}</td>'
+		tag2 += '<td>${board.regdate}</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:forEach>'
+		tag2 += '</c:if>'
+		tag2 += '</tbody>'
+
+		var tag3 = ''
+		tag3 += '<input type="checkbox">'
+		tag3 += '<select class="form-control col-lg-2" style="height: 30px;" >'
+		tag3 += '<option value="voice">voice</option>'
+		tag3 += '<option value="video">video</option>'
+		tag3 += '<option value="streaming>streaming</option>'
+		tag3 += '<option value="community">community</option>'
+		tag3 += '</select>'	
+		tag3 += '<div class="form-group" style="float: right;">'
+		tag3 += '<a href="#" onclick="move();">move</a>'		
+		tag3 += '<a> | </a>'
+		tag3 += '<a href="#" onclick="deleted();">delete</a>'
+		tag3 += '</div>'
+		
+		var tag4 = '';
+		tag4 += '<select class="form-control col-lg-3" >'
+		tag4 += '<option value="voice">voice</option>'
+		tag4 += '<option value="video">video</option>'
+		tag4 += '<option value="streaming">streaming</option>'
+		tag4 += '<option value="community">community</option>'
+		tag4 += '</select>'
+		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Type Search Words" >'
+		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
+		
+		$("#content_title").html(tag1);
+		$("#add").html(tag4);
+		$("#content_table").html(tag2);
+		$("#content_select").html(tag3);
+		
+	}
+	
+	function commentList(){
+		var tag1="댓글 관리";
+		
+		var tag2 =''
+		tag2 = '<colgroup>'
+		tag2 += '<col style="width: 5%;" />'
+		tag2 += '<col style="width: 15%;" />'
+		tag2 += '<col style="width: auto;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '</colgroup>'
+		tag2 += '<thead>'
+		tag2 += '<tr>'		
+		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th>글제목</th>'
+		tag2 += '<th>댓글 내용 </th>'
+		tag2 += '<th>작성자</th>'
+		tag2 += '<th>작성일</th>'
+		tag2 += '</tr>'
+		tag2 += '</thead>'
+		tag2 += '<tbody>'
+		tag2 += '<c:if test="${empty commentList}">'	
+		tag2 += '<tr>'
+		tag2 += '<td colspan="5" align="center">데이터가 없습니다.</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:if>'
+		tag2 += '<c:if test="${not empty commentList}">'
+		tag2 += '<c:forEach var="board" items="${commnetList}" varStatus="stat">'
+		tag2 += '<tr>'
+		tag2 += '<td><input type="checkbox"></td>'
+		tag2 += '<td>${board.title}</td>'		
+		tag2 += '<td>${board.content}</td>'
+		tag2 += '<td>${board.userid}</td>'
+		tag2 += '<td>${board.regdate}</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:forEach>'
+		tag2 += '</c:if>'
+		tag2 += '</tbody>'
+		
+		var tag3 = ''
+		tag3 += '<input type="checkbox">'
+		tag3 += '<div class="form-group" style="float: right;">'
+		tag3 += '<a href="#" onclick="rep_delete();">delete</a>'
+		tag3 += '</div>'
+		
+		var tag4 = '';
+		tag4 += '<select class="form-control col-lg-3" >'
+		tag4 += '<option value="voice">voice</option>'
+		tag4 += '<option value="video">video</option>'
+		tag4 += '<option value="streaming">streaming</option>'
+		tag4 += '<option value="community">community</option>'
+		tag4 += '</select>'
+		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Type Search Words" >'
+		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
+		
+		$("#content_title").html(tag1);
+		$("#add").html(tag4);
+		$("#content_table").html(tag2);
+		$("#content_select").html(tag3);
+		
+	}
+	
+	function memberRating(){
+		var tag1 ="등급관리"
+		
+		var tag2 =''
+		tag2 = '<colgroup>'
+		tag2 += '<col style="width: 5%;" />'
+		tag2 += '<col style="width: auto%;" />'
+		tag2 += '<col style="width: 20%;" />'
+		tag2 += '<col style="width: 20%;" />'
+		tag2 += '<col style="width: 20%;" />'
+		tag2 += '</colgroup>'
+		tag2 += '<thead>'
+		tag2 += '<tr>'		
+		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th>회원 아이디</th>'
+		tag2 += '<th>회원 등급 </th>'
+		tag2 += '<th>등업 대기 등급</th>'
+		tag2 += '<th>가입 신청일</th>'
+		tag2 += '</tr>'
+		tag2 += '</thead>'
+		tag2 += '<tbody>'
+		tag2 += '<c:if test="${empty ratingList}">'	
+		tag2 += '<tr>'
+		tag2 += '<td colspan="5" align="center">데이터가 없습니다.</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:if>'
+		tag2 += '<c:if test="${not empty ratingList}">'
+		tag2 += '<c:forEach var="board" items="${ratingList}" varStatus="stat">'
+		tag2 += '<tr>'
+		tag2 += '<td><input type="checkbox"></td>'
+		tag2 += '<td>${board.memberId}</td>'		
+		tag2 += '<td>${board.memberRating}</td>'
+		tag2 += '<td>${board.member}</td>'
+		tag2 += '<td>${board.requestDate}</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:forEach>'
+		tag2 += '</c:if>'
+		tag2 += '</tbody>'
+		
+		var tag3 = ''
+		tag3 += '<input type="checkbox">'
+		tag3 += '<div class="form-group" style="float: right;">'
+		tag3 += '<select class="form-control col-lg-4" style="height: 30px;" >'
+		tag3 += '<option value="1">1</option>'
+		tag3 += '<option value="2">2</option>'
+		tag3 += '<option value="3">3</option>'
+		tag3 += '<option value="4">4</option>'
+		tag3 += '<option value="5">5</option>'
+		tag3 += '</select>'
+		tag3 += '<a href="#" onclick="change();">change</a>'		
+		tag3 += '<a> | </a>'
+		tag3 += '<a href="#" onclick="stop_activity();">stop</a>'
+		tag3 += '</div>'
+		
+		
+		
+		$("#content_title").html(tag1);
+		$("#content_table").html(tag2);
+		$("#content_select").html(tag3);
+		
+	}
+		
+	function noticeList(){
+		var tag1 ="공지관리"
+			
+			var tag2 =''
+			tag2 = '<colgroup>'
+			tag2 += '<col style="width: 5%;" />'
+			tag2 += '<col style="width: 20%;" />'
+			tag2 += '<col style="width: auto%;" />'
+			tag2 += '<col style="width: 20%;" />'
+			tag2 += '</colgroup>'
+			tag2 += '<thead>'
+			tag2 += '<tr>'		
+			tag2 += '<th><input type="checkbox"></th>'
+			tag2 += '<th>게시판</th>'
+			tag2 += '<th>제목</th>'
+			tag2 += '<th>공지작성일</th>'
+			tag2 += '</tr>'
+			tag2 += '</thead>'
+			tag2 += '<tbody>'
+			tag2 += '<c:if test="${empty noticeList}">'	
+			tag2 += '<tr>'
+			tag2 += '<td colspan="4" align="center">데이터가 없습니다.</td>'
+			tag2 += '</tr>'
+			tag2 += '</c:if>'
+			tag2 += '<c:if test="${not empty noticegList}">'
+			tag2 += '<c:forEach var="board" items="${noticeList}" varStatus="stat">'
+			tag2 += '<tr>'
+			tag2 += '<td><input type="checkbox"></td>'
+			tag2 += '<td>${board.column}</td>'		
+			tag2 += '<td>${board.title}</td>'
+			tag2 += '<td>${board.regdate}</td>'
+			tag2 += '</tr>'
+			tag2 += '</c:forEach>'
+			tag2 += '</c:if>'
+			tag2 += '</tbody>'
+			
+			var tag3 = ''
+			tag3 += '<input type="checkbox">'
+			tag3 += '<div class="form-group" style="float: right;">'
+			tag3 += '<a href="#" onclick="registration();">registration</a>'		
+			tag3 += '<a> | </a>'
+			tag3 += '<a href="#" onclick="cancel();">cancel</a>'
+			tag3 += '</div>'
+			
+			var tag4 = '';
+			tag4 += '<button class="form-control" type="button" onclick="notice_write();">공지 글쓰기</button>'
+			
+
+			$("#content_title").html(tag1);
+			$("#add").html(tag4);
+			$("#content_table").html(tag2);
+			$("#content_select").html(tag3);
+			
+		}
+	function notice_write(){
+		location.href="notice_write";
+	}
+	
+	function move(){
+		// 게시글 이동 
+	}
+	function deleted(){
+		// 게시글 삭제 
+	}
+	function change(){
+		// 등급변경  
+	}
+	function stop_activity(){
+		// 활동중지 
+	}
+	function rep_delete(){
+		// 댓글삭제
+	}
+	function registration(){
+		// 공지 등록
+	}
+	function cancel(){
+		// 공지 등록 취
+	}
 	</script>
     </head>
     <body>
+
         <!-- Preloader-->
         <div class="page-loader">
             <div class="page-loader-inner">
@@ -70,7 +369,6 @@
             </div>
         </div>
         <!-- Preloader end-->
-
         <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
@@ -131,59 +429,76 @@
             </div>
         </header>
         <!-- Header end-->
-
+        
         <!-- Wrapper-->
         <div class="wrapper">
-            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
+            <!-- Hero-->
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-17.jpg" data-overlay="0.3">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="space" data-mY="60px"></div> 
-                            <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-                            <p class="m-b-40"><br>Streaming<br> Now </p>
-                            <div class="space" data-MY="60px"></div>
+                            <h2>Management</h2>
+                            
                         </div>
                     </div>
                 </div>
             </section>
+            <!-- Hero end-->
 
-            <section class="module p-t-0">
+            <!-- Blog-->
+            <section class="module">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 m-auto">
-                            <div class="space" data-mY="-120px"></div>
-                            <p><img src="resources/assets/images/main/macbook.png" alt=""></p>
-                            <div class="space" data-mY="80px"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid" style="max-width: 1600px;">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6 class="text-special text-center m-b-40">Multi Page Demos</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
+                         <div class="col-lg-2">
+                            <div class="sidebar">
+                                <h6 class="single-portfolio-title">글 관리 </h6>
+                                <p><a href="#" onclick="writingList();">게시글</a></p>
+                                <p><a href="#" onclick="commentList()">댓글</a> </p>
+                                <p onclick="noticeList();"><a href="#" onclick="noticeList();">공지</a></p>
+                                <hr class="m-t-30 m-b-30">
+                                <h6 class="single-portfolio-title">카페 회원 </h6>
+                                <p><a href="#" onclick="memberRating();">등급 관리</a></p>
+                                
+                                <hr class="m-t-30 m-b-30">
+                                
+                                
                                 
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <h6 class="text-special text-center m-b-40">One Page Demos</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index.html"><img src="resources/assets/images/demo/op-1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
+                        
+                        
+                        <div class="col-lg-10">
+                            <h2 id="content_title"> </h2>
+                            <hr class="m-t-30 m-b-30">	 
+                            	 <div class="form-group" style="float: right;">
+                            	 <aside class="widget widget-search">
+                                    <form id="add">
+                                        
+                                    </form>
+                                </aside>
+                            	</div>
+                            	
+                            	  
+                            
+                             
+                            <table id="content_table" class="table table-striped table-sm table-hover">
+							
+							</table>
+					<div class="set_list" style="width: 100%;">
+					<div class="bundle_set" id="content_select">
+					
+						
+					</div>
+				</div>
+                
+                        
+                        
+                        
+                       
                     </div>
                 </div>
             </section>
+            <!-- Blog end-->
 
             <!-- Footer-->
             <footer class="footer">
@@ -242,11 +557,6 @@
                                     </div>
                                     <ul>
                                         <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
                                     </ul>
                                 </aside>
                             </div>
@@ -268,7 +578,7 @@
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
-        <!-- Off canvas-->
+ 		<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
@@ -310,8 +620,7 @@
         <script src="resources/assets/js/custom/jquery.min.js"></script>
         <script src="resources/assets/js/custom/popper.min.js"></script>
         <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
     </body>
-</html>  
+</html>
