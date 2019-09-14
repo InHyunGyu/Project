@@ -25,16 +25,16 @@ public class VoiceListController {
 	
  	@RequestMapping(value="/voice_weekly", method=RequestMethod.GET)
 	public String voice_weekly(){
-		return "list/voice_weekly";
+		return "userBoard/voice_weekly";
 	}
 	
 	@RequestMapping(value="/voice_monthly", method=RequestMethod.GET)
 	public String voice_monthly(){
-		return "list/voice_monthly";
+		return "userBoard/voice_monthly";
 	}
 	
 	@RequestMapping(value="/voice_all", method=RequestMethod.GET)
 	public String voice_all(){
-		return "list/voice_all";
+		return "userBoard/voice_all";
 	}
 }

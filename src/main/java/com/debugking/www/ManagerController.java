@@ -9,11 +9,11 @@ public class ManagerController {
 
 	@RequestMapping(value="/managerPage", method=RequestMethod.GET)
 	public String manager(){
-		return "/manager/managerPage";
+		return "manager/managerPage";
 	}
 	
 	@RequestMapping(value="/notice_write", method=RequestMethod.GET)
 	public String notice_write(){
-		return "/manager/notice_write";
+		return "manager/notice_write";
 	}
 }
