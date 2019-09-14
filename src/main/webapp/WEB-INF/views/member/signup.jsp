@@ -171,10 +171,9 @@
 					alert("추천인 확인버튼을 누르세요");
 					return false;
 				}else{
-					alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
+					//alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
 		 			
 					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
-						alert("들어왔엉?11111111");
 						$.ajax({
 							method:"POST",
 							url:"signup",
@@ -188,8 +187,6 @@
 								"recommender" : recommender
 							},
 							success : function(mesa){
-								alert("들어왔엉?");
-								location.href ="main"
 								if(mesa === "success"){
 									alert("등록 성공하였습니다. 화면 이동합니다.");
 									location.href ="main"

@@ -15,7 +15,7 @@ public class PointslogRepository {
 	//로그등록하기
 	public int insertpointslog(Pointslog pointlog) {
 		PointslogMapper mapper = session.getMapper(PointslogMapper.class);
-		//System.out.println("PONINT LOG"+pointlog);
+		System.out.println("PONINT LOG"+pointlog);
 		int result = mapper.insertpointslog(pointlog);
 		return result;
 	}

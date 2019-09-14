@@ -1,5 +1,7 @@
 package com.debugking.www;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +21,40 @@ public class MemberController {
 	@Autowired
 	MemberRepository repo;
 	
-	@ResponseBody
+	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model) {
-		
-		
-		return "Ok";
+	@ResponseBody
+	public MemberInfo login(HttpSession session, MemberInfo member) {
+		MemberInfo result = repo.login(member);
+		if(result != null){
+			session.setAttribute("loginId", result.getMemberId());
+			session.setAttribute("loginName", result.getMemberName());
+		}
+		return result;
 	}
+	//로그아웃
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String signup(HttpSession session){
+		session.removeAttribute("loginId");
+		session.removeAttribute("loginName");
+		return "redirect:/";
+
+	}
+	//회원탈퇴
+	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
+	public String memberDelete(HttpSession session, MemberInfo member){
+		System.out.println("delete"+member);
+		
+		int result = repo.memberDelete(member);
+		if(result == 1){
+			session.removeAttribute("loginId");
+			session.removeAttribute("loginName");
+			return "redirect:/"; 
+		}else{
+			return "redirect:/";
+		}
+	}
+	
 	//화면이동
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup(){
@@ -33,7 +62,7 @@ public class MemberController {
 		return "member/signup";
 
 	}
-	//회원 등록하기
+	//회원등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	@ResponseBody
 	public String signupPro(MemberInfo member){
@@ -41,15 +70,12 @@ public class MemberController {
 		String result = "";
 		switch(temp){
 		case 1:
-			System.out.println("안들어왔엉?");
 			result = "success";
 			break;
 		case 0:
-			System.out.println("안들어왔엉?실패야?");
 			result = "fail";
 			break;
 		}
-		System.out.println(result+"45ewr5wqe");
 		return result;
 	}
 	

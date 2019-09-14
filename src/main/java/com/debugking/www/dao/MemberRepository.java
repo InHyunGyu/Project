@@ -26,6 +26,17 @@ public class MemberRepository {
 		int result = mapper.signup(member);
 		return result;
 	}
+	public MemberInfo login(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		MemberInfo result = mapper.login(member);
+		return result;
+	}
+	public int memberDelete(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.memberDelete(member);
+		System.out.println("weroiuosvn"+result);
+		return result;
+	}
 	
 
 

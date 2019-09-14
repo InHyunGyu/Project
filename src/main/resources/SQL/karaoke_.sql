@@ -1,4 +1,3 @@
-
 /* Drop Tables */
 
 DROP TABLE MemberClubs CASCADE CONSTRAINTS;
@@ -55,7 +54,7 @@ CREATE TABLE clubs
 	clubName varchar2(100) NOT NULL,
 	club_date date,
 	-- 총 클럽멤버 수
-	cbtotal number DEFAULT 0,
+	cbtotal number DEFAULT 0
 );
 
 
@@ -70,9 +69,9 @@ CREATE TABLE Files
 	filename varchar2(500) UNIQUE,
 	filedate date,
 	-- 게시물번호
-	postno number NOT NULL 게시물 번호. 기본키,
+	postno number NOT NULL,
 	-- 신고받은 수
-	Reported number DEFAULT 0,
+	Reported number DEFAULT 0
 );
 
 
@@ -83,7 +82,7 @@ CREATE TABLE MemberClubs
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	-- 각 클럽의 일련번호. 
-	clubNum number NOT NULL,
+	clubNum number NOT NULL
 );
 
 
@@ -102,7 +101,7 @@ CREATE TABLE memberInfo
 	membername varchar2(30) NOT NULL,
 	-- 유저 휴대폰 번호. 
 	memberphone varchar2(20) NOT NULL,
-	memberbirth varchar2(20),
+	memberbirth date NOT Null,
 	-- 가입날짜
 	signupDate date DEFAULT sysdate,
 	memberEmail varchar2(50),
@@ -116,7 +115,7 @@ CREATE TABLE memberInfo
 	recommender varchar2(50),
 	-- 'manager', 'regular member', 'beginner' 
 	-- 매니저,     정회원             ,  준회원
-	memberLevel varchar2(20) DEFAULT '''beginner''',
+	memberLevel varchar2(20) DEFAULT 'beginner'
 );
 
 
@@ -130,14 +129,14 @@ CREATE TABLE pointslog
 	amount number,
 	-- 포인트를 상대방에게 주고 난 뒤 얼마나 남아있는지 추적하기 위한 칼럼
 	balance number,
-	pointtype varchar2(30),
+	pointtype varchar2(30)
 );
 
 
 CREATE TABLE posts
 (
 	-- 게시물번호
-	postno number PRIMARY KEY NOT NULL 게시물 번호. 기본키,
+	postno number PRIMARY KEY NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	filename varchar2(500) NOT NULL UNIQUE,
@@ -148,9 +147,9 @@ CREATE TABLE posts
 	-- 베스트 게시물 등재 여부
 	-- 
 	-- 
-	isBest char(2) DEFAULT '''N''',
+	isBest char(2) DEFAULT 'N',
 	postdate date DEFAULT sysdate,
-	isAnnouncement char(2) DEFAULT '''N''',
+	isAnnouncement char(2) DEFAULT 'N'
 );
 
 
@@ -160,7 +159,7 @@ CREATE TABLE replies
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	replyContent varchar2(500),
-	replyDate date DEFAULT sysdate,
+	replyDate date DEFAULT sysdate
 );
 
 

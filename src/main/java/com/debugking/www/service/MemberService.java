@@ -36,7 +36,7 @@ public class MemberService {
 			
 			member.setMemberPoint(1000);
 			int result = repo.signup(member);
-			
+		
 			//자신 포인트 로그 찍기
 			pointlog.setAmount(member.getMemberPoint());
 			pointlog.setBalance(member.getMemberPoint());
@@ -51,7 +51,7 @@ public class MemberService {
 			pointlog.setMemberId(member.getRecommender());
 			pointlog.setTheOtherId(member.getMemberId());
 			pointlog.setPointtype("deposite");
-			logrepo.updatepointslog(pointlog);
+			logrepo.insertpointslog(pointlog);
 			
 			return result;
 		}

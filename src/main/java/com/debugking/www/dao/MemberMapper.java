@@ -7,5 +7,9 @@ public interface MemberMapper {
 	
 	public int signup(MemberInfo member); //인설트 회원등록
 
+	public MemberInfo login(MemberInfo member); //로그인
+
+	public int memberDelete(MemberInfo member); //회원 탈퇴
+
 	
 }

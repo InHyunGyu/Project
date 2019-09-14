@@ -23,6 +23,7 @@
 		Where
 			memberId = #{memberId}
 	</select>
+	
 	<!-- 회원가입  -->
 	<insert id="signup" parameterType="Member">
 		insert into MemberInfo
@@ -62,5 +63,21 @@
 			</if>
 		)
 	</insert>
+	
+	<!-- 로그인  -->
+	<select id="login" parameterType="Member" resultType="Member">
+		select 
+			memberNum
+			,memberId
+			,memberName
+		From MemberInfo
+		Where memberId=#{memberId} and memberPwd =#{memberPwd}
+	</select>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete" parameterType="Member">
+		delete From MemberInfo
+		Where memberId=#{memberId} and memberPwd =#{memberPwd}
+	</delete>
 </mapper>
 
