@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,17 +22,15 @@
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <link href="resources/assets/signup.css" rel="signup">
-        
-        <!-- JQuery -->
-        <script src="resources/jquery-3.3.1.min.js"></script>
-        
+
+        <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 <script >
 	$(function(){
 		var flagid = false;
 		var flagpwd = false;
 		var flagreco = true;
 		
-		var memberid = $("#memberid").val();
+		var memberId = $("#memberId").val();
 		var memberpwd = $("#memberpwd").val();
 		/*var checkpwd = 	$("#checkpwd").val();
 		var recocheckbtn = $("#recocheckbtn").val();
@@ -45,9 +44,9 @@
 		var userAddress = 	$("#userAddress").val(); */
 		
 		//아이디 유효성 검사 + 중복검사
-		$("#memberid").on("keyup",function(){
-			memberid = $("#memberid").val();
-			if(memberid.length<3 || memberid.length>15){
+		$("#memberId").on("keyup",function(){
+			memberId = $("#memberId").val();
+			if(memberId.length<3 || memberId.length>15){
 				$("#checkidline").html("id는 3~15사이입니다.");
 				return false;
 			}
@@ -56,20 +55,32 @@
 			}
 		});
 		$("#checkid").on("click",function(){
-			$.ajax({
-				method:"GET",
-				url:"idCheck",
-				data: "memberId="+ memberid,
-				success: function(result){
-					if(result=="true"){
-						alert("동일한 ID가 존재합니다.");
+			memberId = 	$("#memberId").val();
+			if(memberId=="" || memberId==null){
+				alert("ID입력하세요");
+				checkId.select();
+				return false;
+			}
+			else if(flagid=false){
+				alert("중복하세요");
+				return false;
+			}
+			else{
+				$.ajax({
+					method : "GET",
+					url : "idCheck",
+					data : "memberId="+ memberId,
+					success: function(result){
+						if(result=="true"){
+							alert("동일한 ID가 존재합니다.");
+						}
+						else {
+							flagid=true;
+							alert("사용 가능합니다.");
+						}
 					}
-					else {
-						flagid=true;
-						alert("사용 가능합니다.");
-					}
-				}
-			});
+				});
+			}
 		}); 
 		
 		//비밀번호 유효성 검사
@@ -167,7 +178,7 @@
 							method:"post",
 							url:"signup",
 							data:{
-								"memberId" : memberid,
+								"memberId" : memberId,
 								"memberPwd" : memberpwd,
 								"memberEmail" : memberEmail,
 								"memberName" :membername,
@@ -175,8 +186,8 @@
 								"memberBirth" :memberbirth,
 								"recommender" : recommender
 							},
-							success: function(mesa){
-								if(mesa=='success'){
+							success : function(mesa){
+								if(mesa === "success"){
 									alert("등록 성공하였습니다. 화면 이동합니다.");
 									location.href ="main"
 								}
@@ -284,9 +295,9 @@
                             <div class="m-b-20">
                             
                             <!-- <<회원가입 입력받기 -->
-                                <form method="signup" action="POST" id="signup">
+                                <form action="signup" action="POST" id="signup">
                                     <div class="form-group" style="display:inline-flex;">
-                                        <input class="form-control" type="text" name="memberId" id="memberid" placeholder="ID">
+                                        <input class="form-control" type="text" name="memberId" id="memberId" placeholder="ID">
                                         <button type="button" class="form-control" id="checkid">중복확인</button>
                                     </div>
                                     <p id="checkidline"></p>
@@ -328,6 +339,7 @@
                                      <div class="form-group">
                                         <button class="btn btn-block btn-round btn-brand" type="button"id="signupbtn">Sign Up</button>
                                     </div>
+                                    
                                     <!--정보 여닫이  -->
                         			 <!-- <details close>
                        				 <summary>Additional</summary>
@@ -453,7 +465,7 @@
                         <div class="textwidget">
                         	<div class="form-group">
                         	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
+                            <p class="text-center"><input class="form-control" type="text" id="loginId" name="memberId" placeholder="loginId"></p>
                             <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
                             <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
                            <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
@@ -470,13 +482,15 @@
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->
-        <script src="resources/assets/js/custom/jquery.min.js"></script>
-        <script src="resources/assets/js/custom/popper.min.js"></script>
-        <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
+       <!--  <script src="resources/assets/js/custom/jquery.min.js"></script> -->
+       <!--  <script src="resources/assets/js/custom/popper.min.js"></script> -->
+       <!--  <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script> -->
+       <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script> -->
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
-        <script src="resources/jquery-3.3.1.min.js"></script>
+        
+<!--          JQuery
+        <script src="resources/jquery-3.3.1.min.js"></script> -->
         
     </body>
 </html>

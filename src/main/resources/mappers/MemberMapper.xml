@@ -5,7 +5,7 @@
   
 <mapper namespace="com.debugking.www.dao.MemberMapper">
 	<!-- 한명 찾기  -->
- 	<select id="selectOne" parameterType="Member" resultType="Member">
+ 	<select id="selectOne" parameterType="String" resultType="Member">
 		select 
 			memberNum
 			,memberId
@@ -23,24 +23,61 @@
 		Where
 			memberId = #{memberId}
 	</select>
+	
 	<!-- 회원가입  -->
 	<insert id="signup" parameterType="Member">
-		insert into Member
+		insert into MemberInfo
+		(
+			memberNum
+			,memberId		
+			,memberPwd		
+			,memberName
+			,memberPhone
+			,memberBirth
+			,signupDate			
+			,memberEmail	
+			,memberPoint
+			<if test="recommender !=null">	
+				,recommender
+			</if>
+			<if test="clubNum !=null">
+				,#{clubNum}
+			</if>
+		)
 		values
 		(
 			SEQ_memberInfo_memberNum.nextval
-			,#{memberId}
-			,#{memberPwd}
-			,#{memberName}
-			,#{memberPhone}
+			,#{memberId}		
+			,#{memberPwd}		
+			,#{memberName}	
+			,#{memberPhone}		
 			,#{memberBirth}
 			,sysdate
-			,#{memberEmail}
+			,#{memberEmail}		
 			,#{memberPoint}
-			,#{isManager}
-			,#{recommender}
+			<if test="recommender !=null">
+				,#{recommender}		
+			</if>
+			<if test="clubNum !=null">
 			,#{clubNum}
+			</if>
 		)
-	</insert> 
+	</insert>
+	
+	<!-- 로그인  -->
+	<select id="login" parameterType="Member" resultType="Member">
+		select 
+			memberNum
+			,memberId
+			,memberName
+		From MemberInfo
+		Where memberId=#{memberId} and memberPwd =#{memberPwd}
+	</select>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete" parameterType="Member">
+		delete From MemberInfo
+		Where memberId=#{memberId} and memberPwd =#{memberPwd}
+	</delete>
 </mapper>
 

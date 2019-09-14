@@ -1,5 +1,7 @@
 package com.debugking.www;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +21,40 @@ public class MemberController {
 	@Autowired
 	MemberRepository repo;
 	
-	@ResponseBody
+	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model) {
-		
-		
-		return "Ok";
+	@ResponseBody
+	public MemberInfo login(HttpSession session, MemberInfo member) {
+		MemberInfo result = repo.login(member);
+		if(result != null){
+			session.setAttribute("loginId", result.getMemberId());
+			session.setAttribute("loginName", result.getMemberName());
+		}
+		return result;
 	}
+	//로그아웃
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String signup(HttpSession session){
+		session.removeAttribute("loginId");
+		session.removeAttribute("loginName");
+		return "redirect:/";
+
+	}
+	//회원탈퇴
+	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
+	public String memberDelete(HttpSession session, MemberInfo member){
+		System.out.println("delete"+member);
+		
+		int result = repo.memberDelete(member);
+		if(result == 1){
+			session.removeAttribute("loginId");
+			session.removeAttribute("loginName");
+			return "redirect:/"; 
+		}else{
+			return "redirect:/";
+		}
+	}
+	
 	//화면이동
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup(){
@@ -33,32 +62,34 @@ public class MemberController {
 		return "member/signup";
 
 	}
-	//회원 등록하기
-	@ResponseBody
+	//회원등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
+	@ResponseBody
 	public String signupPro(MemberInfo member){
-		System.out.println(member);
-		int result = serivce.signup(member);
-		if(result==1){
-			return "success";
+		int temp = serivce.signup(member);
+		String result = "";
+		switch(temp){
+		case 1:
+			result = "success";
+			break;
+		case 0:
+			result = "fail";
+			break;
 		}
-		else{
-			return "fail";
-		}
+		return result;
 	}
 	
 	@RequestMapping(value="/myblog", method=RequestMethod.GET)
 	public String myblog(){
-		return "member/myblog";
+		return "myblog";
 	}
 	
 
 	//ID체크 한명불러오기
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
 	@ResponseBody
-	public String idCheck(MemberInfo member){
-		System.out.println("idcheck"+member);
-		MemberInfo result = repo.idCheck(member);
+	public String idCheck(String memberId){
+		MemberInfo result = repo.idCheck(memberId);
 		if(result!=null){
 			return "true";
 		}
@@ -91,6 +122,6 @@ public class MemberController {
 	
 	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
 	public String follow(){
-		return"member/follow_page";
+		return"follow_page";
 	}
 }

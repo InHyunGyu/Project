@@ -3,11 +3,12 @@ package com.debugking.www.dto;
 import lombok.Data;
 
 @Data
-public class pointslog {
-	private int logid;
-	private String memberid;
+public class Pointslog {
+	private int logNum;
+	private String memberId;
 	private String theOtherId;
 	private String eventdate;
 	private int amount;
 	private int balance;
+	private String pointtype;
 }
