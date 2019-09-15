@@ -75,4 +75,9 @@ public class ListController {
 	public String streaming_detail(){
 		return "userBoard/streaming_detail";
 	}
+	
+	@RequestMapping(value="/fanClub", method=RequestMethod.GET)
+	public String fanClub(){
+		return "userBoard/fanClub";
+	}
 }
