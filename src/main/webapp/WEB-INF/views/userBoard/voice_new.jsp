@@ -56,15 +56,7 @@
 			location.href="signup"
 		})
 	})
-	function init(){
-		$.ajax({
-			method:'GET',
-			url:'voice_new',
-			success:function(result){
-				
-			}
-		})
-	}
+	
 	</script>        
     </head>
     <body>
@@ -143,7 +135,7 @@
         
         <!-- Wrapper-->
         <div class="wrapper">
-           <!--  <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
+           <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -154,10 +146,10 @@
                         </div>
                     </div>
                 </div>
-            </section> -->
+            </section> 
 
            <section class="module p-t-0">
-<!--                 <div class="container">
+                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 m-auto">
                             <div class="space" data-mY="-120px"></div>
@@ -165,7 +157,7 @@
                             <div class="space" data-mY="80px"></div>
                         </div>
                     </div>
-                </div> -->
+                </div> 
                 <div class="container-fluid" style="max-width: 1600px;">
                     <div class="row">
                     <table id="voiceline">
@@ -177,7 +169,7 @@
                     		<th>추천수</th>
                     	</tr>
                     </table>
-                        <!-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <h6 class="text-special text-center m-b-40">Multi Page Demos</h6>
                             <div class="row">
                                 <div class="col-md-6">
@@ -186,8 +178,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-                        <!-- <div class="col-md-6">
+                        </div> 
+                         <div class="col-md-6">
                             <h6 class="text-special text-center m-b-40">One Page Demos</h6>
                             <div class="row">
                                 <div class="col-md-6">
@@ -199,7 +191,7 @@
                                 
                             </div>
                             <a class="btn btn-outline-primary" href="write">Write</a>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 

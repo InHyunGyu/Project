@@ -7,6 +7,8 @@
 		<typeAlias type="com.debugking.www.dto.MemberInfo" alias="Member" />
 		<typeAlias type="com.debugking.www.dto.Pointslog" alias="Pointlog" />
 		<typeAlias type="com.debugking.www.dto.Posts" alias="Post" />
+		<typeAlias type="com.debugking.www.dto.Files" alias="File" />
+		<typeAlias type="com.debugking.www.dto.Posts" alias="Post" />
 	</typeAliases>
 	
 	<mappers>

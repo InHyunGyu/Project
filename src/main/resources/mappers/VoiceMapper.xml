@@ -4,10 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.debugking.www.dao.VoiceListMapper">
-	
-	<!-- VoiceList 불러오기 -->
-	<select id="GetVoiceList" resultType="Post">
-		select *
+	<select id="getVoiceCount" parameterType="map" resultType="int">
+		select count(*)
 		From Posts
+		where Filestype = 'voice'
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord} || '%'
+		</if>
+	</select>
+	
+	<select id="selectAll" resultType="Post" parameterType="map">
+		SELECT
+			postNo,
+			memberId,
+			fileName,
+			postTitle,
+			postContent,
+			to_char(regdate, 'YYYY-MM-DD') as postdate,
+			postView,
+			postLike,
+			originalfile,
+			savedfile
+		FROM Posts 
+		<if test="searchItem != null">
+			WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
+		</if>
+		ORDER BY postNo DESC
 	</select>
 </mapper>
