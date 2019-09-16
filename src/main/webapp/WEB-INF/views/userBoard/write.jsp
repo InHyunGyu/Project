@@ -54,8 +54,25 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		//글쓰기. 
+		$("#writingBTN").on('click',function(){
+			var title = $("#title");
+			var content =$("#content");
+			
+			if(title.val()=='' || title.val()==null){
+				alert("제목 입력하세요.");
+				title.focus();
+				return false;
+			}else if(content.val()=='' || content.val()==null){
+				alert("내용을 입력하세요");
+				title.focus();
+				return false;
+			}else{
+				writing.submit();
+			}
+		});
 	})
-	
+
 		
 	</script>
     </head>
@@ -145,9 +162,11 @@
 								Writing
 							</h6>
 						</div>
+						
 						<div class="m-b-20" id="write">
+						<form action="writing" method="POST" id="writing" enctype="multipart/form-data">
 							<div class="form-group">	
-								<select class="form-control col-md-3">
+								<select class="form-control col-md-3" disabled>
 									<option value="voice">voice</option>
 									<option value="video">video</option>
 									<option value="community">community</option>
@@ -162,10 +181,9 @@
 								<input class="form-control" type="file" id="upload" name="upload" />
 							</div>
 							<div class="form-group">
-								<button class="btn btn-block btn-round btn-brand" type="button" id="writing">Write</button>
+								<button class="btn btn-block btn-round btn-brand" type="button" id="writingBTN">Write</button>
 							</div>
-						
-						
+						</form>
 						</div>
 						<div class="m-b-20">
 							<p>

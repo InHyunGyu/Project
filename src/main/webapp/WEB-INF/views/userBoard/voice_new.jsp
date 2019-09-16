@@ -55,6 +55,16 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		$("#write").on('click',function(){
+			if(${sessionScope.memberId==null}){
+				var result = confirm("로그인한 후 글쓰기가능합니다. 로그인 하시겠습니까?");
+				if(result){
+					$("#memberId").select();
+				}
+			}else{
+				location.href = 'write';
+			}
+		})
 	})
 	
 	</script>        
@@ -190,7 +200,9 @@
                                 
                                 
                             </div>
-                            <a class="btn btn-outline-primary" href="write">Write</a>
+                           
+                            <a class="btn btn-outline-primary" href="#" id="write">Write</a>
+                            
                         </div>
                     </div>
                 </div>

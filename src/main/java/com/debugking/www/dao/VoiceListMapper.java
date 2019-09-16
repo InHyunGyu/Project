@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 
-import com.debugking.www.dto.Files;
 import com.debugking.www.dto.MemberInfo;
+import com.debugking.www.dto.Posts;
 
 public interface VoiceListMapper {
 
@@ -14,7 +14,9 @@ public interface VoiceListMapper {
 
 	public int getVoiceCount(Map<String, Object> map); //갯수불러오기 > 페이지 노 타메니
 
-	public List<Files> selectAll(Map<String, String> map, RowBounds rb); // 전체 선택하기 
+	public List<Posts> selectAll(Map<String, String> map, RowBounds rb); // 전체 선택하기 
+
+	public int writing(Posts post); //글쓰기
 	
 
 }
