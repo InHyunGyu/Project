@@ -1,35 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>Debugking_Project</title>
-<!-- Favicons-->
-<link rel="shortcut icon" href="assets/images/favicon.png">
-<link rel="apple-touch-icon"
-	href="resources/assets/images/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72"
-	href="resources/assets/images/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114"
-	href="resources/assets/images/apple-touch-icon-114x114.png">
-<!-- Web Fonts-->
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:400,500,600%7cPlayfair+Display:400i"
-	rel="stylesheet">
-<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
-	rel="stylesheet">
-<!-- Plugins-->
-<link href="resources/assets/css/plugins.min.css" rel="stylesheet">
-<!-- Template core CSS-->
-<link href="resources/assets/css/template.css" rel="stylesheet">
-<!-- JavaScripts -->
-<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+    pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<script>
+     
+ <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>UtaJJang</title>
+        <!-- Favicons-->
+        <link rel="shortcut icon" href="resources/assets/images/favicon.png">
+        <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="resources/assets/images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="resources/assets/images/apple-touch-icon-114x114.png">
+        <!-- Web Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600%7cPlayfair+Display:400i" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <!-- Plugins-->
+        <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
+        <!-- Template core CSS-->
+        <link href="resources/assets/css/template.css" rel="stylesheet">
+        <!-- JavaScripts -->
+		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	
+	<script>
 	$(function(){
 		$("#loginBTN").on('click', function(){
 			var memberId = $("#memberId").val();
@@ -62,20 +59,22 @@
 	
 		
 	</script>
-</head>
-<body>
-	<!-- Preloader-->
-	<div class="page-loader">
-		<div class="page-loader-inner">
-			<div class="spinner">
-				<div class="double-bounce1"></div>
-				<div class="double-bounce2"></div>
-			</div>
-		</div>
-	</div>
-	<!-- Preloader end-->
+    </head>
+    <body>
 
-        <!-- Header-->
+        <!-- Preloader-->
+        <div class="page-loader">
+            <div class="page-loader-inner">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Preloader end-->
+
+
+                <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -136,40 +135,36 @@
         </header>
         <!-- Header end-->
 
-	<!-- Wrapper -->
-	<div class="wrapper">
-		<!-- Hero-->
-		<section class="module-cover parallax text-center fullscreen"
-			data-background="resources/assets/images/module-2.jpg"
-			data-overlay="0.6">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1 class="m-b-20">
-							<strong>Your customers will love you <br> one
-								minute from now.
-							</strong>
-						</h1>
-						<p class="m-b-40">
-							See how your users experience your website in realtime or view <br>
-							trends to see any changes in performance over time.
-						</p>
-						<p>
-							<a class="btn btn-lg btn-circle btn-brand" href="#">Get
-								Started</a><a class="btn btn-lg btn-circle btn-outline-new-white"
-								href="#">Learn More</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Hero end-->
-		<article>
-			<div class="container">
+        <!-- Wrapper-->
+        <div class="wrapper">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="space" data-mY="60px"></div> 
+                            <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
+                            <p class="m-b-40"><br>Notice<br> notice </p>
+                            <div class="space" data-MY="60px"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 m-auto">
+                            <div class="space" data-mY="-120px"></div>
+                            <p><img src="resources/assets/images/main/macbook.png" alt=""></p>
+                            <div class="space" data-mY="80px"></div>
+                        </div>
+                    </div>
+                </div>
+		<div class="container" style="margin: 100px;">
 
 				<div class="table-responsive">
 					<!-- 검색창 -->
-					<div class="pull-right">
+					<div class="pull-right" style="float: right; margin-bottom: 10px;">
 						<!-- boardList?searchItem=title -->
 						<form action="boardList" method="get">
 							<select name="searchItem" style="height: 28px;">
@@ -182,30 +177,26 @@
 								type="submit" value="검색" />
 						</form>
 					</div>
-					<table class="table table-striped table-sm table-hover">
-						<colgroup>
-							<!-- 컬럼이 몇개있는지 잡는거 // 지금은 width 100을 어떻게 쓰겠다고 나타냄 -->
-							<col style="width: 5%;" />
-							<col style="width: auto;" />
-							<!-- 다른거쓰고남는부분을쓰겠다 =>60 -->
-							<col style="width: 15%;" />
-							<col style="width: 10%;" />
-							<col style="width: 10%;" />
-						</colgroup>
-						<thead>
-							<tr>
-								<th>NO</th>
-								<th>글제목</th>
-								<th>작성자</th>
-								<th>조회수</th>
-								<th>작성일</th>
-							</tr>
-						</thead>
-						<tbody>
+					<table class="table table-striped table-sm table-hover" style="margin: 30px; text-align: center;">
+                        	
+                        	<colgroup>
+								<col style="width: 10%;" />
+								<col style="width: auto%;" />
+								<col style="width: 20%;" />
+								<col style="width: 20%;" />
+							</colgroup>
+                        	
+                        	<tr>
+                        		<th>No</th>
+                        		<th>글제목</th>
+                        		<th>작성일</th>
+                        		<th>조회수</th>
+                        	</tr>
+                        
 							<!-- 게시글이 없는 경우 -->
 							<c:if test="${empty list}">
 								<tr>
-									<td colspan="5" align="center">데이터가 없습니다.</td>
+									<td colspan="4" align="center">데이터가 없습니다.</td>
 								</tr>
 							</c:if>
 							<!-- 게시글이 있는 경우 -->
@@ -213,10 +204,9 @@
 								<c:forEach var="board" items="${list}" varStatus="stat">
 									<tr>
 										<td>${stat.count + navi.startRecord}</td>
-										<td><a href="boardDetail?boardseq=${board.boardseq}">${board.title}</a></td>
-										<td>${board.userid}</td>
-										<td>${board.viewcount}</td>
-										<td>${board.regdate}</td>
+										<td>${board.postTitle}</td>
+										<td>${board.postDate}</td>
+										<td>${board.postView}</td>
 									</tr>
 								</c:forEach>
 							</c:if>
@@ -224,113 +214,102 @@
 					</table>
 				</div>
 				<div>
-
+					
 					<button type="button" class="btn btn-sm btn-primary"
-						id="btnWriteForm">글쓰기</button>
+						id="btnWriteForm" style="float: right;">글쓰기</button>
 
 				</div>
 			</div>
-	</div>
-	<!-- Footer-->
-	<footer class="footer">
-		<div class="footer-widgets">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<!-- Text widget-->
-						<aside class="widget widget-text">
-							<div class="widget-title">
-								<h6>About Us</h6>
-							</div>
-							<div class="textwidget">
-								<p>Map where your photos were taken and discover local
-									points of interest. Map where your photos.</p>
-								<p>
-									Location: 12 London Avenue, Suite 18<br> E-mail:
-									support@theme.com<br> Phone: 8 800 123 4567<br>
-								</p>
-								<ul class="social-icons">
-									<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-									<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-								</ul>
-							</div>
-						</aside>
-					</div>
-					<div class="col-md-3">
-						<!-- Recent entries widget-->
-						<aside class="widget widget-recent-entries">
-							<div class="widget-title">
-								<h6>Recent Posts</h6>
-							</div>
-							<ul>
-								<li><a href="#">Map where your photos were taken and
-										discover local points.</a><span class="post-date">May 8,
-										2018</span></li>
-								<li><a href="#">Map where your photos were taken and
-										discover local points.</a><span class="post-date">April 7,
-										2018</span></li>
-								<li><a href="#">Map where your photos were taken and
-										discover local points.</a><span class="post-date">September
-										7, 2018</span></li>
-							</ul>
-						</aside>
-					</div>
-					<div class="col-md-3">
-						<!-- Twitter widget-->
-						<aside class="widget twitter-feed-widget">
-							<div class="widget-title">
-								<h6>Twitter Feed</h6>
-							</div>
-							<div class="twitter-feed" data-twitter="double_theme"
-								data-number="1"></div>
-						</aside>
-					</div>
-					<div class="col-md-3">
-						<!-- Recent works-->
-						<aside class="widget widget-recent-works">
-							<div class="widget-title">
-								<h6>Portfolio</h6>
-							</div>
-							<ul>
-								<li><a href="#"><img
-										src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
-							</ul>
-						</aside>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bar">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="copyright">
-							<p>
-								© 2018 Boomerang, All Rights Reserved. Design with love by <a
-									href="#">2theme</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Footer end-->
-	</div>
-	<!-- Wrapper end-->
-	<!-- Off canvas-->
+           
+                        
+          </div>
+                
+           
+
+            <!-- Footer-->
+            <footer class="footer">
+                <div class="footer-widgets">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <!-- Text widget-->
+                                <aside class="widget widget-text">
+                                    <div class="widget-title">
+                                        <h6>About Us</h6>
+                                    </div>
+                                    <div class="textwidget">
+                                        <p>Map where your photos were taken and discover local points of interest. Map where your photos.</p>
+                                        <p>
+                                            Location: 12 London Avenue, Suite 18<br>
+                                            E-mail: support@theme.com<br>
+                                            Phone: 8 800 123 4567<br>
+                                        </p>
+                                        <ul class="social-icons">
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </aside>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- Recent entries widget-->
+                                <aside class="widget widget-recent-entries">
+                                    <div class="widget-title">
+                                        <h6>Recent Posts</h6>
+                                    </div>
+                                    <ul>
+                                        <li><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2018</span></li>
+                                        <li><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">April 7, 2018</span></li>
+                                        <li><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">September 7, 2018</span></li>
+                                    </ul>
+                                </aside>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- Twitter widget-->
+                                <aside class="widget twitter-feed-widget">
+                                    <div class="widget-title">
+                                        <h6>Twitter Feed</h6>
+                                    </div>
+                                    <div class="twitter-feed" data-twitter="double_theme" data-number="1"></div>
+                                </aside>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- Recent works-->
+                                <aside class="widget widget-recent-works">
+                                    <div class="widget-title">
+                                        <h6>Portfolio</h6>
+                                    </div>
+                                    <ul>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
+                                    </ul>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bar">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>© 2018 Boomerang, All Rights Reserved. Design with love by <a href="#">2theme</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer end-->
+        </div>
+        <!-- Wrapper end-->
+ 		<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
@@ -365,17 +344,14 @@
             </div>
         </div>
         <!-- Off canvas end-->
+        <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
-	<!-- To top button-->
-	<a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
-
-	<!-- Scripts-->
-	<script src="resources/assets/js/custom/jquery.min.js"></script>
-	<script src="resources/assets/js/custom/popper.min.js"></script>
-	<script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
-	<script src="resources/assets/js/custom/plugins.min.js"></script>
-	<script src="resources/assets/js/custom/custom.min.js"></script>
-</body>
-</html>
+        <!-- Scripts-->
+        <script src="resources/assets/js/custom/jquery.min.js"></script>
+        <script src="resources/assets/js/custom/popper.min.js"></script>
+        <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
+        <script src="resources/assets/js/custom/plugins.min.js"></script>
+        <script src="resources/assets/js/custom/custom.min.js"></script>
+    </body>
+</html>    

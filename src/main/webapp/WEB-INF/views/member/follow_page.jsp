@@ -480,7 +480,7 @@ table {
 	<div class="off-canvas-sidebar">
 		<div class="off-canvas-sidebar-wrapper">
 			<div class="off-canvas-header">
-				<a class="off-canvas-close" href="#"><span class="ti-close"></span></a>
+				<a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a>
 			</div>
 			<div class="off-canvas-content">
 				<!-- Text widget-->

@@ -115,7 +115,8 @@ CREATE TABLE memberInfo
 	recommender varchar2(50),
 	-- 'manager', 'regular member', 'beginner' 
 	-- 매니저,     정회원             ,  준회원
-	memberLevel varchar2(20) DEFAULT 'beginner'
+	memberLevel varchar2(20) DEFAULT 'beginner',
+	photo varchar2(100),
 );
 
 

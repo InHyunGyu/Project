@@ -7,7 +7,7 @@
 	
 	<!-- VoiceList 불러오기 -->
 	<select id="GetVoiceList" resultType="Post">
-		select 
+		select *
 		From Posts
 	</select>
 </mapper>
