@@ -56,14 +56,14 @@
 		})
 		//글쓰기. 
 		$("#writingBTN").on('click',function(){
-			var title = $("#title");
-			var content =$("#content");
+			var postTitle = $("#postTitle");
+			var postContent =$("#postContent");
 			
-			if(title.val()=='' || title.val()==null){
+			if(postTitle.val()=='' || postTitle.val()==null){
 				alert("제목 입력하세요.");
 				title.focus();
 				return false;
-			}else if(content.val()=='' || content.val()==null){
+			}else if(postContent.val()=='' || postContent.val()==null){
 				alert("내용을 입력하세요");
 				title.focus();
 				return false;
@@ -166,16 +166,16 @@
 						<div class="m-b-20" id="write">
 						<form action="writing" method="POST" id="writing" enctype="multipart/form-data">
 							<div class="form-group">	
-								<select class="form-control col-md-3" disabled>
+								<select class="form-control col-md-3" name="postType" >
 									<option value="voice">voice</option>
-									<option value="video">video</option>
+									<option value="video" >video</option>
 									<option value="community">community</option>
 								</select>
-								<input class="form-control col-md-9" type="text" placeholder="Title" id="title" name="title"
+								<input class="form-control col-md-9" type="text" placeholder="Title" id="postTitle" name="postTitle"
 								style="height:54px; width: 400px;">
 							</div>
 							<div class="form-group">
-								<textarea class="form-control" id="content" name="content" rows="15" cols="100" placeholder="content"></textarea>
+								<textarea class="form-control" id="postContent" name="postContent" rows="15" cols="100" placeholder="content"></textarea>
 							</div>
 							<div class="form-group">
 								<input class="form-control" type="file" id="upload" name="upload" />

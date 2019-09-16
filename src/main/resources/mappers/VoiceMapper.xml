@@ -46,7 +46,7 @@
 			,postDate
 			,isAnnouncement
 			,postType
-			<if test="originalFile==null">
+			<if test="originalFile!=null">
 				,originalFile
 				,savedFile
 			</if>
@@ -60,7 +60,7 @@
 			,sysdate
 			,#{isAnnouncement}
 			,#{postType}
-			<if test="originalFile==null">
+			<if test="originalFile!=null">
 				,#{originalFile}
 				,#{savedFile}
 			</if>

@@ -67,7 +67,7 @@ public class VoiceListController {
 	@RequestMapping(value="/writing", method=RequestMethod.POST)
 	public String writing(Posts post, HttpSession session, MultipartFile upload){
 		
-		post.setMemberId((String)session.getAttribute("loginId"));
+		post.setMemberId((String)session.getAttribute("memberId"));
 		System.out.println(post);
 		String originalfile = upload.getOriginalFilename();
 		String savedfile = FileService.saveFile(upload,uploadPath);
