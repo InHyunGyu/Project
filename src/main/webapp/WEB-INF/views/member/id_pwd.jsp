@@ -349,7 +349,7 @@ function init(){
 	<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"><img src="resources/assets/images/close.png" style="width: 15px;"></span></a></div>
+                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="width: 15px;"></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
                     <c:if test="${sessionScope.memberId != null}">
