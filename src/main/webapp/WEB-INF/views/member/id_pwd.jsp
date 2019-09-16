@@ -242,13 +242,6 @@ function init(){
 						<div class="m-b-20" id="find">
 
 						</div>
-						<div class="m-b-20">
-							<p>
-								<small>Dont have an account yet? <a href="#">Create
-										account</a><br>Forgot your username or password? <a href="#">Recover
-										account</a></small>
-							</p>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -356,7 +349,7 @@ function init(){
 	<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
+                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="width: 15px;"></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
                     <c:if test="${sessionScope.memberId != null}">

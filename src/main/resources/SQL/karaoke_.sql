@@ -98,9 +98,10 @@ CREATE TABLE memberInfo
 	-- 'manager', 'regular member', 'beginner' 
 	-- 매니저,     정회원             ,  준회원
 	memberLevel varchar2(20) DEFAULT 'beginner',
-	-- t
 	photo varchar2(100),
 	PRIMARY KEY (memberId)
+
+
 );
 
 
