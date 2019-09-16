@@ -26,46 +26,37 @@
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 	
-	<script>
-	$(function(){
-		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			
-			if(memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'login',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
+<script>
+$(function(){
+	$("#loginBTN").on('click', function(){
+		var memberId = $("#memberId").val();
+		var memberPwd = $("#memberPwd").val();
 		
-		$("#signup").on('click', function(){
-			location.href="signup"
+		if(memberId.length == 0 || memberPwd.length == 0) {
+			alert("다시입력해주세요.");
+			return;
+		}
+		
+		var send = {
+				"memberId" : memberId,
+				"memberPwd" : memberPwd
+		}
+		
+		$.ajax({
+			method:'post',
+			url:'login',
+			data:send,
+			success: function(){
+				location.reload();
+			}
 		})
 	})
-	function init(){
-		$.ajax({
-			method:'GET',
-			url:'voice_new',
-			success:function(result){
-				
-			}
-		})
-	}
-	</script>        
+	
+	$("#signup").on('click', function(){
+		location.href="signup"
+	})
+})
+	</script>      
     </head>
     <body>
 
@@ -80,7 +71,7 @@
         </div>
         <!-- Preloader end-->
 
-                <!-- Header-->
+         <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -143,21 +134,21 @@
         
         <!-- Wrapper-->
         <div class="wrapper">
-           <!--  <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="space" data-mY="60px"></div> 
                             <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-                            <p class="m-b-40"><br>Voice List<br> New </p>
+                            <p class="m-b-40"><br>Video List<br> New </p>
                             <div class="space" data-MY="60px"></div>
                         </div>
                     </div>
                 </div>
-            </section> -->
+            </section>
 
-           <section class="module p-t-0">
-<!--                 <div class="container">
+            <section class="module p-t-0">
+                <div class="container">
                     <div class="row">
                         <div class="col-md-12 m-auto">
                             <div class="space" data-mY="-120px"></div>
@@ -165,19 +156,10 @@
                             <div class="space" data-mY="80px"></div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <div class="container-fluid" style="max-width: 1600px;">
                     <div class="row">
-                    <table id="voiceline">
-                    	<tr>
-                    		<th>넘버</th>
-                    		<th>제목</th>
-                    		<th>글쓴이</th>
-                    		<th>조회수</th>
-                    		<th>추천수</th>
-                    	</tr>
-                    </table>
-                        <!-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <h6 class="text-special text-center m-b-40">Multi Page Demos</h6>
                             <div class="row">
                                 <div class="col-md-6">
@@ -186,8 +168,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-                        <!-- <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
                             <h6 class="text-special text-center m-b-40">One Page Demos</h6>
                             <div class="row">
                                 <div class="col-md-6">
@@ -198,8 +180,8 @@
                                 
                                 
                             </div>
-                            <a class="btn btn-outline-primary" href="write">Write</a>
-                        </div> -->
+                            <a class="btn btn-outline-primary" href="write" style="float: right; margin-right: 50px;">Write</a>
+                        </div>
                     </div>
                 </div>
                 

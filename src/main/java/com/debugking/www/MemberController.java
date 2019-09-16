@@ -81,7 +81,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/myblog", method=RequestMethod.GET)
 	public String myblog(){
-		return "myblog";
+		return "member/myblog";
 	}
 	
 
@@ -122,6 +122,6 @@ public class MemberController {
 	
 	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
 	public String follow(){
-		return"follow_page";
+		return"member/follow_page";
 	}
 }

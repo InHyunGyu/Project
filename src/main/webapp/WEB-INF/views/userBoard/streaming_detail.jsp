@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>UtaJJang</title>
+        <title>Debugking_Project</title>
         <!-- Favicons-->
-        <link rel="shortcut icon" href="resources/assets/images/favicon.png">
+        <link rel="shortcut icon" href="assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="resources/assets/images/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="resources/assets/images/apple-touch-icon-114x114.png">
@@ -26,40 +25,41 @@
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 	
-<script>
-$(function(){
-	$("#loginBTN").on('click', function(){
-		var memberId = $("#memberId").val();
-		var memberPwd = $("#memberPwd").val();
-		
-		if(memberId.length == 0 || memberPwd.length == 0) {
-			alert("다시입력해주세요.");
-			return;
-		}
-		
-		var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-		}
-		
-		$.ajax({
-			method:'post',
-			url:'login',
-			data:send,
-			success: function(){
-				location.reload();
+	<script>
+	$(function(){
+		$("#loginBTN").on('click', function(){
+			var memberId = $("#memberId").val();
+			var memberPwd = $("#memberPwd").val();
+			
+			if(memberId.length == 0 || memberPwd.length == 0) {
+				alert("다시입력해주세요.");
+				return;
 			}
+			
+			var send = {
+					"memberId" : memberId,
+					"memberPwd" : memberPwd
+			}
+			
+			$.ajax({
+				method:'post',
+				url:'login',
+				data:send,
+				success: function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$("#signup").on('click', function(){
+			location.href="signup"
 		})
 	})
 	
-	$("#signup").on('click', function(){
-		location.href="signup"
-	})
-})
-	</script>      
+		
+	</script>
     </head>
     <body>
-
         <!-- Preloader-->
         <div class="page-loader">
             <div class="page-loader-inner">
@@ -71,7 +71,7 @@ $(function(){
         </div>
         <!-- Preloader end-->
 
-         <!-- Header-->
+                <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -131,61 +131,66 @@ $(function(){
             </div>
         </header>
         <!-- Header end-->
-        
+	
         <!-- Wrapper-->
         <div class="wrapper">
-            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
+            <!-- Hero-->
+            <section class="module-cover parallax text-center" data-background="assets/images/module-22.jpg" data-overlay="0.2">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="space" data-mY="60px"></div> 
-                            <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-                            <p class="m-b-40"><br>Video List<br> New </p>
-                            <div class="space" data-MY="60px"></div>
+                            <h1>Spacé Đecor</h1>
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Portfolio</a></li>
+                                <li class="breadcrumb-item active">Sidebar Stack</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
             </section>
+            <!-- Hero end-->
 
-            <section class="module p-t-0">
+			<!-- Blog-->
+            <section class="module">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 m-auto">
-                            <div class="space" data-mY="-120px"></div>
-                            <p><img src="resources/assets/images/main/macbook.png" alt=""></p>
-                            <div class="space" data-mY="80px"></div>
+                        <div class="col-lg-8">
+
+                            <!-- Post-->
+                            <article class="post">
+                                <div class="post-preview"><img src="resources/assets/images/blog/1.jpg" alt=""></div>
+                                <div class="post-wrapper">
+                                    <div class="post-header">
+                                        <h2 class="post-title">스트리밍 동영상 제목 </h2>
+                                        <ul class="post-meta">
+                                            <li>November 18, 2016</li>
+                                            <li><a href="follow_page">작성자</a></li>
+                                            <li><a href="#">3 Comments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- Post end-->
+
+                        </div>
+                       
+                        
+                        
+                        
+                         <div class="col-md-4">
+                            <div class="sticky-sidebar">
+                                <h6 class="single-portfolio-title">실시간 채팅 </h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" style="max-width: 1600px;">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6 class="text-special text-center m-b-40">Multi Page Demos</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 class="text-special text-center m-b-40">One Page Demos</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index.html"><img src="resources/assets/images/demo/op-1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
-                                
-                                
-                            </div>
-                            <a class="btn btn-outline-primary" href="write">Write</a>
-                        </div>
-                    </div>
-                </div>
-                
             </section>
+            <!-- Blog end-->	
+
+
+                      
+            
 
             <!-- Footer-->
             <footer class="footer">
@@ -270,7 +275,7 @@ $(function(){
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
-		<!-- Off canvas-->
+        <!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
@@ -316,4 +321,4 @@ $(function(){
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
     </body>
-</html>    
+</html> 

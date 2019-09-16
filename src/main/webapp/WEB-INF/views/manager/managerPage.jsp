@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,9 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Debugking_Project</title>
+        <title>Boomerang - Template</title>
         <!-- Favicons-->
-        <link rel="shortcut icon" href="assets/images/favicon.png">
+        <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="resources/assets/images/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="resources/assets/images/apple-touch-icon-114x114.png">
@@ -25,8 +24,29 @@
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 	
+	<style>
+		.module a {
+			color: #788487;
+		}
+		
+		.set_list {
+    width: 769px;
+    height: 48px;
+    padding: 12px 20px 0;
+    border-top: 1px solid #E4E4E4;
+    background: #FAFAFA;
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+}
+
+
+
+
+	
+	</style>
 	<script>
 	$(function(){
+		writingList();
 		$("#loginBTN").on('click', function(){
 			var memberId = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
@@ -45,14 +65,8 @@
 				method:'post',
 				url:'login',
 				data:send,
-				success: function(result){
-					if(result !=null){
-						alert("로그인 성공");
-						location.reload();
-					}else{
-						alert("로그인 실패");
-					}
-					
+				success: function(){
+					location.reload();
 				}
 			})
 		})
@@ -60,29 +74,302 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
-		$("#memberDelete").on('click',function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			$.ajax({
-				method:'post',
-				url:'memberDelete',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
+		
+		
+		
 	})
 	
+	function writingList(){	
+		var tag1="게시글 관리";
 		
-	</script>
+		var tag2 =''
+		tag2 = '<colgroup>'
+		tag2 += '<col style="width: 5%;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '<col style="width: 15%;" />'
+		tag2 += '<col style="width: auto;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '</colgroup>'
+		tag2 += '<thead>'
+		tag2 += '<tr>'		
+		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th>게시판</th>'
+		tag2 += '<th>글제목</th>'
+		tag2 += '<th>작성자</th>'
+		tag2 += '<th>조회</th>'
+		tag2 += '<th>작성일</th>'
+		tag2 += '</tr>'
+		tag2 += '</thead>'
+		tag2 += '<tbody>'
+		tag2 += '<c:if test="${empty list}">'	
+		tag2 += '<tr>'
+		tag2 += '<td colspan="6" align="center">데이터가 없습니다.</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:if>'
+		tag2 += '<c:if test="${not empty list}">'
+		tag2 += '<c:forEach var="board" items="${list}" varStatus="stat">'
+		tag2 += '<tr>'
+		tag2 += '<td><input type="checkbox"></td>'
+		tag2 += '<td>${board.column}</td>'
+		tag2 += '<td>${board.title}</td>'		
+		tag2 += '<td>${board.userid}</td>'
+		tag2 += '<td>${board.viewcount}</td>'
+		tag2 += '<td>${board.regdate}</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:forEach>'
+		tag2 += '</c:if>'
+		tag2 += '</tbody>'
 
+		var tag3 = ''
+		tag3 += '<input type="checkbox">'
+		tag3 += '<select class="form-control col-lg-2" style="height: 30px;" >'
+		tag3 += '<option value="voice">voice</option>'
+		tag3 += '<option value="video">video</option>'
+		tag3 += '<option value="streaming>streaming</option>'
+		tag3 += '<option value="community">community</option>'
+		tag3 += '</select>'	
+		tag3 += '<div class="form-group" style="float: right;">'
+		tag3 += '<a href="#" onclick="move();">move</a>'		
+		tag3 += '<a> | </a>'
+		tag3 += '<a href="#" onclick="deleted();">delete</a>'
+		tag3 += '</div>'
+		
+		var tag4 = '';
+		tag4 += '<select class="form-control col-lg-3" >'
+		tag4 += '<option value="voice">voice</option>'
+		tag4 += '<option value="video">video</option>'
+		tag4 += '<option value="streaming">streaming</option>'
+		tag4 += '<option value="community">community</option>'
+		tag4 += '</select>'
+		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Search" >'
+		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
+		
+		$("#content_title").html(tag1);
+		$("#add").html(tag4);
+		$("#content_table").html(tag2);
+		$("#content_select").html(tag3);
+		
+	}
+	
+	function commentList(){
+		var tag1="댓글 관리";
+		
+		var tag2 =''
+		tag2 = '<colgroup>'
+		tag2 += '<col style="width: 5%;" />'
+		tag2 += '<col style="width: 15%;" />'
+		tag2 += '<col style="width: auto;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '<col style="width: 10%;" />'
+		tag2 += '</colgroup>'
+		tag2 += '<thead>'
+		tag2 += '<tr>'		
+		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th>글제목</th>'
+		tag2 += '<th>댓글 내용 </th>'
+		tag2 += '<th>작성자</th>'
+		tag2 += '<th>작성일</th>'
+		tag2 += '</tr>'
+		tag2 += '</thead>'
+		tag2 += '<tbody>'
+		tag2 += '<c:if test="${empty commentList}">'	
+		tag2 += '<tr>'
+		tag2 += '<td colspan="5" align="center">데이터가 없습니다.</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:if>'
+		tag2 += '<c:if test="${not empty commentList}">'
+		tag2 += '<c:forEach var="board" items="${commnetList}" varStatus="stat">'
+		tag2 += '<tr>'
+		tag2 += '<td><input type="checkbox"></td>'
+		tag2 += '<td>${board.title}</td>'		
+		tag2 += '<td>${board.content}</td>'
+		tag2 += '<td>${board.userid}</td>'
+		tag2 += '<td>${board.regdate}</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:forEach>'
+		tag2 += '</c:if>'
+		tag2 += '</tbody>'
+		
+		var tag3 = ''
+		tag3 += '<input type="checkbox">'
+		tag3 += '<div class="form-group" style="float: right;">'
+		tag3 += '<a href="#" onclick="rep_delete();">delete</a>'
+		tag3 += '</div>'
+		
+		var tag4 = '';
+		tag4 += '<select class="form-control col-lg-3" >'
+		tag4 += '<option value="voice">voice</option>'
+		tag4 += '<option value="video">video</option>'
+		tag4 += '<option value="streaming">streaming</option>'
+		tag4 += '<option value="community">community</option>'
+		tag4 += '</select>'
+		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Search" >'
+		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
+		
+		$("#content_title").html(tag1);
+		$("#add").html(tag4);
+		$("#content_table").html(tag2);
+		$("#content_select").html(tag3);
+		
+	}
+	
+	function memberRating(){
+		var tag1 ="등급관리"
+		
+		var tag2 =''
+		tag2 = '<colgroup>'
+		tag2 += '<col style="width: 5%;" />'
+		tag2 += '<col style="width: auto%;" />'
+		tag2 += '<col style="width: 20%;" />'
+		tag2 += '<col style="width: 20%;" />'
+		tag2 += '<col style="width: 20%;" />'
+		tag2 += '</colgroup>'
+		tag2 += '<thead>'
+		tag2 += '<tr>'		
+		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th>회원 아이디</th>'
+		tag2 += '<th>회원 등급 </th>'
+		tag2 += '<th>등업 대기 등급</th>'
+		tag2 += '<th>가입 신청일</th>'
+		tag2 += '</tr>'
+		tag2 += '</thead>'
+		tag2 += '<tbody>'
+		tag2 += '<c:if test="${empty ratingList}">'	
+		tag2 += '<tr>'
+		tag2 += '<td colspan="5" align="center">데이터가 없습니다.</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:if>'
+		tag2 += '<c:if test="${not empty ratingList}">'
+		tag2 += '<c:forEach var="board" items="${ratingList}" varStatus="stat">'
+		tag2 += '<tr>'
+		tag2 += '<td><input type="checkbox"></td>'
+		tag2 += '<td>${board.memberId}</td>'		
+		tag2 += '<td>${board.memberRating}</td>'
+		tag2 += '<td>${board.member}</td>'
+		tag2 += '<td>${board.requestDate}</td>'
+		tag2 += '</tr>'
+		tag2 += '</c:forEach>'
+		tag2 += '</c:if>'
+		tag2 += '</tbody>'
+		
+		var tag3 = ''
+		tag3 += '<input type="checkbox">'
+		tag3 += '<div class="form-group" style="float: right;">'
+		tag3 += '<select class="form-control col-lg-4" style="height: 30px;" >'
+		tag3 += '<option value="1">1</option>'
+		tag3 += '<option value="2">2</option>'
+		tag3 += '<option value="3">3</option>'
+		tag3 += '<option value="4">4</option>'
+		tag3 += '<option value="5">5</option>'
+		tag3 += '</select>'
+		tag3 += '<a href="#" onclick="change();">change</a>'		
+		tag3 += '<a> | </a>'
+		tag3 += '<a href="#" onclick="stop_activity();">stop</a>'
+		tag3 += '</div>'
+		
+		var tag4 = '';
+		tag4 += '<select class="form-control col-lg-4" >'
+		tag4 += '<option value="1">1</option>'
+		tag4 += '<option value="2">2</option>'
+		tag4 += '<option value="3">3</option>'
+		tag4 += '<option value="4">4</option>'
+		tag4 += '<option value="5">5</option>'
+		tag4 += '</select>'
+		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Search" >'
+		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
+		
+		$("#content_title").html(tag1);
+		$("#add").html(tag4);
+		$("#content_table").html(tag2);
+		$("#content_select").html(tag3);
+		
+		
+	}
+		
+	function noticeList(){
+		var tag1 ="공지관리"
+			
+			var tag2 =''
+			tag2 = '<colgroup>'
+			tag2 += '<col style="width: 5%;" />'
+			tag2 += '<col style="width: 20%;" />'
+			tag2 += '<col style="width: auto%;" />'
+			tag2 += '<col style="width: 20%;" />'
+			tag2 += '</colgroup>'
+			tag2 += '<thead>'
+			tag2 += '<tr>'		
+			tag2 += '<th><input type="checkbox"></th>'
+			tag2 += '<th>게시판</th>'
+			tag2 += '<th>제목</th>'
+			tag2 += '<th>공지작성일</th>'
+			tag2 += '</tr>'
+			tag2 += '</thead>'
+			tag2 += '<tbody>'
+			tag2 += '<c:if test="${empty noticeList}">'	
+			tag2 += '<tr>'
+			tag2 += '<td colspan="4" align="center">데이터가 없습니다.</td>'
+			tag2 += '</tr>'
+			tag2 += '</c:if>'
+			tag2 += '<c:if test="${not empty noticegList}">'
+			tag2 += '<c:forEach var="board" items="${noticeList}" varStatus="stat">'
+			tag2 += '<tr>'
+			tag2 += '<td><input type="checkbox"></td>'
+			tag2 += '<td>${board.column}</td>'		
+			tag2 += '<td>${board.title}</td>'
+			tag2 += '<td>${board.regdate}</td>'
+			tag2 += '</tr>'
+			tag2 += '</c:forEach>'
+			tag2 += '</c:if>'
+			tag2 += '</tbody>'
+			
+			var tag3 = ''
+			tag3 += '<input type="checkbox">'
+			tag3 += '<div class="form-group" style="float: right;">'
+			tag3 += '<a href="#" onclick="registration();">registration</a>'		
+			tag3 += '<a> | </a>'
+			tag3 += '<a href="#" onclick="cancel();">cancel</a>'
+			tag3 += '</div>'
+			
+			var tag4 = '';
+			tag4 += '<button class="form-control" type="button" onclick="notice_write();">공지 글쓰기</button>'
+			
+
+			$("#content_title").html(tag1);
+			$("#add").html(tag4);
+			$("#content_table").html(tag2);
+			$("#content_select").html(tag3);
+			
+		}
+	function notice_write(){
+		location.href="notice_write";
+	}
+	
+	function move(){
+		// 게시글 이동 
+	}
+	function deleted(){
+		// 게시글 삭제 
+	}
+	function change(){
+		// 등급변경  
+	}
+	function stop_activity(){
+		// 활동중지 
+	}
+	function rep_delete(){
+		// 댓글삭제
+	}
+	function registration(){
+		// 공지 등록
+	}
+	function cancel(){
+		// 공지 등록 취
+	}
+	</script>
     </head>
     <body>
+
         <!-- Preloader-->
         <div class="page-loader">
             <div class="page-loader-inner">
@@ -93,8 +380,7 @@
             </div>
         </div>
         <!-- Preloader end-->
-
-         <!-- Header-->
+        <!-- Header-->
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
@@ -142,8 +428,6 @@
                                 </ul>
                             </li>
                             <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-                            <li class="menu-item-has-children"><a href="managerPage"><span class="menu-item-span">Admin</span></a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -156,180 +440,76 @@
             </div>
         </header>
         <!-- Header end-->
-
+        
         <!-- Wrapper-->
         <div class="wrapper">
             <!-- Hero-->
-            <section class="module-cover parallax text-center fullscreen" data-background="resources/assets/images/module-2.jpg" data-overlay="0.6">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-17.jpg" data-overlay="0.3">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Your customers will love you <br> one minute from now.</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view  <br> trends to see any changes in performance over time.</p>
-                            <p><a class="btn btn-lg btn-circle btn-brand" href="#">Get Started</a><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Learn More</a></p>
+                            <h2>Management</h2>
+                            
                         </div>
                     </div>
                 </div>
             </section>
             <!-- Hero end-->
 
-            <!-- About-->
-            <!-- Sliders-->
- 
-            <!-- Sliders end-->
-            <!-- About end-->
-
-            <!-- Portfolio-->
-            <section class="module p-b-0">
+            <!-- Blog-->
+            <section class="module">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 m-auto text-center">
-                            <h1>Digital Design.</h1>
-                            <p class="lead">See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="space" data-MY="40px"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <ul class="filters serif">
-                                <li><a href="#" data-filter=".packaging">New</a></li>
-                                <li><a class="current" href="#" data-filter="*">Weekly</a></li>
-                                <li><a href="#" data-filter=".branding">Monhly</a></li>
-                                <li><a href="#" data-filter=".digital">ALL</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row row-portfolio" data-columns="3">
-                        <div class="grid-sizer"></div>
-                        <div class="portfolio-item branding">
-                            <div class="portfolio-item-wrapper">
-                                <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/1.jpg" alt=""></div>
-                                <div class="portfolio-item-caption">
-                                    <h6 class="portfolio-item-title">Solave Cleanser</h6><span class="portfolio-item-subtitle serif">Digital</span>
-                                </div><a class="portfolio-item-link" href="file_detail"></a>
+                         <div class="col-lg-2">
+                            <div class="sidebar">
+                                <h6 class="single-portfolio-title">글 관리 </h6>
+                                <p><a href="#" onclick="writingList();">게시글</a></p>
+                                <p><a href="#" onclick="commentList()">댓글</a> </p>
+                                <p onclick="noticeList();"><a href="#" onclick="noticeList();">공지</a></p>
+                                <hr class="m-t-30 m-b-30">
+                                <h6 class="single-portfolio-title">카페 회원 </h6>
+                                <p><a href="#" onclick="memberRating();">등급 관리</a></p>
+                                
+                                <hr class="m-t-30 m-b-30">
+                                
+                                
+                                
                             </div>
                         </div>
-                        <div class="portfolio-item digital">
-                            <div class="portfolio-item-wrapper">
-                                <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/4.jpg" alt=""></div>
-                                <div class="portfolio-item-caption">
-                                    <h6 class="portfolio-item-title">Monochrome</h6><span class="portfolio-item-subtitle serif">Branding</span>
-                                </div><a class="portfolio-item-link" href="file_detail"></a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item packaging">
-                            <div class="portfolio-item-wrapper">
-                                <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/3.jpg" alt=""></div>
-                                <div class="portfolio-item-caption">
-                                    <h6 class="portfolio-item-title">Ellie Cashman</h6><span class="portfolio-item-subtitle serif">Packaging</span>
-                                </div><a class="portfolio-item-link" href="file_detail"></a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item branding">
-                            <div class="portfolio-item-wrapper">
-                                <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/6.jpg" alt=""></div>
-                                <div class="portfolio-item-caption">
-                                    <h6 class="portfolio-item-title">White Sleeve</h6><span class="portfolio-item-subtitle serif">Digital</span>
-                                </div><a class="portfolio-item-link" href="file_detail"></a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item digital">
-                            <div class="portfolio-item-wrapper">
-                                <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/5.jpg" alt=""></div>
-                                <div class="portfolio-item-caption">
-                                    <h6 class="portfolio-item-title">Classic Socks</h6><span class="portfolio-item-subtitle serif">Branding</span>
-                                </div><a class="portfolio-item-link" href="file_detail"></a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item packaging">
-                            <div class="portfolio-item-wrapper">
-                                <div class="portfolio-item-img"><img src="resources/assets/images/portfolio/2.jpg" alt=""></div>
-                                <div class="portfolio-item-caption">
-                                    <h6 class="portfolio-item-title">Expirience</h6><span class="portfolio-item-subtitle serif">Packaging</span>
-                                </div><a class="portfolio-item-link" href="file_detail"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Portfolio end-->
-
-           
-
-          
-
-            
-            <!-- Testimonials-->
-            <section class="module parallax" data-background="resources/assets/images/module-12.jpg" data-overlay="0.5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="space m-b-50"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="review-slides owl-carousel">
-                                <div class="review">
-                                    <div class="review-icons"><img src="resources/assets/images/avatar/1.jpg" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <blockquote>
-                                            <p>I don't work from drawings. I don't make sketches and drawings <br/> and color sketches into a final painting.</p>
-                                            <footer class="blockquote-footer">Albert Einstein</footer>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="review">
-                                    <div class="review-icons"><img src="resources/assets/images/avatar/1.jpg" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <blockquote>
-                                            <p>To be yourself in a world that is constantly trying to make you <br/> something else is the greatest accomplishment.</p>
-                                            <footer class="blockquote-footer">Ralph Waldo Emerson</footer>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="review">
-                                    <div class="review-icons"><img src="resources/assets/images/avatar/1.jpg" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <blockquote>
-                                            <p>Imperfection is beauty, madness is genius and it's better to be <br/> absolutely ridiculous than absolutely boring.</p>
-                                            <footer class="blockquote-footer">Marilyn Monroe</footer>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="space m-b-50"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Testimonials end-->
-          
+                        
+                        
+                        <div class="col-lg-10">
+                            <h2 id="content_title"> </h2>
+                            <hr class="m-t-30 m-b-30">	 
+                            	 <div class="form-group" style="float: right;">
+                            	 <aside class="widget widget-search">
+                                    <form id="add">
+                                        
+                                    </form>
+                                </aside>
+                            	</div>
+                            	
+                            	  
+                            
+                             
+                            <table id="content_table" class="table table-striped table-sm table-hover">
+							
+							</table>
+					<div class="set_list" style="width: 100%;">
+					<div class="bundle_set" id="content_select">
+					
+						
+					</div>
+				</div>
+                
+                        
+                        
+                        
                        
-        
-
-            <!-- Image-->
-            <section class="module no-gutters p-0">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12"><img src="resources/assets/images/module-18.jpg" alt=""></div>
                     </div>
                 </div>
             </section>
-            <!-- Image end-->
+            <!-- Blog end-->
 
             <!-- Footer-->
             <footer class="footer">
@@ -388,11 +568,6 @@
                                     </div>
                                     <ul>
                                         <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
                                     </ul>
                                 </aside>
                             </div>
@@ -414,26 +589,24 @@
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
-        <!-- Off canvas-->
+ 		<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="width: 15px;"></a></div>
+                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
-                    <c:if test="${sessionScope.loginId != null}">
+                    <c:if test="${sessionScope.memberId != null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">${sessionScope.loginId}</p>
+                            <p class="text-center">로그인한아이디</p>
                             <p class="text-center">n 번 방문</p>
                             <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
-                            <p class="text-center"><a href="logout" style="color: #788487">로그 아웃</a></p>
-                            <p class="text-center"><a href="memberDelete" style="color: #788487">탈퇴</a></p>
                         </div>
                     </aside>
                     </c:if>
-                    <c:if test="${sessionScope.loginId == null}">
+                    <c:if test="${sessionScope.memberId == null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                         	<div class="form-group">
@@ -442,8 +615,7 @@
                             <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
                             <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
                            <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
- 							<p class="text-center"><button class="btn btn-outline-secondary" type="button" id="memberDelete" style="width: 320px; height: 54px;">임시탈퇴버튼</button>
- 							
+
                             </div> 
                         </div>
                     </aside>
@@ -459,8 +631,7 @@
         <script src="resources/assets/js/custom/jquery.min.js"></script>
         <script src="resources/assets/js/custom/popper.min.js"></script>
         <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
     </body>
-</html>  
+</html>
