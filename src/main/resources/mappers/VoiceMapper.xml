@@ -6,11 +6,29 @@
 <mapper namespace="com.debugking.www.dao.VoiceListMapper">
 	<select id="getVoiceCount" parameterType="map" resultType="int">
 		select count(*)
-		From Files
+		From Posts
 		where Filestype = 'voice'
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord} || '%'
+		</if>
 	</select>
 	
-	<select id="selectAll" resultType="File" parameterType="map">
-	
+	<select id="selectAll" resultType="Post" parameterType="map">
+		SELECT
+			postNo,
+			memberId,
+			fileName,
+			postTitle,
+			postContent,
+			to_char(regdate, 'YYYY-MM-DD') as postdate,
+			postView,
+			postLike,
+			originalfile,
+			savedfile
+		FROM Posts 
+		<if test="searchItem != null">
+			WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
+		</if>
+		ORDER BY postNo DESC
 	</select>
 </mapper>

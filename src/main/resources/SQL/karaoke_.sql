@@ -54,7 +54,7 @@ CREATE TABLE Files
 	filename varchar2(500) UNIQUE,
 	filedate date,
 	-- 게시물번호
-	postno number NOT NULL 게시물 번호. 기본키,
+	postno number NOT NULL,
 	-- 신고받은 수
 	Reported number DEFAULT 0,
 	PRIMARY KEY (fileno)
@@ -95,7 +95,7 @@ CREATE TABLE memberInfo
 	recommender varchar2(50),
 	-- 'manager', 'regular member', 'beginner' 
 	-- 매니저,     정회원             ,  준회원
-	memberLevel varchar2(20) DEFAULT '''beginner''',
+	memberLevel varchar2(20) DEFAULT 'beginner',
 	-- t
 	photo varchar2(100),
 	followerNum number NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE pointslog
 CREATE TABLE posts
 (
 	-- 게시물번호
-	postno number NOT NULL 게시물 번호. 기본키,
+	postno number NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberid varchar2(50) NOT NULL UNIQUE,
 	filename varchar2(500) NOT NULL UNIQUE,
@@ -130,7 +130,7 @@ CREATE TABLE posts
 	postview number DEFAULT 0,
 	postlike number DEFAULT 0,
 	postdate date DEFAULT sysdate,
-	isAnnouncement char(2) DEFAULT '''N''',
+	isAnnouncement char(2) DEFAULT 'N',
 	postType varchar2(50) NOT NULL,
 	originalfile  varchar2(200),
 	savedfile  varchar2(50),
