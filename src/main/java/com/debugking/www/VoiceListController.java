@@ -79,7 +79,7 @@ public class VoiceListController {
 		if(result==0){
 			return "userBoard/write"; 
 		}
-		return "userBoard/voice_new";
+		return "redirect:voice_new";
 	}
 	
 }
