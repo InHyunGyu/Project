@@ -19,4 +19,6 @@ public interface CommunityMapper {
 
 	public int update(Posts post);
 
+	public int postDelete(int postNo);
+
 }

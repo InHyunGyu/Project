@@ -152,21 +152,22 @@
 						<div class="m-b-20" id="write">
 							<form action="post_modify" method="post">
 							<div class="form-group">	
-								<select class="form-control col-md-3" name="column" id="column">
+								<select class="form-control col-md-3" name="postType" id="postType">
 									<option value="voice" ${post.postType == 'voice' ? 'selected' : ''}>voice</option>
 									<option value="video" ${post.postType == 'video' ? 'selected' : ''}>video</option>
 									<option value="community" ${post.postType == 'community' ? 'selected' : ''}>community</option>
 								</select>
-								<input class="form-control col-md-9" type="text" id="title" name="title"
+								<input class="form-control col-md-9" type="text" id="postTitle" name="postTitle"
 								style="height:54px; width: 400px;" value="${post.postTitle}">
 							</div>
 							<div class="form-group">
-								<textarea class="form-control" id="content" name="content" rows="15" cols="100">${post.postContent}</textarea>
+								<textarea class="form-control" id="postContent" name="postContent" rows="15" cols="100">${post.postContent}</textarea>
 							</div>
 							<div class="form-group">
 								<input class="form-control" type="file" id="upload" name="upload" value="${post.originalFile}" />
 							</div>
 							<div class="form-group">
+								<input type="hidden" id="postNo" name = "postNo" value="${post.postNo}">
 								<button class="btn btn-block btn-round btn-brand" type="submit" id="update">Modify</button>
 							</div>
 						</form>

@@ -49,10 +49,6 @@ public class ListController {
 		return"userBoard/streaming";
 	}
 	
-	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
-	public String file_detail(){
-		return "userBoard/file_detail";
-	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String write(){

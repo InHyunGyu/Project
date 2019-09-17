@@ -46,7 +46,6 @@
  		<if test="searchItem != null">
 			and ${searchItem} like '%'||#{searchWord}||'%'
 		</if>
-		
 		order by postno DESC
 	</select>
 	
@@ -59,13 +58,19 @@
 	
 	<update id="update" parameterType="Post">
 		update posts set
-			postTitle = #{postTitle},
-			postContent = #{postContent},
-			postType = #{postType},
 			<if test="originalFile != null">
 				originalFile = #{originalFile},
-				savedFile = #{savedFile}
+				savedFile = #{savedFile},
 			</if>	
+			postTitle = #{postTitle},
+			postContent = #{postContent},
+			postType = #{postType}
 		where postNo = #{postNo}
 	</update>
+	
+	<delete id="postDelete" parameterType="int">
+		delete from posts
+		where
+			postNo = #{postNo}
+	</delete>
   </mapper>

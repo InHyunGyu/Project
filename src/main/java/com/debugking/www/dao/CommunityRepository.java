@@ -38,7 +38,7 @@ public class CommunityRepository {
 		return 0;
 	}
 
-	public ArrayList<Posts> selectAll(String searchItem, String searchWord, String postType, int startRecord, int countPerPage) {
+	public ArrayList<Posts> selectAll(String postType, String searchItem, String searchWord, int startRecord, int countPerPage) {
 		ArrayList<Posts> list = new ArrayList<>();
 		RowBounds rb = new RowBounds(startRecord, countPerPage);
 		CommunityMapper mapper = session.getMapper(CommunityMapper.class);
@@ -65,6 +65,14 @@ public class CommunityRepository {
 		CommunityMapper mapper = session.getMapper(CommunityMapper.class);
 		
 		int result = mapper.update(post);
+		
+		return result;
+	}
+
+	public int postDelete(int postNo) {
+		CommunityMapper mapper = session.getMapper(CommunityMapper.class);
+		
+		int result = mapper.postDelete(postNo);
 		
 		return result;
 	}

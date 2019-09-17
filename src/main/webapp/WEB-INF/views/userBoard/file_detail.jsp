@@ -60,10 +60,6 @@
 			location.href="signup"
 		})
 		
-		$("#deleteBTN").on('click', function(){
-			
-		})
-		
 		$("#replyBTN").on('click', function(){
 			// 댓글달기 버튼 누르면
 		})
@@ -250,7 +246,7 @@
 											 <c:if test="${sessionScope.loginId != post.memberId}">
 											 <div class="form-group" id = "button_group">
 											 <a href="post_modify?postNo=${post.postNo}"><button class="btn btn-outline-dark" type="button" id="post_modifyBTN" >Modify</button></a>
-		                               		<button class="btn btn-outline-dark" type="button" id="deleteBTN">Delete</button>
+		                               		<a href="delete?postNo=${post.postNo}"><button class="btn btn-outline-dark" type="button" id="deleteBTN">Delete</button></a>
 		                               		</div>
 		                               	</c:if>
                                         </div>

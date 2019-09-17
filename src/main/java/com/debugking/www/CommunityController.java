@@ -1,5 +1,6 @@
 package com.debugking.www;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import com.debugking.www.dao.CommunityRepository;
 import com.debugking.www.dto.Posts;
 import com.debugking.www.util.FileService;
 import com.debugking.www.util.PageNavigator;
+
 
 
 
@@ -58,7 +60,7 @@ public class CommunityController {
 									@RequestParam(value="currentPage",  defaultValue="1")int currentPage, Model model){
 		ArrayList<Posts> list = new ArrayList<>();
 		String postType = "community";
-		
+
 		int totalRecordCount = repo.getBoardCount(searchItem, searchWord);
 		
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
@@ -73,7 +75,7 @@ public class CommunityController {
 		return "userBoard/community";
 	}
 	
-	@RequestMapping(value="/commu_detail", method=RequestMethod.GET)
+	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
 	public String commuDetail(int postNo, Model model){
 		
 		Posts post = repo.selectOne(postNo);
@@ -102,9 +104,7 @@ public class CommunityController {
 		
 		Posts orgPost = repo.selectOne(postNo);
 		
-		System.out.println("org" + orgPost.toString());
-		System.out.println("post" + post.toString());
-		if(post.getOriginalFile() == null){
+		if(upload == null){
 			result = repo.update(post);
 		} else if (upload.getSize() == 0 || upload.isEmpty()) {
 			
@@ -118,11 +118,24 @@ public class CommunityController {
 			
 			result = repo.update(post);
 			
-			System.out.println("result" + result);
 		}
 		
 		rttr.addAttribute("postNo", postNo);
-		return "redirect:file_detail";
+		return "redirect:/file_detail";
 
+	}
+
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete(int postNo){
+		Posts post = repo.selectOne(postNo);
+		
+		if(post.getSavedFile() != null){
+			FileService.deleteFile(uploadPath+"/"+post.getSavedFile());
+		}
+		System.out.println("11");
+		repo.postDelete(postNo);
+		System.out.println("22");
+		
+		return "userBoard/community";
 	}
 }
