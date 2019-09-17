@@ -23,6 +23,12 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	<style>
+		#button_group {
+			float: right;
+		}
+	</style>
+	
 	
 	<script>
 	$(function(){
@@ -54,8 +60,12 @@
 			location.href="signup"
 		})
 		
-		$("#post_modifyBTN").on('click', function(){
-			location.href="post_modify";
+		$("#deleteBTN").on('click', function(){
+			
+		})
+		
+		$("#replyBTN").on('click', function(){
+			// 댓글달기 버튼 누르면
 		})
 	})
 	
@@ -164,33 +174,15 @@
                                 <div class="post-preview"><img src="resources/assets/images/blog/1.jpg" alt=""></div>
                                 <div class="post-wrapper">
                                     <div class="post-header">
-                                        <h1 class="post-title">Minimalist Chandelier</h1>
+                                        <h1 class="post-title">${post.postTitle}</h1>
                                         <ul class="post-meta">
-                                            <li>November 18, 2016</li>
-                                            <li><a href="follow_page">작성자</a></li>
-                                            <li>In <a href="#">Branding</a>, <a href="#">Design</a></li>
+                                            <li>${post.postDate}</li>
+                                            <li><a href="follow_page">${post.memberId}</a></li>
                                             <li><a href="#">3 Comments</a></li>
                                         </ul>
                                     </div>
                                     <div class="post-content">
-                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica. Salvia esse nihil, flexitarian Truffaut synth art party deep v chillwave. Seitan High Life reprehenderit consectetur cupidatat kogi.</p>
-                                        <p>Exercitation photo booth stumptown tote bag Banksy, elit small batch freegan sed. Craft beer elit seitan exercitation, photo booth et 8-bit kale chips proident chillwave deep v laborum. Aliquip veniam delectus, Marfa eiusmod Pinterest in do umami readymade swag. Selfies iPhone Kickstarter, drinking vinegar jean shorts fixie consequat flexitarian four loko.</p>
-                                        <blockquote class="blockquote">
-                                            <p>To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.</p>
-                                            <footer class="blockquote-footer">Amanda Pollock, Google Inc.</footer>
-                                        </blockquote>
-                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica.</p>
-                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica. Salvia esse nihil, flexitarian Truffaut synth art party deep v chillwave. Seitan High Life reprehenderit consectetur cupidatat kogi.</p>
-                                        <ol>
-                                            <li>Digital Strategy</li>
-                                            <li>Software Development</li>
-                                            <li>Interaction Design</li>
-                                        </ol>
-                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica.</p>
-                                        <p>Exercitation photo booth stumptown tote bag Banksy, elit small batch freegan sed. Craft beer elit seitan exercitation, photo booth et 8-bit kale chips proident chillwave deep v laborum. Aliquip veniam delectus, Marfa eiusmod Pinterest in do umami readymade swag. Selfies iPhone Kickstarter, drinking vinegar jean shorts fixie consequat flexitarian four loko.</p>
-                                    </div>
-                                    <div class="post-footer">
-                                        <div class="post-tags"><a href="#">Lifestyle</a><a href="#">Music</a><a href="#">News</a><a href="#">Travel</a></div>
+                                        <p>${post.postContent}</p>
                                     </div>
                                 </div>
                             </article>
@@ -211,7 +203,7 @@
                                             <div class="comment-content">
                                                 <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica.</p>
                                             </div>
-                                            <div class="comment-reply"><a href="#">Reply</a></div>
+                                            <div class="comment-reply"><a href="#" id="replyBTN">Reply</a></div>
                                         </div>
                                         <!-- Subcomment-->
                                         <div class="children">
@@ -255,9 +247,12 @@
                                         <div class="form-submit col-md-12">
 											<button class="btn btn-dark" type="submit" >Comment</button>
 											 
-											 <button class="btn btn-outline-dark" type="button" id="post_modifyBTN" style="float: right;">Modify</button>
-		                               		<button class="btn btn-outline-dark" type="button" style="float: right;">Delete</button>
-		                               	
+											 <c:if test="${sessionScope.loginId != post.memberId}">
+											 <div class="form-group" id = "button_group">
+											 <a href="post_modify?postNo=${post.postNo}"><button class="btn btn-outline-dark" type="button" id="post_modifyBTN" >Modify</button></a>
+		                               		<button class="btn btn-outline-dark" type="button" id="deleteBTN">Delete</button>
+		                               		</div>
+		                               	</c:if>
                                         </div>
                                     </form>
                                     <div style="margin-top: 30px;">

@@ -55,6 +55,10 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		
+		$("#btnWriteForm").on('click',function(){
+			location.href="write";
+		})
 	})
 	
 		
@@ -168,11 +172,11 @@
 						<!-- boardList?searchItem=title -->
 						<form action="boardList" method="get">
 							<select name="searchItem" style="height: 28px;">
-								<option value="title" ${searchItem == 'title' ? 'selected' : ''}>제목</option>
-								<option value="userid"
-									${searchItem == 'userid' ? 'selected' : ''}>글쓴이</option>
-								<option value="content"
-									${searchItem == 'content' ? 'selected' : ''}>내용</option>
+								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
+								<option value="memberId"
+									${searchItem == 'memberId' ? 'selected' : ''}>글쓴이</option>
+								<option value="postContent"
+									${searchItem == 'postContent' ? 'selected' : ''}>내용</option>
 							</select> <input type="text" name="searchWord" value="${searchWord}" /> <input
 								type="submit" value="검색" />
 						</form>
@@ -208,7 +212,7 @@
 								<c:forEach var="board" items="${list}" varStatus="stat">
 									<tr>
 										<td>${stat.count + navi.startRecord}</td>
-										<td>${board.postTitle}</td>
+										<td><a href="commu_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
 										<td>${board.memberId}</td>
 										<td>${board.postDate}</td>
 										<td>${board.postView}</td>

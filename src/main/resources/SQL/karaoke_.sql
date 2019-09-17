@@ -81,7 +81,7 @@ CREATE TABLE follower
 CREATE TABLE memberInfo
 (
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberId varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL,
 	-- 유저 비밀번호
 	memberPwd varchar2(40) NOT NULL,
 	-- 유저가 회원 가입할 때 입력한 실명

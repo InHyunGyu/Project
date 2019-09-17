@@ -4,8 +4,11 @@ package com.debugking.www;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.debugking.www.dto.Posts;
 
 
 
@@ -46,11 +49,6 @@ public class ListController {
 		return"userBoard/streaming";
 	}
 	
-	@RequestMapping(value="/community", method=RequestMethod.GET)
-	public String community(){
-		return "userBoard/community";
-	}
-	
 	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
 	public String file_detail(){
 		return "userBoard/file_detail";
@@ -60,12 +58,7 @@ public class ListController {
 	public String write(){
 		return "userBoard/write";
 	}
-	
-	@RequestMapping(value="/post_modify", method=RequestMethod.GET)
-	public String post_modify(){
-		return "userBoard/post_modify";
-	}
-	
+
 	@RequestMapping(value="/streaming_write", method=RequestMethod.GET)
 	public String streamingPage(){
 		return "userBoard/streaming_write";
@@ -75,9 +68,5 @@ public class ListController {
 	public String streaming_detail(){
 		return "userBoard/streaming_detail";
 	}
-	
-	@RequestMapping(value="/fanClub", method=RequestMethod.GET)
-	public String fanClub(){
-		return "userBoard/fanClub";
-	}
+
 }

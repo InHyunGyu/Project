@@ -54,6 +54,10 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		
+		$("#update").on('click', function(){
+			$(".form").submit();
+		})
 	})
 	
 		
@@ -146,33 +150,29 @@
 							</h6>
 						</div>
 						<div class="m-b-20" id="write">
+							<form action="post_modify" method="post">
 							<div class="form-group">	
 								<select class="form-control col-md-3" name="column" id="column">
-									<option value="voice" ${post.column == 'voice' ? 'selected' : ''}>voice</option>
-									<option value="video" ${post.column == 'video' ? 'selected' : ''}>video</option>
-									<option value="community" ${post.column == 'community' ? 'selected' : ''}>community</option>
+									<option value="voice" ${post.postType == 'voice' ? 'selected' : ''}>voice</option>
+									<option value="video" ${post.postType == 'video' ? 'selected' : ''}>video</option>
+									<option value="community" ${post.postType == 'community' ? 'selected' : ''}>community</option>
 								</select>
 								<input class="form-control col-md-9" type="text" id="title" name="title"
-								style="height:54px; width: 400px; value="${post.title}">
+								style="height:54px; width: 400px;" value="${post.postTitle}">
 							</div>
 							<div class="form-group">
-								<textarea class="form-control" id="content" name="content" rows="15" cols="100" value="${post.content}"></textarea>
+								<textarea class="form-control" id="content" name="content" rows="15" cols="100">${post.postContent}</textarea>
 							</div>
 							<div class="form-group">
-								<input class="form-control" type="file" id="upload" name="upload" value="${post.upload}" />
+								<input class="form-control" type="file" id="upload" name="upload" value="${post.originalFile}" />
 							</div>
 							<div class="form-group">
-								<button class="btn btn-block btn-round btn-brand" type="button" id="writing">Modify</button>
+								<button class="btn btn-block btn-round btn-brand" type="submit" id="update">Modify</button>
 							</div>
-						
+						</form>
 						
 						</div>
 						<div class="m-b-20">
-							<p>
-								<small>Dont have an account yet? <a href="#">Create
-										account</a><br>Forgot your username or password? <a href="#">Recover
-										account</a></small>
-							</p>
 						</div>
 					</div>
 				</div>
