@@ -7,7 +7,7 @@
 	<select id="getVoiceCount" parameterType="map" resultType="int">
 		select count(*)
 		From Posts
-		where Filestype = 'voice'
+		where postType = 'voice'
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord} || '%'
 		</if>
@@ -15,20 +15,55 @@
 	
 	<select id="selectAll" resultType="Post" parameterType="map">
 		SELECT
-			postNo,
-			memberId,
-			fileName,
-			postTitle,
-			postContent,
-			to_char(regdate, 'YYYY-MM-DD') as postdate,
-			postView,
-			postLike,
-			originalfile,
-			savedfile
+			postNo
+			,memberId
+			,postTitle
+			,postContent
+			,to_char(postDate, 'YYYY-MM-DD') as postDate
+			,postView
+			,postLike
+			<if test="originalFile != null">
+			,originalFile
+			,savedFile
+			</if>
+			,reported
 		FROM Posts 
+		where postType = 'voice'
 		<if test="searchItem != null">
-			WHERE ${searchItem} LIKE '%'||#{searchWord}||'%'
+			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>
 		ORDER BY postNo DESC
 	</select>
+	
+	<!-- 글쓰기 -->
+	<insert id="writing" parameterType="Post">
+		insert into Posts
+		(
+			postNo
+			,memberId
+			,postTitle
+			,postContent
+			,postDate
+			,isAnnouncement
+			,postType
+			<if test="originalFile!=null">
+				,originalFile
+				,savedFile
+			</if>
+		)
+		values
+		(
+			postNoSeq.nextval
+			,#{memberId}
+			,#{postTitle}
+			,#{postContent}
+			,sysdate
+			,#{isAnnouncement}
+			,#{postType}
+			<if test="originalFile!=null">
+				,#{originalFile}
+				,#{savedFile}
+			</if>
+		)
+	</insert>
 </mapper>

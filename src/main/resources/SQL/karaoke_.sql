@@ -81,7 +81,7 @@ CREATE TABLE follower
 CREATE TABLE memberInfo
 (
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberId varchar2(50) NOT NULL,
+	memberId varchar2(50) NOT NULL UNIQUE,
 	-- 유저 비밀번호
 	memberPwd varchar2(40) NOT NULL,
 	-- 유저가 회원 가입할 때 입력한 실명
@@ -98,9 +98,10 @@ CREATE TABLE memberInfo
 	-- 'manager', 'regular member', 'beginner' 
 	-- 매니저,     정회원             ,  준회원
 	memberLevel varchar2(20) DEFAULT 'beginner',
-	-- t
 	photo varchar2(100),
 	PRIMARY KEY (memberId)
+
+
 );
 
 
@@ -124,7 +125,7 @@ CREATE TABLE posts
 	-- 게시물번호
 	postNo number NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberId varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL,
 	postTitle varchar2(500) NOT NULL,
 	postContent varchar2(4000),
 	postView number DEFAULT 0,
@@ -133,7 +134,7 @@ CREATE TABLE posts
 	isAnnouncement char(2) DEFAULT 'N',
 	postType varchar2(50) NOT NULL,
 	originalFile  varchar2(200),
-	savedFile  varchar2(50),
+	savedFile  varchar2(200),
 	reported number,
 	PRIMARY KEY (postNo)
 );

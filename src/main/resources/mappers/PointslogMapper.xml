@@ -20,7 +20,7 @@
 		)
 		values
 		(
-			SEQ_pointslog_logid.nextval
+			logNumSeq.nextval
 			,#{memberId}
 			<if test="theOtherId!=null">
 			,#{theOtherId}

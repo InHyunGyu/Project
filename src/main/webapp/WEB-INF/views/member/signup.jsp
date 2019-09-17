@@ -152,7 +152,9 @@
 			var recommender =$("#recommender").val();
 			
 			//alert("tel2"+tel2+"tel3"+tel3);
-			
+			if(!recommender){
+				flagreco=true;
+			}
 			if(tel2 == "" || tel3 == ""||tel2 == null||tel3 == null ||isNaN(tel2) || isNaN(tel3)){
 				alert("전화번호 제대로 입력하세요");
 				tel2.select();
@@ -167,11 +169,12 @@
 					alert("생일을 입력하세요");
 					memberbirth.select();
 					return false;
-				}else if(flagreco==false){
+				}
+				if(flagreco==false){
 					alert("추천인 확인버튼을 누르세요");
 					return false;
 				}else{
-					//alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
+					alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
 		 			
 					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
 						$.ajax({

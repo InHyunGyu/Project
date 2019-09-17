@@ -3,17 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<typeAliases>
+<typeAliases>
 		<typeAlias type="com.debugking.www.dto.MemberInfo" alias="Member" />
 		<typeAlias type="com.debugking.www.dto.Pointslog" alias="Pointlog" />
-		<typeAlias type="com.debugking.www.dto.Posts" alias="post" />
-		<typeAlias type="com.debugking.www.dto.Files" alias="File" />
+		<typeAlias type="com.debugking.www.dto.Posts" alias="Post" />
+		<typeAlias type="com.debugking.www.dto.Replies" alias="Reply" />
+		<typeAlias type="com.debugking.www.dto.follower" alias="Follower" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/MemberMapper.xml" />
 		<mapper resource="mappers/PointslogMapper.xml" />
 		<mapper resource="mappers/VoiceMapper.xml" />
-		<mapper resource="mappers/CommunityMapper.xml" />
 	</mappers>
 </configuration>

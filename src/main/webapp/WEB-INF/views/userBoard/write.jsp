@@ -24,9 +24,8 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
-     
 	
-<script type="text/javascript">
+	<script>
 	$(function(){
 		$("#loginBTN").on('click', function(){
 			var memberId = $("#memberId").val();
@@ -55,22 +54,23 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
-	
-		$("#writing").on('click', function(){
-			var PostType = $("#postType").val();
-			var PostTitle = $("#postTitle").val();
-			var PostContent = $("#postContent").val();
-			var upload = $("#upload").val();
+		//글쓰기. 
+		$("#writingBTN").on('click',function(){
+			var postTitle = $("#postTitle");
+			var postContent =$("#postContent");
 			
-			if(postType.length == 0 || postTitle.length == 0 || postContent.length == 0) {
-				alert("내용을 모두 입력해주세요.");
-				return;
+			if(postTitle.val()=='' || postTitle.val()==null){
+				alert("제목 입력하세요.");
+				title.focus();
+				return false;
+			}else if(postContent.val()=='' || postContent.val()==null){
+				alert("내용을 입력하세요");
+				title.focus();
+				return false;
+			}else{
+				writing.submit();
 			}
-			
-			$(".form").submit;
-		})
-	
-		
+		});
 	})
 
 		
@@ -92,7 +92,7 @@
         <header class="header header-transparent">
             <div class="container-fluid">
                 <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="main">UtaJ222Jang</a></div>
+                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
                 <!-- Navigation-->
                 <div class="inner-navigation collapse">
                     <div class="inner-nav">
@@ -153,7 +153,7 @@
 	<div class="wrapper">
 		<!-- Hero-->
 		<section class="module-cover parallax text-center fullscreen"
-			data-background="" data-overlay="0.6" style="height:1000px;">
+			data-background="resources/assets/images/module-5.jpg" data-overlay="0.6" style="height:1000px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 col-md-6 m-auto">
@@ -162,12 +162,13 @@
 								Writing
 							</h6>
 						</div>
+						
 						<div class="m-b-20" id="write">
-							<form action="write" method="post" enctype="multipart/form-data">
+						<form action="writing" method="POST" id="writing" enctype="multipart/form-data">
 							<div class="form-group">	
-								<select class="form-control col-md-3" id="postType" name="postType">
+								<select class="form-control col-md-3" name="postType" >
 									<option value="voice">voice</option>
-									<option value="video">video</option>
+									<option value="video" >video</option>
 									<option value="community">community</option>
 								</select>
 								<input class="form-control col-md-9" type="text" placeholder="Title" id="postTitle" name="postTitle"
@@ -180,13 +181,16 @@
 								<input class="form-control" type="file" id="upload" name="upload" />
 							</div>
 							<div class="form-group">
-								<button class="btn btn-block btn-round btn-brand" type="submit" id="writing">Write</button>
+								<button class="btn btn-block btn-round btn-brand" type="button" id="writingBTN">Write</button>
 							</div>
-							</form>
+						</form>
 						</div>
-						
 						<div class="m-b-20">
-							
+							<p>
+								<small>Dont have an account yet? <a href="#">Create
+										account</a><br>Forgot your username or password? <a href="#">Recover
+										account</a></small>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -214,6 +218,12 @@
                                             E-mail: support@theme.com<br>
                                             Phone: 8 800 123 4567<br>
                                         </p>
+                                        <ul class="social-icons">
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                        </ul>
                                     </div>
                                 </aside>
                             </div>
@@ -230,7 +240,15 @@
                                     </ul>
                                 </aside>
                             </div>
-                            
+                            <div class="col-md-3">
+                                <!-- Twitter widget-->
+                                <aside class="widget twitter-feed-widget">
+                                    <div class="widget-title">
+                                        <h6>Twitter Feed</h6>
+                                    </div>
+                                    <div class="twitter-feed" data-twitter="double_theme" data-number="1"></div>
+                                </aside>
+                            </div>
                             <div class="col-md-3">
                                 <!-- Recent works-->
                                 <aside class="widget widget-recent-works">
@@ -282,7 +300,7 @@
                         </div>
                     </aside>
                     </c:if>
-   <%--                  <c:if test="${sessionScope.memberId == null}">
+                    <c:if test="${sessionScope.memberId == null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                         	<div class="form-group">
@@ -291,11 +309,12 @@
                             <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
                             <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
                            <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
-	                         </div> 
+
+                            </div> 
                         </div>
                     </aside>
                     </c:if>
-     --%>            </div>
+                </div>
             </div>
         </div>
         <!-- Off canvas end-->
@@ -303,12 +322,11 @@
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->
-    <script src="resources/assets/js/custom/jquery.min.js"></script>
-		<script src="resources/assets/js/custom/custom.min.js"></script>
-		<script src="resources/assets/js/custom/plugins.min.js"></script>
+        <script src="resources/assets/js/custom/jquery.min.js"></script>
         <script src="resources/assets/js/custom/popper.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
         <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
-        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
+        <script src="resources/assets/js/custom/plugins.min.js"></script>
+        <script src="resources/assets/js/custom/custom.min.js"></script>
     </body>
 </html>  

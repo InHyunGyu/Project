@@ -18,8 +18,6 @@ public class MemberService {
 	@Autowired
 	PointslogRepository logrepo;
 
-	
-	
 	Pointslog pointlog = new Pointslog();
 	private final int startPoint = 10;
 	
@@ -27,13 +25,6 @@ public class MemberService {
 	public int signup(MemberInfo member) {
 		//추천인 있는경우
 		if(member.getRecommender()!=""){
-			if(member.getMemberId()=="admin"){
-				member.setIsManager(1);
-			}
-			else{
-				member.setIsManager(0);
-			}
-			
 			member.setMemberPoint(1000);
 			int result = repo.signup(member);
 		

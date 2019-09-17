@@ -46,11 +46,11 @@
 				url:'login',
 				data:send,
 				success: function(result){
-					if(result !=null){
+					if(!result){
+						alert("로그인 실패");
+					}else{
 						alert("로그인 성공");
 						location.reload();
-					}else{
-						alert("로그인 실패");
 					}
 					
 				}
@@ -420,11 +420,11 @@
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="width: 15px;"></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
-                    <c:if test="${sessionScope.loginId != null}">
+                    <c:if test="${sessionScope.memberId != null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">${sessionScope.loginId}</p>
+                            <p class="text-center">${sessionScope.memberId}</p>
                             <p class="text-center">n 번 방문</p>
                             <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
@@ -433,7 +433,7 @@
                         </div>
                     </aside>
                     </c:if>
-                    <c:if test="${sessionScope.loginId == null}">
+                    <c:if test="${sessionScope.memberId == null}">
                     <aside class="widget widget-text">
                         <div class="textwidget">
                         	<div class="form-group">

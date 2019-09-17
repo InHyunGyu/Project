@@ -9,8 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.debugking.www.dto.Files;
 import com.debugking.www.dto.MemberInfo;
+import com.debugking.www.dto.Posts;
 
 @Repository
 public class VoiceListRepository {
@@ -34,8 +34,8 @@ public class VoiceListRepository {
 		return total;
 	}
 
-	public List<Files> selectAll(String searchItem, String searchWord, int startRecord, int countPerPage) {
-		List<Files> list;
+	public List<Posts> selectAll(String searchItem, String searchWord, int startRecord, int countPerPage) {
+		List<Posts> list;
 		RowBounds rb = new RowBounds(startRecord, countPerPage);
 		
 		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
@@ -45,6 +45,14 @@ public class VoiceListRepository {
 		list = mapper.selectAll(map, rb);
 		return list;
 	}
+	
+	//글쓰기
+	public int writing(Posts post) {
+		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+		int result = mapper.writing(post);
+		return result;
+	}
+
 
 
 }
