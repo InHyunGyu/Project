@@ -54,8 +54,25 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		//글쓰기. 
+		$("#writingBTN").on('click',function(){
+			var postTitle = $("#postTitle");
+			var postContent =$("#postContent");
+			
+			if(postTitle.val()=='' || postTitle.val()==null){
+				alert("제목 입력하세요.");
+				title.focus();
+				return false;
+			}else if(postContent.val()=='' || postContent.val()==null){
+				alert("내용을 입력하세요");
+				title.focus();
+				return false;
+			}else{
+				writing.submit();
+			}
+		});
 	})
-	
+
 		
 	</script>
     </head>
@@ -145,27 +162,28 @@
 								Writing
 							</h6>
 						</div>
+						
 						<div class="m-b-20" id="write">
+						<form action="writing" method="POST" id="writing" enctype="multipart/form-data">
 							<div class="form-group">	
-								<select class="form-control col-md-3">
+								<select class="form-control col-md-3" name="postType" >
 									<option value="voice">voice</option>
-									<option value="video">video</option>
+									<option value="video" >video</option>
 									<option value="community">community</option>
 								</select>
-								<input class="form-control col-md-9" type="text" placeholder="Title" id="title" name="title"
+								<input class="form-control col-md-9" type="text" placeholder="Title" id="postTitle" name="postTitle"
 								style="height:54px; width: 400px;">
 							</div>
 							<div class="form-group">
-								<textarea class="form-control" id="content" name="content" rows="15" cols="100" placeholder="content"></textarea>
+								<textarea class="form-control" id="postContent" name="postContent" rows="15" cols="100" placeholder="content"></textarea>
 							</div>
 							<div class="form-group">
 								<input class="form-control" type="file" id="upload" name="upload" />
 							</div>
 							<div class="form-group">
-								<button class="btn btn-block btn-round btn-brand" type="button" id="writing">Write</button>
+								<button class="btn btn-block btn-round btn-brand" type="button" id="writingBTN">Write</button>
 							</div>
-						
-						
+						</form>
 						</div>
 						<div class="m-b-20">
 							<p>
@@ -268,7 +286,7 @@
         <!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
+                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
                     <c:if test="${sessionScope.memberId != null}">

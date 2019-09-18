@@ -152,7 +152,9 @@
 			var recommender =$("#recommender").val();
 			
 			//alert("tel2"+tel2+"tel3"+tel3);
-			
+			if(!recommender){
+				flagreco=true;
+			}
 			if(tel2 == "" || tel3 == ""||tel2 == null||tel3 == null ||isNaN(tel2) || isNaN(tel3)){
 				alert("전화번호 제대로 입력하세요");
 				tel2.select();
@@ -167,11 +169,12 @@
 					alert("생일을 입력하세요");
 					memberbirth.select();
 					return false;
-				}else if(flagreco==false){
+				}
+				if(flagreco==false){
 					alert("추천인 확인버튼을 누르세요");
 					return false;
 				}else{
-					//alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
+					alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
 		 			
 					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
 						$.ajax({
@@ -293,12 +296,12 @@
                                 <h6>Create a new account</h6>
                             </div>
                             <div class="m-b-20">
-                            
+                          
                             <!-- <<회원가입 입력받기 -->
                                 <form action="signup" action="POST" id="signup">
                                     <div class="form-group" style="display:inline-flex;">
-                                        <input class="form-control" type="text" name="memberId" id="memberId" placeholder="ID">
-                                        <button type="button" class="form-control" id="checkid">중복확인</button>
+                                        <input class="form-control col-lg-6" type="text" name="memberId" id="memberId" placeholder="ID">
+                                        <button type="button" class="form-control col-lg-6" id="checkid">중복확인</button>
                                     </div>
                                     <p id="checkidline"></p>
                                     <div class="form-group" >
@@ -351,10 +354,9 @@
                         			     </div>
                        				 </details> -->
                                 </form>
+                              
                             </div>
-                            <div class="m-b-20">
-                                <p><small>By signing up, you agree to the<a href="#">terms of service</a></small></p>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -446,7 +448,7 @@
 		<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><span class="ti-close"></span></a></div>
+                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a></div>
                 <div class="off-canvas-content">
                     <!-- Text widget-->
                     <c:if test="${sessionScope.memberId != null}">

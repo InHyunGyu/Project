@@ -30,8 +30,8 @@
 		<constructor-arg index="0" name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	
-	<!-- file 업로드를 위한 bean 설정 : 최대 10메가  -->
+	<!-- file 업로드를 위한 bean 설정 : 최대 100메가  -->
 	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="10485760"/>
+		<property name="maxUploadSize" value="1000000000"/>
 	</bean>
 </beans>

@@ -27,16 +27,16 @@ public class MemberController {
 	public MemberInfo login(HttpSession session, MemberInfo member) {
 		MemberInfo result = repo.login(member);
 		if(result != null){
-			session.setAttribute("loginId", result.getMemberId());
-			session.setAttribute("loginName", result.getMemberName());
+			session.setAttribute("memberId", result.getMemberId());
+			session.setAttribute("memberName", result.getMemberName());
 		}
 		return result;
 	}
 	//로그아웃
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String signup(HttpSession session){
-		session.removeAttribute("loginId");
-		session.removeAttribute("loginName");
+		session.removeAttribute("memberId");
+		session.removeAttribute("memberName");
 		return "redirect:/";
 
 	}
@@ -47,8 +47,8 @@ public class MemberController {
 		
 		int result = repo.memberDelete(member);
 		if(result == 1){
-			session.removeAttribute("loginId");
-			session.removeAttribute("loginName");
+			session.removeAttribute("memberId");
+			session.removeAttribute("memberName");
 			return "redirect:/"; 
 		}else{
 			return "redirect:/";

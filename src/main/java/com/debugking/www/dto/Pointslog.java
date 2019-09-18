@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Pointslog {
-	private int logNum;
+	private int logNum;  //logNumSeq
 	private String memberId;
 	private String theOtherId;
 	private String eventdate;

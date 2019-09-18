@@ -7,8 +7,7 @@
 	<!-- 한명 찾기  -->
  	<select id="selectOne" parameterType="String" resultType="Member">
 		select 
-			memberNum
-			,memberId
+			memberId
 			,memberPwd
 			,memberName
 			,memberPhone
@@ -16,8 +15,6 @@
 			,signupDate
 			,memberEmail
 			,memberPoint
-			,isManager
-			,clubNum
 		From
 			MemberInfo
 		Where
@@ -28,8 +25,7 @@
 	<insert id="signup" parameterType="Member">
 		insert into MemberInfo
 		(
-			memberNum
-			,memberId		
+			memberId		
 			,memberPwd		
 			,memberName
 			,memberPhone
@@ -40,14 +36,10 @@
 			<if test="recommender !=null">	
 				,recommender
 			</if>
-			<if test="clubNum !=null">
-				,#{clubNum}
-			</if>
 		)
 		values
 		(
-			SEQ_memberInfo_memberNum.nextval
-			,#{memberId}		
+			#{memberId}		
 			,#{memberPwd}		
 			,#{memberName}	
 			,#{memberPhone}		
@@ -58,17 +50,13 @@
 			<if test="recommender !=null">
 				,#{recommender}		
 			</if>
-			<if test="clubNum !=null">
-			,#{clubNum}
-			</if>
 		)
 	</insert>
 	
 	<!-- 로그인  -->
 	<select id="login" parameterType="Member" resultType="Member">
 		select 
-			memberNum
-			,memberId
+			memberId
 			,memberName
 		From MemberInfo
 		Where memberId=#{memberId} and memberPwd =#{memberPwd}
