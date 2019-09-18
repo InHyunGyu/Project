@@ -21,6 +21,12 @@ public class MemberController {
 	@Autowired
 	MemberRepository repo;
 	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String loginPage (){
+		
+		return "member/login";
+	}
+	
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
