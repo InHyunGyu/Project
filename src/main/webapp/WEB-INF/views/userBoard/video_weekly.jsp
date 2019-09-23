@@ -23,7 +23,7 @@
         <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
-          <!-- JavaScripts -->
+        <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 	
 	<script>
@@ -55,8 +55,17 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		
+		$("#btnWriteForm").on('click',function(){
+			if(${sessionScope.memberId==null}){
+				alert("로그인한 후 글쓰기가능합니다.");
+			}else
+				location.href = 'write';
+		})
 	})
-	</script> 
+	
+		
+	</script>
     </head>
     <body>
 
@@ -70,6 +79,7 @@
             </div>
         </div>
         <!-- Preloader end-->
+
 
                 <!-- Header-->
         <header class="header header-transparent">
@@ -140,7 +150,7 @@
                         <div class="col-md-12">
                             <div class="space" data-mY="60px"></div> 
                             <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-                            <p class="m-b-40"><br>Video List<br> Weekly </p>
+                            <p class="m-b-40"><br>Community<br> Board </p>
                             <div class="space" data-MY="60px"></div>
                         </div>
                     </div>
@@ -157,101 +167,90 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" style="max-width: 1600px;">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6 class="text-special text-center m-b-40">Multi Page Demos</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-2.html"><img src="resources/assets/images/demo/2.jpg" alt=""></a>
-                                        <h6>Slider - Slide</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-3.html"><img src="resources/assets/images/demo/3.jpg" alt=""></a>
-                                        <h6>Slider - Fade</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-4.html"><img src="resources/assets/images/demo/4.jpg" alt=""></a>
-                                        <h6>Youtube</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-5.html"><img src="resources/assets/images/demo/5.jpg" alt=""></a>
-                                        <h6>Vimeo</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-6.html"><img src="resources/assets/images/demo/6.jpg" alt=""></a>
-                                        <h6>Local Video</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-7.html"><img src="resources/assets/images/demo/7.jpg" alt=""></a>
-                                        <h6>Gradient Style 1</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="index-8.html"><img src="resources/assets/images/demo/8.jpg" alt=""></a>
-                                        <h6>Gradient Style 2</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 class="text-special text-center m-b-40">One Page Demos</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index.html"><img src="resources/assets/images/demo/op-1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-2.html"><img src="resources/assets/images/demo/op-2.jpg" alt=""></a>
-                                        <h6>Slider - Slide</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-3.html"><img src="resources/assets/images/demo/op-3.jpg" alt=""></a>
-                                        <h6>Slider - Fade</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-4.html"><img src="resources/assets/images/demo/op-4.jpg" alt=""></a>
-                                        <h6>Youtube</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-5.html"><img src="resources/assets/images/demo/op-5.jpg" alt=""></a>
-                                        <h6>Vimeo</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-6.html"><img src="resources/assets/images/demo/op-6.jpg" alt=""></a>
-                                        <h6>Local Video</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-7.html"><img src="resources/assets/images/demo/op-7.jpg" alt=""></a>
-                                        <h6>Gradient Style 1</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="demo-item"><a href="op-index-8.html"><img src="resources/assets/images/demo/op-8.jpg" alt=""></a>
-                                        <h6>Gradient Style 2</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+		<div class="container" style="margin: 100px;">
+
+				<div class="table-responsive">
+					<!-- 검색창 -->
+					<div class="pull-right" style="float: right; margin-bottom: 10px;">
+						<!-- boardList?searchItem=title -->
+						<form action="voice_new" method="get">
+							<select name="searchItem" style="height: 28px;">
+								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
+								<option value="memberId"
+									${searchItem == 'memberId' ? 'selected' : ''}>글쓴이</option>
+								<option value="postContent"
+									${searchItem == 'postContent' ? 'selected' : ''}>내용</option>
+							</select> <input type="text" name="searchWord" value="${searchWord}" /> <input
+								type="submit" value="검색" />
+						</form>
+					</div>
+					<table class="table table-striped table-sm table-hover" style="margin: 30px; text-align: center;">
+                        	
+                        	<colgroup>
+								<col style="width: 5%;" />
+								<col style="width: auto%;" />
+								<col style="width: 20%;" />
+								<col style="width: 15%;" />
+								<col style="width: 10%;" />
+								<col style="width: 10%;" />
+							</colgroup>
+                        	
+                        	<tr>
+                        		<th>No</th>
+                        		<th>글제목</th>
+                        		<th>작성자</th>
+                        		<th>작성일</th>
+                        		<th>조회수</th>
+                        		<th>추천수</th>
+                        	</tr>
+                        
+							<!-- 게시글이 없는 경우 -->
+							<c:if test="${empty list}">
+								<tr>
+									<td colspan="6" align="center">데이터가 없습니다.</td>
+								</tr>
+							</c:if>
+							<!-- 게시글이 있는 경우 -->
+							<c:if test="${not empty list}">
+								<c:forEach var="board" items="${list}" varStatus="stat">
+									<tr>
+										<td>${stat.count + navi.startRecord}</td>
+										<td>${board.postTitle}</td>
+										<td>${board.memberId}</td>
+										<td>${board.postDate}</td>
+										<td>${board.postView}</td>
+										<td>${board.postLike}</td>
+									</tr>
+								</c:forEach>
+							</c:if>
+							
+							<!-- 페이징 하기 -->
+				<p class="paging">
+				<a href="voice_new?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">◀</a><!-- 앞그룹 요청 -->
+						<a href="voice_new?currentPage=${navi.currentPage-1}&searchItem=${searchItem}&searchWord=${searchWord}">◁</a><!-- 앞 페이지 요청 -->
+						
+						<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
+							<a href="voice_new?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">&nbsp&nbsp${page}&nbsp&nbsp  </a>
+						</c:forEach>
+						
+						<a href="voice_new?currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}">▷</a>
+						<a href="voice_new?currentPage=${navi.currentPage+navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">▶</a>
+				</p>
+						</tbody>
+					</table>
+				</div>
+				<div>
+					
+					<button type="button" class="btn btn-sm btn-primary"
+						id="btnWriteForm" style="float: right;">글쓰기</button>
+
+				</div>
+			</div>
+           
+                        
+          </div>
+                
+           
 
             <!-- Footer-->
             <footer class="footer">
@@ -336,7 +335,7 @@
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
-        <!-- Off canvas-->
+ 		<!-- Off canvas-->
         <div class="off-canvas-sidebar">
             <div class="off-canvas-sidebar-wrapper">
                 <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a></div>
@@ -371,7 +370,6 @@
             </div>
         </div>
         <!-- Off canvas end-->
-
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->

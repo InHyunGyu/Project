@@ -60,7 +60,7 @@
 			location.href="signup"
 		})
 		$("#btnWriteForm").on('click',function(){
-			if(${sessionScope.memberId==null}){
+			if(${!sessionScope.memberId.isEmpty()}){
 				alert("로그인한 후 글쓰기가능합니다.");
 			}else{
 				location.href = 'write';
@@ -221,7 +221,7 @@
 								<c:forEach var="board" items="${list}" varStatus="stat">
 									<tr>
 										<td>${stat.count + navi.startRecord}</td>
-										<td>${board.postTitle}</td>
+										<td><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
 										<td>${board.memberId}</td>
 										<td>${board.postDate}</td>
 										<td>${board.postView}</td>

@@ -38,13 +38,10 @@
     white-space: nowrap;
     letter-spacing: -0.5px;
 }
-
-
-
-
-	
 	</style>
+	
 	<script>
+
 	$(function(){
 		writingList();
 		$("#loginBTN").on('click', function(){
@@ -76,7 +73,114 @@
 		})
 		
 		
+		//체크박스 체크 된 것 배열에 추가하기 
+		var DATA=[];
+		$("#content_table").on("change","#postNoBTN",function(){
+	          if($(this).is(':checked')){
+		           DATA.push($(this).val());
+	         } else{
+	        	 DATA.pop($(this).val());
+	         }
+			/* $("input[id=postNoBTN]:checked").each(function(){
+				DATA += $('"data-boardno":checked').val();
+				console.log(DATA);
+			}) */
+			//var a= $(this).attr("data-boardno");
+		})
+		$("#move").on("click",function(){
+				console.log(DATA)
+				move(DATA);
+		})
+		$("#deleted").on("click",function(){
+			console.log(DATA);
+			deleted(DATA);
+		})
+		$("#change").on('click',function(){
+			console.log(DATA);
+			change(DATA);
+		})
 		
+		// 등급변경
+		function change(DATA){
+			jQuery.ajaxSettings.traditional = true;
+			
+			var changeLevel =  $("#changeLevel").val();
+			$.ajax({
+				method:"POST",
+				url:"change",
+				data:{
+					"listchecked" : DATA,
+					"memberLevel" : changeLevel
+				},
+				success : function(mesa){
+					if(mesa==0){
+						alert("실패");
+					}
+					else{
+						alert("등업 성공하였습니다.");
+					}
+				}
+			})
+		}
+		// 게시글 삭제 
+		function deleted(test){
+			jQuery.ajaxSettings.traditional = true;
+			$.ajax({
+				method:"POST",
+				url:"deleted",
+				data:{
+					"listchecked" : test
+				},
+				success : function(mesa){
+					if(mesa==0){
+						alert("실패");
+					}
+					else{
+						alert("게시글이 삭제 되었습니다.");
+						for(var i=0; i<test.length; i++){
+							//alert($("input[data-boardno*='test[i]'").parent().parent())
+							$('input[data-boardno |='+test[i]+']').parent().parent().remove();
+						}
+					}
+				}
+			})
+		}
+		// 게시글 이동 
+		function move(test){
+			var postType = $("#moveSelect").val();
+			var senddata = {
+				"listchecked" : test,
+				"postType" : postType
+			}
+			jQuery.ajaxSettings.traditional = true;
+			//alert(JSON.stringify(senddata))
+			$.ajax({
+				method:"POST",
+				url:"move",
+				data:senddata,
+				success : function(mesa){
+					if(mesa==0){
+						alert("실패");
+					}
+					else{
+						alert("게시글이 이동하였습니다.");
+						writingList();
+					}
+				}
+			})
+		}
+			//$("input[id=postNoBTN]:checked").each(function() {
+			//	var test = $(this).val();
+			//})
+		$("#memberRating").on('click',function(){
+			$.ajax({
+				method:"GET",
+				url:"memberRating",
+				success:function(ratingList){
+					memberRating(ratingList);
+				}
+			})
+		})
 	})
 	
 	function writingList(){	
@@ -101,7 +205,7 @@
 		tag2 += '<th>작성일</th>'
 		tag2 += '</tr>'
 		tag2 += '</thead>'
-		tag2 += '<tbody>'
+		tag2 += '<tbody >'
 		tag2 += '<c:if test="${empty list}">'	
 		tag2 += '<tr>'
 		tag2 += '<td colspan="6" align="center">데이터가 없습니다.</td>'
@@ -110,49 +214,48 @@
 		tag2 += '<c:if test="${not empty list}">'
 		tag2 += '<c:forEach var="board" items="${list}" varStatus="stat">'
 		tag2 += '<tr>'
-		tag2 += '<td><input type="checkbox"></td>'
-		tag2 += '<td>${board.column}</td>'
-		tag2 += '<td>${board.title}</td>'		
-		tag2 += '<td>${board.userid}</td>'
-		tag2 += '<td>${board.viewcount}</td>'
-		tag2 += '<td>${board.regdate}</td>'
+		tag2 += '<td ><input type="checkbox" id="postNoBTN" value="${board.postNo}" data-boardno="${board.postNo}"></td>'
+		tag2 += '<td>${board.postType}</td>'
+		tag2 += '<td ><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>'
+		tag2 += '<td>${board.memberId}</td>'
+		tag2 += '<td>${board.postView}</td>'
+		tag2 += '<td>${board.postDate}</td>'
 		tag2 += '</tr>'
 		tag2 += '</c:forEach>'
 		tag2 += '</c:if>'
 		tag2 += '</tbody>'
-
+		
+		
 		var tag3 = ''
-		tag3 += '<input type="checkbox">'
-		tag3 += '<select class="form-control col-lg-2" style="height: 30px;" >'
+		tag3 += '<select class="form-control col-lg-2" style="height: 30px;" id="moveSelect">'
 		tag3 += '<option value="voice">voice</option>'
 		tag3 += '<option value="video">video</option>'
-		tag3 += '<option value="streaming>streaming</option>'
+		tag3 += '<option value="streaming">streaming</option>'
 		tag3 += '<option value="community">community</option>'
 		tag3 += '</select>'	
 		tag3 += '<div class="form-group" style="float: right;">'
-		tag3 += '<a href="#" onclick="move();">move</a>'		
+		tag3 += '<a href="#" id="move">move</a>'		
 		tag3 += '<a> | </a>'
-		tag3 += '<a href="#" onclick="deleted();">delete</a>'
+		tag3 += '<a href="#" id="deleted">delete</a>'
 		tag3 += '</div>'
 		
 		var tag4 = '';
-		tag4 += '<select class="form-control col-lg-3" >'
-		tag4 += '<option value="voice">voice</option>'
-		tag4 += '<option value="video">video</option>'
-		tag4 += '<option value="streaming">streaming</option>'
-		tag4 += '<option value="community">community</option>'
+		tag4 += '<select class="form-control col-lg-3" name="searchItem">'
+		tag4 += "<option value='voice' ${searchItem == 'voice' ? 'selected' : ''}>voice</option>"
+		tag4 += "<option value='video' ${searchItem == 'video' ? 'selected' : ''}>video</option>"
+		tag4 += "<option value='streaming' ${searchItem == 'streaming' ? 'selected' : ''}>streaming</option>"
+		tag4 += "<option value='community' ${searchItem == 'community' ? 'selected' : ''}>community</option>"
 		tag4 += '</select>'
-		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Search" >'
 		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
 		
+	
 		$("#content_title").html(tag1);
 		$("#add").html(tag4);
 		$("#content_table").html(tag2);
 		$("#content_select").html(tag3);
 		
 	}
-	
-	function commentList(){
+	/* function commentList(){
 		var tag1="댓글 관리";
 		
 		var tag2 =''
@@ -212,9 +315,9 @@
 		$("#content_table").html(tag2);
 		$("#content_select").html(tag3);
 		
-	}
+	} */
 	
-	function memberRating(){
+	function memberRating(ratingList){
 		var tag1 ="등급관리"
 		
 		var tag2 =''
@@ -229,62 +332,49 @@
 		tag2 += '<tr>'		
 		tag2 += '<th><input type="checkbox"></th>'
 		tag2 += '<th>회원 아이디</th>'
-		tag2 += '<th>회원 등급 </th>'
+		tag2 += '<th>회원 생일 </th>'
 		tag2 += '<th>등업 대기 등급</th>'
-		tag2 += '<th>가입 신청일</th>'
+		tag2 += '<th>가입 날짜</th>'
 		tag2 += '</tr>'
 		tag2 += '</thead>'
 		tag2 += '<tbody>'
-		tag2 += '<c:if test="${empty ratingList}">'	
-		tag2 += '<tr>'
-		tag2 += '<td colspan="5" align="center">데이터가 없습니다.</td>'
-		tag2 += '</tr>'
-		tag2 += '</c:if>'
-		tag2 += '<c:if test="${not empty ratingList}">'
-		tag2 += '<c:forEach var="board" items="${ratingList}" varStatus="stat">'
-		tag2 += '<tr>'
-		tag2 += '<td><input type="checkbox"></td>'
-		tag2 += '<td>${board.memberId}</td>'		
-		tag2 += '<td>${board.memberRating}</td>'
-		tag2 += '<td>${board.member}</td>'
-		tag2 += '<td>${board.requestDate}</td>'
-		tag2 += '</tr>'
-		tag2 += '</c:forEach>'
-		tag2 += '</c:if>'
+		
+		if(ratingList == null){
+			tag2 += '<tr>'
+			tag2 += '<td colspan="5" align="center">데이터가 없습니다.</td>'
+			tag2 += '</tr>'
+		}
+		else{
+			$.each(ratingList,function(index,item){
+				tag2 += '<tr>'
+				tag2 += '<td><input type="checkbox" id="postNoBTN" value="'+item.postNo+'" data-boardno="'+item.postNo+'"></td>'
+				tag2 += '<td>'+item.memberId+'</td>'		
+				tag2 += '<td>'+item.memberBirth+'</td>'
+				tag2 += '<td>'+item.memberLevel+'</td>'
+				tag2 += '<td>'+item.signupDate+'</td>'
+				tag2 += '</tr>'
+			})
+		}	
 		tag2 += '</tbody>'
 		
 		var tag3 = ''
 		tag3 += '<input type="checkbox">'
 		tag3 += '<div class="form-group" style="float: right;">'
-		tag3 += '<select class="form-control col-lg-4" style="height: 30px;" >'
+		tag3 += '<select class="form-control col-lg-4" style="height: 30px;" id="changeLevel">'
 		tag3 += '<option value="1">1</option>'
 		tag3 += '<option value="2">2</option>'
 		tag3 += '<option value="3">3</option>'
 		tag3 += '<option value="4">4</option>'
 		tag3 += '<option value="5">5</option>'
 		tag3 += '</select>'
-		tag3 += '<a href="#" onclick="change();">change</a>'		
+		tag3 += '<a href="#" id="change">change</a>'		
 		tag3 += '<a> | </a>'
-		tag3 += '<a href="#" onclick="stop_activity();">stop</a>'
+		tag3 += '<a href="#" id="stop_activity">stop</a>'
 		tag3 += '</div>'
 		
-		var tag4 = '';
-		tag4 += '<select class="form-control col-lg-4" >'
-		tag4 += '<option value="1">1</option>'
-		tag4 += '<option value="2">2</option>'
-		tag4 += '<option value="3">3</option>'
-		tag4 += '<option value="4">4</option>'
-		tag4 += '<option value="5">5</option>'
-		tag4 += '</select>'
-		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Search" >'
-		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
-		
 		$("#content_title").html(tag1);
-		$("#add").html(tag4);
 		$("#content_table").html(tag2);
 		$("#content_select").html(tag3);
-		
-		
 	}
 		
 	function noticeList(){
@@ -345,15 +435,6 @@
 		location.href="notice_write";
 	}
 	
-	function move(){
-		// 게시글 이동 
-	}
-	function deleted(){
-		// 게시글 삭제 
-	}
-	function change(){
-		// 등급변경  
-	}
 	function stop_activity(){
 		// 활동중지 
 	}
@@ -468,7 +549,7 @@
                                 <p onclick="noticeList();"><a href="#" onclick="noticeList();">공지</a></p>
                                 <hr class="m-t-30 m-b-30">
                                 <h6 class="single-portfolio-title">카페 회원 </h6>
-                                <p><a href="#" onclick="memberRating();">등급 관리</a></p>
+                                <p><a href="#" id="memberRating">등급 관리</a></p>
                                 
                                 <hr class="m-t-30 m-b-30">
                                 
@@ -483,10 +564,14 @@
                             <hr class="m-t-30 m-b-30">	 
                             	 <div class="form-group" style="float: right;">
                             	 <aside class="widget widget-search">
+                            	 <!-- 페이징 하기 -->
+				
                                     <form id="add">
                                         
                                     </form>
+                                    
                                 </aside>
+                                
                             	</div>
                             	
                             	  
@@ -495,6 +580,17 @@
                             <table id="content_table" class="table table-striped table-sm table-hover">
 							
 							</table>
+				<p class="paging">
+						<a href="managerPage?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">◀</a><!-- 앞그룹 요청 -->
+						<a href="managerPage?currentPage=${navi.currentPage-1}&searchItem=${searchItem}&searchWord=${searchWord}">◁</a><!-- 앞 페이지 요청 -->
+						
+						<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
+							<a href="managerPage?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">&nbsp&nbsp${page}&nbsp&nbsp  </a>
+						</c:forEach>
+						
+						<a href="managerPage?currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}">▷</a>
+						<a href="managerPage?currentPage=${navi.currentPage+navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">▶</a>
+				</p>
 					<div class="set_list" style="width: 100%;">
 					<div class="bundle_set" id="content_select">
 					

@@ -13,6 +13,16 @@
 		</if>
 	</select>
 	
+	<!-- NEW 출력문 -->
+	<select id="getVoiceNewCount" parameterType="map" resultType="int">
+		select count(*)
+		From Posts
+		where postType = 'voice' and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord} || '%'
+		</if>
+	</select>
+	
 	<select id="selectAll" resultType="Post" parameterType="map">
 		SELECT
 			postNo
@@ -22,13 +32,39 @@
 			,to_char(postDate, 'YYYY-MM-DD') as postDate
 			,postView
 			,postLike
+			,postType
+			,isAnnouncement
 			<if test="originalFile != null">
 			,originalFile
 			,savedFile
 			</if>
 			,reported
 		FROM Posts 
-		where postType = 'voice'
+		where postType = 'voice' 
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord}||'%'
+		</if>
+		ORDER BY postNo DESC
+	</select>
+	
+	<select id="selectNewAll" resultType="Post" parameterType="map">
+		SELECT
+			postNo
+			,memberId
+			,postTitle
+			,postContent
+			,to_char(postDate, 'YYYY-MM-DD') as postDate
+			,postView
+			,postLike
+			,postType
+			,isAnnouncement
+			<if test="originalFile != null">
+			,originalFile
+			,savedFile
+			</if>
+			,reported
+		FROM Posts 
+		where postType = 'voice' and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>
@@ -66,4 +102,10 @@
 			</if>
 		)
 	</insert>
+	<!-- POSTS 하나만 검색하기 -->
+	<select id="selectPostOne" parameterType="int" resultType="Post">
+		select *
+		From Posts
+		Where postNo = #{postNo}
+	</select>
 </mapper>
