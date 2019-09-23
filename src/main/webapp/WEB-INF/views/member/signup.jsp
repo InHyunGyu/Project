@@ -22,6 +22,24 @@
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <link href="resources/assets/signup.css" rel="signup">
+<style>
+  a {
+  	color: #788487;
+  }
+	
+	#inputStyle {
+	height: 100%; 
+	width: 20%;
+	color: #495057;
+    background-color: #fff;
+    padding-left: 12px;
+    border: 1px solid #ededed;
+    border-radius: .1875rem;
+    font-size:0.85em;
+    
+	 }
+	
+	</style>
 
         <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 <script >
@@ -269,7 +287,7 @@
 								class="menu-item-span">Community</span></a>
 							<ul class="sub-menu">
 								<li><a href="community">Board</a></li>
-								<li><a href="myblog">My Blog</a></li>
+								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
 							</ul></li>
 						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
 						<c:if test="${sessionScope.memberId == admin}">
@@ -279,15 +297,11 @@
 				</div>
 			</div>
 			<div class="extra-nav">
-				<ul>
-					<li><a class="off-canvas-open" href="#"><span
-							class="menu-item-span"><img class="ti-menu"
-								src="resources/assets/images/menu.png" /></span></a></li>
-					<li class="nav-toggle"><a href="#" data-toggle="collapse"
-						data-target=".inner-navigation"><span class="menu-item-span"><i
-								class="ti-menu"><img src="resources/assets/images/menu.png" /></i></span></a></li>
-				</ul>
-			</div>
+                    <ul>
+                        <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation" class="" aria-expanded="true"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                    </ul>
+                </div>
 		</div>
 	</header>
 	<!-- Header end-->
@@ -296,7 +310,7 @@
         <div class="wrapper">
             <!-- Hero-->
             <section class="module-cover parallax text-center fullscreen" data-background="resources/assets/images/module-5.jpg" data-overlay="0.6">
-                <div class="container"style="padding-top:100px;">
+                <div class="container" style="padding-top:100px;">
                     <div class="row">
                         <div class="col-lg-4 col-md-6 m-auto">
                             <div class="m-b-20">
@@ -367,6 +381,7 @@
                         </div>
                     </div>
                 </div>
+                </section>
             </section>
 
             <!-- Footer-->
@@ -464,7 +479,9 @@
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
                             <p class="text-center">로그인한아이디</p>
                             <p class="text-center">n 번 방문</p>
-                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
+                            <p class="text-center">
+                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+                            </p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
                         </div>
                     </aside>

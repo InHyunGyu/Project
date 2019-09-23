@@ -85,12 +85,6 @@ public class MemberController {
 		return result;
 	}
 	
-	@RequestMapping(value="/myblog", method=RequestMethod.GET)
-	public String myblog(){
-		return "member/myblog";
-	}
-	
-
 	//ID체크 한명불러오기
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
 	@ResponseBody
@@ -127,7 +121,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
-	public String follow(){
+	public String follow(String memberId, Model model){
+		
+		
+		
+		
 		return"member/follow_page";
 	}
 }
