@@ -81,7 +81,7 @@ CREATE TABLE follower
 CREATE TABLE memberInfo
 (
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberId varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50),
 	-- 유저 비밀번호
 	memberPwd varchar2(40) NOT NULL,
 	-- 유저가 회원 가입할 때 입력한 실명
@@ -98,10 +98,11 @@ CREATE TABLE memberInfo
 	-- 'manager', 'regular member', 'beginner' 
 	-- 매니저,     정회원             ,  준회원
 	memberLevel varchar2(20) DEFAULT 'beginner',
-	photo varchar2(100),
+	photoname varchar2(100),
+	savefile varchar2(200),
+	myintro varchar2(4000),
+	emailchecked char(2)
 	PRIMARY KEY (memberId)
-
-
 );
 
 
@@ -166,10 +167,14 @@ ALTER TABLE follower
 
 
 ALTER TABLE replies
-	ADD CONSTRAINT delete FOREIGN KEY (postno)
-	REFERENCES posts (postno)
+	ADD CONSTRAINT rep_userid_fk FOREIGN KEY (memberid)
+	REFERENCES memberinfo(memberid)
 	ON DELETE CASCADE
 ;
 
+
+-----------------
+ALTER TABLE memberinfo
+ADD emailchecked char(2);
 
 

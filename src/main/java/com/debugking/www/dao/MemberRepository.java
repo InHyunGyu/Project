@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import com.debugking.www.dto.MemberInfo;
 
 
+
+
 @Repository
 public class MemberRepository {
 	@Autowired
@@ -36,6 +38,27 @@ public class MemberRepository {
 		int result = mapper.memberDelete(member);
 		System.out.println("weroiuosvn"+result);
 		return result;
+	}
+	
+	//유저 이메일 가져오기
+	public String getUserEmail(String userid){
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		String useremail = mapper.getUserEmail(userid);
+		
+		return useremail;
+	}
+	
+	public int setUserEmailChecked(String userid)
+	{
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.setUserEmailChecked(userid);
+		
+		return result;
+	}
+	
+	public MemberInfo selectOne(MemberInfo member) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

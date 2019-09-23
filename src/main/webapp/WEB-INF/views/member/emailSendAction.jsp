@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Boomerang - Template</title>
+        <title>Singup</title>
         <!-- Favicons-->
         <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
@@ -22,127 +21,195 @@
         <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
-        <!-- JavaScripts -->
-		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
-	
-	<script>
+        <link href="resources/assets/signup.css" rel="signup">
+
+        <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+<script >
 	$(function(){
+		var flagid = false;
+		var flagpwd = false;
+		var flagreco = true;
 		
-		$("#loginBTN").on('click', loginBTN)
-		$("#signup").on('click', function(){
-			location.href="signup"
-		})
-		ajaxUploadImage() 
-		
-		var fd;//폼 데이터 전역변수 설정
-		
-		
-	})
-	
-	function extractContentData()
-    {
-		//처리해야 하는 값: 유저아이디(컨트롤러에서), 파일명, 게시물번호, 이미지불러오기, (생성날자(추후 sysdate)),
-        //확장명이 붙은 파일명을 저장하기
-        var fileValue = $("#uploadFile").val().split("\\");
-        var fileNameWexe = fileValue[fileValue.length-1]; // 파일명
-        var SplitFileName = fileNameWexe.split(".");   
-        var fileName = SplitFileName[0];
-        //파일을 담아서 보내주기 위해 변수 설정
-        var inputFile = $("input[name='uploadFile']");
-		var files = inputFile[0].files;
-		
-		
-		
-        //파일 관련 객체를 보내야 하므로 FormData객체 생성하여
-        //파일이름(확장명 포함), 제목, 내용, 태그를 넣어준다. 
-        fd = new FormData();
-        
-        fd.append("photoname",fileNameWexe); //업로드한 파일명
-        fd.append("uploadFile", files[0]);  //파일 그 자체
-        
-        
-    }
-	
-	
-	
-	function ajaxUploadImage()
-	{
-		$("#uploadBtn").on('click', function(){
-    		//FormData객체 생성이 아래 함수에 포함되어 있으므로
-    		//반드시 이 함수 지역변수 내에서 호출해줘야 한다. 
-    		extractContentData();
-    		
-    		$.ajax({
-    			url: 'ajaxFileUpload',
-    			data: fd,
-    			type: 'post',
-    			processData: false,
-    			contentType: false, 
-    			success: function(resp){
-    				alert("upload completion");
-    				alert(resp);
-    				$("#mypic").attr('src', resp);
-    			}
-    		})
-    	})
-  	/* 
-    	//업로드를 한 후 상태 변화가 있을 경우 발동하는 이미지 미리보기 함수(현재 작동 안함)
-    	$("#uploadFile").on('change',function(){
-    		//버튼 문서 객체 불러온 뒤 해당 문서객체에 변화가 있을 경우 아래 코드를 실행한다.
-    		
-    		var formData = new FormData(); 
-    		var inputFile = $("input[name='uploadFile']");
-    		var files = inputFile[0].files; 
-    		
-    		console.log(inputFile); 
-    		
-    		for (var i = 0; i < files.length; i++) {
-				formData.append("mypic", files[i]);
-			}
-    		
-    		$.ajax({
-    			url: 'imagePreview',
-    			data: formData,
-    			type: 'post',
-    			processData : false,
-				contentType : false,
-				success:function(resp){
-					alert(resp);
-					$("#mypic").attr('src', resp);
-				}
-    		})
-    	})
-    	 */
-	}
-		
-	function loginBTN()
-	{
 		var memberId = $("#memberId").val();
-		var memberPwd = $("#memberPwd").val();
+		var memberpwd = $("#memberpwd").val();
+		/*var checkpwd = 	$("#checkpwd").val();
+		var recocheckbtn = $("#recocheckbtn").val();
+		var memberEmail =$("#memberEmail").val();
+		var memberphone = $("#memberphone").val();
 		
-		if(memberId.length == 0 || memberPwd.length == 0) {
-			alert("다시입력해주세요.");
-			return;
-		}
+		var tel1 = 	$("#tel1").val();
+		var tel2 = 	$("#tel2").val();
+		var tel3 = 	$("#tel3").val(); */
+		/* var userBirth= $("#userBirth").val();
+		var userAddress = 	$("#userAddress").val(); */
 		
-		var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-		}
-		
-		$.ajax({
-			method:'post',
-			url:'login',
-			data:send,
-			success: function(){
-				location.reload();
+		//아이디 유효성 검사 + 중복검사
+		$("#memberId").on("keyup",function(){
+			memberId = $("#memberId").val();
+			if(memberId.length<3 || memberId.length>15){
+				$("#checkidline").html("id는 3~15사이입니다.");
+				return false;
 			}
-		})
-	}
+			else{
+				$("#checkidline").html("");
+			}
+		});
+		$("#checkid").on("click",function(){
+			memberId = 	$("#memberId").val();
+			if(memberId=="" || memberId==null){
+				alert("ID입력하세요");
+				checkId.select();
+				return false;
+			}
+			else if(flagid=false){
+				alert("중복하세요");
+				return false;
+			}
+			else{
+				$.ajax({
+					method : "GET",
+					url : "idCheck",
+					data : "memberId="+ memberId,
+					success: function(result){
+						if(result=="true"){
+							alert("동일한 ID가 존재합니다.");
+						}
+						else {
+							flagid=true;
+							alert("사용 가능합니다.");
+						}
+					}
+				});
+			}
+		}); 
+		
+		//비밀번호 유효성 검사
+		$("#memberpwd").on("keyup",function(){
+			memberpwd = $("#memberpwd").val();
+			if(memberpwd.length <3 || memberpwd.length > 15){
+				$("#checkpwdline").html("Password 는 3~15사이입니다.");
+				return false;
+			}
+			else{
+				$("#checkpwdline").html("");
+			}
 			
-	
-	
+			//비밀번호 동일한지 검사
+			$("#checkpwd").on("keyup",function(){
+				var checkpwd = $("#checkpwd").val();
+				if(memberpwd !== checkpwd){
+					$("#checkpwdline2").html("비밀번호가 일치하지 않습니다.");
+					return false;
+				}else{
+					$("#checkpwdline2").html("");
+					flagpwd=true;
+				}
+			});
+		});
+		
+		//이메일 유효성 검사 아오 눈아퍼
+		$("#memberEmail").on("click",function(){
+			return true; //일단 패스합니다.
+		});
+		$("#recommender").on("keyup",function(){
+			flagreco=false;
+		})
+		//추천인 유효성 검사 이거까지 해야됩니까?
+		$("#recocheckbtn").on("click",function(){
+			var recommender=$("#recommender").val();
+			if(recommender != "" || recommender!=null){
+				$.ajax({
+					method:"GET",
+					url:"idCheck",
+					data: "memberId="+ recommender,
+					success: function(result){
+						if(result=="true"){
+							flagreco=true;
+							alert("확인");
+							
+						}
+						else {
+							flagreco=false;
+							alert("동일한 ID가 존재하지 않습니다.");
+						}
+					}
+				})
+
+			}
+		});
+		
+		//이름, 전화번호 , 생일,추천자
+		//회원 등록하기
+		$("#signupbtn").on('click',function(){
+			var memberEmail = $("#memberEmail").val();
+			//var memberphone = $("#memberphone").val();
+			var memberphone= $("#memberphone").val();
+			var membername =$("#membername").val();
+			var tel1 = 	$("#tel1").val();
+			var tel2 = 	$("#tel2").val();
+			var tel3 = 	$("#tel3").val();
+			var memberbirth = $("#memberbirth").val();
+			var recommender =$("#recommender").val();
+			
+			//alert("tel2"+tel2+"tel3"+tel3);
+			if(!recommender){
+				flagreco=true;
+			}
+			if(tel2 == "" || tel3 == ""||tel2 == null||tel3 == null ||isNaN(tel2) || isNaN(tel3)){
+				alert("전화번호 제대로 입력하세요");
+				tel2.select();
+				return false;
+			}else{
+				memberphone = tel1+tel2+tel3;
+				if(membername==null){
+					alert("이름을 입력하세요");
+					membername.select();
+					return false;
+				}else if(memberbirth==null){
+					alert("생일을 입력하세요");
+					memberbirth.select();
+					return false;
+				}
+				if(flagreco==false){
+					alert("추천인 확인버튼을 누르세요");
+					return false;
+				}else{
+					alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
+		 			
+					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
+						$.ajax({
+							method:"post",
+							url:"signup",
+							data:{
+								"memberId" : memberId,
+								"memberPwd" : memberpwd,
+								"memberEmail" : memberEmail,
+								"memberName" :membername,
+								"memberPhone" : memberphone,
+								"memberBirth" :memberbirth,
+								"recommender" : recommender
+							},
+							success : function(mesa){
+								if(mesa === "success"){
+									alert("등록 성공하였습니다. 화면 이동합니다.");
+									location.href ="main"
+								}
+								else{
+									alert("등록 실패하였습니다. 화면 이동합니다.");
+									location.href ="main"
+								}
+							}
+						}); 
+					}
+					else{
+						alert("다시 확인하세요.");
+					} 
+				}
+			}
+		});
+	});
 	</script>
+	
     </head>
     <body>
 
@@ -221,127 +288,28 @@
         <!-- Wrapper-->
         <div class="wrapper">
             <!-- Hero-->
-            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-17.jpg" data-overlay="0.3">
-                <div class="container">
+            <section class="module-cover parallax text-center fullscreen" data-background="resources/assets/images/module-5.jpg" data-overlay="0.6">
+                <div class="container"style="padding-top:100px;">
                     <div class="row">
-                        <div class="col-md-12">
-                            <h2>Right Sidebar</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Quisque eget mi at eros venenatis</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Hero end-->
-
-            <!-- Blog-->
-            <section class="module">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8">
-
-                            <!-- Post-->
-                            <article class="post">
-                            	<!-- 메인 사진을 위한 파일 업로드 -->
-                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/1.jpg" alt=""></a>
-	                                <input type="file" id="uploadFile" name="uploadFile"><br>
-	                                <input type="button" id="uploadBtn" value="업로드">
-	                                <input type="hidden" id="hdnSession" value="${sessionScope.memberId}" />
-                                </div>
-                                 
-                                <div class="post-wrapper">
-                                    <div class="post-header">
-                                        <h2 class="post-title"><a href="blog-single.html">Bluetooth Speaker</a></h2>
-                                        <ul class="post-meta">
-                                            <li>November 18, 2016</li>
-                                            <li><a href="#">Branding</a>, <a href="#">Design</a></li>
-                                            <li><a href="#">3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-content">
-                                        <p>Just then her head struck against the roof of the hall in fact she was now more than nine feet high and she at once took up the little golden key and hurried off to the garden door.	The first question of course was, how to get dry again: they had a consultation about this, and after a few minutes it seemed quite natural to Alice to find herself talking familiarly with them.</p>
-                                    </div>
-                                    <div class="post-more"><a href="file_detail">Read more</a></div>
-                                </div>
-                            </article>
-                            <!-- Post end-->
-
+                        <div class="col-lg-4 col-md-6 m-auto">
+                            <div class="m-b-20">
+                                <h6>Create a new account</h6>
+                            </div>
+                            <div class="m-b-20">
+                               <div class="form-group">
+                                      	이메일이 발송되었습니다. 이메일을 확인해 주세요.
+                               </div>
+                            </div>
                            
-
-                            <!-- Page Navigation-->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <nav>
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item"><a class="page-link" href="#"><span class="fas fa-angle-left"></span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                            <li class="page-item"><a class="page-link" href="#"><span class="fas fa-angle-right"></span></a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <!-- Page Navigation end-->
-                        </div>
-                       
-                        
-                        
-                        
-                        <div class="col-lg-4">
-                        
-                            <div class="sidebar">
-								 
-								
-                                <!-- Search widget-->
-                                <aside class="widget widget-search">
-                                    <form>
-                                        <input class="form-control" type="search" placeholder="Type Search Words">
-                                        <button class="search-button" type="submit"><span class="fas fa-search"></span></button>
-                                    </form>
-                                </aside>
-
-                                <!-- Categories widget-->
-                                <aside class="widget widget-categories">
-                                    <div class="widget-title">
-                                        <h6>Categories</h6>
-                                    </div>
-                                    <ul>
-                                        <li><a href="#">Journey <span class="float-right">112</span></a></li>
-                                    </ul>
-                                </aside>
-
-                                <!-- Recent entries widget-->
-                                <aside class="widget widget-recent-entries-custom">
-                                    <div class="widget-title">
-                                        <h6>Recent Posts</h6>
-                                    </div>
-                                    <ul>
-                                        <li class="clearfix">
-                                            <div class="wi"><a href="#"><img id="mypic" src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
-                                            <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
-                                        </li>
-                                    </ul>
-                                </aside>
-
-                                <!-- Tags widget-->
-                                <aside class="widget widget-tag-cloud">
-                                    <div class="widget-title">
-                                        <h6>Tags</h6>
-                                    </div>
-                                    <div class="tag-cloud"><a href="#">e-commerce</a></div>
-                                </aside>
-                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- Blog end-->
 
             <!-- Footer-->
-            <footer class="footer">
-                <div class="footer-widgets">
-                    <div class="container">
+            <footer class="footer" >
+                <div class="footer-widgets" style="padding-top:100px;">
+                    <div class="container" >
                         <div class="row">
                             <div class="col-md-3">
                                 <!-- Text widget-->
@@ -443,7 +411,7 @@
                         <div class="textwidget">
                         	<div class="form-group">
                         	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
+                            <p class="text-center"><input class="form-control" type="text" id="loginId" name="memberId" placeholder="loginId"></p>
                             <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
                             <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
                            <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
@@ -460,11 +428,15 @@
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->
-        <script src="resources/assets/js/custom/jquery.min.js"></script>
-        <script src="resources/assets/js/custom/popper.min.js"></script>
-        <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
+       <!--  <script src="resources/assets/js/custom/jquery.min.js"></script> -->
+       <!--  <script src="resources/assets/js/custom/popper.min.js"></script> -->
+       <!--  <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script> -->
+       <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script> -->
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
+        
+<!--          JQuery
+        <script src="resources/jquery-3.3.1.min.js"></script> -->
+        
     </body>
 </html>

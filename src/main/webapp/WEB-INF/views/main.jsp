@@ -47,7 +47,7 @@
 				data:send,
 				success: function(result){
 					if(!result){
-						alert("로그인 실패");
+						alert("로그인 실패. 회원가입 후 이메일 인증을 해주세요.");
 					}else{
 						alert("로그인 성공");
 						location.reload();

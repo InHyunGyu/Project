@@ -20,4 +20,5 @@ public class PostsService {
 		int result= repo.writing(post);
 		return result;
 	}
+	
 }

@@ -59,7 +59,8 @@
 			memberId
 			,memberName
 		From MemberInfo
-		Where memberId=#{memberId} and memberPwd =#{memberPwd}
+		Where memberId=#{memberId} and memberPwd =#{memberPwd} 
+		and emailchecked = 'y'
 	</select>
 	
 	<!-- 회원탈퇴 -->
@@ -67,5 +68,17 @@
 		delete From MemberInfo
 		Where memberId=#{memberId} and memberPwd =#{memberPwd}
 	</delete>
+	
+	<select id="getUserEmail" parameterType="String" resultType="String">
+		SELECT memberEmail
+		FROM memberinfo
+		WHERE memberId = #{memberId}
+	</select>
+	
+	<update id="setUserEmailChecked" parameterType="String">
+		update MemberInfo
+		set emailchecked = 'y'
+		where memberId = #{memberId}
+	</update>
 </mapper>
 
