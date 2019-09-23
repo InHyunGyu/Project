@@ -44,7 +44,19 @@
   </filter-mapping>
 
 
-
+<!-- 파일이름에 한글이 들어가 있을 경우, 깨지는 것을 방지하기 위해 utf-8인코딩 방식 추가. -->
+<filter>
+	<filter-name>encoding</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	<int-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</int-param>
+</filter>
+<filter-mapping>
+	<filter-name>encoding</filter-name>
+	<url-patter>/*</url-patter>
+</filter-mapping>
 
 
 </web-app>
