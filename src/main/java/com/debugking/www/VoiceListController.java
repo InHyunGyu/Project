@@ -25,7 +25,7 @@ public class VoiceListController {
 	@Autowired
 	VoiceListRepository repo;
 	
-	final String uploadPath="/uploadfile";
+	final String uploadPath="/Users/heeju/Documents/fileIO";
 	
 	@RequestMapping(value="/voice_new", method=RequestMethod.GET)
 	public String voice_new(
@@ -62,24 +62,6 @@ public class VoiceListController {
 	public String voice_all(){
 		return "userBoard/voice_all";
 	}
-	
-	//글쓰기
-	@RequestMapping(value="/writing", method=RequestMethod.POST)
-	public String writing(Posts post, HttpSession session, MultipartFile upload){
-		
-		post.setMemberId((String)session.getAttribute("memberId"));
-		System.out.println(post);
-		String originalfile = upload.getOriginalFilename();
-		String savedfile = FileService.saveFile(upload,uploadPath);
-		
-		post.setOriginalFile(originalfile);
-		post.setSavedFile(savedfile);
-		
-		int result = serivce.writing(post);
-		if(result==0){
-			return "userBoard/write"; 
-		}
-		return "redirect:voice_new";
-	}
+
 	
 }

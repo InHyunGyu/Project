@@ -275,22 +275,26 @@ table {
 								<li><a href="myblog">My Blog</a></li>
 							</ul></li>
 						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
+						<c:if test="${sessionScope.memberId == admin}">
+						<li class="menu-item-has-children"><a href="managerPage"><span
+								class="menu-item-span">Admin</span></a></li></c:if>
 					</ul>
 				</div>
 			</div>
 			<div class="extra-nav">
 				<ul>
 					<li><a class="off-canvas-open" href="#"><span
-							class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+							class="menu-item-span"><img class="ti-menu"
+								src="resources/assets/images/menu.png" /></span></a></li>
 					<li class="nav-toggle"><a href="#" data-toggle="collapse"
 						data-target=".inner-navigation"><span class="menu-item-span"><i
-								class="ti-menu"></i></span></a></li>
+								class="ti-menu"><img src="resources/assets/images/menu.png" /></i></span></a></li>
 				</ul>
 			</div>
 		</div>
 	</header>
 	<!-- Header end-->
-
+	
 	<!-- Wrapper-->
 	<div class="wrapper">
 		<!-- Hero-->

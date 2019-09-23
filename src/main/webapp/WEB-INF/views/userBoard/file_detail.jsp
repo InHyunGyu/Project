@@ -27,11 +27,16 @@
 		#button_group {
 			float: right;
 		}
+		
+		button[name="contentModi"]{
+		float: right;
+		}
 	</style>
-	
 	
 	<script>
 	$(function(){
+		
+		
 		$("#loginBTN").on('click', function(){
 			var memberId = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
@@ -61,11 +66,93 @@
 		})
 		
 		$("#replyBTN").on('click', function(){
-			// 댓글달기 버튼 누르면
+			var replyContent = $("#replyContent").val();
+			var postNo = "${post.postNo}";
+			var memberId = "${sessionScope.memberId}";
+			
+			if(memberId == null) {
+				alert("로그인을 해주세요.");
+				return;
+			}
+			
+			if(replyContent.length == 0) {
+				alert("댓글 내용을 입력해주세요.");
+				return;
+			}
+			
+			var send = {
+					"replyContent":replyContent,
+					"postNo":postNo
+			}
+			
+			$.ajax({
+				method:'post',
+				url:'replyinsert',
+				data:send,
+				success:function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$(".replyDelBTN").on('click', function(){
+			var replyNo = $(this).attr("data-value");
+			
+			$.ajax({
+				method:'get',
+				url:'replyDel',
+				data:'replyNo='+replyNo,
+				success:function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$(".replyModiBTN").on('click', function(){
+			var replyNo = $(this).attr("data-value");
+			var replyContent =  $(this).attr("data-content");
+			
+			var tag = '';
+			
+			tag += '<div class="comment-body">';
+			tag += '<form class="comment-form row">';
+			tag += '<div class="form-group col-md-12">';
+			tag += '<textarea class="form-control" rows="4" cols="100" style="margin: 5px;" id="ModiContent" name="replyContent" >'+replyContent+'</textarea>';
+			tag += '</div>';
+			tag += '<div class="form-submit col-md-12">';
+			tag += '<button class="btn btn-dark" type="button" id="contentModi" name="contentModi" data-replyNo="'+replyNo+'">Modify</button>';
+			tag += '</form>'
+			tag += '</div>'
+
+	     
+			
+            $(this).parent().parent().parent().html(tag);
+			$("#contentModi").on('click', function(){
+				var replyContent = $("#ModiContent").val();
+				var replyNo = $(this).attr("data-replyNo");
+				
+				var send = {
+						
+						'replyNo':replyNo,
+						'replyContent':replyContent
+				}
+				
+				$.ajax({
+					method:'post',
+					url:'replyUp',
+					data:send,
+					success:function(){
+						location.reload();
+					}
+				})
+				
+				
+			});
+
 		})
 	})
 	
-		
+	
 	</script>
     </head>
     <body>
@@ -81,65 +168,72 @@
         </div>
         <!-- Preloader end-->
         <!-- Header-->
-        <header class="header header-transparent">
-            <div class="container-fluid">
-                <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
-                <!-- Navigation-->
-                <div class="inner-navigation collapse">
-                    <div class="inner-nav">
-                        <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
-                            </li>
-                            
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="voice_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="voice_weekly">Weekly</a></li>
-                                            <li><a href="voice_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="voice_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="video_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="video_weekly">Weekly</a></li>
-                                            <li><a href="video_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="video_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
-                            </li>
-                            
-                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="community">Board</a></li>
-                                    <li><a href="myblog">My Blog</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="extra-nav">
-                    <ul>
-                        <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-        <!-- Header end-->
+	<header class="header header-transparent">
+		<div class="container-fluid">
+			<!-- Brand-->
+			<div class="inner-header">
+				<a class="inner-brand" href="main">UtaJJang</a>
+			</div>
+			<!-- Navigation-->
+			<div class="inner-navigation collapse">
+				<div class="inner-nav">
+					<ul>
+						<li class="menu-item-has-children menu-item-has-mega-menu"><a
+							href="main"><span class="menu-item-span">Home</span></a></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Voice</span></a>
+							<ul class="sub-menu">
+								<li><a href="voice_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="voice_weekly">Weekly</a></li>
+										<li><a href="voice_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="voice_all">ALL</a></li>
+							</ul></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Video</span></a>
+							<ul class="sub-menu">
+								<li><a href="video_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="video_weekly">Weekly</a></li>
+										<li><a href="video_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="video_all">ALL</a></li>
+							</ul></li>
+
+						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						</li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Community</span></a>
+							<ul class="sub-menu">
+								<li><a href="community">Board</a></li>
+								<li><a href="myblog">My Blog</a></li>
+							</ul></li>
+						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
+						<c:if test="${sessionScope.memberId == admin}">
+						<li class="menu-item-has-children"><a href="managerPage"><span
+								class="menu-item-span">Admin</span></a></li></c:if>
+					</ul>
+				</div>
+			</div>
+			<div class="extra-nav">
+				<ul>
+					<li><a class="off-canvas-open" href="#"><span
+							class="menu-item-span"><img class="ti-menu"
+								src="resources/assets/images/menu.png" /></span></a></li>
+					<li class="nav-toggle"><a href="#" data-toggle="collapse"
+						data-target=".inner-navigation"><span class="menu-item-span"><i
+								class="ti-menu"><img src="resources/assets/images/menu.png" /></i></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- Header end-->
         
         <!-- Wrapper-->
         <div class="wrapper">
@@ -167,14 +261,19 @@
                         <div class="col-lg-8">
                             <!-- Post-->
                             <article class="post">
-                                <div class="post-preview"><img src="resources/assets/images/blog/1.jpg" alt=""></div>
+                            	<c:if test="${post.originalFile == null}">
+                            	<div class="post-preview"><img src="resources/assets/images/blog/1.jpg" alt=""></div>
+                            	</c:if>
+                            	<c:if test="${post.originalFile != null}">
+                                <div class="post-preview"><img src="<c:url value=""/>" alt=""></div>
+                                </c:if>
                                 <div class="post-wrapper">
                                     <div class="post-header">
                                         <h1 class="post-title">${post.postTitle}</h1>
                                         <ul class="post-meta">
                                             <li>${post.postDate}</li>
                                             <li><a href="follow_page">${post.memberId}</a></li>
-                                            <li><a href="#">3 Comments</a></li>
+                                            <li>${replyCount} Comments</li>
                                         </ul>
                                     </div>
                                     <div class="post-content">
@@ -186,62 +285,48 @@
 
                             <!-- Comments area-->
                             <div class="comments-area m-b-50">
-                                <h5 class="comments-title">3 Comments</h5>
+                                <h5 class="comments-title">${replyCount} Comments</h5>
                                 <div class="comment-list">
                                     <!-- Comment-->
                                     <div class="comment">
-                                        <div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/1.jpg" alt=""></div>
-                                        <div class="comment-body">
-                                            <div class="comment-meta">
-                                                <div class="comment-meta-author"><a href="follow_page">Jason Ford</a></div>
-                                                <div class="comment-meta-date"><a href="#">May 5, 2015 at 4:51 am</a></div>
-                                            </div>
-                                            <div class="comment-content">
-                                                <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica.</p>
-                                            </div>
-                                            <div class="comment-reply"><a href="#" id="replyBTN">Reply</a></div>
-                                        </div>
-                                        <!-- Subcomment-->
-                                        <div class="children">
-                                            <div class="comment">
-                                                <div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/2.jpg" alt=""></div>
-                                                <div class="comment-body">
-                                                    <div class="comment-meta">
-                                                        <div class="comment-meta-author"><a href="follow_page">Harry Benson</a></div>
-                                                        <div class="comment-meta-date"><a href="#">May 5, 2015 at 4:51 am</a></div>
-                                                    </div>
-                                                    <div class="comment-content">
-                                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella.</p>
-                                                    </div>
-                                                    <div class="comment-reply"><a href="#">Reply</a></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Comment-->
-                                    <div class="comment">
-                                        <div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/3.jpg" alt=""></div>
-                                        <div class="comment-body">
-                                            <div class="comment-meta">
-                                                <div class="comment-meta-author"><a href="follow_page">Henry Cain</a></div>
-                                                <div class="comment-meta-date"><a href="#">May 5, 2015 at 4:51 am</a></div>
-                                            </div>
-                                            <div class="comment-content">
-                                                <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica.</p>
-                                            </div>
-                                            <div class="comment-reply"><a href="#">Reply</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                   	
+                                   	<c:if test="${not empty replyList}">
+										<c:forEach var="reply" items="${replyList}">
+											
+											<div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/1.jpg" alt=""></div>
+											
+											<div class="comment-body">
+												<div class="comment-meta">
+													<div class="comment-meta-author"><a href="follow_page">${reply.memberId}</a></div>
+													<div class="comment-meta-date">${reply.replyDate}</div>
+												</div>
+												<div class="comment-content">
+													<p class="idd">${reply.replyContent}</p>
+												</div>
+												<div class="form-group">
+													<div class="comment-reply">
+														<a class="replyModiBTN" data-value="${reply.replyNo}" data-content="${reply.replyContent}">Modify</a>&ensp;<a class="replyDelBTN" data-value="${reply.replyNo}">Delete</a>
+													</div>
+												<div id = "modiChange">	
+											</div>
+												</div>
+											
+											</div>
+											
+											
+											
+										</c:forEach> 
+										
+									</c:if>  
                                 <div class="comment-respond">
                                     <h5 class="comment-reply-title">Leave a Reply</h5>
                                     <p class="comment-notes">Your email address will not be published. Required fields are marked</p>
                                     <form class="comment-form row">
                                         <div class="form-group col-md-12">
-                                             <textarea class="form-control" rows="4" cols="100" placeholder="Comment" style="margin: 5px;"></textarea>
+                                             <textarea class="form-control" rows="4" cols="100" placeholder="Comment" style="margin: 5px;" id="replyContent" name="replyContent"></textarea>
                                         </div>
                                         <div class="form-submit col-md-12">
-											<button class="btn btn-dark" type="submit" >Comment</button>
+											<button class="btn btn-dark" type="button" id="replyBTN" name="replyBTN">Comment</button>
 											 
 											 <c:if test="${sessionScope.loginId != post.memberId}">
 											 <div class="form-group" id = "button_group">
@@ -256,10 +341,12 @@
                                 </div>
                                 
                                  
-                               	
+                            </div>
+                        	</div>
+                        	</div> 	
                             </div>
                             <!-- Comments area end-->
-                        </div>
+                       
                         
                         
                         
@@ -429,7 +516,7 @@
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->
-        <script src="resources/assets/js/custom/jquery.min.js"></script>
+       <script src="resources/assets/js/custom/jquery.min.js"></script>
         <script src="resources/assets/js/custom/popper.min.js"></script>
         <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="resources/assets/js/custom/plugins.min.js"></script>

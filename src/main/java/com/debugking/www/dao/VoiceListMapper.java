@@ -16,7 +16,5 @@ public interface VoiceListMapper {
 
 	public List<Posts> selectAll(Map<String, String> map, RowBounds rb); // 전체 선택하기 
 
-	public int writing(Posts post); //글쓰기
-	
 
 }

@@ -56,9 +56,8 @@
 			location.href="signup"
 		})
 		
-		$("#btnWriteForm").on('click',function(){
-			location.href="write";
-		})
+		
+		
 	})
 	
 		
@@ -78,66 +77,73 @@
         <!-- Preloader end-->
 
 
-                <!-- Header-->
-        <header class="header header-transparent">
-            <div class="container-fluid">
-                <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
-                <!-- Navigation-->
-                <div class="inner-navigation collapse">
-                    <div class="inner-nav">
-                        <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
-                            </li>
-                            
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="voice_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="voice_weekly">Weekly</a></li>
-                                            <li><a href="voice_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="voice_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="video_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="video_weekly">Weekly</a></li>
-                                            <li><a href="video_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="video_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
-                            </li>
-                            
-                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="community">Board</a></li>
-                                    <li><a href="myblog">My Blog</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="extra-nav">
-                    <ul>
-                        <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-        <!-- Header end-->
+        <!-- Header-->
+	<header class="header header-transparent">
+		<div class="container-fluid">
+			<!-- Brand-->
+			<div class="inner-header">
+				<a class="inner-brand" href="main">UtaJJang</a>
+			</div>
+			<!-- Navigation-->
+			<div class="inner-navigation collapse">
+				<div class="inner-nav">
+					<ul>
+						<li class="menu-item-has-children menu-item-has-mega-menu"><a
+							href="main"><span class="menu-item-span">Home</span></a></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Voice</span></a>
+							<ul class="sub-menu">
+								<li><a href="voice_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="voice_weekly">Weekly</a></li>
+										<li><a href="voice_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="voice_all">ALL</a></li>
+							</ul></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Video</span></a>
+							<ul class="sub-menu">
+								<li><a href="video_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="video_weekly">Weekly</a></li>
+										<li><a href="video_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="video_all">ALL</a></li>
+							</ul></li>
+
+						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						</li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Community</span></a>
+							<ul class="sub-menu">
+								<li><a href="community">Board</a></li>
+								<li><a href="myblog">My Blog</a></li>
+							</ul></li>
+						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
+						<c:if test="${sessionScope.memberId == admin}">
+						<li class="menu-item-has-children"><a href="managerPage"><span
+								class="menu-item-span">Admin</span></a></li></c:if>
+					</ul>
+				</div>
+			</div>
+			<div class="extra-nav">
+				<ul>
+					<li><a class="off-canvas-open" href="#"><span
+							class="menu-item-span"><img class="ti-menu"
+								src="resources/assets/images/menu.png" /></span></a></li>
+					<li class="nav-toggle"><a href="#" data-toggle="collapse"
+						data-target=".inner-navigation"><span class="menu-item-span"><i
+								class="ti-menu"><img src="resources/assets/images/menu.png" /></i></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- Header end-->
 
         <!-- Wrapper-->
         <div class="wrapper">
@@ -154,7 +160,7 @@
                 </div>
             </section>
 
-            <section class="module p-t-0">
+            
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 m-auto">
@@ -164,13 +170,13 @@
                         </div>
                     </div>
                 </div>
-		<div class="container" style="margin: 100px;">
+			<div class="container" style="margin: 100px;">
 
 				<div class="table-responsive">
 					<!-- 검색창 -->
 					<div class="pull-right" style="float: right; margin-bottom: 10px;">
 						<!-- boardList?searchItem=title -->
-						<form action="boardList" method="get">
+						<form action="community" method="get">
 							<select name="searchItem" style="height: 28px;">
 								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
 								<option value="memberId"
@@ -222,19 +228,32 @@
 							</c:if>
 						</tbody>
 					</table>
-				</div>
+					<div class="row">
+                                <div class="col-md-12">
+                                    <nav>
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item"><a class="page-link" href="community?&currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-left"></span></a></li>
+                                            <c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup}">
+												<li class="page-item"><a class="page-link" href="community?&currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">${page}</a></li>
+											</c:forEach>
+                                            <li class="page-item"><a class="page-link" href="community?&currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-right"></span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+					</div>
 				<div>
 					
-					<button type="button" class="btn btn-sm btn-primary"
-						id="btnWriteForm" style="float: right;">글쓰기</button>
+					<a href="write?postType=community"><button type="button" class="btn btn-sm btn-primary"
+						id="btnWriteForm" style="float: right;">글쓰기</button></a>
 
 				</div>
 			</div>
            
                         
           </div>
-                
-           
+         
+      
 
             <!-- Footer-->
             <footer class="footer">
@@ -317,7 +336,7 @@
                 </div>
             </footer>
             <!-- Footer end-->
-        </div>
+       
         <!-- Wrapper end-->
  		<!-- Off canvas-->
         <div class="off-canvas-sidebar">

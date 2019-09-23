@@ -18,15 +18,8 @@ public class CommunityRepository {
 	@Autowired
 	SqlSession session;
 	
-	public int insert(Posts vo) {
-		CommunityMapper mapper = session.getMapper(CommunityMapper.class);
-	
-		int result = mapper.insert(vo);
-		
-		return result;
-	}
 
-	public int getBoardCount(String searchItem, String searchWord) {
+	public int getPostCount(String searchItem, String searchWord) {
 		CommunityMapper mapper = session.getMapper(CommunityMapper.class);
 		
 		Map<String, String> map = new HashMap<>();
@@ -35,7 +28,7 @@ public class CommunityRepository {
 		
 		int result = mapper.getBoardCount(map);
 		
-		return 0;
+		return result;
 	}
 
 	public ArrayList<Posts> selectAll(String postType, String searchItem, String searchWord, int startRecord, int countPerPage) {

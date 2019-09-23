@@ -9,8 +9,6 @@ import com.debugking.www.dto.Posts;
 
 public interface CommunityMapper {
 
-	public int insert(Posts vo);
-
 	public int getBoardCount(Map<String, String> map);
 
 	public ArrayList<Posts> selectAll(Map<String, String> map, RowBounds rb);

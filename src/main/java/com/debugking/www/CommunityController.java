@@ -30,28 +30,7 @@ public class CommunityController {
 	@Autowired
 	CommunityRepository repo;
 	
-	final String uploadPath = "/uploadfile";
-	
-	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String write(Posts vo, MultipartFile upload, HttpSession session){
-		
-		String memberId = (String)session.getAttribute("loginId");
-
-		String originalFilename = upload.getOriginalFilename();
-		String savedFilename = FileService.saveFile(upload, uploadPath);
-			
-		vo.setOriginalFile(originalFilename);
-		vo.setSavedFile(savedFilename);
-		vo.setMemberId(memberId);
-		
-		int result = repo.insert(vo);
-		
-		if(result > 0){
-			return "userBoard/community";
-		} else {
-			return "userBoard/write";
-		}
-	}
+	final String uploadPath="/Users/heeju/Documents/fileIO";
 	
 
 	@RequestMapping(value="/community", method=RequestMethod.GET)
@@ -61,8 +40,7 @@ public class CommunityController {
 		ArrayList<Posts> list = new ArrayList<>();
 		String postType = "community";
 
-		int totalRecordCount = repo.getBoardCount(searchItem, searchWord);
-		
+		int totalRecordCount = repo.getPostCount(searchItem, searchWord);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
 		list = repo.selectAll(postType, searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
@@ -75,15 +53,6 @@ public class CommunityController {
 		return "userBoard/community";
 	}
 	
-	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
-	public String commuDetail(int postNo, Model model){
-		
-		Posts post = repo.selectOne(postNo);
-		
-		model.addAttribute("post", post);
-		
-		return "userBoard/file_detail";
-	}
 	
 	@RequestMapping(value="/post_modify", method=RequestMethod.GET)
 	public String commu_update(int postNo, Model model){
@@ -91,8 +60,6 @@ public class CommunityController {
 		Posts post = repo.selectOne(postNo);
 		
 		model.addAttribute("post", post);
-		
-		System.out.println(post.getPostType());
 		
 		return "userBoard/post_modify";
 	}	
@@ -132,10 +99,8 @@ public class CommunityController {
 		if(post.getSavedFile() != null){
 			FileService.deleteFile(uploadPath+"/"+post.getSavedFile());
 		}
-		System.out.println("11");
 		repo.postDelete(postNo);
-		System.out.println("22");
 		
-		return "userBoard/community";
+		return "redirect:/community";
 	}
 }

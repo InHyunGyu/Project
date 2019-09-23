@@ -35,35 +35,5 @@
 		ORDER BY postNo DESC
 	</select>
 	
-	<!-- 글쓰기 -->
-	<insert id="writing" parameterType="Post">
-		insert into Posts
-		(
-			postNo
-			,memberId
-			,postTitle
-			,postContent
-			,postDate
-			,isAnnouncement
-			,postType
-			<if test="originalFile!=null">
-				,originalFile
-				,savedFile
-			</if>
-		)
-		values
-		(
-			postNoSeq.nextval
-			,#{memberId}
-			,#{postTitle}
-			,#{postContent}
-			,sysdate
-			,#{isAnnouncement}
-			,#{postType}
-			<if test="originalFile!=null">
-				,#{originalFile}
-				,#{savedFile}
-			</if>
-		)
-	</insert>
+	
 </mapper>
