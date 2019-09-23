@@ -13,6 +13,8 @@
 		</if>
 	</select>
 	
+	
+	
 	<select id="selectAll" resultType="Post" parameterType="map">
 		SELECT
 			postNo

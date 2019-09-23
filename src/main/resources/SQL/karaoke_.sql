@@ -1,4 +1,6 @@
 
+
+
 /* Drop Tables */
 
 DROP TABLE follower CASCADE CONSTRAINTS;
@@ -56,7 +58,7 @@ DROP SEQUENCE SEQ_userinfo_userNum;
 
 CREATE SEQUENCE followerNumSeq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE logNumSeq INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE replyNoSeq BY 1 START WITH 1;
+CREATE SEQUENCE replyNoSeq BY INCREMENT 1 START WITH 1;
 CREATE SEQUENCE postNoSeq INCREMENT BY 1 START WITH 1;
 
 
@@ -81,7 +83,7 @@ CREATE TABLE follower
 CREATE TABLE memberInfo
 (
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberId varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL,
 	-- 유저 비밀번호
 	memberPwd varchar2(40) NOT NULL,
 	-- 유저가 회원 가입할 때 입력한 실명
@@ -109,7 +111,7 @@ CREATE TABLE pointslog
 (
 	lognum number NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberId varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL,
 	theOtherId varchar2(50),
 	eventdate date,
 	amount number,
@@ -118,6 +120,9 @@ CREATE TABLE pointslog
 	pointtype varchar2(30),
 	PRIMARY KEY (logNum)
 );
+
+
+select * from posts;
 
 
 CREATE TABLE posts
@@ -144,32 +149,12 @@ CREATE TABLE replies
 (
 	replyNo number NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberId varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL,
 	-- 게시물번호
 	postNo number NOT NULL,
 	replyContent varchar2(500),
 	replyDate date DEFAULT sysdate,
 	PRIMARY KEY (replyNo)
 );
-
-
-
-
-/* Create Foreign Keys */
-
-ALTER TABLE follower
-	ADD FOREIGN KEY (memberid)
-	REFERENCES memberInfo (memberid)
-	ON DELETE CASCADE
-;
-
-
-
-ALTER TABLE replies
-	ADD CONSTRAINT delete FOREIGN KEY (postno)
-	REFERENCES posts (postno)
-	ON DELETE CASCADE
-;
-
 
 
