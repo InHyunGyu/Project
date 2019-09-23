@@ -33,11 +33,33 @@
 
 <script>
 	$(function(){
-		init();
+		$("#pageLogin").on('click', function(){
+			var memberId = $("#pageId").val();
+			var memberPwd = $("#pagePwd").val();
+			
+			if(memberId.length == 0 || memberPwd.length == 0) {
+				alert("다시입력해주세요.");
+				return;
+			}
+			
+			var send = {
+					"memberId" : memberId,
+					"memberPwd" : memberPwd
+			}
+			
+			$.ajax({
+				method:'post',
+				url:'login',
+				data:send,
+				success: function(){
+					location.href="main"
+				}
+			})
+		})
 		
 		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
+			var memberId = $(".memberId").val();
+			var memberPwd = $(".memberPwd").val();
 			
 			if(memberId.length == 0 || memberPwd.length == 0) {
 				alert("다시입력해주세요.");
@@ -63,94 +85,8 @@
 			location.href="signup"
 		})
 		
-		$("#idBTN").on('click', function(){
-			
-			var memberName = $("#memberName").val();
-			var memberEmail = $("#memberEmail").val();
-			
-			if(memberName.length == 0 || memberEmail.length ==0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberName":memberName,
-					"memberEmail":memberEmail
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'findid',
-				data:'send',
-				success:function(){
-					location.href="main";
-				}
-			})	
-		})
-		
-		$("#idFind").on('click', function(){
-			init();
-		})
-		
-		$("#pwdFind").on('click',function(){
-			var tag = '';
-			
-			tag += '<div class="form-group">'
-				tag += '<input class="form-control" type="text" placeholder="memberId" id="memberId" name="memberId">'
-				tag += '</div>'
-				tag += '<div class="form-group">'
-				tag += '<input class="form-control" type="email" placeholder="memberEmail" id="memberEmail" name="memberEmail">'
-				tag += '</div>'
-				tag += '<div class="form-group">'
-				tag += '<button class="btn btn-block btn-round btn-brand" type="button" id="pwdBTN">PWD</button>'
-				tag += '</div>'
-		            
-		        $("#find").html(tag);
-			
-			
-			$("#pwdBTN").on('click', function(){
-				var memberId = $("#memberId").val();
-				var memberEmail = $("#memberEmail").val();
-				
-				if(memberId.length == 0 || memberEmail.length ==0) {
-					alert("다시입력해주세요.");
-					return;
-				}
-				
-				var send = {
-						"memberId":memberId,
-						"memberEmail":memberEmail
-				}
-				
-				$.ajax({
-					method:'post',
-					url:'findpwd',
-					data:'send',
-					success:function(){
-						location.href="main";
-					}
-				})
-			})
-		})
 	})
 	
-function init(){
-		var tag = '';
-		
-		tag += '<div class="form-group">'
-			tag += '<input class="form-control" type="text" placeholder="memberName" id="memberName" name="memberName">'
-			tag += '</div>'
-			tag += '<div class="form-group">'
-			tag += '<input class="form-control" type="email" placeholder="memberEmail" id="memberEmail" name="memberEmail">'
-			tag += '</div>'
-			tag += '<div class="form-group">'
-			tag += '<button class="btn btn-block btn-round btn-brand" type="button" id="idBTN">ID</button>'
-			tag += '</div>'
-	            
-	        $("#find").html(tag);
-		
-	}
-		
 	</script>
 </head>
 <body>
@@ -165,7 +101,7 @@ function init(){
 	</div>
 	<!-- Preloader end-->
 
-	   <!-- Header-->
+	    <!-- Header-->
 	<header class="header header-transparent">
 		<div class="container-fluid">
 			<!-- Brand-->
@@ -241,13 +177,18 @@ function init(){
 				<div class="row">
 					<div class="col-lg-4 col-md-6 m-auto">
 						<div class="m-b-20">
-							<h6>
-								<a href="#" id="idFind">ID</a> | <a href="#"
-									id="pwdFind">PWD</a>
-							</h6>
+							<h6>Login</h6>
 						</div>
 						<div class="m-b-20" id="find">
-
+							<div class="form-group">
+								<input class="form-control" type="text" placeholder="memberId" id="pageId" name="memberId">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="email" placeholder="memberPwd" id="pagePwd" name="memberPwd">
+							</div>
+							<div class="form-group">
+								<button class="btn btn-block btn-round btn-brand" type="button" id="pageLogin">login</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -317,17 +258,17 @@ function init(){
 									<h6>Portfolio</h6>
 								</div>
 								<ul>
-									<li><a href="#"><img src="assets/images/widgets/1.jpg"
+									<li><a href="#"><img src="resources/assets/images/widgets/1.jpg"
 											alt=""></a></li>
-									<li><a href="#"><img src="assets/images/widgets/2.jpg"
+									<li><a href="#"><img src="resources/assets/images/widgets/2.jpg"
 											alt=""></a></li>
-									<li><a href="#"><img src="assets/images/widgets/3.jpg"
+									<li><a href="#"><img src="resources/assets/images/widgets/3.jpg"
 											alt=""></a></li>
-									<li><a href="#"><img src="assets/images/widgets/7.jpg"
+									<li><a href="#"><img src="resources/assets/images/widgets/7.jpg"
 											alt=""></a></li>
-									<li><a href="#"><img src="assets/images/widgets/8.jpg"
+									<li><a href="#"><img src="resources/assets/images/widgets/8.jpg"
 											alt=""></a></li>
-									<li><a href="#"><img src="assets/images/widgets/6.jpg"
+									<li><a href="#"><img src="resources/assets/images/widgets/6.jpg"
 											alt=""></a></li>
 								</ul>
 							</aside>
@@ -377,7 +318,7 @@ function init(){
                         	<p class="text-center">Login</p>
                             <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
                             <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
+                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" class="loginBTN" style="width: 320px; height: 54px;">login</button>
                            <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
 
                             </div> 

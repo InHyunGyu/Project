@@ -54,6 +54,10 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		
+		$("#update").on('click', function(){
+			$(".form").submit();
+		})
 	})
 	
 		
@@ -71,66 +75,73 @@
         </div>
         <!-- Preloader end-->
 
-         <!-- Header-->
-        <header class="header header-transparent">
-            <div class="container-fluid">
-                <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
-                <!-- Navigation-->
-                <div class="inner-navigation collapse">
-                    <div class="inner-nav">
-                        <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
-                            </li>
-                            
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="voice_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="voice_weekly">Weekly</a></li>
-                                            <li><a href="voice_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="voice_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="video_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="video_weekly">Weekly</a></li>
-                                            <li><a href="video_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="video_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
-                            </li>
-                            
-                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="community">Board</a></li>
-                                    <li><a href="myblog">My Blog</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="extra-nav">
-                    <ul>
-                        <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-        <!-- Header end-->
+        <!-- Header-->
+	<header class="header header-transparent">
+		<div class="container-fluid">
+			<!-- Brand-->
+			<div class="inner-header">
+				<a class="inner-brand" href="main">UtaJJang</a>
+			</div>
+			<!-- Navigation-->
+			<div class="inner-navigation collapse">
+				<div class="inner-nav">
+					<ul>
+						<li class="menu-item-has-children menu-item-has-mega-menu"><a
+							href="main"><span class="menu-item-span">Home</span></a></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Voice</span></a>
+							<ul class="sub-menu">
+								<li><a href="voice_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="voice_weekly">Weekly</a></li>
+										<li><a href="voice_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="voice_all">ALL</a></li>
+							</ul></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Video</span></a>
+							<ul class="sub-menu">
+								<li><a href="video_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="video_weekly">Weekly</a></li>
+										<li><a href="video_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="video_all">ALL</a></li>
+							</ul></li>
+
+						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						</li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Community</span></a>
+							<ul class="sub-menu">
+								<li><a href="community">Board</a></li>
+								<li><a href="myblog">My Blog</a></li>
+							</ul></li>
+						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
+						<c:if test="${sessionScope.memberId == admin}">
+						<li class="menu-item-has-children"><a href="managerPage"><span
+								class="menu-item-span">Admin</span></a></li></c:if>
+					</ul>
+				</div>
+			</div>
+			<div class="extra-nav">
+				<ul>
+					<li><a class="off-canvas-open" href="#"><span
+							class="menu-item-span"><img class="ti-menu"
+								src="resources/assets/images/menu.png" /></span></a></li>
+					<li class="nav-toggle"><a href="#" data-toggle="collapse"
+						data-target=".inner-navigation"><span class="menu-item-span"><i
+								class="ti-menu"><img src="resources/assets/images/menu.png" /></i></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- Header end-->
 
        <!-- Wrapper-->
 	<div class="wrapper">
@@ -146,33 +157,30 @@
 							</h6>
 						</div>
 						<div class="m-b-20" id="write">
+							<form action="post_modify" method="post">
 							<div class="form-group">	
-								<select class="form-control col-md-3" name="column" id="column">
-									<option value="voice" ${post.column == 'voice' ? 'selected' : ''}>voice</option>
-									<option value="video" ${post.column == 'video' ? 'selected' : ''}>video</option>
-									<option value="community" ${post.column == 'community' ? 'selected' : ''}>community</option>
+								<select class="form-control col-md-3" name="postType" id="postType">
+									<option value="voice" ${post.postType == 'voice' ? 'selected' : ''}>voice</option>
+									<option value="video" ${post.postType == 'video' ? 'selected' : ''}>video</option>
+									<option value="community" ${post.postType == 'community' ? 'selected' : ''}>community</option>
 								</select>
-								<input class="form-control col-md-9" type="text" id="title" name="title"
-								style="height:54px; width: 400px; value="${post.title}">
+								<input class="form-control col-md-9" type="text" id="postTitle" name="postTitle"
+								style="height:54px; width: 400px;" value="${post.postTitle}">
 							</div>
 							<div class="form-group">
-								<textarea class="form-control" id="content" name="content" rows="15" cols="100" value="${post.content}"></textarea>
+								<textarea class="form-control" id="postContent" name="postContent" rows="15" cols="100">${post.postContent}</textarea>
 							</div>
 							<div class="form-group">
-								<input class="form-control" type="file" id="upload" name="upload" value="${post.upload}" />
+								<input class="form-control" type="file" id="upload" name="upload" value="${post.originalFile}" />
 							</div>
 							<div class="form-group">
-								<button class="btn btn-block btn-round btn-brand" type="button" id="writing">Modify</button>
+								<input type="hidden" id="postNo" name = "postNo" value="${post.postNo}">
+								<button class="btn btn-block btn-round btn-brand" type="submit" id="update">Modify</button>
 							</div>
-						
+						</form>
 						
 						</div>
 						<div class="m-b-20">
-							<p>
-								<small>Dont have an account yet? <a href="#">Create
-										account</a><br>Forgot your username or password? <a href="#">Recover
-										account</a></small>
-							</p>
 						</div>
 					</div>
 				</div>

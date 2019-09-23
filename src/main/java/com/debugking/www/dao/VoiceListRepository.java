@@ -46,12 +46,7 @@ public class VoiceListRepository {
 		return list;
 	}
 	
-	//글쓰기
-	public int writing(Posts post) {
-		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
-		int result = mapper.writing(post);
-		return result;
-	}
+	
 
 
 

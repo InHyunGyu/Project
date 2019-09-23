@@ -15,5 +15,7 @@
 		<mapper resource="mappers/MemberMapper.xml" />
 		<mapper resource="mappers/PointslogMapper.xml" />
 		<mapper resource="mappers/VoiceMapper.xml" />
+		<mapper resource="mappers/CommunityMapper.xml" />
+		<mapper resource="mappers/ListMapper.xml" />
 	</mappers>
 </configuration>
