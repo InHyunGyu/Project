@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.debugking.www.dao.VoiceListRepository;
@@ -29,16 +30,16 @@ public class VoiceListController {
 	
 	@RequestMapping(value="/voice_new", method=RequestMethod.GET)
 	public String voice_new(
-			@RequestParam(value="searchItem" , defaultValue="postTitle") String searchItem, 
+			@RequestParam(value="searchItem" , defaultValue="postTitle") String searchItem,
 			@RequestParam(value="searchWord",  defaultValue="")      String searchWord, 
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
 			Model model){
 		
-		int totalRecordCount = repo.getVoiceCount(searchItem, searchWord);
+		int totalRecordCount = repo.getVoiceNewCount(searchItem, searchWord);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
-		System.out.println(navi.getStartRecord());
-		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		//System.out.println(navi.getStartRecord());
+		List<Posts> list = repo.selectNewAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
@@ -59,7 +60,20 @@ public class VoiceListController {
 	}
 	
 	@RequestMapping(value="/voice_all", method=RequestMethod.GET)
-	public String voice_all(){
+	public String voice_all(
+			@RequestParam(value="searchItem" , defaultValue="postTitle") String searchItem,
+			@RequestParam(value="searchWord",  defaultValue="")      String searchWord, 
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
+			Model model){
+		int totalRecordCount = repo.getVoiceCount(searchItem, searchWord);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		
+		System.out.println(navi.getStartRecord());
+		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		model.addAttribute("searchItem", searchItem);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("navi", navi);
+		model.addAttribute("list", list);
 		return "userBoard/voice_all";
 	}
 	
@@ -68,12 +82,12 @@ public class VoiceListController {
 	public String writing(Posts post, HttpSession session, MultipartFile upload){
 		
 		post.setMemberId((String)session.getAttribute("memberId"));
-		System.out.println(post);
 		String originalfile = upload.getOriginalFilename();
 		String savedfile = FileService.saveFile(upload,uploadPath);
 		
 		post.setOriginalFile(originalfile);
 		post.setSavedFile(savedfile);
+		
 		
 		int result = serivce.writing(post);
 		if(result==0){
@@ -82,4 +96,14 @@ public class VoiceListController {
 		return "redirect:voice_new";
 	}
 	
+	
+	//FILE Detail 클릭클릭 > jsp 필요한거 같기두하구.. 이걸로 같이 써도 될꺼 같기도 하고.. ajax로 해야 되는건가 싶기도 하고.. 
+	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
+	public String file_detail(int postNo,Model model){
+		Posts result = repo.selectPostOne(postNo);
+		model.addAttribute("post", result);
+		
+		System.out.println("file_detail"+result);
+		return "userBoard/file_detail";
+	}
 }

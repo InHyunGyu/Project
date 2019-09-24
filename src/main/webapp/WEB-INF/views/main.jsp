@@ -142,8 +142,9 @@
                                 </ul>
                             </li>
                             <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-                            <li class="menu-item-has-children"><a href="managerPage"><span class="menu-item-span">Admin</span></a>
-                            </li>
+                           <%--  <c:if test="${sessionScope.memberId=='admin'}"> --%>
+                           		<li class="menu-item-has-children"><a href="managerPage"><span class="menu-item-span">Admin</span></a></li>
+                            <%-- </c:if> --%>
                         </ul>
                     </div>
                 </div>

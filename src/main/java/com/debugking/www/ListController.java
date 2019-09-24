@@ -4,8 +4,11 @@ package com.debugking.www;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.debugking.www.dto.Posts;
 
 
 
@@ -51,20 +54,16 @@ public class ListController {
 		return "userBoard/community";
 	}
 	
-	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
-	public String file_detail(){
-		return "userBoard/file_detail";
+	@RequestMapping(value="/post_modify", method=RequestMethod.GET)
+	public String post_modify(){
+		return "userBoard/post_modify";
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String write(){
 		return "userBoard/write";
 	}
-	
-	@RequestMapping(value="/post_modify", method=RequestMethod.GET)
-	public String post_modify(){
-		return "userBoard/post_modify";
-	}
+
 	
 	@RequestMapping(value="/streaming_write", method=RequestMethod.GET)
 	public String streamingPage(){
