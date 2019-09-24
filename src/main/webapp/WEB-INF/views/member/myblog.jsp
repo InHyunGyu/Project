@@ -24,7 +24,13 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	<style>
+		img#mypic{
+			width: 800px;
+			height: 600px;
+		}
 	
+	</style>
 	<script>
 	$(function(){
 		init(); 
@@ -91,8 +97,8 @@
     			contentType: false, 
     			success: function(resp){
     				alert("upload completion");
-    				alert(resp);
     				$("#mypic").attr('src', resp);
+    				location.reload();
     			}
     		})
     	})
