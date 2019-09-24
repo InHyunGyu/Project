@@ -15,6 +15,9 @@
 			,signupDate
 			,memberEmail
 			,memberPoint
+			,photoname
+			,savefile
+			,myintro
 		From
 			MemberInfo
 		Where
@@ -80,5 +83,18 @@
 		set emailchecked = 'y'
 		where memberId = #{memberId}
 	</update>
+	
+	<update id="setPhotoname" parameterType="Member">
+		update MemberInfo
+		set photoname = #{photoname}
+		where memberId = #{memberId}
+	</update>
+	
+	<update id="setSavefile" parameterType="Member">
+		update MemberInfo
+		set savefile = #{savefile}
+		where memberId = #{memberId}
+	</update>
+	
 </mapper>
 

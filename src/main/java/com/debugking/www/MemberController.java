@@ -37,7 +37,6 @@ import com.debugking.www.service.MemberService;
 import com.debugking.www.util.Gmail;
 import com.debugking.www.util.SHA256;
 
-import global.hans.myblog.dto.ContentsCombined;
 
 
 
@@ -49,10 +48,13 @@ public class MemberController {
 	MemberRepository repo;
 	
 	
-	final String uploadPath = "/resources/userFiles"; 
+	final String uploadPath = "/resources/assets/userFiles"; 
 	String realpath;
 	String savedFilename; //UUID 및 date 문자열을 포함한 확장자를 포함한 파일명
 	String originalFilename;
+	
+	
+	
 	
 	public void createContentId(MemberInfo member, HttpServletRequest request){
 		System.out.println("----------createContentId메서드 호출-----");
@@ -61,7 +63,8 @@ public class MemberController {
 		System.out.println("실제주소==============> "+realpath);
 		File theDir = new File("userFiles"); 
 		if(!theDir.exists()){
-			new File(realpathTemp + "\\userFiles").mkdir(); 
+			//new File(realpathTemp + "\\userFiles").mkdir();
+			new File(realpathTemp + "\\userFiles").mkdir();
 		}
 		
 		realpath = request.getServletContext().getRealPath("/resources/assets/userFiles");
@@ -81,21 +84,47 @@ public class MemberController {
 		
 		System.out.println("----------createContentId메서드 호출 종료-----");
 	}
+	@RequestMapping(value="/imageFetch", method=RequestMethod.GET)
+	@ResponseBody
+	public String imageFetch(HttpSession session, HttpServletRequest request){
+		String memberId = (String)session.getAttribute("memberId");
+		System.out.println(memberId);
+		MemberInfo member = repo.selectOne(memberId);
+		String photoname = member.getPhotoname();
+		System.out.println(photoname);
+		
+		String realpath = request.getServletContext().getRealPath("/resources/assets/userFiles");
+		String filepath = realpath + "\\" + photoname;
+		
+		
+		return "download?memberId=" + memberId;
+	}
+	
 	
 	@RequestMapping(value="/ajaxFileUpload", method=RequestMethod.POST)
 	@ResponseBody
 	public String ajaxFileUpload(MemberInfo member, HttpServletRequest request,
-								MultipartFile[] uploadFile, HttpServletResponse response)
+								MultipartFile[] uploadFile, HttpServletResponse response,
+								HttpSession session)
 	{
 		response.setHeader("Content-Type", "text/html;charset=utf-8");
+		String memberId = (String) session.getAttribute("memberId");
 		//이 메서드는 사진 파일을 insert하기 위해 쓰일 예정
 		createContentId(member, request); //이 메서드에서 'savedFilename'과 '실 저장 경로'가 결정됨.
 		
+		String fullpath = realpath + "\\" + savedFilename; 
 		
-		member.setSavefile(savedFilename);
+		member.setMemberId(memberId);
+		member.setPhotoname(savedFilename);
+		member.setSavefile(fullpath);
+		
+		
+		repo.setPhotoname(member);
+		repo.setSavefile(member);
+		
 		
 		//multipart로 받아온 파일을 지정한 realpath경로에  savedFilename의 이름으로 저장한다.  
-		String uploadPath = realpath; 
+		
 		for (MultipartFile multipartFile : uploadFile) 
 		{
 			File saveFile = new File(realpath, savedFilename);
@@ -106,24 +135,31 @@ public class MemberController {
 			}
 		}
 		
-		return "file:\\\\" + realpath + "\\" + savedFilename;
+	/*
+		"file:\\\\" + realpath + "\\" + savedFilename 
+		이것을 ajax통신으로 클라이언트에게 return 하게 되면 파일의 로컬 파일 경로를 toss한다. 
+	*/
+		
+		return "download?memberId=" + memberId;
 	}
 	
 	//파일 다운로드 및 이미지 
 		@RequestMapping(value="/download", method=RequestMethod.GET) 
-		public String download(MemberInfo member, HttpServletResponse response) 
+		public String download(MemberInfo member, HttpServletResponse response, HttpSession session) 
 		/*참고: 만일 리턴 타입이 void이면 download.jsp를 찾는다. */
 		{
-			System.out.println(member);
-			MemberInfo result 		= repo.selectOne(member);
-			String savedfile 	= result.getSavedfile(); 
-			String filename = result.getFileName();  
+			String memberId = (String) session.getAttribute("memberId");
+			MemberInfo fetchedMember 		= repo.selectOne(memberId);
+			System.out.println(fetchedMember);
+			
+			String savedfile 	= fetchedMember.getSavefile();
+			String filename = fetchedMember.getPhotoname();
 			
 			//응답 Body를 브라우저가 어떻게 표시해야할지 알려준다. 다운로드되길 원하는 파일은 attachment로 값을 설정하고, 
 			//filename 옵션으로 파일명까지 지정해줄 수 있다.
 			response.setHeader("Content-Disposition", "attachment;filename="+filename);
 			
-			String fullPath = uploadPath + "/" + filename; 
+			String fullPath = savedfile; 
 			
 			FileInputStream filein 		= null;
 			ServletOutputStream fileout = null;

@@ -27,7 +27,7 @@
 	
 	<script>
 	$(function(){
-		
+		init(); 
 		$("#loginBTN").on('click', loginBTN)
 		$("#signup").on('click', function(){
 			location.href="signup"
@@ -35,9 +35,20 @@
 		ajaxUploadImage() 
 		
 		var fd;//폼 데이터 전역변수 설정
-		
-		
 	})
+	
+	function init()
+	{
+		$.ajax({
+			url: "imageFetch",
+			type: "get", 
+			success: function(resp){
+				alert(resp)
+				$("#mypic").attr('src', resp);
+			}
+		})
+	}
+	
 	
 	function extractContentData()
     {
@@ -242,7 +253,7 @@
                             <!-- Post-->
                             <article class="post">
                             	<!-- 메인 사진을 위한 파일 업로드 -->
-                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/1.jpg" alt=""></a>
+                                <div class="post-preview"><a href="#"><img id="mypic" src="resources/assets/images/blog/1.jpg" alt=""></a>
 	                                <input type="file" id="uploadFile" name="uploadFile"><br>
 	                                <input type="button" id="uploadBtn" value="업로드">
 	                                <input type="hidden" id="hdnSession" value="${sessionScope.memberId}" />
@@ -318,7 +329,7 @@
                                     </div>
                                     <ul>
                                         <li class="clearfix">
-                                            <div class="wi"><a href="#"><img id="mypic" src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
+                                            <div class="wi"><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
                                             <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
                                         </li>
                                     </ul>

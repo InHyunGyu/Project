@@ -56,11 +56,24 @@ public class MemberRepository {
 		return result;
 	}
 	
-	public MemberInfo selectOne(MemberInfo member) {
+	public MemberInfo selectOne(String memberId) {
 		// TODO Auto-generated method stub
-		return null;
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		MemberInfo member = mapper.selectOne(memberId);
+		return member;
 	}
-	
+	public int setPhotoname(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.setPhotoname(member);
+		
+		return result;
+	}
+	public int setSavefile(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.setSavefile(member);		
+		
+		return result;
+	}
 
 
 }
