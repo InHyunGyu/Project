@@ -236,7 +236,7 @@
 								<c:forEach var="board" items="${list}" varStatus="stat">
 									<tr>
 										<td>${stat.count + navi.startRecord}</td>
-										<td><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
+										<td><a href="file_detail?postNo=${board.postNo}" >${board.postTitle}</a></td>
 										<td>${board.memberId}</td>
 										<td>${board.postDate}</td>
 										<td>${board.postView}</td>

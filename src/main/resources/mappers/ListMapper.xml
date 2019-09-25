@@ -38,7 +38,18 @@
 
 	<select id="selectOne" parameterType="int" resultType="Post">
 		select
-			*
+			postNo,
+			memberId,
+			postTitle,
+			postContent,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			isAnnouncement,
+			postLike,
+			postView,
+			reported,
+			postType,
+			originalFile,
+			savedFile
 		from posts
 		where postno = #{postNo}
 	</select>
@@ -102,4 +113,15 @@
 	
 	</update>
 	
+	<update id="reported" parameterType="int">
+		update posts set
+			reported = reported + 1
+		where postNo = #{postNo}
+	</update>
+	
+	<update id="postView" parameterType="int">
+		update posts set
+			postView = postView + 1
+		where postNo = #{postNo}
+	</update>
 </mapper>

@@ -173,22 +173,23 @@
 		$("#postLike").on('click', function(){
 			var postNo = $(this).attr("data-value");
 			
-			alert(postNo);
+			$.ajax({
+				method:'get',
+				url:'postLike?postNo='+postNo,
+				success:function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$("#reported").on('click', function(){
+			var postNo = $(this).attr("data-value");
 			
 			$.ajax({
 				method:'get',
-				url:'postLike',
-				data:postNo,
+				url:'reported?postNo='+postNo,
 				success:function(){
-					var postLike = "${post.postLike}"
-					
-					alert("ㄹ")
-				
-					tag = '';
-					
-					tag += postLike + 1;
-					
-					$("#postLikeCount").html(tag);
+					location.reload();
 				}
 			})
 		})
@@ -276,16 +277,12 @@
         <!-- Wrapper-->
         <div class="wrapper">
             <!-- Hero-->
-            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-17.jpg" data-overlay="0.3">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/board12.jpg" data-overlay="0.3">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>Bluetooth Speaker</h2>
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Blog</a></li>
-                                <li class="breadcrumb-item active">Single Post</li>
-                            </ol>
+                            <h2>Detail</h2>
+                           
                         </div>
                     </div>
                 </div>
@@ -310,17 +307,20 @@
                                         <h1 class="post-title">${post.postTitle}</h1>
                                         <ul class="post-meta">
                                             <li>${post.postDate}</li>
-                                            <li><a href="follow_page">${post.memberId}</a></li>
-                                            <li>${replyCount} Comments</li>
-                                            <li id="postLikeCount">${post.postLike}</li>
-                                            <li>${post.reported}</li>
+                                            <li><a href="follow_page?memberId=${post.memberId}">${post.memberId}</a></li>
+                                        </ul>
+                                        <ul class="post-meta">
+                                            <li>View : ${post.postView}</li>
+                                            <li>Like : ${post.postLike}</li>
+                                            <li>Report : ${post.reported}</li>
                                         </ul>
                                     </div>
                                     <div class="post-content">
                                         <p>${post.postContent}</p>
                                     </div>
-                                    
+                                   
                                 </div>
+                                 
                             </article>
                             <!-- Post end-->
 

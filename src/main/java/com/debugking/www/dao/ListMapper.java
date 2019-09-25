@@ -23,4 +23,8 @@ public interface ListMapper {
 
 	public int postLike(int postNo);
 
+	public int reported(int postNo);
+
+	public int postView(int postNo);
+
 }

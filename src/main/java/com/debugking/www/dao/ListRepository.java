@@ -77,9 +77,19 @@ public class ListRepository {
 
 		public int postLike(int postNo) {
 			ListMapper mapper = session.getMapper(ListMapper.class);
-			
 			int result = mapper.postLike(postNo);
-			
+			return result;
+		}
+
+		public int reported(int postNo) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			int result = mapper.reported(postNo);
+			return result;
+		}
+
+		public int postView(int postNo) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			int result = mapper.postView(postNo);
 			return result;
 		}
 		
