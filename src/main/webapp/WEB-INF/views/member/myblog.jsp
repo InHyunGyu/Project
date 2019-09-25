@@ -49,7 +49,6 @@
 			url: "imageFetch",
 			type: "get", 
 			success: function(resp){
-				alert(resp)
 				$("#mypic").attr('src', resp);
 			}
 		})
