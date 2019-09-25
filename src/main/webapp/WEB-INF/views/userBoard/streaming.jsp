@@ -145,7 +145,7 @@
 								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
 							</ul></li>
 						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-						<c:if test="${sessionScope.memberId == admin}">
+						<c:if test="${sessionScope.memberId == 'admin'}">
 						<li class="menu-item-has-children"><a href="managerPage"><span
 								class="menu-item-span">Admin</span></a></li></c:if>
 					</ul>
@@ -163,14 +163,11 @@
 
         <!-- Wrapper-->
         <div class="wrapper">
-            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/board9.jpg" data-overlay="0.5">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="space" data-mY="60px"></div> 
-                            <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-                            <p class="m-b-40"><br>Streaming<br> Now </p>
-                            <div class="space" data-MY="60px"></div>
+                            <h2>Streaming</h2>
                         </div>
                     </div>
                 </div>
@@ -342,12 +339,17 @@
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">로그인한아이디</p>
-                            <p class="text-center">n 번 방문</p>
+                            <p class="text-center">${sessionScope.memberId}</p>
                             <p class="text-center">
                             	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
                             </p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
+                            <p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p>
+							<p class="text-center">
+								<a href="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
                         </div>
                     </aside>
                     </c:if>

@@ -230,7 +230,7 @@ function init(){
 								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
 							</ul></li>
 						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-						<c:if test="${sessionScope.memberId == admin}">
+						<c:if test="${sessionScope.memberId == 'admin'}">
 						<li class="menu-item-has-children"><a href="managerPage"><span
 								class="menu-item-span">Admin</span></a></li></c:if>
 					</ul>
@@ -249,7 +249,7 @@ function init(){
 	<div class="wrapper">
 		<!-- Hero-->
 		<section class="module-cover parallax text-center fullscreen"
-			data-background="assets/images/module-5.jpg" data-overlay="0.6">
+			data-background="resources/assets/images/main/find.jpg" data-overlay="0.6">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4 col-md-6 m-auto">
@@ -376,12 +376,17 @@ function init(){
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">로그인한아이디</p>
-                            <p class="text-center">n 번 방문</p>
+                            <p class="text-center">${sessionScope.memberId}</p>
                             <p class="text-center">
                             	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
                             </p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
+                            <p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p>
+							<p class="text-center">
+								<a href="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
                         </div>
                     </aside>
                     </c:if>

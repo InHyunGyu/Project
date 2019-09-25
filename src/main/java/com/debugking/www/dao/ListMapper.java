@@ -21,4 +21,6 @@ public interface ListMapper {
 
 	public int replyUp(Replies reply);
 
+	public int postLike(int postNo);
+
 }

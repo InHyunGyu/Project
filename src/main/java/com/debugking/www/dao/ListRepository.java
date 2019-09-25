@@ -74,5 +74,13 @@ public class ListRepository {
 			
 			mapper.replyUp(reply);
 		}
+
+		public int postLike(int postNo) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			
+			int result = mapper.postLike(postNo);
+			
+			return result;
+		}
 		
 }

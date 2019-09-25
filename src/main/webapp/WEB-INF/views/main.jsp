@@ -148,7 +148,7 @@
 								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
 							</ul></li>
 						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-						<c:if test="${sessionScope.memberId != admin}">
+						<c:if test="${sessionScope.memberId != 'admin'}">
 						<li class="menu-item-has-children"><a href="managerPage"><span
 								class="menu-item-span">Admin</span></a></li></c:if>
 					</ul>
@@ -184,21 +184,66 @@
 			</div>
 		</section>
 		<!-- Hero end-->
-
-		<!-- About-->
-
-		<!-- Sliders-->
 		
-		<!-- Testimonials end-->
-		<!-- Sliders end-->
-		<!-- About end-->
+  <!-- Sliders-->
+		<div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="space m-b-50"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="review-slides owl-carousel">
+                                <div class="review">
+                                    <div class="review-icons"><img src="resources/assets/images/avatar/1.jpg" alt="">
+                                    </div>
+                                    <div class="review-content">
+                                        <blockquote>
+                                            <p>I don't work from drawings. I don't make sketches and drawings <br/> and color sketches into a final painting.</p>
+                                            <footer class="blockquote-footer">Albert Einstein</footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                                <div class="review">
+                                    <div class="review-icons"><img src="resources/assets/images/avatar/1.jpg" alt="">
+                                    </div>
+                                    <div class="review-content">
+                                        <blockquote>
+                                            <p>To be yourself in a world that is constantly trying to make you <br/> something else is the greatest accomplishment.</p>
+                                            <footer class="blockquote-footer">Ralph Waldo Emerson</footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                                <div class="review">
+                                    <div class="review-icons"><img src="resources/assets/images/avatar/1.jpg" alt="">
+                                    </div>
+                                    <div class="review-content">
+                                        <blockquote>
+                                            <p>Imperfection is beauty, madness is genius and it's better to be <br/> absolutely ridiculous than absolutely boring.</p>
+                                            <footer class="blockquote-footer">Marilyn Monroe</footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="space m-b-50"></div>
+                        </div>
+                    </div>
+                </div>
+  <!-- Sliders end-->
+         
+		           
 
 		<!-- Portfolio-->
 		<section class="module p-b-0">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 m-auto text-center">
-						<h1>Recommended number</h1>
+						<h1>Video Best</h1>
 						<p class="lead">Highly recommended video by bulletin board</p>
 					</div>
 				</div>
@@ -210,9 +255,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="filters serif">
-							<li><a href="#" data-filter=".packaging">Voice</a></li>
-							<li><a class="current" href="#" data-filter="*">Video</a></li>
-							<li><a href="#" data-filter=".branding">Streaming</a></li>
+							<li><a href="#" data-filter=".packaging">New</a></li>
+							<li><a class="current" href="#" data-filter="*">Weekly</a></li>
+							<li><a href="#" data-filter=".branding">Monthly</a></li>
 							<li><a href="#" data-filter=".digital">ALL</a></li>
 						</ul>
 					</div>
@@ -441,7 +486,6 @@
 								</c:if>
 							</p>
 							<p class="text-center">${sessionScope.memberId}</p>
-							<p class="text-center">n 번 방문</p>
 							<p class="text-center">
 								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
 							</p>
