@@ -94,4 +94,12 @@
 			replyContent = #{replyContent}
 		where replyNo= #{replyNo}			
 	</update>
+	
+	<update id="postLike" parameterType="int">
+		update posts set
+			postLike = postLike + 1
+		where postNo = #{postNo}
+	
+	</update>
+	
 </mapper>

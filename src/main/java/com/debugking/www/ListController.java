@@ -153,5 +153,21 @@ public class ListController {
 	public String streaming_detail(){
 		return "userBoard/streaming_detail";
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value="/postLike", method=RequestMethod.GET)
+	public int postLike(int postNo){
+		
+		System.out.println(postNo);
+		
+		int result = repo.postLike(postNo);
+		
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/reported", method=RequestMethod.GET)
+	public String reported(int postNo){
+		return "";
+	}
 }

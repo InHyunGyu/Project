@@ -169,6 +169,29 @@
 			});
 
 		})
+		
+		$("#postLike").on('click', function(){
+			var postNo = $(this).attr("data-value");
+			
+			alert(postNo);
+			
+			$.ajax({
+				method:'get',
+				url:'postLike',
+				data:postNo,
+				success:function(){
+					var postLike = "${post.postLike}"
+					
+					alert("ㄹ")
+				
+					tag = '';
+					
+					tag += postLike + 1;
+					
+					$("#postLikeCount").html(tag);
+				}
+			})
+		})
 	})
 	
 	
@@ -234,7 +257,7 @@
 								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
 							</ul></li>
 						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-						<c:if test="${sessionScope.memberId == admin}">
+						<c:if test="${sessionScope.memberId == 'admin'}">
 						<li class="menu-item-has-children"><a href="managerPage"><span
 								class="menu-item-span">Admin</span></a></li></c:if>
 					</ul>
@@ -289,11 +312,14 @@
                                             <li>${post.postDate}</li>
                                             <li><a href="follow_page">${post.memberId}</a></li>
                                             <li>${replyCount} Comments</li>
+                                            <li id="postLikeCount">${post.postLike}</li>
+                                            <li>${post.reported}</li>
                                         </ul>
                                     </div>
                                     <div class="post-content">
                                         <p>${post.postContent}</p>
                                     </div>
+                                    
                                 </div>
                             </article>
                             <!-- Post end-->
@@ -335,7 +361,6 @@
 									</c:if>  
                                 <div class="comment-respond">
                                     <h5 class="comment-reply-title">Leave a Reply</h5>
-                                    <p class="comment-notes">Your email address will not be published. Required fields are marked</p>
                                     <form class="comment-form row">
                                         <div class="form-group col-md-12">
                                              <textarea class="form-control" rows="4" cols="100" placeholder="Comment" style="margin: 5px;" id="replyContent" name="replyContent"></textarea>
@@ -343,10 +368,17 @@
                                         <div class="form-submit col-md-12">
 											<button class="btn btn-dark" type="button" id="replyBTN" name="replyBTN">Comment</button>
 											 
-											 <c:if test="${sessionScope.loginId != post.memberId}">
+											 <c:if test="${sessionScope.loginId == post.memberId}">
 											 <div class="form-group" id = "button_group">
 											 <a href="post_modify?postNo=${post.postNo}"><button class="btn btn-outline-dark" type="button" id="post_modifyBTN" >Modify</button></a>
 		                               		<a href="delete?postNo=${post.postNo}"><button class="btn btn-outline-dark" type="button" id="deleteBTN">Delete</button></a>
+		                               		</div>
+		                               	</c:if>
+		                               	
+		                               	<c:if test="${sessionScope.loginId != post.memberId}">
+											 <div class="form-group" id = "button_group">
+											 <button class="btn btn-outline-dark" type="button" id="postLike" data-value="${post.postNo}">postLike</button>
+		                               		<button class="btn btn-outline-dark" type="button" id="reported" data-value="${post.postNo}">REPORTED</button>
 		                               		</div>
 		                               	</c:if>
                                         </div>
@@ -502,12 +534,17 @@
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">로그인한아이디</p>
-                            <p class="text-center">n 번 방문</p>
+                            <p class="text-center">${sessionScope.memberId}</p>
                             <p class="text-center">
                             	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
                             </p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
+                            <p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p>
+							<p class="text-center">
+								<a href="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
                         </div>
                     </aside>
                     </c:if>

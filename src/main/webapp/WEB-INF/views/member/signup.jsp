@@ -22,24 +22,7 @@
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <link href="resources/assets/signup.css" rel="signup">
-<style>
-  a {
-  	color: #788487;
-  }
-	
-	#inputStyle {
-	height: 100%; 
-	width: 20%;
-	color: #495057;
-    background-color: #fff;
-    padding-left: 12px;
-    border: 1px solid #ededed;
-    border-radius: .1875rem;
-    font-size:0.85em;
-    
-	 }
-	
-	</style>
+
 
         <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 <script >
@@ -65,13 +48,14 @@
 		$("#memberId").on("keyup",function(){
 			memberId = $("#memberId").val();
 			if(memberId.length<3 || memberId.length>15){
-				$("#checkidline").html("id는 3~15사이입니다.");
+				$("#checkidline").html("<br>id는 3~15사이입니다.");
 				return false;
 			}
 			else{
 				$("#checkidline").html("");
 			}
 		});
+		
 		$("#checkid").on("click",function(){
 			memberId = 	$("#memberId").val();
 			if(memberId=="" || memberId==null){
@@ -225,6 +209,57 @@
 				}
 			}
 		});
+		
+		$("#loginBTN").on('click', function() {
+			var memberId = $("#loginId").val();
+			var memberPwd = $("#loginPwd").val();
+
+			if (memberId.length == 0 || memberPwd.length == 0) {
+				alert("다시입력해주세요.");
+				return;
+			}
+
+			var send = {
+				"memberId" : memberId,
+				"memberPwd" : memberPwd
+			}
+
+			$.ajax({
+				method : 'post',
+				url : 'login',
+				data : send,
+				success : function(result) {
+					if (!result) {
+						alert("로그인 실패");
+					} else {
+						alert("로그인 성공");
+						location.href="main";
+					}
+
+				}
+			})
+		})
+
+		$("#signup").on('click', function() {
+			location.reload();
+		})
+		
+		$("#memberDelete").on('click', function() {
+			var memberId = $("#loginId").val();
+			var memberPwd = $("#loginPwd").val();
+			var send = {
+				"memberId" : memberId,
+				"memberPwd" : memberPwd
+			}
+			$.ajax({
+				method : 'post',
+				url : 'memberDelete',
+				data : send,
+				success : function() {
+					location.href="main";
+				}
+			})
+		})
 	});
 	</script>
 	
@@ -290,7 +325,7 @@
 								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
 							</ul></li>
 						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-						<c:if test="${sessionScope.memberId == admin}">
+						<c:if test="${sessionScope.memberId == 'admin'}">
 						<li class="menu-item-has-children"><a href="managerPage"><span
 								class="menu-item-span">Admin</span></a></li></c:if>
 					</ul>
@@ -309,7 +344,7 @@
         <!-- Wrapper-->
         <div class="wrapper">
             <!-- Hero-->
-            <section class="module-cover parallax text-center fullscreen" data-background="resources/assets/images/module-5.jpg" data-overlay="0.6">
+            <section class="module-cover parallax text-center fullscreen" data-background="resources/assets/images/main/login3.jpg" data-overlay="0.5" style="height: 100%">
                 <div class="container" style="padding-top:100px;">
                     <div class="row">
                         <div class="col-lg-4 col-md-6 m-auto">
@@ -319,12 +354,12 @@
                             <div class="m-b-20">
                           
                             <!-- <<회원가입 입력받기 -->
-                                <form action="signup" action="POST" id="signup">
-                                    <div class="form-group" style="display:inline-flex;">
-                                        <input class="form-control col-lg-6" type="text" name="memberId" id="memberId" placeholder="ID">
-                                        <button type="button" class="form-control col-lg-6" id="checkid">중복확인</button>
+                                <form action="signup" action="POST" >
+                                    <div class="form-group" style="display:inline-flex;width: 100%; ">
+                                        <input class="form-control" type="text" name="memberId" id="memberId" placeholder="ID" style="width: 70%">
+                                        <button type="button" class="form-control" id="checkid" style="width: 30%">중복확인</button>
                                     </div>
-                                    <p id="checkidline"></p>
+                                    <span id="checkidline"></span>
                                     <div class="form-group" >
                                         <input class="form-control" type="password" name="memberPwd" id="memberpwd" placeholder="Pasword">
                                         <span id="checkpwdline"></span>
@@ -333,14 +368,14 @@
                                         <input class="form-control" type="password" id="checkpwd" placeholder="Confirm password">
                                         <span id="checkpwdline2"></span>
                                     </div>
-                                    <div class="form-group" style="display:inline-flex;">
-                                        <input class="form-control" type="email" name="memberEmail" id="memberEmail" placeholder="E-mail">
-                                        <button class="form-control" type="button" id="checkEmail">Email Check</button>
+                                    <div class="form-group" style="display:inline-flex; width: 100%;">
+                                        <input class="form-control" type="email" name="memberEmail" id="memberEmail" placeholder="E-mail" style="width: 70%;">
+                                        <button class="form-control" type="button" id="checkEmail" style="width: 30%">Email Check</button>
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" type="text" name="memberName" id="membername" placeholder="Name">
                                     </div>
- 	                                <div style="display:inline-flex;"> 
+ 	                                <div class="form-group" style="display:inline-flex;"> 
 										<select class="form-control" id="tel1" name="tel1">
 											<option value="010">010</option>
 											<option value="011">011</option>
@@ -352,13 +387,12 @@
 										<input type="text" class="form-control" id="tel2" maxlength="4">
 										<input type="text" class="form-control" name="tel3" id="tel3" maxlength="4">
 									</div>
-									<div class="form-group"style="display:inline-flex;" >
-										<input class="form-control" type="text" value="Birth" readonly>
+									<div class="form-group" >
                                         <input type="date" class="form-control" name="memberBirth" id="memberbirth" placeholder="Birth"/>
                                     </div>
-									 <div class="form-group">
-                                        <input class="form-control" type="text" name="recommender" id="recommender" placeholder="recommender">
-                                        <input type="button" id="recocheckbtn" value="추천인 검사">
+									 <div class="form-group" style="display:inline-flex; width: 100%;" >
+                                        <input class="form-control" type="text" name="recommender" id="recommender" placeholder="recommender" style="width: 70%;">
+                                        <input class="form-control" type="button" id="recocheckbtn" value="추천인 검사" style="width: 30%;">
                                     </div>
                                      <div class="form-group">
                                         <button class="btn btn-block btn-round btn-brand" type="button"id="signupbtn">Sign Up</button>
@@ -382,7 +416,7 @@
                     </div>
                 </div>
                 </section>
-            </section>
+           
 
             <!-- Footer-->
             <footer class="footer" >
@@ -477,12 +511,17 @@
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">로그인한아이디</p>
-                            <p class="text-center">n 번 방문</p>
+                            <p class="text-center">${sessionScope.memberId}</p>
                             <p class="text-center">
                             	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
                             </p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
+                           <p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p>
+							<p class="text-center">
+								<a href="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
                         </div>
                     </aside>
                     </c:if>
@@ -492,7 +531,7 @@
                         	<div class="form-group">
                         	<p class="text-center">Login</p>
                             <p class="text-center"><input class="form-control" type="text" id="loginId" name="memberId" placeholder="loginId"></p>
-                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
+                            <p class="text-center"><input class="form-control" type="password" id="loginPwd" name="memberPwd" placeholder="password"></p>
                             <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
                            <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
 
