@@ -26,7 +26,7 @@ public class VoiceListController {
 	@Autowired
 	VoiceListRepository repo;
 	
-	final String uploadPath="/uploadfile";
+	final String uploadPath="/Users/heeju/Documents/fileIO";
 	
 	@RequestMapping(value="/voice_new", method=RequestMethod.GET)
 	public String voice_new(

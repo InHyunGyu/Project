@@ -47,7 +47,6 @@ public class MemberController {
 	@Autowired
 	MemberRepository repo;
 	
-	
 	final String uploadPath = "/resources/assets/userFiles"; 
 	String realpath;
 	String savedFilename; //UUID 및 date 문자열을 포함한 확장자를 포함한 파일명
@@ -206,6 +205,12 @@ public class MemberController {
 	}
 	
 */	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String loginPage (){
+		
+		return "member/login";
+	}
+	
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
@@ -374,10 +379,6 @@ public class MemberController {
 	public String myblog(){
 		return "member/myblog";
 	}
-	
-
-	
-	
 
 	//ID체크 한명불러오기
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
@@ -415,7 +416,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
-	public String follow(){
+	public String follow(String memberId, Model model){
+		
+		
+		
+		
 		return"member/follow_page";
 	}
 }

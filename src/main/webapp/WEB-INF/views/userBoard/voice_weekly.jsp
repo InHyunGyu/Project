@@ -25,7 +25,24 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	<style type="text/css">
+  a {
+  	color: #788487;
+  }
 	
+	#inputStyle {
+	height: 100%; 
+	width: 20%;
+	color: #495057;
+    background-color: #fff;
+    padding-left: 12px;
+    border: 1px solid #ededed;
+    border-radius: .1875rem;
+    font-size:0.85em;
+    
+	 }
+	
+	</style>
 	<script>
 	$(function(){
 		$("#loginBTN").on('click', function(){
@@ -55,6 +72,15 @@
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		
+		$("#btnWriteForm").on('click',function(){
+			if(${empty sessionScope.memberId}){
+				alert("로그인한 후 글쓰기가능합니다.");
+				return;
+			} else{
+				location.href="write?postType=voice";
+			}
+		})
 	})
 	
 		
@@ -74,108 +100,110 @@
         <!-- Preloader end-->
 
 
-                <!-- Header-->
-        <header class="header header-transparent">
-            <div class="container-fluid">
-                <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
-                <!-- Navigation-->
-                <div class="inner-navigation collapse">
-                    <div class="inner-nav">
-                        <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
-                            </li>
-                            
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="voice_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="voice_weekly">Weekly</a></li>
-                                            <li><a href="voice_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="voice_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="video_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="video_weekly">Weekly</a></li>
-                                            <li><a href="video_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="video_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
-                            </li>
-                            
-                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="community">Board</a></li>
-                                    <li><a href="myblog">My Blog</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="extra-nav">
+       <!-- Header-->
+	<header class="header header-transparent">
+		<div class="container-fluid">
+			<!-- Brand-->
+			<div class="inner-header">
+				<a class="inner-brand" href="main">UtaJJang</a>
+			</div>
+			<!-- Navigation-->
+			<div class="inner-navigation collapse">
+				<div class="inner-nav">
+					<ul>
+						<li class="menu-item-has-children menu-item-has-mega-menu"><a
+							href="main"><span class="menu-item-span">Home</span></a></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Voice</span></a>
+							<ul class="sub-menu">
+								<li><a href="voice_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="voice_weekly">Weekly</a></li>
+										<li><a href="voice_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="voice_all">ALL</a></li>
+							</ul></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Video</span></a>
+							<ul class="sub-menu">
+								<li><a href="video_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="video_weekly">Weekly</a></li>
+										<li><a href="video_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="video_all">ALL</a></li>
+							</ul></li>
+
+						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						</li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Community</span></a>
+							<ul class="sub-menu">
+								<li><a href="community">Board</a></li>
+								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
+							</ul></li>
+						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
+						<c:if test="${sessionScope.memberId == 'admin'}">
+						<li class="menu-item-has-children"><a href="managerPage"><span
+								class="menu-item-span">Admin</span></a></li></c:if>
+					</ul>
+				</div>
+			</div>
+			<div class="extra-nav">
                     <ul>
                         <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation" class="" aria-expanded="true"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
                     </ul>
                 </div>
-            </div>
-        </header>
-        <!-- Header end-->
+		</div>
+		
+	</header>
+	<!-- Header end-->
 
         <!-- Wrapper-->
         <div class="wrapper">
-            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-10.jpg" data-overlay="1" data-gradient="1">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/board2.jpg"  >
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="space" data-mY="60px"></div> 
-                            <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-                            <p class="m-b-40"><br>Voice List<br> Weekly </p>
-                            <div class="space" data-MY="60px"></div>
+                         <div class="col-md-12">
+                            <h2>Voice_Weekly</h2>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            
-                <div class="container">
+			</section>          
+          
+          
+          
+          
+          
+          
+                <section class="module p-t-30 p-b-30">
+			 <div class="container">
                     <div class="row">
                         <div class="col-md-12 m-auto">
-                            <div class="space" data-mY="-120px"></div>
-                            <p><img src="resources/assets/images/main/macbook.png" alt=""></p>
-                            <div class="space" data-mY="80px"></div>
-                        </div>
-                    </div>
-                </div>
-		<div class="container" style="margin: 100px;">
-
 				<div class="table-responsive">
 					<!-- 검색창 -->
-					<div class="pull-right" style="float: right; margin-bottom: 10px;">
-						<!-- boardList?searchItem=title -->
-						<form action="boardList" method="get">
-							<select name="searchItem" style="height: 28px;">
-								<option value="title" ${searchItem == 'title' ? 'selected' : ''}>제목</option>
-								<option value="userid"
-									${searchItem == 'userid' ? 'selected' : ''}>글쓴이</option>
-								<option value="content"
-									${searchItem == 'content' ? 'selected' : ''}>내용</option>
-							</select> <input type="text" name="searchWord" value="${searchWord}" /> <input
-								type="submit" value="검색" />
+					
+					<div style="float: right; margin-bottom: 10px; ">
+						<form action="voice_new" method="get">
+						<div class="form-group" style= "height: 36px;">
+							<select class="form-control col-md-3" name="searchItem" style="height: 100%;">
+								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
+								<option value="memberId"
+									${searchItem == 'memberId' ? 'selected' : ''}>글쓴이</option>
+								<option value="postContent"
+									${searchItem == 'postContent' ? 'selected' : ''}>내용</option>
+							</select> 
+							<input class="form-control col-md-6" type="text" name="searchWord" value="${searchWord}" style="height: 100%;"/> 
+							<input class="col-md-2" type="submit" value="검색" id="inputStyle"/>
+						</div>
 						</form>
+					
 					</div>
 					<table class="table table-striped table-sm table-hover" style="margin: 30px; text-align: center;">
                         	
@@ -216,21 +244,35 @@
 									</tr>
 								</c:forEach>
 							</c:if>
+							
+							<!-- 페이징 하기 -->
+				
 						</tbody>
 					</table>
 				</div>
 				<div>
-					
-					<button type="button" class="btn btn-sm btn-primary"
+					<div class="row">
+                                <div class="col-md-12">
+                                    <nav>
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item"><a class="page-link" href="voice_weekly?&currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-left"></span></a></li>
+                                            <c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup}">
+												<li class="page-item"><a class="page-link" href="voice_weekly?&currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">${page}</a></li>
+											</c:forEach>
+                                            <li class="page-item"><a class="page-link" href="voice_weekly?&currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-right"></span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+					</div>
+					<button type="button" class="btn btn-outline-secondary"
 						id="btnWriteForm" style="float: right;">글쓰기</button>
-
 				</div>
-			</div>
-           
-                        
-          </div>
+</div>
+</div>
+</section>
                 
-           
+          </div>
 
             <!-- Footer-->
             <footer class="footer">
@@ -313,7 +355,7 @@
                 </div>
             </footer>
             <!-- Footer end-->
-        </div>
+        
         <!-- Wrapper end-->
  		<!-- Off canvas-->
         <div class="off-canvas-sidebar">
@@ -325,10 +367,17 @@
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">로그인한아이디</p>
-                            <p class="text-center">n 번 방문</p>
-                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
+                            <p class="text-center">${sessionScope.memberId}</p>
+                            <p class="text-center">
+                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+                            </p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
+                            <p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p>
+							<p class="text-center">
+								<a href="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
                         </div>
                     </aside>
                     </c:if>

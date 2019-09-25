@@ -24,7 +24,24 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	<style type="text/css">
+  a {
+  	color: #788487;
+  }
 	
+	#inputStyle {
+	height: 100%; 
+	width: 20%;
+	color: #495057;
+    background-color: #fff;
+    padding-left: 12px;
+    border: 1px solid #ededed;
+    border-radius: .1875rem;
+    font-size:0.85em;
+    
+	 }
+	
+	</style>
 	<script>
 	$(function(){
 		$("#loginBTN").on('click', function(){
@@ -76,65 +93,68 @@
         <!-- Preloader end-->
 
          <!-- Header-->
-        <header class="header header-transparent">
-            <div class="container-fluid">
-                <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
-                <!-- Navigation-->
-                <div class="inner-navigation collapse">
-                    <div class="inner-nav">
-                        <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
-                            </li>
-                            
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="voice_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="voice_weekly">Weekly</a></li>
-                                            <li><a href="voice_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="voice_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="video_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="video_weekly">Weekly</a></li>
-                                            <li><a href="video_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="video_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
-                            </li>
-                            
-                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="community">Board</a></li>
-                                    <li><a href="myblog">My Blog</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="extra-nav">
+	<header class="header header-transparent">
+		<div class="container-fluid">
+			<!-- Brand-->
+			<div class="inner-header">
+				<a class="inner-brand" href="main">UtaJJang</a>
+			</div>
+			<!-- Navigation-->
+			<div class="inner-navigation collapse">
+				<div class="inner-nav">
+					<ul>
+						<li class="menu-item-has-children menu-item-has-mega-menu"><a
+							href="main"><span class="menu-item-span">Home</span></a></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Voice</span></a>
+							<ul class="sub-menu">
+								<li><a href="voice_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="voice_weekly">Weekly</a></li>
+										<li><a href="voice_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="voice_all">ALL</a></li>
+							</ul></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Video</span></a>
+							<ul class="sub-menu">
+								<li><a href="video_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="video_weekly">Weekly</a></li>
+										<li><a href="video_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="video_all">ALL</a></li>
+							</ul></li>
+
+						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						</li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Community</span></a>
+							<ul class="sub-menu">
+								<li><a href="community">Board</a></li>
+								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
+							</ul></li>
+						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
+						<c:if test="${sessionScope.memberId == 'admin'}">
+						<li class="menu-item-has-children"><a href="managerPage"><span
+								class="menu-item-span">Admin</span></a></li></c:if>
+					</ul>
+				</div>
+			</div>
+			<div class="extra-nav">
                     <ul>
                         <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation" class="" aria-expanded="true"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
                     </ul>
                 </div>
-            </div>
-        </header>
-        <!-- Header end-->
+		</div>
+	</header>
+	<!-- Header end-->
 
        <!-- Wrapper-->
 	<div class="wrapper">
@@ -273,10 +293,17 @@
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">로그인한아이디</p>
-                            <p class="text-center">n 번 방문</p>
-                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
+                           <p class="text-center">${sessionScope.memberId}</p>
+                            <p class="text-center">
+                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+                            </p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
+                            <p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p>
+							<p class="text-center">
+								<a href="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
                         </div>
                     </aside>
                     </c:if>
