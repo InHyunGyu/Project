@@ -233,7 +233,7 @@
 									<tr>
 										<td>${stat.count + navi.startRecord}</td>
 										<td><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
-										<td>${board.memberId}</td>
+										<td><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
 										<td>${board.postDate}</td>
 										<td>${board.postView}</td>
 										<td>${board.postLike}</td>

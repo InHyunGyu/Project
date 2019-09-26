@@ -121,7 +121,7 @@ public class ListController {
 		
 		String memberId = (String)session.getAttribute("memberId");
 		
-		int result = repo.replyInsert(replyContent, postNo, memberId);
+		repo.replyInsert(replyContent, postNo, memberId);
 		
 		return "ok";
 	}

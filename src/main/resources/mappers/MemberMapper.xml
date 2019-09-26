@@ -12,7 +12,7 @@
 			,memberName
 			,memberPhone
 			,memberBirth
-			,signupDate
+			,to_char(signupDate, 'YYYY-MM-DD') as signupDate
 			,memberEmail
 			,memberPoint
 			,photoname

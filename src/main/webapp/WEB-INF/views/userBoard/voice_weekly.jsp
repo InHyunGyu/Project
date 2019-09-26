@@ -236,12 +236,8 @@
 								<c:forEach var="board" items="${list}" varStatus="stat">
 									<tr>
 										<td>${stat.count + navi.startRecord}</td>
-<<<<<<< HEAD
-										<td><a href="file_detail?postNo=${board.postNo}" >${board.postTitle}</a></td>
-=======
 										<td><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
->>>>>>> 3f6c272908ba2a16d7310d50e53404cebc3d40ff
-										<td>${board.memberId}</td>
+										<td><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
 										<td>${board.postDate}</td>
 										<td>${board.postView}</td>
 										<td>${board.postLike}</td>

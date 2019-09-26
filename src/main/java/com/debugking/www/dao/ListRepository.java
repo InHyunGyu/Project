@@ -4,6 +4,7 @@ package com.debugking.www.dao;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -91,6 +92,33 @@ public class ListRepository {
 			ListMapper mapper = session.getMapper(ListMapper.class);
 			int result = mapper.postView(postNo);
 			return result;
+		}
+
+		public ArrayList<Posts> selectList(String memberId) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			
+			ArrayList<Posts> list = new ArrayList<>();
+			
+			list = mapper.selectList(memberId);
+					
+			return list;
+		}
+
+		public int postCount(String memberId) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			
+			int postCount = mapper.postCount(memberId);
+			
+			return postCount;
+		}
+
+		public ArrayList<Posts> memberPost(String memberId, int startRecord, int countPerPage) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			RowBounds rb = new RowBounds(startRecord, countPerPage);
+			
+			ArrayList<Posts> list = mapper.memberPost(memberId, rb);
+			
+			return list;
 		}
 		
 }

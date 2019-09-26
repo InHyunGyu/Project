@@ -72,6 +72,12 @@ table {
     font-size:0.85em;
     
 	 }
+	 
+	 #styleA {
+	 color: #505cfd;
+    text-decoration: none;
+    background-color: transparent;
+    }
 	
 	</style>
 
@@ -133,39 +139,60 @@ table {
 	})
 	
 	function follower(){
-		var tag = '';
+		var memebrId = '${memberInfo.memberId}';
 		
-		tag += '<div class="left"><h6 class="single-portfolio-title"><a href="#" class="follower">Follower</a></h6></div>';
-		tag += '<div class="right"><h6 class="single-portfolio-title"><a href="#" class="following">Following</a></h6></div>';
-		tag += '<table class="table table-striped table-sm table-hover"> ';
-		tag += '<colgroup>';
-		tag += '<col style="width: 20%;" />';
-		tag += '<col style="width: auto;" />';
-		tag += '<col style="width: 20%;" />';
-		tag += '</colgroup>';
-		tag += '<tr>';
-		tag += '<th>Member Level</th>';
-		tag += '<th>Member Id</th>';
-		tag += '<th>Follow</th>';
-		tag += '</tr>';
-		tag += '<c:if test="${empty followerList}">';
-		tag += '<tr>';
-		tag += '<td colspan="3" align="center">111111팔로워가 없습니다. </td>';
-		tag += '</tr>';
-		tag += '</c:if>';
-		tag += '<c:if test="${not empty followerList}">';
-		tag += '<c:forEach var="list" items="${list}" varStatus="stat">';
-		tag += '<tr>';
-		tag += '<td>${list.memberId}</td>';
-		tag += '<td>${list.memberLevel}</td>';
-		tag += '<td><button type="button" class="followReq" id="followReq" >follow</button></td>';
-		tag += '</tr>';
-		tag += '</c:forEach>';
-		tag += '</c:if> ';
-		tag += '</table>'
+		$.ajax({
+			method:'get',
+			url:'follower?memberId='+memberId,
+			success:function(res){
+				var tag = '';
+				
+				tag += '<div class="left"><h6 class="single-portfolio-title"><a href="#" class="follower">Follower</a></h6></div>';
+				tag += '<div class="right"><h6 class="single-portfolio-title"><a href="#" class="following">Following</a></h6></div>';
+				tag += '<table class="table table-striped table-sm table-hover"> ';
+				tag += '<colgroup>';
+				tag += '<col style="width: 20%;" />';
+				tag += '<col style="width: auto;" />';
+				tag += '<col style="width: 20%;" />';
+				tag += '</colgroup>';
+				tag += '<tr>';
+				tag += '<th>Member Level</th>';
+				tag += '<th>Member Id</th>';
+				tag += '<th>Follow</th>';
+				tag += '</tr>';
+				$.each(res, function(index, item){
+					
+					tag += '<c:if test="${empty followerList}">';
+					tag += '<tr>';
+					tag += '<td colspan="3" align="center">111111팔로워가 없습니다. </td>';
+					tag += '</tr>';
+					tag += '</c:if>';
+					tag += '<c:if test="${not empty followerList}">';
+					tag += '<c:forEach var="list" items="${list}" varStatus="stat">';
+					tag += '<tr>';
+					tag += '<td>${list.memberId}</td>';
+					tag += '<td>${list.memberLevel}</td>';
+					tag += '<td><button type="button" class="followReq" id="followReq" >follow</button></td>';
+					tag += '</tr>';
+					tag += '</c:forEach>';
+					tag += '</c:if> ';
+				}
+				
+				tag += '</table>'
+				
+				
+				$("#postContent").html(tag);
+				
+			}
+		})
 		
 		
-		$("#postContent").html(tag);
+		
+		
+		
+		
+		
+		
 		
 		
 	}
@@ -208,28 +235,43 @@ table {
 	
 	
 	function postList(){
-		var tag = ''
-		
-		tag += '<div class="post-preview"><a href="#"><img src="resources/assets/images/blog/1.jpg" alt=""></a></div>'
-		tag += '<div class="post-wrapper">'
-		tag += '<div class="post-header">'
-		tag += '<h2 class="post-title"><a href="blog-single.html">Bluetooth Speaker</a></h2>'
-		tag += '<ul class="post-meta">'
-		tag += '<li>November 18, 2016</li>'
-		tag += '<li><a href="#">Branding</a>, <a href="#">Design</a></li>'
-		tag += '<li><a href="#">3 Comments</a></li>'
-		tag += '</ul>'
-		tag += '</div>'
-		tag += '<div class="post-content">'
-		tag += '<p>Just then her head struck against the roof of the hall in fact she was now more than nine feet high and she at once took up the little golden key and hurried off to the garden door.	The first question of course was, how to get dry again: they had a consultation about this, and after a few minutes it seemed quite natural to Alice to find herself talking familiarly with them.</p>'
-		tag += '</div>'
-		tag += '<div class="post-more"><a href="file_detail">Read more</a></div>'
-		tag += '</div>'
-		
-		$("#postContent").html(tag);
-	}
+		var memberId = '${memberInfo.memberId}';
+
+		$.ajax({
+			method:'get',
+			url:'memberPost?memberId='+memberId,
+			success:function(res){
+				
+				var tag = ''
+				
+					$.each(res, function(index, item){
+						tag += '<div class="post-preview"><a href="#"><img src="resources/assets/images/blog/1.jpg" alt=""></a></div>';
+						tag += '<div class="post-wrapper">';
+						tag += '<div class="post-header">';
+						tag += '<h2 class="post-title"><a href="blog-single.html">'+item.postTitle+'</a></h2>';
+						tag += '<ul class="post-meta">';
+						tag += '<li>'+item.postType+'</li>';
+						tag += '<li>'+item.postDate+'</li>';
+						tag += '<li><a href="#">'+item.memberId+'</a></li>';
+						tag += '</ul>';
+						tag += '</div>';
+						tag += '<div class="post-content">';
+						tag += '<p>'+item.postContent+'</p>';
+						tag += '</div>';
+						tag += '<div class="post-more"><a href="file_detail?postNo='+item.postNo+'" id="styleA">Read more</a></div>';
+						tag += '</div>';
+						tag += ' <hr class="m-t-30 m-b-30">	 ';
+								
+					})
+					$("#postContent").html(tag);	
+		}
 	
-	
+
+		
+			})
+		
+
+		}
 	
 	</script>
 </head>
@@ -340,19 +382,8 @@ table {
 						<!-- Post end-->
 
 						<!-- Page Navigation-->
-						<div class="row">
-							<div class="col-md-12">
-								<nav>
-									<ul class="pagination justify-content-center">
-										<li class="page-item"><a class="page-link" href="#"><span
-												class="fas fa-angle-left"></span></a></li>
-										<li class="page-item active"><a class="page-link"
-											href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#"><span
-												class="fas fa-angle-right"></span></a></li>
-									</ul>
-								</nav>
-							</div>
+						<div id="navigation">
+							
 						</div>
 						<!-- Page Navigation end-->
 					</div>
@@ -362,18 +393,18 @@ table {
 
 					<div class="col-md-4">
 						<div class="sticky-sidebar">
-							<h6 class="single-portfolio-title">유저 이름</h6>
-							<p>설명 1</p>
+							<h6 class="single-portfolio-title">${memberInfo.memberId}</h6>
+							<p>${memberInfo.myintro}</p>
 							<p>설명 2</p>
 							<hr class="m-t-30 m-b-30">
 							<div class="info-list">
 							
-								<li><span class="info-list-title">Date :</span><span>가입일
+								<li><span class="info-list-title">Date :</span><span>${memberInfo.signupDate}
 								</span></li>
 								<li><span class="info-list-title">Follow :</span><span><a
-										href="#" id="followList">n</a></span></li>
+										href="#" id="followList">${followCount}</a></span></li>
 								<li><span class="info-list-title">Post :</span><span><a
-										href="#" id="postList">n</a></span></li>
+										href="#" id="postList">${postCount}</a></span></li>
 							
 							</div>
 							<hr class="m-t-30 m-b-30">

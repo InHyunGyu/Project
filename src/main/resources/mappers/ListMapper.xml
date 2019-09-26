@@ -124,4 +124,36 @@
 			postView = postView + 1
 		where postNo = #{postNo}
 	</update>
+	
+	<select id="selectList" parameterType="string" resultType="Post">
+		select 
+			* 
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
+	<select id="postCount" parameterType="string" resultType="int">
+		select
+			count(*)
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
+	<select id="memberPost" parameterType="string" resultType="Post">
+		select 
+			postNo,
+			memberId,
+			postTitle,
+			postContent,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			isAnnouncement,
+			postLike,
+			postView,
+			reported,
+			postType,
+			originalFile,
+			savedFile
+		from posts
+		where memberId = #{memberId}
+	</select>
 </mapper>

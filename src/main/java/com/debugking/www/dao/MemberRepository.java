@@ -74,6 +74,7 @@ public class MemberRepository {
 		
 		return result;
 	}
+	
 
 
 }
