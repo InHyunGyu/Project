@@ -23,8 +23,16 @@
         <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
+        
+      
+        
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+		
+		<script src="http://vjs.zencdn.net/5.0.2/video.js"></script> 
+		
+		
+		
 	<style type="text/css">
   a {
   	color: #788487;
@@ -169,7 +177,7 @@ $(function(){
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                          <h2>Video_New</h2>
+                      
                         </div>
                     </div>
                 </div>
@@ -182,14 +190,14 @@ $(function(){
                 
                     <div class="row">
                         <div class="col-md-12 m-auto">
-                        <div class="table-responsive">
+                        
                             <h6 class="text-special text-center m-b-40">Video_New</h6>
                             
                          
                              <div class="row" style="float: right; margin-bottom: 10px;  ">
 						<form action="video_new" method="get">
 						<div class="form-group" style= "height: 36px;">
-							<select class="form-control col-md-3" name="searchItem" style="height: 100%;">
+							<select class="form-control col-md-2" name="searchItem" style="height: 100%;">
 								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
 								<option value="memberId"
 									${searchItem == 'memberId' ? 'selected' : ''}>글쓴이</option>
@@ -203,29 +211,25 @@ $(function(){
 					</div>
 				
                              
-                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
+                            
+           
+                               <c:forEach var="board" items="${list}" varStatus="stat">
+                                <div class="movie" style="display:inline-flex;">
+                                    <div class="demo-item" ><a href="/uta"><video width="300" height="300"  controls="controls" preload="metadata">
+                             <source src="resources/savefile/${board.savedFile}" type="video/webm" >
+                                   </video></a>
+                                        <h6>${board.postTitle}</h6> 
+                                    </div> 
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
-                                 <div class="col-md-4">
-                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
+                              </c:forEach>
                                 
-                                
+                               </div> 
                             </div>
                             </div>
-                           
-                        </div>
+                    </section>                           
+                         </div>
+                         
+                         
                          <div>
 							<div class="row">
                                 <div class="col-md-12">
@@ -242,13 +246,10 @@ $(function(){
                                 </div>
                            		
                             </div>
-                            
 							</div>	
 							
-                       </div>
                       
-                 </section>
-
+            
             <!-- Footer-->
             <footer class="footer">
                 <div class="footer-widgets">

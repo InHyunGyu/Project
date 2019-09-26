@@ -138,7 +138,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="http://localhost:9001"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -256,9 +256,9 @@
 					<div class="col-md-12">
 						<ul class="filters serif">
 							<li><a href="#" data-filter=".packaging">New</a></li>
-							<li><a class="current" href="#" data-filter="*">Weekly</a></li>
+							<li><a class="current" href="#" data-filter=".digital">Weekly</a></li>
 							<li><a href="#" data-filter=".branding">Monthly</a></li>
-							<li><a href="#" data-filter=".digital">ALL</a></li>
+							<li><a href="#" data-filter="*">ALL</a></li>
 						</ul>
 					</div>
 				</div>
@@ -266,78 +266,39 @@
 			<div class="container-fluid">
 				<div class="row row-portfolio" data-columns="3">
 					<div class="grid-sizer"></div>
+					
+					
+						
+								
+                                
+                          
+                            
+					
+					
+					<c:forEach var="board" items="${list}" varStatus="stat">
 					<div class="portfolio-item branding">
 						<div class="portfolio-item-wrapper">
 							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/1.jpg" alt="">
+								
+								<video width="300" height="300"  controls="controls" preload="metadata">
+                             <source src="resources/savefile/${board.savedFile}" type="video/webm" >
+                                   </video>
+								
+								
 							</div>
 							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Solave Cleanser</h6>
+								<h6 class="portfolio-item-title">${board.postTitle}</h6>
 								<span class="portfolio-item-subtitle serif">Digital</span>
 							</div>
 							<a class="portfolio-item-link" href="file_detail"></a>
 						</div>
 					</div>
-					<div class="portfolio-item digital">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/4.jpg" alt="">
-							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Monochrome</h6>
-								<span class="portfolio-item-subtitle serif">Branding</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					<div class="portfolio-item packaging">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/3.jpg" alt="">
-							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Ellie Cashman</h6>
-								<span class="portfolio-item-subtitle serif">Packaging</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					<div class="portfolio-item branding">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/6.jpg" alt="">
-							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">White Sleeve</h6>
-								<span class="portfolio-item-subtitle serif">Digital</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					<div class="portfolio-item digital">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/5.jpg" alt="">
-							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Classic Socks</h6>
-								<span class="portfolio-item-subtitle serif">Branding</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					<div class="portfolio-item packaging">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/2.jpg" alt="">
-							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Expirience</h6>
-								<span class="portfolio-item-subtitle serif">Packaging</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
+					  </c:forEach>
+					
+					
+					
+				
+				
 				</div>
 			</div>
 		</section>

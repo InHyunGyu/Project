@@ -250,6 +250,7 @@
 										<td>${board.postView}</td>
 										<td>${board.postLike}</td>
 									</tr>
+								
 								</c:forEach>
 							</c:if>
 							

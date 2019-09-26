@@ -17,5 +17,6 @@
 		<mapper resource="mappers/VoiceMapper.xml" />
 		<mapper resource="mappers/CommunityMapper.xml" />
 		<mapper resource="mappers/ListMapper.xml" />
+		<mapper resource="mappers/VideoMapper.xml"/>
 	</mappers>
 </configuration>

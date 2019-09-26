@@ -32,28 +32,9 @@ public class ListController {
 	@Autowired
 	PostsService serivce;
 
-	final String uploadPath="/Users/heeju/Documents/fileIO";
+	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile"; 
 
-	@RequestMapping(value="/video_new", method=RequestMethod.GET)
-	public String video_new(){
-		return "userBoard/video_new";
-	}
-
-	@RequestMapping(value="/video_weekly", method=RequestMethod.GET)
-	public String video_weekly(){
-		return "userBoard/video_weekly";
-	}
-
-	@RequestMapping(value="/video_monthly", method=RequestMethod.GET)
-	public String video_monthly(){
-		return "userBoard/video_monthly";
-	}
-
-	@RequestMapping(value="/video_all", method=RequestMethod.GET)
-	public String video_all(){
-		return "userBoard/video_all";
-	}
-
+	
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
 	public String notice(){
 
