@@ -14,5 +14,8 @@ public class MemberInfo {
 	private int memberPoint;	//유저의 포인트 보유수 
 	private String recommender;	//추천인 
 	private String memberLevel;	//DEFAULT 'beginner'
-	private String photo;
+	private String photoname;  //파일 이름
+	private String savefile;   //파일이 저장되는 위치
+	private String myintro;    //myblog 자기 소개 글
+	private char emailchecked; //이메일 인증 여부
 }

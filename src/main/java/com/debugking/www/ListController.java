@@ -64,8 +64,9 @@ public class ListController {
 
 		post.setOriginalFile(originalfile);
 		post.setSavedFile(savedfile);
-		System.out.println(post);
+
 		int result = serivce.writing(post);
+		
 		if(post.getPostType().equals("community")){
 			return "redirect:community"; 
 		} else if (post.getPostType().equals("voice")){
@@ -84,6 +85,8 @@ public class ListController {
 		int replyCount = repo.replyCount(postNo);
 		replyList = repo.replyList(postNo);
 		
+		repo.postView(postNo);
+		
 		Posts post = repo.selectOne(postNo);
 		
 		model.addAttribute("post", post);
@@ -99,7 +102,7 @@ public class ListController {
 		
 		String memberId = (String)session.getAttribute("memberId");
 		
-		int result = repo.replyInsert(replyContent, postNo, memberId);
+		repo.replyInsert(replyContent, postNo, memberId);
 		
 		return "ok";
 	}
@@ -138,17 +141,14 @@ public class ListController {
 	@ResponseBody
 	@RequestMapping(value="/postLike", method=RequestMethod.GET)
 	public int postLike(int postNo){
-		
-		System.out.println(postNo);
-		
 		int result = repo.postLike(postNo);
-		
 		return result;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/reported", method=RequestMethod.GET)
-	public String reported(int postNo){
-		return "";
+	public int reported(int postNo){
+		int result = repo.reported(postNo);
+		return result;
 	}
 }

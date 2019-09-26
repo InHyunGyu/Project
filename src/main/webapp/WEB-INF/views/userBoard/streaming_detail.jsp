@@ -24,6 +24,26 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+		<script>
+			$(function(){
+				$("#pointbtn").on('click', pointsend)
+			})
+			
+			
+			function pointsend()
+			{
+				//받는 사람과 보내는 사람을 변수에 저장한다. 
+				//var receiver = ${memberinfo.memberid};
+				var sender   	 = ${sessionScope.memberid};
+				var pt_amount    = $("#pt_amount").val(); 
+				
+				$.ajax({
+					url: , 
+					data:, 
+				})
+			}
+			
+		</script>
 	
 	<script>
 	$(function(){
@@ -169,6 +189,7 @@
                                         <ul class="post-meta">
                                             <li>November 18, 2016</li>
                                             <li><a href="follow_page">작성자</a></li>
+                                            
                                             <li><a href="#">3 Comments</a></li>
                                         </ul>
                                     </div>
@@ -184,6 +205,8 @@
                          <div class="col-md-4">
                             <div class="sticky-sidebar">
                                 <h6 class="single-portfolio-title">실시간 채팅 </h6>
+                                <input type="text" id="pt_amount" name="pt_amount">
+                                <input type="button" id="pointbtn" name="pointbtn" value="포인트선물"/>
                             </div>
                         </div>
                     </div>
@@ -330,5 +353,8 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
         <script src="resources/assets/js/custom/plugins.min.js"></script>
         <script src="resources/assets/js/custom/custom.min.js"></script>
+        
+       
+        
     </body>
 </html> 
