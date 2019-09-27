@@ -1,10 +1,14 @@
 package com.debugking.www.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.debugking.www.dto.MemberInfo;
+
+
 
 
 @Repository
@@ -38,6 +42,39 @@ public class MemberRepository {
 		return result;
 	}
 	
-
+	//유저 이메일 가져오기
+	public String getUserEmail(String userid){
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		String useremail = mapper.getUserEmail(userid);
+		
+		return useremail;
+	}
+	
+	public int setUserEmailChecked(String userid)
+	{
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.setUserEmailChecked(userid);
+		
+		return result;
+	}
+	
+	public MemberInfo selectOne(String memberId) {
+		// TODO Auto-generated method stub
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		MemberInfo member = mapper.selectOne(memberId);
+		return member;
+	}
+	public int setPhotoname(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.setPhotoname(member);
+		
+		return result;
+	}
+	public int setSavefile(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.setSavefile(member);		
+		
+		return result;
+	}
 
 }

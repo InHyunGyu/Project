@@ -16,13 +16,5 @@ public interface VoiceListMapper {
 
 	public List<Posts> selectAll(Map<String, String> map, RowBounds rb); // 전체 선택하기 
 
-	public int writing(Posts post); //글쓰기
-
-	public int getVoiceNewCount(Map<String, Object> map);
-
-	public List<Posts> selectNewAll(Map<String, String> map, RowBounds rb);
-
-	public Posts selectPostOne(int postNo); //POSTS 하나만 검색하기
-	
 
 }

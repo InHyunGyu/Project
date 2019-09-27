@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +23,39 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	<style>
+		#button_group {
+			float: right;
+		}
+		
+		button[name="contentModi"]{
+		float: right;
+		}
+		
+		
+  a {
+  	color: #788487;
+  }
+	
+	#inputStyle {
+	height: 100%; 
+	width: 20%;
+	color: #495057;
+    background-color: #fff;
+    padding-left: 12px;
+    border: 1px solid #ededed;
+    border-radius: .1875rem;
+    font-size:0.85em;
+    
+	 }
+	
+	</style>
+
 	
 	<script>
 	$(function(){
+		
+		
 		$("#loginBTN").on('click', function(){
 			var memberId = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
@@ -54,12 +84,118 @@
 			location.href="signup"
 		})
 		
-		$("#post_modifyBTN").on('click', function(){
-			location.href="post_modify";
+		$("#replyBTN").on('click', function(){
+			var replyContent = $("#replyContent").val();
+			var postNo = "${post.postNo}";
+			var memberId = "${sessionScope.memberId}";
+			
+			if(memberId == null) {
+				alert("로그인을 해주세요.");
+				return;
+			}
+			
+			if(replyContent.length == 0) {
+				alert("댓글 내용을 입력해주세요.");
+				return;
+			}
+			
+			var send = {
+					"replyContent":replyContent,
+					"postNo":postNo
+			}
+			
+			$.ajax({
+				method:'post',
+				url:'replyinsert',
+				data:send,
+				success:function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$(".replyDelBTN").on('click', function(){
+			var replyNo = $(this).attr("data-value");
+			
+			$.ajax({
+				method:'get',
+				url:'replyDel',
+				data:'replyNo='+replyNo,
+				success:function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$(".replyModiBTN").on('click', function(){
+			var replyNo = $(this).attr("data-value");
+			var replyContent =  $(this).attr("data-content");
+			
+			var tag = '';
+			
+			tag += '<div class="comment-body">';
+			tag += '<form class="comment-form row">';
+			tag += '<div class="form-group col-md-12">';
+			tag += '<textarea class="form-control" rows="4" cols="100" style="margin: 5px;" id="ModiContent" name="replyContent" >'+replyContent+'</textarea>';
+			tag += '</div>';
+			tag += '<div class="form-submit col-md-12">';
+			tag += '<button class="btn btn-dark" type="button" id="contentModi" name="contentModi" data-replyNo="'+replyNo+'">Modify</button>';
+			tag += '</form>'
+			tag += '</div>'
+
+	     
+			
+            $(this).parent().parent().parent().html(tag);
+			$("#contentModi").on('click', function(){
+				var replyContent = $("#ModiContent").val();
+				var replyNo = $(this).attr("data-replyNo");
+				
+				var send = {
+						
+						'replyNo':replyNo,
+						'replyContent':replyContent
+				}
+				
+				$.ajax({
+					method:'post',
+					url:'replyUp',
+					data:send,
+					success:function(){
+						location.reload();
+					}
+				})
+				
+				
+			});
+
+		})
+		
+		$("#postLike").on('click', function(){
+			var postNo = $(this).attr("data-value");
+			
+			$.ajax({
+				method:'get',
+				url:'postLike?postNo='+postNo,
+				success:function(){
+					location.reload();
+				}
+			})
+		})
+		
+		$("#reported").on('click', function(){
+			var postNo = $(this).attr("data-value");
+			
+			$.ajax({
+				method:'get',
+				url:'reported?postNo='+postNo,
+				success:function(){
+					location.reload();
+				}
+			})
 		})
 	})
 	
-		
+	
 	</script>
     </head>
     <body>
@@ -75,79 +211,78 @@
         </div>
         <!-- Preloader end-->
         <!-- Header-->
-        <header class="header header-transparent">
-            <div class="container-fluid">
-                <!-- Brand-->
-                <div class="inner-header"><a class="inner-brand" href="main">UtaJJang</a></div>
-                <!-- Navigation-->
-                <div class="inner-navigation collapse">
-                    <div class="inner-nav">
-                        <ul>
-                            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="main"><span class="menu-item-span">Home</span></a>
-                            </li>
-                            
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Voice</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="voice_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="voice_weekly">Weekly</a></li>
-                                            <li><a href="voice_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="voice_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Video</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="video_new">New</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Best</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="video_weekly">Weekly</a></li>
-                                            <li><a href="video_monthly">Monthly</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="video_all">ALL</a></li>
-                                </ul>
-                            </li>
-                  
-                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
-                            </li>
-                            
-                             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="community">Board</a></li>
-                                    <li><a href="myblog">My Blog</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="extra-nav">
+	<header class="header header-transparent">
+		<div class="container-fluid">
+			<!-- Brand-->
+			<div class="inner-header">
+				<a class="inner-brand" href="main">UtaJJang</a>
+			</div>
+			<!-- Navigation-->
+			<div class="inner-navigation collapse">
+				<div class="inner-nav">
+					<ul>
+						<li class="menu-item-has-children menu-item-has-mega-menu"><a
+							href="main"><span class="menu-item-span">Home</span></a></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Voice</span></a>
+							<ul class="sub-menu">
+								<li><a href="voice_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="voice_weekly">Weekly</a></li>
+										<li><a href="voice_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="voice_all">ALL</a></li>
+							</ul></li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Video</span></a>
+							<ul class="sub-menu">
+								<li><a href="video_new">New</a></li>
+								<li class="menu-item-has-children"><a href="#">Best</a>
+									<ul class="sub-menu">
+										<li><a href="video_weekly">Weekly</a></li>
+										<li><a href="video_monthly">Monthly</a></li>
+									</ul></li>
+								<li><a href="video_all">ALL</a></li>
+							</ul></li>
+
+						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						</li>
+
+						<li class="menu-item-has-children"><a href="#"><span
+								class="menu-item-span">Community</span></a>
+							<ul class="sub-menu">
+								<li><a href="community">Board</a></li>
+								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
+							</ul></li>
+						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
+						<c:if test="${sessionScope.memberId == 'admin'}">
+						<li class="menu-item-has-children"><a href="managerPage"><span
+								class="menu-item-span">Admin</span></a></li></c:if>
+					</ul>
+				</div>
+			</div>
+			<div class="extra-nav">
                     <ul>
                         <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                        <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation" class="" aria-expanded="true"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
                     </ul>
                 </div>
-            </div>
-        </header>
-        <!-- Header end-->
+		</div>
+	</header>
+	<!-- Header end-->
         
         <!-- Wrapper-->
         <div class="wrapper">
             <!-- Hero-->
-            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-17.jpg" data-overlay="0.3">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/board12.jpg" data-overlay="0.3">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>Bluetooth Speaker</h2>
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Blog</a></li>
-                                <li class="breadcrumb-item active">Single Post</li>
-                            </ol>
+                            <h2>Detail</h2>
+                           
                         </div>
                     </div>
                 </div>
@@ -161,103 +296,91 @@
                         <div class="col-lg-8">
                             <!-- Post-->
                             <article class="post">
-                                <div class="post-preview"><img src="resources/assets/images/blog/1.jpg" alt=""></div>
+                            	<c:if test="${post.originalFile == null}">
+                            	<div class="post-preview"><img src="resources/assets/images/blog/1.jpg" alt=""></div>
+                            	</c:if>
+                            	<c:if test="${post.originalFile != null}">
+                                <div class="post-preview"><img src="<c:url value=""/>" alt=""></div>
+                                </c:if>
                                 <div class="post-wrapper">
                                     <div class="post-header">
-                                        <h1 class="post-title">Minimalist Chandelier</h1>
+                                        <h1 class="post-title">${post.postTitle}</h1>
                                         <ul class="post-meta">
-                                            <li>November 18, 2016</li>
-                                            <li><a href="follow_page">작성자</a></li>
-                                            <li>In <a href="#">Branding</a>, <a href="#">Design</a></li>
-                                            <li><a href="#">3 Comments</a></li>
+                                            <li>${post.postDate}</li>
+                                            <li><a href="follow_page?memberId=${post.memberId}">${post.memberId}</a></li>
+                                        </ul>
+                                        <ul class="post-meta">
+                                            <li>View : ${post.postView}</li>
+                                            <li>Like : ${post.postLike}</li>
+                                            <li>Report : ${post.reported}</li>
                                         </ul>
                                     </div>
                                     <div class="post-content">
-                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica. Salvia esse nihil, flexitarian Truffaut synth art party deep v chillwave. Seitan High Life reprehenderit consectetur cupidatat kogi.</p>
-                                        <p>Exercitation photo booth stumptown tote bag Banksy, elit small batch freegan sed. Craft beer elit seitan exercitation, photo booth et 8-bit kale chips proident chillwave deep v laborum. Aliquip veniam delectus, Marfa eiusmod Pinterest in do umami readymade swag. Selfies iPhone Kickstarter, drinking vinegar jean shorts fixie consequat flexitarian four loko.</p>
-                                        <blockquote class="blockquote">
-                                            <p>To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.</p>
-                                            <footer class="blockquote-footer">Amanda Pollock, Google Inc.</footer>
-                                        </blockquote>
-                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica.</p>
-                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica. Salvia esse nihil, flexitarian Truffaut synth art party deep v chillwave. Seitan High Life reprehenderit consectetur cupidatat kogi.</p>
-                                        <ol>
-                                            <li>Digital Strategy</li>
-                                            <li>Software Development</li>
-                                            <li>Interaction Design</li>
-                                        </ol>
-                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica.</p>
-                                        <p>Exercitation photo booth stumptown tote bag Banksy, elit small batch freegan sed. Craft beer elit seitan exercitation, photo booth et 8-bit kale chips proident chillwave deep v laborum. Aliquip veniam delectus, Marfa eiusmod Pinterest in do umami readymade swag. Selfies iPhone Kickstarter, drinking vinegar jean shorts fixie consequat flexitarian four loko.</p>
+                                        <p>${post.postContent}</p>
                                     </div>
-                                    <div class="post-footer">
-                                        <div class="post-tags"><a href="#">Lifestyle</a><a href="#">Music</a><a href="#">News</a><a href="#">Travel</a></div>
-                                    </div>
+                                   
                                 </div>
+                                 
                             </article>
                             <!-- Post end-->
 
                             <!-- Comments area-->
                             <div class="comments-area m-b-50">
-                                <h5 class="comments-title">3 Comments</h5>
+                                <h5 class="comments-title">${replyCount} Comments</h5>
                                 <div class="comment-list">
                                     <!-- Comment-->
                                     <div class="comment">
-                                        <div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/1.jpg" alt=""></div>
-                                        <div class="comment-body">
-                                            <div class="comment-meta">
-                                                <div class="comment-meta-author"><a href="follow_page">Jason Ford</a></div>
-                                                <div class="comment-meta-date"><a href="#">May 5, 2015 at 4:51 am</a></div>
-                                            </div>
-                                            <div class="comment-content">
-                                                <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica.</p>
-                                            </div>
-                                            <div class="comment-reply"><a href="#">Reply</a></div>
-                                        </div>
-                                        <!-- Subcomment-->
-                                        <div class="children">
-                                            <div class="comment">
-                                                <div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/2.jpg" alt=""></div>
-                                                <div class="comment-body">
-                                                    <div class="comment-meta">
-                                                        <div class="comment-meta-author"><a href="follow_page">Harry Benson</a></div>
-                                                        <div class="comment-meta-date"><a href="#">May 5, 2015 at 4:51 am</a></div>
-                                                    </div>
-                                                    <div class="comment-content">
-                                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella.</p>
-                                                    </div>
-                                                    <div class="comment-reply"><a href="#">Reply</a></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Comment-->
-                                    <div class="comment">
-                                        <div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/3.jpg" alt=""></div>
-                                        <div class="comment-body">
-                                            <div class="comment-meta">
-                                                <div class="comment-meta-author"><a href="follow_page">Henry Cain</a></div>
-                                                <div class="comment-meta-date"><a href="#">May 5, 2015 at 4:51 am</a></div>
-                                            </div>
-                                            <div class="comment-content">
-                                                <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Seitan High Life reprehenderit consectetur cupidatat kogi about me. Photo booth anim 8-bit hella, PBR 3 wolf moon beard Helvetica.</p>
-                                            </div>
-                                            <div class="comment-reply"><a href="#">Reply</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                   	
+                                   	<c:if test="${not empty replyList}">
+										<c:forEach var="reply" items="${replyList}">
+											
+											<div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/1.jpg" alt=""></div>
+											
+											<div class="comment-body">
+												<div class="comment-meta">
+													<div class="comment-meta-author"><a href="follow_page?memberId={reply.memberId}">${reply.memberId}</a></div>
+													<div class="comment-meta-date">${reply.replyDate}</div>
+												</div>
+												<div class="comment-content">
+													<p class="idd">${reply.replyContent}</p>
+												</div>
+												<div class="form-group">
+													<div class="comment-reply">
+														<a class="replyModiBTN" data-value="${reply.replyNo}" data-content="${reply.replyContent}">Modify</a>&ensp;<a class="replyDelBTN" data-value="${reply.replyNo}">Delete</a>
+													</div>
+												<div id = "modiChange">	
+											</div>
+												</div>
+											
+											</div>
+											
+											
+											
+										</c:forEach> 
+										
+									</c:if>  
                                 <div class="comment-respond">
                                     <h5 class="comment-reply-title">Leave a Reply</h5>
-                                    <p class="comment-notes">Your email address will not be published. Required fields are marked</p>
                                     <form class="comment-form row">
                                         <div class="form-group col-md-12">
-                                             <textarea class="form-control" rows="4" cols="100" placeholder="Comment" style="margin: 5px;"></textarea>
+                                             <textarea class="form-control" rows="4" cols="100" placeholder="Comment" style="margin: 5px;" id="replyContent" name="replyContent"></textarea>
                                         </div>
                                         <div class="form-submit col-md-12">
-											<button class="btn btn-dark" type="submit" >Comment</button>
+											<button class="btn btn-dark" type="button" id="replyBTN" name="replyBTN">Comment</button>
 											 
-											 <button class="btn btn-outline-dark" type="button" id="post_modifyBTN" style="float: right;">Modify</button>
-		                               		<button class="btn btn-outline-dark" type="button" style="float: right;">Delete</button>
+											 <c:if test="${sessionScope.loginId == post.memberId}">
+											 <div class="form-group" id = "button_group">
+											 <a href="post_modify?postNo=${post.postNo}"><button class="btn btn-outline-dark" type="button" id="post_modifyBTN" >Modify</button></a>
+		                               		<a href="delete?postNo=${post.postNo}"><button class="btn btn-outline-dark" type="button" id="deleteBTN">Delete</button></a>
+		                               		</div>
+		                               	</c:if>
 		                               	
+		                               	<c:if test="${sessionScope.loginId != post.memberId}">
+											 <div class="form-group" id = "button_group">
+											 <button class="btn btn-outline-dark" type="button" id="postLike" data-value="${post.postNo}">postLike</button>
+		                               		<button class="btn btn-outline-dark" type="button" id="reported" data-value="${post.postNo}">REPORTED</button>
+		                               		</div>
+		                               	</c:if>
                                         </div>
                                     </form>
                                     <div style="margin-top: 30px;">
@@ -265,10 +388,12 @@
                                 </div>
                                 
                                  
-                               	
+                            </div>
+                        	</div>
+                        	</div> 	
                             </div>
                             <!-- Comments area end-->
-                        </div>
+                       
                         
                         
                         
@@ -409,10 +534,17 @@
                     <aside class="widget widget-text">
                         <div class="textwidget">
                             <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">로그인한아이디</p>
-                            <p class="text-center">n 번 방문</p>
-                            <p class="text-center"><a href="myblog" style="color: #788487">내 블로그</a></p>
+                            <p class="text-center">${sessionScope.memberId}</p>
+                            <p class="text-center">
+                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+                            </p>
                             <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
+                            <p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p>
+							<p class="text-center">
+								<a href="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
                         </div>
                     </aside>
                     </c:if>
@@ -438,7 +570,7 @@
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->
-        <script src="resources/assets/js/custom/jquery.min.js"></script>
+       <script src="resources/assets/js/custom/jquery.min.js"></script>
         <script src="resources/assets/js/custom/popper.min.js"></script>
         <script src="resources/assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="resources/assets/js/custom/plugins.min.js"></script>

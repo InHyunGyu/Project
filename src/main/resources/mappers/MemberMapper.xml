@@ -12,9 +12,12 @@
 			,memberName
 			,memberPhone
 			,memberBirth
-			,signupDate
+			,to_char(signupDate, 'YYYY-MM-DD') as signupDate
 			,memberEmail
 			,memberPoint
+			,photoname
+			,savefile
+			,myintro
 		From
 			MemberInfo
 		Where
@@ -59,7 +62,8 @@
 			memberId
 			,memberName
 		From MemberInfo
-		Where memberId=#{memberId} and memberPwd =#{memberPwd}
+		Where memberId=#{memberId} and memberPwd =#{memberPwd} 
+		and emailchecked = 'y'
 	</select>
 	
 	<!-- 회원탈퇴 -->
@@ -67,5 +71,31 @@
 		delete From MemberInfo
 		Where memberId=#{memberId} and memberPwd =#{memberPwd}
 	</delete>
+	
+	<select id="getUserEmail" parameterType="String" resultType="String">
+		SELECT memberEmail
+		FROM memberinfo
+		WHERE memberId = #{memberId}
+	</select>
+	
+	<update id="setUserEmailChecked" parameterType="String">
+		update MemberInfo
+		set emailchecked = 'y'
+		where memberId = #{memberId}
+	</update>
+	
+	<update id="setPhotoname" parameterType="Member">
+		update MemberInfo
+		set photoname = #{photoname}
+		where memberId = #{memberId}
+	</update>
+	
+	<update id="setSavefile" parameterType="Member">
+		update MemberInfo
+		set savefile = #{savefile}
+		where memberId = #{memberId}
+	</update>
+	
+	
 </mapper>
 

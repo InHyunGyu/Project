@@ -24,37 +24,139 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+	<style>
+		img#mypic{
+			width: 800px;
+			height: 600px;
+		}
 	
+	</style>
 	<script>
 	$(function(){
-		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			
-			if(memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'login',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
-		
+		init(); 
+		$("#loginBTN").on('click', loginBTN)
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		ajaxUploadImage() 
+		
+		var fd;//폼 데이터 전역변수 설정
 	})
+	
+	function init()
+	{
+		$.ajax({
+			url: "imageFetch",
+			type: "get", 
+			success: function(resp){
+				$("#mypic").attr('src', resp);
+			}
+		})
+	}
+	
+	
+	function extractContentData()
+    {
+		//처리해야 하는 값: 유저아이디(컨트롤러에서), 파일명, 게시물번호, 이미지불러오기, (생성날자(추후 sysdate)),
+        //확장명이 붙은 파일명을 저장하기
+        var fileValue = $("#uploadFile").val().split("\\");
+        var fileNameWexe = fileValue[fileValue.length-1]; // 파일명
+        var SplitFileName = fileNameWexe.split(".");   
+        var fileName = SplitFileName[0];
+        //파일을 담아서 보내주기 위해 변수 설정
+        var inputFile = $("input[name='uploadFile']");
+		var files = inputFile[0].files;
+		
+		
+		
+        //파일 관련 객체를 보내야 하므로 FormData객체 생성하여
+        //파일이름(확장명 포함), 제목, 내용, 태그를 넣어준다. 
+        fd = new FormData();
+        
+        fd.append("photoname",fileNameWexe); //업로드한 파일명
+        fd.append("uploadFile", files[0]);  //파일 그 자체
+        
+        
+    }
+	
+	
+	
+	function ajaxUploadImage()
+	{
+		$("#uploadBtn").on('click', function(){
+    		//FormData객체 생성이 아래 함수에 포함되어 있으므로
+    		//반드시 이 함수 지역변수 내에서 호출해줘야 한다. 
+    		extractContentData();
+    		
+    		$.ajax({
+    			url: 'ajaxFileUpload',
+    			data: fd,
+    			type: 'post',
+    			processData: false,
+    			contentType: false, 
+    			success: function(resp){
+    				alert("upload completion");
+    				$("#mypic").attr('src', resp);
+    				location.reload();
+    			}
+    		})
+    	})
+  	/* 
+    	//업로드를 한 후 상태 변화가 있을 경우 발동하는 이미지 미리보기 함수(현재 작동 안함)
+    	$("#uploadFile").on('change',function(){
+    		//버튼 문서 객체 불러온 뒤 해당 문서객체에 변화가 있을 경우 아래 코드를 실행한다.
+    		
+    		var formData = new FormData(); 
+    		var inputFile = $("input[name='uploadFile']");
+    		var files = inputFile[0].files; 
+    		
+    		console.log(inputFile); 
+    		
+    		for (var i = 0; i < files.length; i++) {
+				formData.append("mypic", files[i]);
+			}
+    		
+    		$.ajax({
+    			url: 'imagePreview',
+    			data: formData,
+    			type: 'post',
+    			processData : false,
+				contentType : false,
+				success:function(resp){
+					alert(resp);
+					$("#mypic").attr('src', resp);
+				}
+    		})
+    	})
+    	 */
+	}
+		
+	function loginBTN()
+	{
+		var memberId = $("#memberId").val();
+		var memberPwd = $("#memberPwd").val();
+		
+		if(memberId.length == 0 || memberPwd.length == 0) {
+			alert("다시입력해주세요.");
+			return;
+		}
+		
+		var send = {
+				"memberId" : memberId,
+				"memberPwd" : memberPwd
+		}
+		
+		$.ajax({
+			method:'post',
+			url:'login',
+			data:send,
+			success: function(){
+				location.reload();
+			}
+		})
+	}
+			
+	
 	
 	</script>
     </head>
@@ -155,7 +257,13 @@
 
                             <!-- Post-->
                             <article class="post">
-                                <div class="post-preview"><a href="#"><img src="resources/assets/images/blog/1.jpg" alt=""></a></div>
+                            	<!-- 메인 사진을 위한 파일 업로드 -->
+                                <div class="post-preview"><a href="#"><img id="mypic" src="resources/assets/images/blog/1.jpg" alt=""></a>
+	                                <input type="file" id="uploadFile" name="uploadFile"><br>
+	                                <input type="button" id="uploadBtn" value="업로드">
+	                                <input type="hidden" id="hdnSession" value="${sessionScope.memberId}" />
+                                </div>
+                                 
                                 <div class="post-wrapper">
                                     <div class="post-header">
                                         <h2 class="post-title"><a href="blog-single.html">Bluetooth Speaker</a></h2>

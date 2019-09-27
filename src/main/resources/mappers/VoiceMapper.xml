@@ -32,8 +32,6 @@
 			,to_char(postDate, 'YYYY-MM-DD') as postDate
 			,postView
 			,postLike
-			,postType
-			,isAnnouncement
 			<if test="originalFile != null">
 			,originalFile
 			,savedFile
@@ -47,6 +45,7 @@
 		ORDER BY postNo DESC
 	</select>
 	
+
 	<select id="selectNewAll" resultType="Post" parameterType="map">
 		SELECT
 			postNo
@@ -71,41 +70,4 @@
 		ORDER BY postNo DESC
 	</select>
 	
-	<!-- 글쓰기 -->
-	<insert id="writing" parameterType="Post">
-		insert into Posts
-		(
-			postNo
-			,memberId
-			,postTitle
-			,postContent
-			,postDate
-			,isAnnouncement
-			,postType
-			<if test="originalFile!=null">
-				,originalFile
-				,savedFile
-			</if>
-		)
-		values
-		(
-			postNoSeq.nextval
-			,#{memberId}
-			,#{postTitle}
-			,#{postContent}
-			,sysdate
-			,#{isAnnouncement}
-			,#{postType}
-			<if test="originalFile!=null">
-				,#{originalFile}
-				,#{savedFile}
-			</if>
-		)
-	</insert>
-	<!-- POSTS 하나만 검색하기 -->
-	<select id="selectPostOne" parameterType="int" resultType="Post">
-		select *
-		From Posts
-		Where postNo = #{postNo}
-	</select>
 </mapper>
