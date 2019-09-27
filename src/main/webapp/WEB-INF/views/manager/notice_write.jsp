@@ -56,7 +56,20 @@
 		})
 		
 		$("#writing").on('click', function(){
+			var postTitle = $("#postTitle");
+			var postContent =$("#postContent");
 			
+			if(postTitle.val()=='' || postTitle.val()==null){
+				alert("제목 입력하세요.");
+				title.focus();
+				return false;
+			}else if(postContent.val()=='' || postContent.val()==null){
+				alert("내용을 입력하세요");
+				title.focus();
+				return false;
+			}else{
+				writing.submit();
+			}
 		})
 	})
 	

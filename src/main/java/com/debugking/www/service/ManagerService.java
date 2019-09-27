@@ -30,7 +30,6 @@ public class ManagerService {
 	}
 	public int deleted(List<String> listchecked) {
 		Map hm = new HashMap();
-		System.out.println("서비스 디릴트");
 		hm.put("postNo", listchecked);
 
 		int result = repo.deleted(hm);
@@ -41,8 +40,18 @@ public class ManagerService {
 			return 1;
 		}
 	}
-	public int change(List<String> listchecked, String changeLevel) {
+	public int change(List<String> listchecked, String memberLevel) {
+		Map hm = new HashMap();
 		
-		return 0;
+		hm.put("memberId", listchecked);
+		hm.put("memberLevel", memberLevel);
+
+		int result = repo.change(hm);
+		if(result==0){
+			return 0;
+		}
+		else{
+			return 1;
+		}
 	}
 }

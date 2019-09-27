@@ -32,7 +32,6 @@ public class ManagerController {
 		int totalRecordCount = repo.getVoiceCount(searchItem);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
-		//System.out.println(navi.getStartRecord());
 		List<Posts> list = repo.selectAll(searchItem, navi.getStartRecord(), navi.getCountPerPage());
 		
 		model.addAttribute("searchItem", searchItem);
@@ -41,31 +40,6 @@ public class ManagerController {
 		
 		return "manager/managerPage";
 	}
-	//게시글 이동
-	@RequestMapping(value="/move", method=RequestMethod.POST)
-	@ResponseBody
-	public int move(@RequestParam(value="listchecked") List<String> listchecked,String postType){
-		System.out.println("postNo"+listchecked+"//////"+"postType"+postType);
-		
-		int result = service.move(listchecked,postType);
-	
-		return result;
-	}
-	
-	
-	@RequestMapping(value="/notice_write", method=RequestMethod.GET)
-	public String notice_write(){
-		return "manager/notice_write";
-	}
-	//게시글 삭제
-	@RequestMapping(value="/deleted", method=RequestMethod.POST)
-	@ResponseBody
-	public int deleted(@RequestParam(value="listchecked") List<String> listchecked){
-		int result = service.deleted(listchecked);
-	
-		return result;
-	}
-	
 	@RequestMapping(value="/memberRating", method=RequestMethod.GET)
 	@ResponseBody
 	public List<MemberInfo> memberRating(
@@ -75,25 +49,40 @@ public class ManagerController {
 		int totalRecordCount = repo.getMemberInfoCount(memberLevel);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
-		//System.out.println(navi.getStartRecord());
 		List<MemberInfo> ratingList = repo.selectMemberInfoAll(memberLevel, navi.getStartRecord(), navi.getCountPerPage());
-		System.out.println("1234s"+ratingList);
-		/*model.addAttribute("searchItem", memberLevel);
-		model.addAttribute("navi", navi);
-		model.addAttribute("ratingList", ratingList);*/
-		
 		return ratingList;
 	}
-	//등업하기 등급 변경하기
-	@RequestMapping(value="/change", method=RequestMethod.POST)
-	@ResponseBody
-	public int change(@RequestParam(value="listchecked") List<String> listchecked,String changeLevel){
-		System.out.println("postNo"+listchecked+"//////"+"postType"+changeLevel);
-		
-		int result = service.change(listchecked,changeLevel);
 	
+	//게시글 이동
+	@RequestMapping(value="/move", method=RequestMethod.POST)
+	@ResponseBody
+	public int move(@RequestParam(value="listchecked") List<String> listchecked,String postType){
+		int result = service.move(listchecked,postType);
+		return result;
+	}
+	//게시글 삭제
+	@RequestMapping(value="/deleted", method=RequestMethod.POST)
+	@ResponseBody
+	public int deleted(@RequestParam(value="listchecked") List<String> listchecked){
+		int result = service.deleted(listchecked);
 		return result;
 	}
 	
+	
+	//등업하기 등급 변경하기
+	@RequestMapping(value="/change", method=RequestMethod.POST)
+	@ResponseBody
+	public int change(@RequestParam(value="listchecked") List<String> listchecked,String memberLevel){
+		System.out.println("postNo"+listchecked+"//////"+"postType"+memberLevel);
+		
+		int result = service.change(listchecked,memberLevel);
+	
+		return result;
+	}
+	//등업 글쓰기?
+	@RequestMapping(value="/notice_write", method=RequestMethod.GET)
+	public String notice_write(){
+		return "manager/notice_write";
+	}
 	
 }

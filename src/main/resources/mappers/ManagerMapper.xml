@@ -48,6 +48,17 @@
             #{postNo}
         </foreach>
 	</delete>
+	
+	<update id="change" parameterType="map">
+    update MemberInfo
+    set
+    	memberLevel = #{memberLevel}
+    WHERE memberId IN
+         <foreach collection="memberId" item="memberId"  open="(" close=")" separator=",">
+            #{memberId}
+        </foreach>
+	</update>
+	
 	<select id="getMemberInfoCount" parameterType="map" resultType="int">
 		select count(*)
 		From MemberInfo
@@ -65,8 +76,8 @@
 			,memberPoint
 			,memberLevel
 		FROM MemberInfo 
-		where memberLevel = #{memberLevel}
-		ORDER BY signupDate DESC
+
+		ORDER BY memberLevel DESC, signupDate asc
 	</select>
 	
 </mapper>

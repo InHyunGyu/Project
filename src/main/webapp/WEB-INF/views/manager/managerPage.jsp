@@ -67,19 +67,42 @@
 				}
 			})
 		})
-		
 		$("#signup").on('click', function(){
 			location.href="signup"
 		})
+		$("#move").on("click",function(){
+			move(DATA);
+			DATA=[];
+		})
+		$("#deleted").on("click",function(){
+			deleted(DATA);
+			DATA=[];
+		})
 		
-		
+		$("#checkAll").click(function() {
+			$("input[id=postNoBTN]:checkbox").each(function() {
+				$(this).attr("checked", true)
+				if($(this).is(':checked')){
+			           DATA.push($(this).val());
+			           console.log(DATA);
+		         } else{
+		        	 DATA.pop($(this).val());
+		        	 console.log(DATA);
+		         }
+				//DATA.push($(this).attr("checked", true));
+				alert("DATA"+DATA);
+				console.log(DATA);
+			});
+		});
 		//체크박스 체크 된 것 배열에 추가하기 
 		var DATA=[];
 		$("#content_table").on("change","#postNoBTN",function(){
 	          if($(this).is(':checked')){
 		           DATA.push($(this).val());
+		           console.log(DATA);
 	         } else{
 	        	 DATA.pop($(this).val());
+	        	 console.log(DATA);
 	         }
 			/* $("input[id=postNoBTN]:checked").each(function(){
 				DATA += $('"data-boardno":checked').val();
@@ -87,41 +110,19 @@
 			}) */
 			//var a= $(this).attr("data-boardno");
 		})
-		$("#move").on("click",function(){
-				console.log(DATA)
-				move(DATA);
-		})
-		$("#deleted").on("click",function(){
-			console.log(DATA);
-			deleted(DATA);
-		})
-		$("#change").on('click',function(){
-			console.log(DATA);
-			change(DATA);
-		})
 		
-		// 등급변경
-		function change(DATA){
-			jQuery.ajaxSettings.traditional = true;
-			
-			var changeLevel =  $("#changeLevel").val();
-			$.ajax({
-				method:"POST",
-				url:"change",
-				data:{
-					"listchecked" : DATA,
-					"memberLevel" : changeLevel
-				},
-				success : function(mesa){
-					if(mesa==0){
-						alert("실패");
-					}
-					else{
-						alert("등업 성공하였습니다.");
-					}
-				}
-			})
-		}
+		/*//유저 등급 체크 된 것 배열에 추가하기
+		var memberDATA=[];
+		 $("#content_select").on("change","#memberIdBTN",function(){
+	         if($(this).is(':checked')){
+	        	  memberDATA.push($(this).val());
+		          console.log(memberDATA);
+	         } else{
+	        	 memberDATA.pop($(this).val());
+	        	 console.log(memberDATA);
+	         }
+		}) */
+		
 		// 게시글 삭제 
 		function deleted(test){
 			jQuery.ajaxSettings.traditional = true;
@@ -138,7 +139,6 @@
 					else{
 						alert("게시글이 삭제 되었습니다.");
 						for(var i=0; i<test.length; i++){
-							//alert($("input[data-boardno*='test[i]'").parent().parent())
 							$('input[data-boardno |='+test[i]+']').parent().parent().remove();
 						}
 					}
@@ -164,7 +164,9 @@
 					}
 					else{
 						alert("게시글이 이동하였습니다.");
-						writingList();
+						for(var i=0; i<test.length; i++){
+							$('input[data-boardno |='+test[i]+']').parent().parent().remove();
+						}
 					}
 				}
 			})
@@ -181,7 +183,7 @@
 				}
 			})
 		})
-	})
+	})//끝.
 	
 	function writingList(){	
 		var tag1="게시글 관리";
@@ -197,7 +199,7 @@
 		tag2 += '</colgroup>'
 		tag2 += '<thead>'
 		tag2 += '<tr>'		
-		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th><input type="checkbox" id="checkAll"></th>'
 		tag2 += '<th>게시판</th>'
 		tag2 += '<th>글제목</th>'
 		tag2 += '<th>작성자</th>'
@@ -330,7 +332,7 @@
 		tag2 += '</colgroup>'
 		tag2 += '<thead>'
 		tag2 += '<tr>'		
-		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th><input type="checkbox" ></th>'
 		tag2 += '<th>회원 아이디</th>'
 		tag2 += '<th>회원 생일 </th>'
 		tag2 += '<th>등업 대기 등급</th>'
@@ -347,7 +349,7 @@
 		else{
 			$.each(ratingList,function(index,item){
 				tag2 += '<tr>'
-				tag2 += '<td><input type="checkbox" id="postNoBTN" value="'+item.postNo+'" data-boardno="'+item.postNo+'"></td>'
+				tag2 += '<td><input type="checkbox" id="memberIdBTN" value="'+item.memberId+'" data-boardno="'+item.memberId+'" name="testInput"></td>'
 				tag2 += '<td>'+item.memberId+'</td>'		
 				tag2 += '<td>'+item.memberBirth+'</td>'
 				tag2 += '<td>'+item.memberLevel+'</td>'
@@ -361,13 +363,11 @@
 		tag3 += '<input type="checkbox">'
 		tag3 += '<div class="form-group" style="float: right;">'
 		tag3 += '<select class="form-control col-lg-4" style="height: 30px;" id="changeLevel">'
-		tag3 += '<option value="1">1</option>'
-		tag3 += '<option value="2">2</option>'
-		tag3 += '<option value="3">3</option>'
-		tag3 += '<option value="4">4</option>'
-		tag3 += '<option value="5">5</option>'
+		tag3 += '<option value="beginner">Beginner</option>'
+		tag3 += '<option value="regular">Regular</option>'
+		tag3 += '<option value="manager">Manager</option>'
 		tag3 += '</select>'
-		tag3 += '<a href="#" id="change">change</a>'		
+		tag3 += '<a href="#" id="change">change</a>'
 		tag3 += '<a> | </a>'
 		tag3 += '<a href="#" id="stop_activity">stop</a>'
 		tag3 += '</div>'
@@ -375,6 +375,8 @@
 		$("#content_title").html(tag1);
 		$("#content_table").html(tag2);
 		$("#content_select").html(tag3);
+		
+		$("#change").on("click",change);
 	}
 		
 	function noticeList(){
@@ -434,7 +436,37 @@
 	function notice_write(){
 		location.href="notice_write";
 	}
-	
+	// 등급변경
+	function change(){
+		var list = [];
+		jQuery.ajaxSettings.traditional = true;
+	   $("input[name=testInput]").each(function(index, item){
+		   if($(item).is(':checked')){
+			   list.push($(item).val());
+	         } 
+	   });
+		alert("들어왔엉"+list);
+		
+		var changeLevel =  $("#changeLevel").val();
+		alert("들어왔엉"+changeLevel);
+		$.ajax({
+			method:"POST",
+			url:"change",
+			data:{
+				"listchecked" : list,
+				"memberLevel" : changeLevel
+			},
+			success : function(mesa){
+				if(mesa==0){
+					alert("실패");
+				}
+				else{
+					alert("등업 성공하였습니다.");
+					writingList();
+				}
+			}
+		})
+	}
 	function stop_activity(){
 		// 활동중지 
 	}
