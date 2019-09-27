@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.debugking.www.dao.ManagerMapper">
+	<!-- 게시글 출력 -->
 	<select id="getVoiceCount" parameterType="map" resultType="int">
 		select count(*)
 		From Posts
@@ -30,6 +31,34 @@
 		ORDER BY postNo DESC
 	</select>
 	
+	<!-- 공지 글 출력 -->
+	<select id="getNoticeCount" resultType="int">
+		select count(*)
+		From Posts
+		where memberId = 'admin'
+	</select>
+	<select id="selectNoticeAll" resultType="Post" >
+		SELECT
+			postNo
+			,memberId
+			,postTitle
+			,postContent
+			,to_char(postDate, 'YYYY-MM-DD') as postDate
+			,postView
+			,postLike
+			,postType
+			,isAnnouncement
+			<if test="originalFile != null">
+			,originalFile
+			,savedFile
+			</if>
+			,reported
+		FROM Posts 
+		where memberId = 'admin'
+		ORDER BY postNo DESC
+	</select>
+	
+	<!-- 게시글 이동하기 -->
 	<update id="move" parameterType="map">
     update Posts
     set
@@ -41,6 +70,7 @@
         </foreach>
 	</update>
 	
+	<!-- 게시글 삭제 -->
 	<delete id="deleted" parameterType="map">
     delete Posts
     WHERE postNo IN
@@ -49,6 +79,7 @@
         </foreach>
 	</delete>
 	
+	<!-- 멤버등급변경 -->
 	<update id="change" parameterType="map">
     update MemberInfo
     set
@@ -59,6 +90,7 @@
         </foreach>
 	</update>
 	
+	<!-- 등급별 멤버 출력 -->
 	<select id="getMemberInfoCount" parameterType="map" resultType="int">
 		select count(*)
 		From MemberInfo
@@ -76,7 +108,6 @@
 			,memberPoint
 			,memberLevel
 		FROM MemberInfo 
-
 		ORDER BY memberLevel DESC, signupDate asc
 	</select>
 	

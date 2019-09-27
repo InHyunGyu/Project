@@ -21,6 +21,9 @@ public interface ManagerMapper {
 
 	public int getMemberInfoCount(Map<String, Object> map); //멤버 수 구하기.
 	public List<MemberInfo> selectMemberInfoAll(Map<String, String> map, RowBounds rb);
+	public int getNoticeCount();
+	public List<Posts> selectNoticeAll(RowBounds rb);
+	
 
 	
 }

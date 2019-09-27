@@ -2,6 +2,8 @@ package com.debugking.www;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.debugking.www.dao.ManagerRepository;
 import com.debugking.www.dto.MemberInfo;
 import com.debugking.www.dto.Posts;
 import com.debugking.www.service.ManagerService;
+import com.debugking.www.service.PostsService;
+import com.debugking.www.util.FileService;
 import com.debugking.www.util.PageNavigator;
 
 @Controller
@@ -22,7 +27,11 @@ public class ManagerController {
 	ManagerRepository repo;
 	@Autowired
 	ManagerService service;
+	@Autowired
+	PostsService servicePost;
 	
+	final String uploadPath="/uploadfile";
+	//게시글
 	@RequestMapping(value="/managerPage", method=RequestMethod.GET)
 	public String manager(
 			@RequestParam(value="searchItem" , defaultValue="voice") String searchItem,
@@ -40,6 +49,7 @@ public class ManagerController {
 		
 		return "manager/managerPage";
 	}
+	//등급
 	@RequestMapping(value="/memberRating", method=RequestMethod.GET)
 	@ResponseBody
 	public List<MemberInfo> memberRating(
@@ -79,10 +89,43 @@ public class ManagerController {
 	
 		return result;
 	}
-	//등업 글쓰기?
+	//등업 글쓰기 페이지 이동
 	@RequestMapping(value="/notice_write", method=RequestMethod.GET)
-	public String notice_write(){
+	public String notice_writeMove(){
 		return "manager/notice_write";
+	}
+	//공지 글쓰기
+	@RequestMapping(value="/notice_write", method=RequestMethod.POST)
+	public String notice_write(Posts post , HttpSession session, MultipartFile upload){
+		post.setMemberId((String)session.getAttribute("memberId"));
+		System.out.println("notice_write"+post.getMemberId());
+		String originalfile = upload.getOriginalFilename();
+		String savedfile = FileService.saveFile(upload,uploadPath);
+		
+		post.setOriginalFile(originalfile);
+		post.setSavedFile(savedfile);
+		
+		
+		int result = servicePost.writing(post);
+		if(result==0){
+			return "manager/notice_write"; 
+		}
+		return "redirect:managerPage";
+	}
+	//공지 출력
+	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Posts> noticeList(
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
+			Model model){
+		int totalRecordCount = repo.getNoticeCount();
+		System.out.println(totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		
+		List<Posts> noticeList = repo.selectNoticeAll( navi.getStartRecord(), navi.getCountPerPage());
+		
+		model.addAttribute("navi", navi);
+		return noticeList;
 	}
 	
 }

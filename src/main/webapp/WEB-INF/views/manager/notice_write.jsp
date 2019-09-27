@@ -68,7 +68,7 @@
 				title.focus();
 				return false;
 			}else{
-				writing.submit();
+				notice_write.submit();
 			}
 		})
 	})
@@ -162,29 +162,29 @@
 								Notice
 							</h6>
 						</div>
-						<div class="m-b-20" id="write">
-							<div class="form-group">	
-								<select class="form-control col-md-3">
-									<option value="voice">voice</option>
-									<option value="video">video</option>
-									<option value="community">community</option>
-								</select>
-								<input class="form-control col-md-9" type="text" placeholder="Title" id="title" name="title"
-								style="height:54px; width: 400px;">
+						<form action="notice_write" method="POST" id="notice_write" enctype="multipart/form-data">
+							<div class="m-b-20" id="write">
+								<div class="form-group">	
+									<select class="form-control col-md-3" name="postType" >
+										<option value="ALL">All</option>
+										<option value="voice">voice</option>
+										<option value="video">video</option>
+										<option value="community">community</option>
+									</select>
+									<input class="form-control col-md-9" type="text" placeholder="Title" id="postTitle" name="postTitle"
+									style="height:54px; width: 400px;">
+								</div>
+								<div class="form-group">
+									<textarea class="form-control" id="postContent" name="postContent" rows="15" cols="100" placeholder="content"></textarea>
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="file" id="upload" name="upload" />
+								</div>
+								<div class="form-group">
+									<button class="btn btn-block btn-round btn-brand" type="button" id="writing">Notice Write</button>
+								</div>
 							</div>
-							<div class="form-group">
-								<textarea class="form-control" id="content" name="content" rows="15" cols="100" placeholder="content"></textarea>
-							</div>
-							<div class="form-group">
-								<input class="form-control" type="file" id="upload" name="upload" />
-							</div>
-							<div class="form-group">
-								<button class="btn btn-block btn-round btn-brand" type="button" id="writing">Notice Write</button>
-							</div>
-						
-						
-						</div>
-						
+						</form>
 					</div>
 				</div>
 			</div>

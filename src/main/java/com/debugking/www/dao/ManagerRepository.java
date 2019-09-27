@@ -53,7 +53,7 @@ public class ManagerRepository {
 			list = mapper.selectMemberInfoAll(map, rb);
 			return list;
 		}
-		
+		//관리자_게시글이동
 		public int move(Map hm) {
 			ManagerMapper mapper = session.getMapper(ManagerMapper.class);
 			int result= mapper.move(hm);
@@ -65,7 +65,7 @@ public class ManagerRepository {
 				return 1;
 			}
 		}
-		
+		//관리자_글삭제
 		public int deleted(Map hm) {
 			ManagerMapper mapper = session.getMapper(ManagerMapper.class);
 			int result= mapper.deleted(hm);
@@ -78,6 +78,7 @@ public class ManagerRepository {
 			}
 		}
 		
+		//관리자_회원등업변경
 		public int change(Map hm) {
 			ManagerMapper mapper = session.getMapper(ManagerMapper.class);
 			int result= mapper.change(hm);
@@ -89,5 +90,18 @@ public class ManagerRepository {
 				return 1;
 			}
 		}
-
+		public int getNoticeCount() {
+			ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+			int total = mapper.getNoticeCount();
+			return total;
+		}
+		public List<Posts> selectNoticeAll(int startRecord, int countPerPage) {
+			List<Posts> list;
+			RowBounds rb = new RowBounds(startRecord, countPerPage);
+			
+			ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+			list = mapper.selectNoticeAll(rb);
+			return list;
+		}
+	
 }

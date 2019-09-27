@@ -183,6 +183,14 @@
 				}
 			})
 		})
+		$("#noticeList").on('click',function(){
+			$.ajax({
+				mehtod:"GET",
+				url:"noticeList",
+				success: noticeList
+
+			})
+		})
 	})//끝.
 	
 	function writingList(){	
@@ -379,7 +387,7 @@
 		$("#change").on("click",change);
 	}
 		
-	function noticeList(){
+	function noticeList(noticeList){
 		var tag1 ="공지관리"
 			
 			var tag2 =''
@@ -397,22 +405,22 @@
 			tag2 += '<th>공지작성일</th>'
 			tag2 += '</tr>'
 			tag2 += '</thead>'
-			tag2 += '<tbody>'
-			tag2 += '<c:if test="${empty noticeList}">'	
-			tag2 += '<tr>'
-			tag2 += '<td colspan="4" align="center">데이터가 없습니다.</td>'
-			tag2 += '</tr>'
-			tag2 += '</c:if>'
-			tag2 += '<c:if test="${not empty noticegList}">'
-			tag2 += '<c:forEach var="board" items="${noticeList}" varStatus="stat">'
-			tag2 += '<tr>'
-			tag2 += '<td><input type="checkbox"></td>'
-			tag2 += '<td>${board.column}</td>'		
-			tag2 += '<td>${board.title}</td>'
-			tag2 += '<td>${board.regdate}</td>'
-			tag2 += '</tr>'
-			tag2 += '</c:forEach>'
-			tag2 += '</c:if>'
+			tag2 += '<tbody>'	
+			if(noticeList ==null){
+				tag2 += '<tr>'
+				tag2 += '<td colspan="4" align="center">데이터가 없습니다.</td>'
+				tag2 += '</tr>'
+			}
+			else{
+				$.each(noticeList,function(index,item){
+					tag2 += '<tr>'
+					tag2 += '<td><input type="checkbox" id="memberIdBTN" value="'+item.memberId+'" name="noticeCheck"></td>'
+					tag2 += '<td>'+item.postType+'</td>'		
+					tag2 += '<td>'+item.postTitle+'</td>'
+					tag2 += '<td>'+item.postDate+'</td>'
+					tag2 += '</tr>'
+				})
+			}
 			tag2 += '</tbody>'
 			
 			var tag3 = ''
@@ -578,7 +586,7 @@
                                 <h6 class="single-portfolio-title">글 관리 </h6>
                                 <p><a href="#" onclick="writingList();">게시글</a></p>
                                 <p><a href="#" onclick="commentList()">댓글</a> </p>
-                                <p onclick="noticeList();"><a href="#" onclick="noticeList();">공지</a></p>
+                                <p><a href="#" id="noticeList">공지</a></p>
                                 <hr class="m-t-30 m-b-30">
                                 <h6 class="single-portfolio-title">카페 회원 </h6>
                                 <p><a href="#" id="memberRating">등급 관리</a></p>
