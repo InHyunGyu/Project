@@ -24,6 +24,27 @@
 			memberId = #{memberId}
 	</select>
 	
+	<select id="getMemberId" parameterType="member" resultType="Member">
+		select 
+			memberId
+		From
+			MemberInfo
+		Where
+			memberEmail = #{memberEmail} and 
+			memberName = #{memberName}
+	</select>
+	
+	<select id="getMemberPwd" parameterType="member" resultType="Member">
+		select 
+			memberpwd
+		From
+			MemberInfo
+		Where
+			memberEmail = #{memberEmail} and 
+			memberId = #{memberId}
+	</select>
+	
+	
 	<!-- 회원가입  -->
 	<insert id="signup" parameterType="Member">
 		insert into MemberInfo
@@ -65,6 +86,20 @@
 		Where memberId=#{memberId} and memberPwd =#{memberPwd} 
 		and emailchecked = 'y'
 	</select>
+	
+	
+	<update id="memberUpdate" parameterType="Member">
+		UPDATE
+			memberinfo
+		SET	
+			memberPwd   = #{memberPwd},
+			memberName  = #{memberName},
+			memberPhone = #{memberPhone},
+			memberEmail = #{memberEmail},
+			myintro     = #{myintro}
+		WHERE
+			memberId = #{memberId}
+	</update>
 	
 	<!-- 회원탈퇴 -->
 	<delete id="memberDelete" parameterType="Member">

@@ -498,7 +498,7 @@
 							<p class="text-center">
 								<a href="memberDelete" style="color: #788487">탈퇴</a>
 							</p>
-						</div>
+						</div>n
 					</aside>
 				</c:if>
 				<c:if test="${sessionScope.memberId == null}">

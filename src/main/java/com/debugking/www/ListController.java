@@ -75,33 +75,7 @@ public class ListController {
 		return "userBoard/write";
 	}
 	
-	@RequestMapping(value="/post_modify", method=RequestMethod.GET)
-	public String post_modify(){
-		return "userBoard/post_modify";
-	}
-
-	//글쓰기
-	@RequestMapping(value="/writing", method=RequestMethod.POST)
-	public String writing(Posts post, HttpSession session, MultipartFile upload){
-		post.setMemberId((String)session.getAttribute("memberId"));
-
-		String originalfile = upload.getOriginalFilename();
-		String savedfile = FileService.saveFile(upload,uploadPath);
-
-		post.setOriginalFile(originalfile);
-		post.setSavedFile(savedfile);
-		System.out.println(post);
-		int result = serivce.writing(post);
-		if(post.getPostType().equals("community")){
-			return "redirect:community"; 
-		} else if (post.getPostType().equals("voice")){
-			return "redirect:voice_new";
-		} else {
-			return "redirect:video_new";
-		}
-		
-	}
-
+/*
 	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
 	public String commuDetail(int postNo, Model model){
 		
@@ -117,9 +91,8 @@ public class ListController {
 		model.addAttribute("replyList", replyList);
 		
 		return "userBoard/file_detail";
->>>>>>> 3db10d865f7dfc3882008eb025ce328c10bfeec6
 	}
-	
+*/
 	@ResponseBody
 	@RequestMapping(value="/replyinsert", method=RequestMethod.POST)
 	public String replyinsert(String replyContent, int postNo, HttpSession session){
@@ -130,9 +103,7 @@ public class ListController {
 		
 		return "ok";
 	}
-<<<<<<< HEAD
 
-=======
 	
 	@ResponseBody
 	@RequestMapping(value="/replyDel", method=RequestMethod.GET)
@@ -154,7 +125,6 @@ public class ListController {
 		
 		return "ok";
 	}
->>>>>>> 3db10d865f7dfc3882008eb025ce328c10bfeec6
 	
 	@RequestMapping(value="/streaming_write", method=RequestMethod.GET)
 	public String streamingPage(){

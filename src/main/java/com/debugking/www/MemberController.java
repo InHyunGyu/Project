@@ -144,6 +144,7 @@ public class MemberController {
 	
 	//파일 다운로드 및 이미지 
 		@RequestMapping(value="/download", method=RequestMethod.GET) 
+		@ResponseBody
 		public String download(MemberInfo member, HttpServletResponse response, HttpSession session) 
 		/*참고: 만일 리턴 타입이 void이면 download.jsp를 찾는다. */
 		{
@@ -246,6 +247,13 @@ public class MemberController {
 	}
 	
 	//화면이동
+	@RequestMapping(value="/emailSendAction", method=RequestMethod.GET)
+	public String emailSendAction(){
+
+		return "member/emailSendAction";
+	}
+		
+	//화면이동
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup(){
 
@@ -254,6 +262,7 @@ public class MemberController {
 	}
 	//회원등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
+	@ResponseBody
 	public String signupPro(MemberInfo member, HttpSession session){
 		HttpServletResponse response = null;
 		int temp = serivce.signup(member);
@@ -311,8 +320,10 @@ public class MemberController {
 				e1.printStackTrace();
 			}
 		}
-		//본인 확인 이메일  코드 완료
+		System.out.println("본인 확인 이메일  코드 완료");
 		
+		 
+		return "ok"; 
 /*
 		String result = "";
 		switch(temp){
@@ -325,7 +336,6 @@ public class MemberController {
 		}
 */
 		
-		return "member/emailSendAction"; 
 	}
 	
 	@RequestMapping(value="/emailCheckAction", method=RequestMethod.GET)
@@ -393,6 +403,20 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value="/memberUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public String memberUpdate(MemberInfo member){
+		System.out.println(member);
+		
+		int result = repo.memberUpdate(member);
+		
+		if(result > 0) return "ok";
+		
+		return null;
+	}
+	
+	
+	
 	@RequestMapping(value="/id_pwd", method=RequestMethod.GET)
 	public String id_pwd(){
 		return "member/id_pwd";
@@ -400,18 +424,40 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="/findid", method=RequestMethod.POST)
-	public String findid(){
-		return "";
+	public MemberInfo findid(MemberInfo member){
+		System.out.println(member);
+		
+		MemberInfo fetchedMember = repo.getMemberId(member);
+		
+		return fetchedMember;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/findpwd", method=RequestMethod.POST)
-	public String findpwd(){
-		return "";
+	public MemberInfo findpwd(MemberInfo member){
+		System.out.println(member);
+		
+		MemberInfo fetchedMember = repo.getMemberPwd(member);
+		System.out.println("fetchedMember="+fetchedMember );
+		
+		return fetchedMember;
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modify(){
+	public String modify(HttpSession session, Model model){
+		String memberId = (String)session.getAttribute("memberId");
+		MemberInfo member = repo.selectOne(memberId);
+		String memberName = member.getMemberName();
+		String myintro    = member.getMyintro(); 
+		String memberPhone = member.getMemberPhone();
+		String memberEmail = member.getMemberEmail(); 
+		
+		model.addAttribute("memberEmail", memberEmail);
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("memberName", memberName);
+		model.addAttribute("myintro", myintro);
+		model.addAttribute("memberPhone", memberPhone);
+		
 		return"member/modify";
 	}
 	

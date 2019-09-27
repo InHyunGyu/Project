@@ -13,6 +13,25 @@ import com.debugking.www.dto.MemberInfo;
 public class MemberRepository {
 	@Autowired
 	SqlSession session;
+	
+	//아아다 찾기
+	public MemberInfo getMemberId(MemberInfo member2){
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		
+		MemberInfo member = mapper.getMemberId(member2);
+		
+		return member;
+	}
+	
+	public MemberInfo getMemberPwd(MemberInfo member2) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		
+		MemberInfo member = mapper.getMemberPwd(member2);
+		
+		return member;
+	}
+	
+	
 	//회원 찾기 -한 명 찾기
 	public MemberInfo idCheck(String memberId) {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -74,6 +93,14 @@ public class MemberRepository {
 		
 		return result;
 	}
+	public int memberUpdate(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.memberUpdate(member);
+		
+		return result;
+	}
+
+
 
 
 }

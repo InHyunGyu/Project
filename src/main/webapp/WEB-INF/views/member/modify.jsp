@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Modify</title>
+        <title>회원 정보 수정</title>
         <!-- Favicons-->
         <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
@@ -27,76 +27,33 @@
         <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 <script >
 	$(function(){
+		
 		var flagid = false;
 		var flagpwd = false;
 		var flagreco = true;
 		
 		
-		var memberpwd = $("#memberpwd").val();
+		
+		var memberPwd   = $("#memberPwd").val();
+		var memberName  = $("#memberName").val();
+		var memberPhone = $("#memberPhone").val();
+		var memberEmail = $("#memberEmail").val();
+		var myintro     = $("myintro").val();
+		
+		
+		
 		var recocheckbtn = $("#recocheckbtn").val();
-		var memberEmail =$("#memberEmail").val();
 		var memberphone = $("#memberphone").val();
 		
 		var tel1 = 	$("#tel1").val();
 		var tel2 = 	$("#tel2").val();
 		var tel3 = 	$("#tel3").val();
 		
+		//패스워드 유효성 검사 함수 호출
+		pwdValidation();
+		//수정버튼 함수 호출
+		modisubmit();
 		
-	
-		//비밀번호 유효성 검사
-		$("#memberpwd").on("keyup",function(){
-			memberpwd = $("#memberpwd").val();
-			if(memberpwd.length <3 || memberpwd.length > 15){
-				$("#checkpwdline").html("Password 는 3~15사이입니다.");
-				return false;
-			}
-			else{
-				$("#checkpwdline").html("");
-			}
-			
-			//비밀번호 동일한지 검사
-			$("#checkpwd").on("keyup",function(){
-				var checkpwd = $("#checkpwd").val();
-				if(memberpwd !== checkpwd){
-					$("#checkpwdline2").html("비밀번호가 일치하지 않습니다.");
-					return false;
-				}else{
-					$("#checkpwdline2").html("");
-					flagpwd=true;
-				}
-			});
-		});
-		
-				
-		$("#loginBTN").on('click', function() {
-			var memberId = $("#loginId").val();
-			var memberPwd = $("#loginPwd").val();
-
-			if (memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-			}
-
-			$.ajax({
-				method : 'post',
-				url : 'login',
-				data : send,
-				success : function(result) {
-					if (!result) {
-						alert("로그인 실패");
-					} else {
-						alert("로그인 성공");
-						location.href="main";
-					}
-
-				}
-			})
-		})
 
 		$("#signup").on('click', function() {
 			location.reload();
@@ -118,6 +75,70 @@
 			})
 		})
 	});
+	
+	function modisubmit(){
+		$("#modiBTN").on('click', function() {
+			memberPwd = $("#memberPwd").val();
+			memberName = $("#memberName").val();
+			memberPhone = $("#memberPhone").val();
+			memberEmail =$("#memberEmail").val();
+			myintro     = $("#myintro").val();
+			
+			var memberId = $("#memberId").val();
+			var memberPwd = $("#memberPwd").val();
+			
+			
+			var send = {
+				"memberId" : memberId,
+				"memberPwd" : memberPwd, 
+				"memberName" : memberName,
+				"memberPhone" : memberPhone,
+				"memberEmail" : memberEmail,
+				"myintro" : myintro
+			}
+
+			$.ajax({
+				method : 'post',
+				url : 'memberUpdate',
+				data : send,
+				success : function(result) {
+					if (result) {
+						alert("수정 성공");
+						location.href="main";
+					} else {
+						alert("수정 실패");
+					}
+				}
+			})
+		})
+		
+	}
+	
+	function pwdValidation(){
+		//비밀번호 유효성 검사
+		$("#memberPwd").on("keyup",function(){
+			var memberpwd = $("#memberPwd").val();
+			if(memberpwd.length <3 || memberpwd.length > 15){
+				$("#checkpwdline").html("Password 는 3~15사이입니다.");
+				return;
+			}
+			else{
+				$("#checkpwdline").html("");
+			}
+			
+			//비밀번호 동일한지 검사
+			$("#pwdcheck").on("keyup",function(){
+				var checkpwd = $("#pwdcheck").val();
+				if(memberpwd !== checkpwd){
+					$("#checkpwdcheck").html("비밀번호가 일치하지 않습니다.");
+					return;
+				}else{
+					$("#checkpwdcheck").html("");
+					flagpwd=true;
+				}
+			});
+		});
+	}
 	</script>
 	
     </head>
@@ -213,29 +234,26 @@
                             <form method="post" action="modify">
 							
 								<div class="form-group" >
-									<input class="form-control" type="text" value="${vo.memberId}" name="memberId" id="memberId" disabled="disabled" >
+									<input class="form-control" type="text" value="${memberId}" name="memberId" id="memberId" disabled="disabled" >
 								</div>
 								
 								<div class="form-group">
-									<input class="form-control" type="password" placeholder="Pasword" name="memberPwd" id="memberPwd">
+									<input class="form-control" type="password" placeholder="Pasword" name="memberPwd" id="memberPwd"><span id="checkpwdline"></span>
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="password" placeholder="Pasword" id="pwdcheck">
+									<input class="form-control" type="password" placeholder="Pasword check" id="pwdcheck"><span id="checkpwdcheck"></span>
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" value="${vo.memberName}" disabled="disabled" name="memberName" id="memberName">
+									<input class="form-control" type="text" value="${memberName}" name="memberName" id="memberName">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" placeholder="Phone" name="memberPhone" id="memberPhone">
+									<input class="form-control" type="text" value="${memberPhone }" name="memberPhone" id="memberPhone">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="date" placeholder="Birth" name="memberBirth" id="memberBirth" value="${vo.memberBirth}" disabled="disabled">
+									<input class="form-control" type="email" value="${memberEmail}" name="memberEmail" id="memberEmail">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="email" placeholder="E-mail" name="memberEmail" id="memberEmail">
-								</div>
-								<div class="form-group">
-									<textarea class="form-control" rows="4" cols="50" name="myintro">Introduction</textarea>
+									<textarea class="form-control" rows="4" cols="50" name="myintro" id="myintro">${myintro}</textarea>
 								</div>
 								<div class="form-group">
 									<input class="form-control" type="file"  name="photoname" id="photoname">

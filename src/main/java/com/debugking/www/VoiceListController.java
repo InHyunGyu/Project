@@ -99,7 +99,7 @@ public class VoiceListController {
 	
 	//FILE Detail 클릭클릭 > jsp 필요한거 같기두하구.. 이걸로 같이 써도 될꺼 같기도 하고.. ajax로 해야 되는건가 싶기도 하고.. 
 	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
-	public String file_detail(int postNo,Model model){
+	public String file_detail(int postNo, Model model){
 		Posts result = repo.selectPostOne(postNo);
 		model.addAttribute("post", result);
 		

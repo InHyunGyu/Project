@@ -109,7 +109,7 @@ CREATE TABLE pointslog
 (
 	lognum number NOT NULL,
 	-- 회원이 로그인할 때 쓸 아이디이다. 
-	memberId varchar2(50) NOT NULL UNIQUE,
+	memberId varchar2(50) NOT NULL,
 	theOtherId varchar2(50),
 	eventdate date,
 	amount number,

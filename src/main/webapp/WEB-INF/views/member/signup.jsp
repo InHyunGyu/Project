@@ -192,6 +192,11 @@
 								"recommender" : recommender
 							},
 							success : function(mesa){
+								alert("");
+								if(mesa == "ok"){
+									location.href="emailSendAction";
+								}
+							/* 
 								if(mesa === "success"){
 									alert("등록 성공하였습니다. 화면 이동합니다.");
 									location.href ="main"
@@ -199,7 +204,8 @@
 								else{
 									alert("등록 실패하였습니다. 화면 이동합니다.");
 									location.href ="main"
-								}
+								} 
+							*/
 							}
 						}); 
 					}

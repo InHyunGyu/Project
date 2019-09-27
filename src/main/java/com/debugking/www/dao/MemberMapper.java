@@ -17,5 +17,10 @@ public interface MemberMapper {
 	
 	public int setPhotoname(MemberInfo member);
 	public int setSavefile(MemberInfo member);
+	public MemberInfo getMemberId(MemberInfo member2); //아아다 찾기
+	public MemberInfo getMemberPwd(MemberInfo member2); //비밀번호 찾기
+	public int memberUpdate(MemberInfo member);
+
+	
 	
 }
