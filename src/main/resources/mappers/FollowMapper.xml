@@ -8,6 +8,36 @@
 		select 
 			count(*)
 		from follower
-		where memberId = #{memberId} and followType = 1
+		where memberId = #{memberId} 
 	</select>
+	
+	<select id="follower" parameterType="string" resultType="Member">
+		select 
+			f.memberId,
+			m.memberLevel
+		from 
+			memberInfo m, follower f
+		where m.memberId = f.followName and f.followName = #{memberId}	
+	</select>
+	
+	<select id="following" parameterType="string" resultType="Member">
+		select 
+			f.followName,
+			m.memberLevel
+		from 
+			memberInfo m, follower f
+		where m.memberId = f.memberId  and m.memberId = #{memberId}	
+	</select>
+	
+	<insert id="insert" parameterType="Follower">
+		insert into follower(
+			followerNum,
+			memberId,
+			followName
+		) values (
+			followNumSeq.nextval,
+			#{memberId},
+			#{followName}
+		)
+	</insert>
 </mapper>

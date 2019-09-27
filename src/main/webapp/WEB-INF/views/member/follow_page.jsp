@@ -80,23 +80,34 @@ table {
     }
 	
 	</style>
-
-
+	
+	
 
 <script>
 	$(function(){
+		$('.click').hover(function() {
+			  $(this).css("color", "#505cfd");
+			  $(this).css("text-decoration", "underline");
+			}, function(){
+			  $(this).css("color", "#788487");
+			  $(this).css("text-decoration", "none");
+			});
+		
+		var memberId = '${memberInfo.memberId}'
+		
 		postList();
+
 		
 		$("#followList").on('click',function(){
-			follower();
+			follower(memberId);
 		})
 		
 		$("#postContent").on('click','.follower' ,function(){
-			follower();
+			follower(memberId);
 		})
 		
 		$("#postContent").on('click', '.following',function(){
-			following();
+			following(memberId);
 		})
 		
 		$("#postList").on('click', function(){
@@ -131,24 +142,25 @@ table {
 			location.href="signup"
 		})
 		
-		$("#followReq").on('click', function(){
-			// 팔로우 버튼 누르면  
+		$(".followReq").on('click', function(){
+			followBTN(memberId)
 		})
 		
 		
 	})
 	
-	function follower(){
-		var memebrId = '${memberInfo.memberId}';
+	function follower(memberId){
+		
 		
 		$.ajax({
 			method:'get',
-			url:'follower?memberId='+memberId,
+			url:'follower',
+			data:'memberId='+memberId,
 			success:function(res){
 				var tag = '';
 				
-				tag += '<div class="left"><h6 class="single-portfolio-title"><a href="#" class="follower">Follower</a></h6></div>';
-				tag += '<div class="right"><h6 class="single-portfolio-title"><a href="#" class="following">Following</a></h6></div>';
+				tag += '<div class="left"><h6 class="single-portfolio-title"><a class="follower">Follower</a></h6></div>';
+				tag += '<div class="right"><h6 class="single-portfolio-title"><a class="following">Following</a></h6></div>';
 				tag += '<table class="table table-striped table-sm table-hover"> ';
 				tag += '<colgroup>';
 				tag += '<col style="width: 20%;" />';
@@ -156,87 +168,95 @@ table {
 				tag += '<col style="width: 20%;" />';
 				tag += '</colgroup>';
 				tag += '<tr>';
-				tag += '<th>Member Level</th>';
 				tag += '<th>Member Id</th>';
+				tag += '<th>Member Level</th>';
 				tag += '<th>Follow</th>';
 				tag += '</tr>';
-				$.each(res, function(index, item){
-					
-					tag += '<c:if test="${empty followerList}">';
+				
+				if(res.length == 0) {
 					tag += '<tr>';
-					tag += '<td colspan="3" align="center">111111팔로워가 없습니다. </td>';
+					tag += '<td colspan="3" align="center">팔로워가 없습니다. </td>';
 					tag += '</tr>';
-					tag += '</c:if>';
-					tag += '<c:if test="${not empty followerList}">';
-					tag += '<c:forEach var="list" items="${list}" varStatus="stat">';
-					tag += '<tr>';
-					tag += '<td>${list.memberId}</td>';
-					tag += '<td>${list.memberLevel}</td>';
-					tag += '<td><button type="button" class="followReq" id="followReq" >follow</button></td>';
-					tag += '</tr>';
-					tag += '</c:forEach>';
-					tag += '</c:if> ';
+				} else {
+					$.each(res, function(index, item){
+						tag += '<tr>';
+						tag += '<td><a href="follow_page?memberId='+item.memberId+'">'+item.memberId+'</a></td>';
+						tag += '<td>'+item.memberLevel+'</td>';
+						tag += '<td><button type="button" class="followReq" data-value="${item.followName}" >follow</button></td>';
+						tag += '</tr>';
+						
+					})
 				}
-				
+			
 				tag += '</table>'
-				
 				
 				$("#postContent").html(tag);
 				
+				$(".followReq").on('click', function(){
+					var followName = $(this).attr("data-value");
+					
+					followBTN(followName);
+				});
 			}
 		})
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
-	function following(){
-		var tag = '';
-
-		tag += '<div class="left"><h6 class="single-portfolio-title"><a href="#" class="follower">Follower</a></h6></div>';
-		tag += '<div class="right"><h6 class="single-portfolio-title"><a href="#" class="following">Following</a></h6></div>';
-		tag += '<table class="table table-striped table-sm table-hover"> ';
-		tag += '<colgroup>';
-		tag += '<col style="width: 20%;" />';
-		tag += '<col style="width: auto;" />';
-		tag += '<col style="width: 20%;" />';
-		tag += '</colgroup>';
-		tag += '<tr>';
-		tag += '<th>Member Level</th>';
-		tag += '<th>Member Id</th>';
-		tag += '<th>Follow</th>';
-		tag += '</tr>';
-		tag += '<c:if test="${empty followingList}">';
-		tag += '<tr>';
-		tag += '<td colspan="3" align="center">2222222팔로잉이 없습니다. </td>';
-		tag += '</tr>';
-		tag += '</c:if>';
-		tag += '<c:if test="${not empty followingList}">';
-		tag += '<c:forEach var="list" items="${followingList}" varStatus="stat">';
-		tag += '<tr>';
-		tag += '<td>${list.memberId}</td>';
-		tag += '<td>${list.memberLevel}</td>';
-		tag += '<td><button type="button" class="followReq" id="followReq" >follow</button></td>';
-		tag += '</tr>';
-		tag += '</c:forEach>';
-		tag += '</c:if> ';
-		tag += '</table>';
-		
-		$("#postContent").html(tag);
+	function following(memberId){
+		$.ajax({
+			method:'get',
+			url:'following',
+			data:'memberId='+memberId,
+			success:function(res){
+				var tag = '';
+				
+				tag += '<div class="left"><h6 class="single-portfolio-title"><a class="follower" class="click">Follower</a></h6></div>';
+				tag += '<div class="right"><h6 class="single-portfolio-title"><a class="following" class="click">Following</a></h6></div>';
+				tag += '<table class="table table-striped table-sm table-hover"> ';
+				tag += '<colgroup>';
+				tag += '<col style="width: 20%;" />';
+				tag += '<col style="width: auto;" />';
+				tag += '<col style="width: 20%;" />';
+				tag += '</colgroup>';
+				tag += '<tr>';
+				tag += '<th>Member Id</th>';
+				tag += '<th>Member Level</th>';
+				tag += '<th>Follow</th>';
+				tag += '</tr>';
+				
+				if(res.length == 0) {
+					tag += '<tr>';
+					tag += '<td colspan="3" align="center">팔로잉이 없습니다. </td>';
+					tag += '</tr>';
+				} else {
+					$.each(res, function(index, item){
+						tag += '<tr>';
+						tag += '<td><a href="follow_page?memberId='+item.followName+'">'+item.followName+'</a></td>';
+						tag += '<td>'+item.memberLevel+'</td>';
+						tag += '<td><button type="button" class="followReq"  data-value="${item.followName}">follow</button></td>';
+						tag += '</tr>';
+						
+					})
+				}
+			
+				tag += '</table>'
+				$("#postContent").html(tag);
+				
+				$(".followReq").on('click', function(){
+					var followName = $(this).attr("data-value");
+					
+					followBTN(followName);
+				});
+			}
+				
+		})
 		
 	}
 	
 	
 	function postList(){
 		var memberId = '${memberInfo.memberId}';
-
+		
 		$.ajax({
 			method:'get',
 			url:'memberPost?memberId='+memberId,
@@ -252,7 +272,7 @@ table {
 						tag += '<ul class="post-meta">';
 						tag += '<li>'+item.postType+'</li>';
 						tag += '<li>'+item.postDate+'</li>';
-						tag += '<li><a href="#">'+item.memberId+'</a></li>';
+						tag += '<li>'+item.memberId+'</li>';
 						tag += '</ul>';
 						tag += '</div>';
 						tag += '<div class="post-content">';
@@ -273,6 +293,30 @@ table {
 
 		}
 	
+	function followBTN(followName) {
+		
+		alert(followName);
+		var login = "${sessionScope.memberId}"
+		
+		if(login == null) {
+			alert('로그인을 해주세요.');
+			return;
+		} else {
+			var send = {
+					'followName':followName,
+					'memberId':login
+			}
+			
+			$.ajax({
+				method:'get',
+				url:'followBTN',
+				data:send,
+				success:function(){
+					alert('okay');
+				}
+			})
+		}
+	}
 	</script>
 </head>
 <body>
@@ -402,15 +446,15 @@ table {
 								<li><span class="info-list-title">Date :</span><span>${memberInfo.signupDate}
 								</span></li>
 								<li><span class="info-list-title">Follow :</span><span><a
-										href="#" id="followList">${followCount}</a></span></li>
+										class="click" id="followList" data-value="${memberInfo.memberId}">${followCount}</a></span></li>
 								<li><span class="info-list-title">Post :</span><span><a
-										href="#" id="postList">${postCount}</a></span></li>
+										 class="click" id="postList" data-value="${memberInfo.memberId}">${postCount}</a></span></li>
 							
 							</div>
 							<hr class="m-t-30 m-b-30">
 							<div class="info-list">
 								<button type="button"
-									class="form-control btn btn-outline-dark col-md-5">Follow</button>
+									class="followReq form-control btn btn-outline-dark col-md-5" data-value="${memberInfo.memberId}" data-login="${sessionScope.memberId}">Follow</button>
 								<button type="button"
 									class="form-control btn btn-outline-dark col-md-5">Block</button>
 							</div>

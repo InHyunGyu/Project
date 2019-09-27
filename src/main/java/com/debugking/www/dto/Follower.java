@@ -1,9 +1,13 @@
 package com.debugking.www.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class follower {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Follower {
 	private int followerNum; //followerNumSeq
 	private String memberId;
 	private String followName;
