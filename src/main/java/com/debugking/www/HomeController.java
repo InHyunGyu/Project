@@ -51,5 +51,29 @@ public class HomeController {
 	}
 
 	
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home2(@RequestParam(value="searchItem" , defaultValue="postTitle") String searchItem, 
+			@RequestParam(value="searchWord",  defaultValue="")      String searchWord, 
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
+			Model model){
+		
+		
+		int totalRecordCount = repo.getVideoCount(searchItem, searchWord);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		
+		System.out.println(navi.getStartRecord());
+		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		System.out.println(list);
+		model.addAttribute("searchItem", searchItem);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("navi", navi);
+		model.addAttribute("list", list);
+		
+		
+		return "main";
+	}
+	
+	
 
 }

@@ -143,7 +143,7 @@ $(function(){
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -191,9 +191,9 @@ $(function(){
                     <div class="row">
                         <div class="col-md-12 m-auto">
                         
-                            <h6 class="text-special text-center m-b-40">Video_New</h6>
+                            <h6 class="text-special text-center m-b-40"><a href="http://13.125.249.19">Recording</a></h6>
                             
-                         
+                          
                              <div class="row" style="float: right; margin-bottom: 10px;  ">
 						<form action="video_new" method="get">
 						<div class="form-group" style= "height: 36px;">
