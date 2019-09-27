@@ -7,7 +7,7 @@
 	<select id="getVoiceCount" parameterType="map" resultType="int">
 		select count(*)
 		From Posts
-		where postType = 'voice'
+		where postType = 'voice' and memberId != 'admin'
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord} || '%'
 		</if>
@@ -17,7 +17,7 @@
 	<select id="getVoiceNewCount" parameterType="map" resultType="int">
 		select count(*)
 		From Posts
-		where postType = 'voice' and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
+		where postType = 'voice' and memberId != 'admin' and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord} || '%'
 		</if>
@@ -40,7 +40,7 @@
 			</if>
 			,reported
 		FROM Posts 
-		where postType = 'voice' 
+		where postType = 'voice' and memberId != 'admin'
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>
@@ -64,7 +64,7 @@
 			</if>
 			,reported
 		FROM Posts 
-		where postType = 'voice' and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
+		where postType = 'voice' and memberId != 'admin' and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>
