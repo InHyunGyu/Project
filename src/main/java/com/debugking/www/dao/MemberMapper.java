@@ -1,5 +1,7 @@
 package com.debugking.www.dao;
 
+import java.util.ArrayList;
+
 import com.debugking.www.dto.MemberInfo;
 
 public interface MemberMapper {
@@ -17,5 +19,5 @@ public interface MemberMapper {
 	
 	public int setPhotoname(MemberInfo member);
 	public int setSavefile(MemberInfo member);
-	
+
 }

@@ -18,4 +18,5 @@ public class MemberInfo {
 	private String savefile;   //파일이 저장되는 위치
 	private String myintro;    //myblog 자기 소개 글
 	private char emailchecked; //이메일 인증 여부
+	private String followName;
 }

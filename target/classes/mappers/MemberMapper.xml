@@ -96,5 +96,6 @@
 		where memberId = #{memberId}
 	</update>
 	
+	
 </mapper>
 
