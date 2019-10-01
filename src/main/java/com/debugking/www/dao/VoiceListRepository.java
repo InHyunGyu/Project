@@ -23,13 +23,28 @@ public class VoiceListRepository {
 		List<MemberInfo> result = mapper.GetVoiceList();
 		return result;
 	}
+	public List<Posts> selectNoticeAll() {
+		List<Posts> list;
 
+		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+		list = mapper.selectNoticeAll();
+		
+		return list;
+	}
+
+
+	public int getNoticeCount() {
+		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+		int total = mapper.getNoticeCount();
+		return total;
+	}
+	
+	
 	public int getVoiceCount(String searchItem, String searchWord) {
 		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
 		Map<String, Object> map = new HashMap<>();
 		map.put("searchItem", searchItem);
 		map.put("searchWord", searchWord);
-		
 		int total = mapper.getVoiceCount(map);
 		return total;
 	}
@@ -42,9 +57,15 @@ public class VoiceListRepository {
 		Map<String, String> map = new HashMap<>();
 		map.put("searchItem", searchItem);
 		map.put("searchWord", searchWord);
+		//list = mapper.selectNoticeAll(map, rb);
 		list = mapper.selectAll(map, rb);
+		
 		return list;
 	}
+
+
+
+
 	
 	
 

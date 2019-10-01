@@ -38,10 +38,10 @@ public class ManagerController {
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
 			Model model){
 		
-		int totalRecordCount = repo.getVoiceCount(searchItem);
+		int totalRecordCount = repo.getPostCount(searchItem);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
-		List<Posts> list = repo.selectAll(searchItem, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> list = repo.selectPostAll(searchItem, navi.getStartRecord(), navi.getCountPerPage());
 		
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("navi", navi);
@@ -67,6 +67,7 @@ public class ManagerController {
 	@RequestMapping(value="/move", method=RequestMethod.POST)
 	@ResponseBody
 	public int move(@RequestParam(value="listchecked") List<String> listchecked,String postType){
+		System.out.println("1");
 		int result = service.move(listchecked,postType);
 		return result;
 	}
@@ -89,6 +90,17 @@ public class ManagerController {
 	
 		return result;
 	}
+	//공지글 취소하기 (내리기)
+	@RequestMapping(value="/cancel", method=RequestMethod.POST)
+	@ResponseBody
+	public int cancel(@RequestParam(value="listchecked") List<String> listchecked){
+		System.out.println("postNo"+listchecked+"//////");
+		
+		int result = service.cancel(listchecked);
+	
+		return result;
+	}
+	
 	//등업 글쓰기 페이지 이동
 	@RequestMapping(value="/notice_write", method=RequestMethod.GET)
 	public String notice_writeMove(){
@@ -98,7 +110,6 @@ public class ManagerController {
 	@RequestMapping(value="/notice_write", method=RequestMethod.POST)
 	public String notice_write(Posts post , HttpSession session, MultipartFile upload){
 		post.setMemberId((String)session.getAttribute("memberId"));
-		System.out.println("notice_write"+post.getMemberId());
 		String originalfile = upload.getOriginalFilename();
 		String savedfile = FileService.saveFile(upload,uploadPath);
 		
@@ -112,20 +123,35 @@ public class ManagerController {
 		}
 		return "redirect:managerPage";
 	}
+	
 	//공지 출력
 	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Posts> noticeList(
-			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
-			Model model){
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage
+			){
 		int totalRecordCount = repo.getNoticeCount();
 		System.out.println(totalRecordCount);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
 		List<Posts> noticeList = repo.selectNoticeAll( navi.getStartRecord(), navi.getCountPerPage());
 		
-		model.addAttribute("navi", navi);
+		
 		return noticeList;
+	}
+	
+	//신고 글 출력
+	@RequestMapping(value="/reportList", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Posts> reportList(
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage
+			){
+		int totalRecordCount = repo.getreportCount();
+		System.out.println("리포트갯수  "+totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		List<Posts> reportList = repo.selectreportAll( navi.getStartRecord(), navi.getCountPerPage());
+		
+		return reportList;
 	}
 	
 }

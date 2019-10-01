@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
      
  <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +25,7 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+		<script src="resources/assets/js/login2.js"></script>
 	<style type="text/css">
   a {
   	color: #788487;
@@ -45,38 +46,6 @@
 	</style>
 	<script>
 	$(function(){
-		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			
-			if(memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'login',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
-		
-		$("#signup").on('click', function(){
-			location.href="signup"
-		})
-		
-		$("#signup").on('click', function(){
-			location.href="signup"
-		})
-		
 		$("#btnWriteForm").on('click',function(){
 			if(${empty sessionScope.memberId}){
 				alert("로그인한 후 글쓰기가능합니다.");
@@ -240,10 +209,23 @@
 								</tr>
 							</c:if>
 							<!-- 게시글이 있는 경우 -->
+							<c:if test="${not empty noticeList}">
+									<c:forEach var="board" items="${noticeList}" varStatus="stat">
+										<tr style="background-color:#c9ccc8;">
+											<td>${stat.count + navi.startRecord}</td>
+											<td><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
+											<td><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
+											<td>${board.postDate}</td>
+											<td>${board.postView}</td>
+											<td>${board.postLike}</td>
+										</tr>
+									</c:forEach>
+								</c:if>
+								
 							<c:if test="${not empty list}">
 								<c:forEach var="board" items="${list}" varStatus="stat">
 									<tr>
-										<td>${stat.count + navi.startRecord}</td>
+										<td>${stat.count + navi.startRecord+fn:length(noticeList)}</td>
 										<td><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
 										<td><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
 										<td>${board.postDate}</td>

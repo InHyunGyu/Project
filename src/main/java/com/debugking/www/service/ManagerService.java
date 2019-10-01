@@ -15,6 +15,7 @@ public class ManagerService {
 	ManagerRepository repo;
 
 	public int move(List<String> listchecked, String postType) {
+		System.out.println("2");
 		Map hm = new HashMap();
 		
 		hm.put("postNo", listchecked);
@@ -54,4 +55,18 @@ public class ManagerService {
 			return 1;
 		}
 	}
+	public int cancel(List<String> listchecked) {
+		Map hm = new HashMap();
+		
+		hm.put("memberId", listchecked);
+		hm.put("isAnnouncement", "N");
+		int result = repo.cancel(hm);
+		if(result==0){
+			return 0;
+		}
+		else{
+			return 1;
+		}
+	}
+	
 }

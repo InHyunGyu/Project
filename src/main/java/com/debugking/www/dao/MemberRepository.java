@@ -1,7 +1,5 @@
 package com.debugking.www.dao;
 
-import java.util.ArrayList;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,11 +28,18 @@ public class MemberRepository {
 		int result = mapper.signup(member);
 		return result;
 	}
+	//회원로그인
 	public MemberInfo login(MemberInfo member) {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
-		MemberInfo result = mapper.login(member);
+		MemberInfo result=null;
+		try{
+			result = mapper.login(member);
+		}catch(Exception e){
+			return null;
+		}
 		return result;
 	}
+	//회원삭제
 	public int memberDelete(MemberInfo member) {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
 		int result = mapper.memberDelete(member);

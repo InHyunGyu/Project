@@ -24,6 +24,7 @@
         <link href="resources/assets/signup.css" rel="signup">
 
         <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="resources/assets/js/login2.js"></script>
 <script >
 	$(function(){
 		var flagid = false;

@@ -30,6 +30,7 @@
 <link href="resources/assets/css/template.css" rel="stylesheet">
 <!-- JavaScripts -->
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+<script src="resources/assets/js/login2.js"></script>
 <style type="text/css">
   a {
   	color: #788487;
@@ -51,34 +52,6 @@
 <script>
 	$(function(){
 		init();
-		
-		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			
-			if(memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'login',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
-		
-		$("#signup").on('click', function(){
-			location.href="signup"
-		})
 		
 		$("#idBTN").on('click', function(){
 			

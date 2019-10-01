@@ -5,12 +5,12 @@
   
 <mapper namespace="com.debugking.www.dao.ManagerMapper">
 	<!-- 게시글 출력 -->
-	<select id="getVoiceCount" parameterType="map" resultType="int">
+	<select id="getPostCount" parameterType="map" resultType="int">
 		select count(*)
 		From Posts
-		where postType = #{searchItem}
+		where postType = #{searchItem} and memberId != 'admin'
 	</select>
-	<select id="selectAll" resultType="Post" parameterType="map">
+	<select id="selectPostAll" resultType="Post" parameterType="map">
 		SELECT
 			postNo
 			,memberId
@@ -27,7 +27,7 @@
 			</if>
 			,reported
 		FROM Posts 
-		where postType = #{searchItem}
+		where postType = #{searchItem} and memberId != 'admin'
 		ORDER BY postNo DESC
 	</select>
 	
@@ -58,6 +58,34 @@
 		ORDER BY postNo DESC
 	</select>
 	
+	<!-- 신고 글 출력 -->
+	<select id="getreportCount" resultType="int">
+		select count(*)
+		From Posts
+		where reported >= 1 
+	</select>
+	<select id="selectreportAll" resultType="Post" >
+		SELECT
+			postNo
+			,memberId
+			,postTitle
+			,postContent
+			,to_char(postDate, 'YYYY-MM-DD') as postDate
+			,postView
+			,postLike
+			,postType
+			,isAnnouncement
+			<if test="originalFile != null">
+			,originalFile
+			,savedFile
+			</if>
+			,reported
+		FROM Posts 
+		where reported >= 1
+		ORDER BY reported DESC
+	</select>
+	
+	
 	<!-- 게시글 이동하기 -->
 	<update id="move" parameterType="map">
     update Posts
@@ -79,6 +107,18 @@
         </foreach>
 	</delete>
 	
+	<!-- 공지글 내리기 (취소하기) -->
+	<update id="cancel" parameterType="map">
+    update Posts
+    set
+    	isAnnouncement=#{isAnnouncement}
+    WHERE
+    postNo IN
+         <foreach collection="postNo" item="postNo"  open="(" close=")" separator=",">
+            #{postNo}
+        </foreach>
+	</update>
+	
 	<!-- 멤버등급변경 -->
 	<update id="change" parameterType="map">
     update MemberInfo
@@ -88,6 +128,7 @@
          <foreach collection="memberId" item="memberId"  open="(" close=")" separator=",">
             #{memberId}
         </foreach>
+        order by memberLevel DESC, postDate DESC;
 	</update>
 	
 	<!-- 등급별 멤버 출력 -->
@@ -110,5 +151,8 @@
 		FROM MemberInfo 
 		ORDER BY memberLevel DESC, signupDate asc
 	</select>
+	
+	
+	
 	
 </mapper>
