@@ -152,11 +152,11 @@
 			
 			$.ajax({
 				method:'post',
-				url:'findpwd',
+				url:'pwfindMailSend',
 				data:send,
 				success:function(resp){
-					alert("멤버패스워드:" + resp.memberPwd);
-					location.href="main";
+					if(resp == "ok")
+					location.href="emailSendAction";
 				}
 			})
 		})

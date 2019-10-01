@@ -31,6 +31,15 @@
 <!-- JavaScripts -->
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 <style>
+
+/* 프로필 이미지 썸네일화를 위한 css 설정 */
+img#mypic {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
 div.left {
 	width: 50%;
 	float: left;
@@ -79,6 +88,7 @@ table {
 
 <script>
 	$(function(){
+		
 		postList();
 		
 		$("#followList").on('click',function(){
@@ -362,7 +372,8 @@ table {
 
 					<div class="col-md-4">
 						<div class="sticky-sidebar">
-							<h6 class="single-portfolio-title">유저 이름</h6>
+							<h6 class="single-portfolio-title">유저 아이디: ${memberId}</h6>
+							<div class="post-preview"><a href="#"><img id="mypic" src="download?memberId=hhhhh" alt=""></a></div>
 							<p>설명 1</p>
 							<p>설명 2</p>
 							<hr class="m-t-30 m-b-30">

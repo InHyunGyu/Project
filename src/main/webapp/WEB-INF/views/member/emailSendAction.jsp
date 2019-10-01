@@ -348,7 +348,7 @@
                 <div class="container" style="padding-top:100px;">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 m-auto">
-                          	<h5>본인확인 이메일이 발송되었습니다. <br>이메일을 확인해 주세요.</h5>
+                          	<h5>이메일이 발송되었습니다. <br>이메일을 확인해 주세요.</h5>
                         </div>
                     </div>
                 </div>

@@ -32,15 +32,11 @@
 		var flagpwd = false;
 		var flagreco = true;
 		
-		
-		
 		var memberPwd   = $("#memberPwd").val();
 		var memberName  = $("#memberName").val();
 		var memberPhone = $("#memberPhone").val();
 		var memberEmail = $("#memberEmail").val();
 		var myintro     = $("myintro").val();
-		
-		
 		
 		var recocheckbtn = $("#recocheckbtn").val();
 		var memberphone = $("#memberphone").val();
@@ -58,6 +54,7 @@
 		$("#signup").on('click', function() {
 			location.reload();
 		})
+		
 		$("#memberDelete").on('click', function() {
 			var memberId = $("#loginId").val();
 			var memberPwd = $("#loginPwd").val();
@@ -76,35 +73,60 @@
 		})
 	});
 	
+
+	
+	
 	function modisubmit(){
 		$("#modiBTN").on('click', function() {
-			memberPwd = $("#memberPwd").val();
-			memberName = $("#memberName").val();
+			memberPwd   = $("#memberPwd").val();
+			memberName  = $("#memberName").val();
 			memberPhone = $("#memberPhone").val();
-			memberEmail =$("#memberEmail").val();
+			memberEmail = $("#memberEmail").val();
 			myintro     = $("#myintro").val();
 			
-			var memberId = $("#memberId").val();
+			var memberId  = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
 			
+			//파일 추츨하기
+	        //확장명이 붙은 파일명을 저장하기
+	        var fd = new FormData(); 
+			//이때 fileValue에 담기는 값은 /로 분할된 각 요소들의 집합, 즉 배열
+	        var fileValue = $("#photoname").val().split("\\");
 			
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd, 
-				"memberName" : memberName,
-				"memberPhone" : memberPhone,
-				"memberEmail" : memberEmail,
-				"myintro" : myintro
-			}
-
+	        var fileNameWexe = fileValue[fileValue.length-1]; // 파일명
+	        var SplitFileName = fileNameWexe.split(".");   
+	        var fileName = SplitFileName[0];
+	        //파일을 담아서 보내주기 위해 변수 설정
+	        var inputFile = $("input[name='photoname']");
+			var files = inputFile[0].files;
+			
+			
+			
+	        //파일 관련 객체를 보내야 하므로 FormData객체 생성하여
+	        //파일이름(확장명 포함), 제목, 내용, 태그를 넣어준다. 
+	        fd = new FormData();
+	        
+	        fd.append("photoname",fileNameWexe); //업로드한 파일명
+	        fd.append("uploadFile", files[0]);  //파일 그 자체
+			fd.append("memberId", memberId);
+			fd.append("memberPwd", memberPwd);
+			fd.append("memberName", memberName);
+			fd.append("memberPhone", memberPhone);
+			fd.append("memberEmail", memberEmail);
+			fd.append("myintro", myintro);
+			
+			
 			$.ajax({
 				method : 'post',
 				url : 'memberUpdate',
-				data : send,
+				data : fd,
+				//*주의*파일을 보낼 시, string화 하면 안 돼서 타입 정하지 말고, 데이타 프로세싱도 하면 안 된다. 
+				processData: false,
+				contentType: false,
 				success : function(result) {
-					if (result) {
+					if (result == "ok") {
 						alert("수정 성공");
-						location.href="main";
+						location.href="main"; //main uri호출하여 main.jsp로 이동
 					} else {
 						alert("수정 실패");
 					}

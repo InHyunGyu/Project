@@ -96,7 +96,9 @@
 			memberName  = #{memberName},
 			memberPhone = #{memberPhone},
 			memberEmail = #{memberEmail},
-			myintro     = #{myintro}
+			myintro     = #{myintro},
+			photoname   = #{photoname},
+			savefile    = #{savefile}
 		WHERE
 			memberId = #{memberId}
 	</update>
@@ -130,6 +132,17 @@
 		set savefile = #{savefile}
 		where memberId = #{memberId}
 	</update>
+	
+	<update id="tempPwdSet" parameterType="Member">
+		UPDATE
+			memberinfo
+		SET	
+			memberPwd   = #{memberPwd}
+		WHERE
+			memberEmail = #{memberEmail}
+	</update>
+	
+	
 	
 </mapper>
 

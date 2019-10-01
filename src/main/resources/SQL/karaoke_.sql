@@ -83,7 +83,7 @@ CREATE TABLE memberInfo
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 	memberId varchar2(50) NOT NULL UNIQUE,
 	-- 유저 비밀번호
-	memberPwd varchar2(40) NOT NULL,
+	memberpwd varchar2(300) NOT NULL,
 	-- 유저가 회원 가입할 때 입력한 실명
 	memberName varchar2(30) NOT NULL,
 	-- 유저 휴대폰 번호. 
@@ -171,5 +171,8 @@ ALTER TABLE replies
 	ON DELETE CASCADE
 ;
 
+------------------------더미 쿼리
 
+ALTER TABLE memberinfo 
+MODIFY(memberpwd varchar2(300));
 

@@ -100,6 +100,13 @@ public class MemberRepository {
 		return result;
 	}
 
+	public int tempPwdSet(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.tempPwdSet(member);
+		
+		return result; 
+	}
+
 
 
 

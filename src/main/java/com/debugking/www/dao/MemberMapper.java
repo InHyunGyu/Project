@@ -20,7 +20,8 @@ public interface MemberMapper {
 	public MemberInfo getMemberId(MemberInfo member2); //아아다 찾기
 	public MemberInfo getMemberPwd(MemberInfo member2); //비밀번호 찾기
 	public int memberUpdate(MemberInfo member);
-
+	
+	public int tempPwdSet(MemberInfo member); // 임시 비밀번호 설정
 	
 	
 }
