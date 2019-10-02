@@ -1,11 +1,8 @@
 package com.debugking.www.dto;
 
-<<<<<<< HEAD
-import lombok.AllArgsConstructor;
-=======
 import java.util.ArrayList;
 
->>>>>>> 299b179986c6822550c95eb6b6baf3797f16d5e4
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
