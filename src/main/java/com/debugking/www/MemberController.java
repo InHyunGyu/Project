@@ -90,8 +90,8 @@ public class MemberController {
 	}
 	@RequestMapping(value="/imageFetch", method=RequestMethod.GET)
 	@ResponseBody
-	public String imageFetch(HttpSession session, HttpServletRequest request){
-		String memberId = (String)session.getAttribute("memberId");
+	public String imageFetch(HttpSession session, HttpServletRequest request,String memberId){
+	
 		System.out.println(memberId);
 		MemberInfo member = repo.selectOne(memberId);
 		String photoname = member.getPhotoname();
@@ -191,10 +191,10 @@ public class MemberController {
 	//파일 다운로드 및 이미지 
 		@RequestMapping(value="/download", method=RequestMethod.GET) 
 		@ResponseBody
-		public String download(MemberInfo member, HttpServletResponse response, HttpSession session) 
+		public String download(MemberInfo member, HttpServletResponse response, HttpSession session,String memberId) 
 		/*참고: 만일 리턴 타입이 void이면 download.jsp를 찾는다. */
 		{
-			String memberId = (String) session.getAttribute("memberId");
+		
 			MemberInfo fetchedMember 		= repo.selectOne(memberId);
 			System.out.println(fetchedMember);
 			
@@ -324,7 +324,7 @@ public class MemberController {
 		session.setAttribute("userpwd", member.getMemberPwd());
 		
 		//회원가입을 위해 본인 확인 이메일 보내기 위한 코드 설정
-		String host = "http://localhost:8999/www/";
+		String host = "http://localhost:8998/www/";
 		String from = "dlgkrals6000@gmail.com"; 
 		String to   = repo.getUserEmail(member.getMemberId()); 
 		System.out.println(to);

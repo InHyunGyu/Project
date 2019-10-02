@@ -21,11 +21,6 @@ public interface VoiceListMapper {
 	public List<Posts> selectNoticeAll(Map<String, String> map, RowBounds rb);
 	
 
-	
-	
-
-
-	
 
 
 	public int writing(Posts post); //글쓰기
