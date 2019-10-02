@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.debugking.www.dao.VoiceListMapper">
+   <select id="getNoticeCount" resultType="int">
+      select count(*)
+      From Posts
+      where isAnnouncement='Y'
+   </select>
+   
+   <select id="getVoiceCount" parameterType="map" resultType="int">
+      select count(*)
+      FROM Posts p , MemberInfo m
+      where p.memberId = m.memberId
+      and p.postType = 'voice' and p.memberId != 'admin'
+      and m.memberLevel !='Z' 
+      <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord} || '%'
+      </if>
+   </select>
+   
+   <select id="selectAll" resultType="Post" parameterType="map">
+      SELECT
+         p.postNo
+         ,p.memberId
+         ,p.postTitle
+         ,p.postContent
+         ,to_char(postDate, 'YYYY-MM-DD') as postDate
+         ,p.postView
+         ,p.postLike
+         <if test="originalFile != null">
+         ,p.originalFile
+         ,p.savedFile
+         </if>
+         ,p.reported
+      FROM Posts p , MemberInfo m
+      where p.memberId = m.memberId
+      and p.postType = 'voice' and p.memberId != 'admin'
+      and m.memberLevel !='Z' 
+      <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord}||'%'
+      </if>
+      ORDER BY postNo DESC
+   </select>
+   <select id="selectNoticeAll" resultType="Post" parameterType="map">
+      SELECT
+         postNo
+         ,memberId
+         ,postTitle
+         ,postContent
+         ,to_char(postDate, 'YYYY-MM-DD') as postDate
+         ,postView
+         ,postLike
+         <if test="originalFile != null">
+         ,originalFile
+         ,savedFile
+         </if>
+         ,reported
+      FROM Posts 
+      where isAnnouncement='Y'
+      <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord}||'%'
+      </if>
+      ORDER BY postNo DESC
+   </select>
+   
+   <!-- NEW 출력문 -->
+   <select id="getVoiceNewCount" parameterType="map" resultType="int">
+      select count(*)
+      FROM Posts p , MemberInfo m
+      where p.memberId = m.memberId
+      and p.postType = 'voice' and p.memberId != 'admin'
+      and m.memberLevel !='Z' 
+      and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
+      <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord} || '%'
+      </if>
+   </select>
+   <select id="selectNewAll" resultType="Post" parameterType="map">
+      SELECT
+         p.postNo
+         ,p.memberId
+         ,p.postTitle
+         ,p.postContent
+         ,to_char(postDate, 'YYYY-MM-DD') as postDate
+         ,p.postView
+         ,p.postLike
+         <if test="originalFile != null">
+         ,p.originalFile
+         ,p.savedFile
+         </if>
+         ,p.reported
+      FROM Posts p , MemberInfo m
+      where p.memberId = m.memberId
+      and p.postType = 'voice' and p.memberId != 'admin'
+      and m.memberLevel !='Z' 
+      and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
+      <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord}||'%'
+      </if> 
+      ORDER BY postNo DESC
+   </select>
+   
+</mapper>

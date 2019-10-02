@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.debugking.www.dao.ListMapper">
+	<!-- 글쓰기 -->
+	<insert id="writing" parameterType="Post">
+		insert into Posts
+		(
+			postNo
+			,memberId
+			,postTitle
+			,postContent
+			,postDate
+			,isAnnouncement
+			,postType
+			<if test="originalFile != null">
+				,originalFile
+				,savedFile
+			</if>
+		)
+		values
+		(
+			postNoSeq.nextval
+			,#{memberId}
+			,#{postTitle}
+			,#{postContent}
+			,sysdate
+			,#{isAnnouncement}
+			,#{postType}
+			<if test="originalFile != null">
+				,#{originalFile}
+				,#{savedFile}
+			</if>
+		)
+	</insert>
+
+	<select id="selectOne" parameterType="int" resultType="Post">
+		select
+			postNo,
+			memberId,
+			postTitle,
+			postContent,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			isAnnouncement,
+			postLike,
+			postView,
+			reported,
+			postType,
+			originalFile,
+			savedFile
+		from posts
+		where postno = #{postNo}
+	</select>
+	
+	<insert id="replyInsert" parameterType="Reply">
+		insert into replies
+		(
+		replyNo,
+		memberId,
+		postNo,
+		replyContent,
+		replyDate
+		)
+		values
+		(
+		replyNoSeq.nextval,
+		#{memberId},
+		#{postNo},
+		#{replyContent},
+		sysdate
+		)
+	</insert>
+	
+	<select id="replyList" resultType="Reply" parameterType="int">
+		select 
+			replyNo,
+			memberId,
+			postNo,
+			replyContent,
+			To_char(replyDate,'YYYY-MM-DD')
+		from
+			replies
+		where postNo = #{postNo}
+		order by replyNo
+		
+	</select>
+	
+	<select id="replyCount" resultType="int" parameterType="int">
+		select
+			count(*)
+		from 
+			replies
+		where postNo = #{postNo}
+	</select>
+	
+	<delete id="replyDel" parameterType="int">
+		delete from replies
+		where replyNo = #{replyNo}
+	</delete>
+	
+	<update id="replyUp" parameterType="Reply">
+		update replies set
+			replyContent = #{replyContent}
+		where replyNo= #{replyNo}			
+	</update>
+	
+	<update id="postLike" parameterType="int">
+		update posts set
+			postLike = postLike + 1
+		where postNo = #{postNo}
+	
+	</update>
+	
+	<update id="reported" parameterType="int">
+		update posts set
+			reported = reported + 1
+		where postNo = #{postNo}
+	</update>
+	
+	<update id="postView" parameterType="int">
+		update posts set
+			postView = postView + 1
+		where postNo = #{postNo}
+	</update>
+	
+	<select id="selectList" parameterType="string" resultType="Post">
+		select 
+			* 
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
+	<select id="postCount" parameterType="string" resultType="int">
+		select
+			count(*)
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
+	<select id="memberPost" parameterType="string" resultType="Post">
+		select 
+			postNo,
+			memberId,
+			postTitle,
+			postContent,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			isAnnouncement,
+			postLike,
+			postView,
+			reported,
+			postType,
+			originalFile,
+			savedFile
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
+	<select id="postLikeList" parameterType="int" resultType="String">
+		select
+			LIKE_ARRAY
+		from 
+			posts
+		where postNo = #{postNo}
+	
+	</select>
+</mapper>

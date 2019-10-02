@@ -5,42 +5,145 @@
   
 <mapper namespace="com.debugking.www.dao.MemberMapper">
 	<!-- 한명 찾기  -->
- 	<select id="selectOne" parameterType="Member" resultType="Member">
+ 	<select id="selectOne" parameterType="String" resultType="Member">
 		select 
-			memberNum
-			,memberId
+			memberId
 			,memberPwd
 			,memberName
 			,memberPhone
 			,memberBirth
-			,signupDate
+			,to_char(signupDate, 'YYYY-MM-DD') as signupDate
 			,memberEmail
 			,memberPoint
-			,isManager
-			,clubNum
+			,photoname
+			,savefile
+			,myintro
 		From
 			MemberInfo
 		Where
 			memberId = #{memberId}
 	</select>
+	
+	<select id="getMemberId" parameterType="member" resultType="Member">
+		select 
+			memberId
+		From
+			MemberInfo
+		Where
+			memberEmail = #{memberEmail} and 
+			memberName = #{memberName}
+	</select>
+	
+	<select id="getMemberPwd" parameterType="member" resultType="Member">
+		select 
+			memberpwd
+		From
+			MemberInfo
+		Where
+			memberEmail = #{memberEmail} and 
+			memberId = #{memberId}
+	</select>
+	
+	
 	<!-- 회원가입  -->
 	<insert id="signup" parameterType="Member">
-		insert into Member
+		insert into MemberInfo
+		(
+			memberId		
+			,memberPwd		
+			,memberName
+			,memberPhone
+			,memberBirth
+			,signupDate			
+			,memberEmail	
+			,memberPoint
+			<if test="recommender !=null">	
+				,recommender
+			</if>
+		)
 		values
 		(
-			SEQ_memberInfo_memberNum.nextval
-			,#{memberid}
-			,#{memberpwd}
-			,#{membername}
-			,#{memberphone}
-			,#{memberbirth}
+			#{memberId}		
+			,#{memberPwd}		
+			,#{memberName}	
+			,#{memberPhone}		
+			,#{memberBirth}
 			,sysdate
-			,#{memberEmail}
-			,#{memberpoint}
-			,#{isManager}
-			,#{recommender}
-			,#{clubNum}
+			,#{memberEmail}		
+			,#{memberPoint}
+			<if test="recommender !=null">
+				,#{recommender}		
+			</if>
 		)
-	</insert> 
+	</insert>
+	
+	<!-- 로그인  -->
+	<select id="login" parameterType="Member" resultType="Member">
+		select 
+			memberId
+			,memberName
+		From memberInfo
+		Where memberPwd =#{memberPwd} and emailchecked = 'y' 
+									and memberId =#{memberId} and memberLevel !='Z'
+	</select>
+	
+	
+	<update id="memberUpdate" parameterType="Member">
+		UPDATE
+			memberinfo
+		SET	
+			memberPwd   = #{memberPwd},
+			memberName  = #{memberName},
+			memberPhone = #{memberPhone},
+			memberEmail = #{memberEmail},
+			myintro     = #{myintro},
+			photoname   = #{photoname},
+			savefile    = #{savefile}
+		WHERE
+			memberId = #{memberId}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete" parameterType="Member">
+		delete From MemberInfo
+		Where memberId=#{memberId} and memberPwd =#{memberPwd}
+	</delete>
+	
+	<select id="getUserEmail" parameterType="String" resultType="String">
+		SELECT memberEmail
+		FROM memberinfo
+		WHERE memberId = #{memberId}
+	</select>
+	
+	<update id="setUserEmailChecked" parameterType="String">
+		update MemberInfo
+		set emailchecked = 'y'
+		where memberId = #{memberId}
+	</update>
+	
+	<update id="setPhotoname" parameterType="Member">
+		update MemberInfo
+		set photoname = #{photoname}
+		where memberId = #{memberId}
+	</update>
+	
+	<update id="setSavefile" parameterType="Member">
+		update MemberInfo
+		set savefile = #{savefile}
+		where memberId = #{memberId}
+	</update>
+	
+
+	<update id="tempPwdSet" parameterType="Member">
+		UPDATE
+			memberinfo
+		SET	
+			memberPwd   = #{memberPwd}
+		WHERE
+			memberEmail = #{memberEmail}
+	</update>
+	
+	
+
 </mapper>
 
