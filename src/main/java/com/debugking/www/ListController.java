@@ -79,8 +79,7 @@ public class ListController {
 
 
 	
-/*
->>>>>>> d96f7c996863b040c475d84b9e8f667f2fa201aa
+
 	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
 	public String commuDetail(int postNo, Model model){
 		
@@ -99,7 +98,7 @@ public class ListController {
 		
 		return "userBoard/file_detail";
 	}
-*/
+
 	@ResponseBody
 	@RequestMapping(value="/replyinsert", method=RequestMethod.POST)
 	public String replyinsert(String replyContent, int postNo, HttpSession session){

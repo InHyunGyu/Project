@@ -118,6 +118,8 @@ table {
 		var memberId = '${memberInfo.memberId}'
 		var login = '${sessionScope.memberId}'
 		
+		
+		postList();
 
 		
 		$("#followList").on('click',function(){
@@ -570,10 +572,9 @@ table {
 					<div class="col-md-4">
 						<div class="sticky-sidebar">
 
-							<h6 class="single-portfolio-title">${memberInfo.memberId}</h6>
-							<p>${memberInfo.myintro}</p>
-
-							<p>설명 2</p>
+						     <h6 class="single-portfolio-title">${memberId}</h6>
+                     <div class="post-preview"><a href="#"><img id="mypic" src="download?memberId=${memberId}" alt=""></a></div>
+							<p>${memberInfo.myintro}</p> 
 							<hr class="m-t-30 m-b-30">
 							<div class="info-list">
 							
@@ -585,7 +586,7 @@ table {
 										 class="click" id="postList" data-value="${memberInfo.memberId}">${postCount}</a></span></li>
 							
 							</div>
-							<hr class="m-t-30 m-b-30">
+							<hr class="m-t-30 m-b-30"> 
 							<div class="info-list">
 								<button type="button"
 									class="followReq form-control btn btn-outline-dark col-md-5" style="border-color: black;" data-value="${memberInfo.memberId}" data-login="${sessionScope.memberId}">Follow</button>

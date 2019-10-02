@@ -55,11 +55,7 @@ public class MemberController {
 	@Autowired
 	FollowRepository followRepo;
 	
-<<<<<<< HEAD
-	
-	
-=======
->>>>>>> d96f7c996863b040c475d84b9e8f667f2fa201aa
+
 	final String uploadPath = "/resources/assets/userFiles"; 
 	String realpath;
 	String savedFilename; //UUID 및 date 문자열을 포함한 확장자를 포함한 파일명
@@ -550,7 +546,6 @@ public class MemberController {
 		return "ok";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
 	public String follow(String memberId, Model model){
 		MemberInfo info =  repo.selectOne(memberId);
@@ -566,7 +561,13 @@ public class MemberController {
 		model.addAttribute("postCount", postCount);
 		model.addAttribute("list", list);
 		model.addAttribute("followCount", followCount);
-=======
+		
+		return"member/follow_page";
+}
+
+	
+	
+
 	@RequestMapping(value="/tempPwdSet", method=RequestMethod.GET)
 	public String tempPwdSet(MemberInfo member, HttpSession session){
 		
@@ -598,14 +599,8 @@ public class MemberController {
 		return"member/modify";
 	}
 	
-	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
-	public String follow(String memberId, Model model, HttpSession session){
-		System.out.println(memberId);
-		model.addAttribute("memberId", memberId);
->>>>>>> d96f7c996863b040c475d84b9e8f667f2fa201aa
-		
-		return"member/follow_page";
-	}
+	
+
 	
 	@ResponseBody
 	@RequestMapping(value="/memberPost", method=RequestMethod.GET)
