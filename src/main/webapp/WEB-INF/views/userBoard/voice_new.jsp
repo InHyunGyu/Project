@@ -113,7 +113,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -232,6 +232,7 @@
 										<td>${board.postView}</td>
 										<td>${board.postLike}</td>
 									</tr>
+								
 								</c:forEach>
 							</c:if>
 							

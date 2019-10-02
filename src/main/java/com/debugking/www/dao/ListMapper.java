@@ -35,4 +35,6 @@ public interface ListMapper {
 
 	public ArrayList<Posts> memberPost(String memberId, RowBounds rb);
 
+	public ArrayList<String> postLikeList(int postNo);
+
 }

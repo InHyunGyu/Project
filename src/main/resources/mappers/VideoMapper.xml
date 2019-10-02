@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.debugking.www.dao.VideoListMapper">
+
+
+<select id="getVideoCount" parameterType="map" resultType="int">
+		select count(*)
+		From Posts
+		where postType = 'video'
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord} || '%'
+		</if>
+	</select>
+	
+	
+	<select id="selectAll" resultType="Post" parameterType="map">
+		SELECT
+			postNo
+			,memberId
+			,postTitle
+			,postContent
+			,to_char(postDate, 'YYYY-MM-DD') as postDate
+			,postView
+			,postLike
+			,isAnnouncement
+			,postType
+			,originalFile 
+			,savedFile
+			,reported
+		FROM Posts 
+		where postType = 'video'
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord}||'%'
+		</if>
+		ORDER BY postDate DESC
+	</select>
+	
+	
+	
+	<select id="selectWeek" resultType="Post" parameterType="map">
+		SELECT
+			postNo
+			,memberId
+			,postTitle
+			,postContent
+			,to_char(postDate, 'YYYY-MM-DD') as postDate
+			,postView
+			,postLike
+			,isAnnouncement
+			,postType
+			,originalFile 
+			,savedFile
+			,reported
+		FROM Posts 
+		where postType = 'video'
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord}||'%'
+		</if>
+		<![CDATA[
+        and postDate >=(select TRUNC(sysdate,'IW') from dual) AND postDate < (select TRUNC(sysdate,'IW')+6 from dual)
+    ]]>
+      ORDER BY postLike DESC
+
+
+	</select>
+	
+	 
+	 
+	 <select id="selectMonth" resultType="Post" parameterType="map">
+		SELECT
+			postNo
+			,memberId
+			,postTitle
+			,postContent
+			,to_char(postDate, 'YYYY-MM-DD') as postDate
+			,postView
+			,postLike
+			,isAnnouncement
+			,postType
+			,originalFile  
+			,savedFile
+			,reported
+		FROM Posts 
+		where postType = 'video'
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord}||'%'
+		</if>
+		<![CDATA[
+        and postDate >=(select TRUNC(sysdate,'MM') from dual) AND postDate < (SELECT LAST_DAY(SYSDATE) FROM DUAL)
+    ]]> 
+      ORDER BY postLike DESC
+
+
+	</select>
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	
+
+	
+	
+
+</mapper>

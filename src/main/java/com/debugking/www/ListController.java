@@ -32,28 +32,9 @@ public class ListController {
 	@Autowired
 	PostsService serivce;
 
-	final String uploadPath="/Users/heeju/Documents/fileIO";
+	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile"; 
 
-	@RequestMapping(value="/video_new", method=RequestMethod.GET)
-	public String video_new(){
-		return "userBoard/video_new";
-	}
-
-	@RequestMapping(value="/video_weekly", method=RequestMethod.GET)
-	public String video_weekly(){
-		return "userBoard/video_weekly";
-	}
-
-	@RequestMapping(value="/video_monthly", method=RequestMethod.GET)
-	public String video_monthly(){
-		return "userBoard/video_monthly";
-	}
-
-	@RequestMapping(value="/video_all", method=RequestMethod.GET)
-	public String video_all(){
-		return "userBoard/video_all";
-	}
-
+	
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
 	public String notice(){
 
@@ -84,7 +65,7 @@ public class ListController {
 		post.setOriginalFile(originalfile);
 		post.setSavedFile(savedfile);
 
-		int result = serivce.writing(post);
+		serivce.writing(post);
 		
 		if(post.getPostType().equals("community")){
 			return "redirect:community"; 
@@ -95,6 +76,9 @@ public class ListController {
 		}
 		
 	}
+
+
+	
 
 	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
 	public String commuDetail(int postNo, Model model){
@@ -114,7 +98,7 @@ public class ListController {
 		
 		return "userBoard/file_detail";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/replyinsert", method=RequestMethod.POST)
 	public String replyinsert(String replyContent, int postNo, HttpSession session){
@@ -125,7 +109,7 @@ public class ListController {
 		
 		return "ok";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/replyDel", method=RequestMethod.GET)
 	public String replyDel(int replyNo){
@@ -158,9 +142,13 @@ public class ListController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/postLike", method=RequestMethod.GET)
-	public int postLike(int postNo){
+	@RequestMapping(value="/postLike", method=RequestMethod.POST)
+	public int postLike(int postNo, String memberId){
+
 		int result = repo.postLike(postNo);
+			
+		
+		
 		return result;
 	}
 	

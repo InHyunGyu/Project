@@ -11,6 +11,27 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>UtaJJang</title>
+        
+        <!-- musicom css -->
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="resources/images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="resources/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/icomoon.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/simple-line-icons.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.theme.default.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/style_frame.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/spinner.css">
+   
+ 
+   
+<!-- musicom css end -->
+        
+        
+        
+        
         <!-- Favicons-->
         <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
@@ -105,7 +126,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -150,12 +171,12 @@
                 
                     <div class="row">
                         <div class="col-md-12 m-auto">
-                        <div class="table-responsive">
-                            <h6 class="text-special text-center m-b-40">Video_Weekly</h6>
-                            
-                         
+
+                      
+                          
+
                              <div class="row" style="float: right; margin-bottom: 10px;  ">
-						<form action="video_new" method="get">
+						<form action="video_weekly" method="get">
 						<div class="form-group" style= "height: 36px;">
 							<select class="form-control col-md-3" name="searchItem" style="height: 100%;">
 								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
@@ -170,31 +191,86 @@
 						</form>
 					</div>
 				
-                             
-                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
-                                 <div class="col-md-4">
-                                    <div class="demo-item"><a href="/uta"><img src="resources/assets/images/demo/1.jpg" alt=""></a>
-                                        <h6>Parallax</h6>
-                                    </div>
-                                </div>
-                                
-                                
-                            </div>
-                            </div>
+                           <h4 class="text-special text-center m-b-40"><a href="https:www.utarecording.shop">Go to the Recording</a></h4>
+
+ 
+
+
+						<div id="main_index_body">
+
+							<section id="fh5co-home" data-section="home">
+								<div class="container2">
+
+
+									<c:forEach var="board" items="${list}" varStatus="stat">
+										<div id="music_video_list_wrap" style="display: block;">
+											<div
+												class="music_video_list_item to-animate-2 fadeInUp animated"
+												video="3GLrB9GvBq8" style="width: 33%">
+												<div class="music_video_list_item_wrap">
+													<div style="position: relative;">
+														<div class="music_video_list_item_thumbnail_cover"
+															onmouseenter="fnMouseEnterOnMusic(this);"
+															onmouseleave="fnMouseLeaveOnMusic(this);"
+															onmousemove="fnMouseEnterOnMusic(this);"
+															onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+
+															<img class="music_video_list_item_thumbnail_cover_img"
+																src="resources/images/icon_play_round.png"
+																onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+														</div>
+
+
+														<video width="300" height="300" controls="controls"
+															preload="metadata">
+															<source src="resources/savefile/${board.savedFile}"
+																type="video/webm">
+														</video>
+
+														<div class="music_video_list_item_title_div">
+															<div class="music_video_list_item_music_name_div">
+																<a class="music_video_list_item_music_name"
+																	href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
+															</div>
+															<a class="music_video_list_item_artist"
+																href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+															<span class="music_video_list_item_release_date">${board.postDate}</span>
+														</div>
+														<div class="music_video_list_item_fav_div"
+															style="line-height: 4;">
+															<img class="music_video_list_item_fav_img"
+																src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소"
+																onclick="favoriteMusic(this, &quot;3GLrB9GvBq8&quot;);">
+														</div>
+													</div>
+												</div>
+
+												<div class="music_video_list_item_wrap">
+													<div style="position: relative;"></div>
+												</div>
+											</div>
+										</div>
+
+									</c:forEach>
+								</div>
+							</section>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+					</div>
                            
                         </div>
-                         <div>
+                       
 							<div class="row">
                                 <div class="col-md-12">
                                     <nav>
@@ -211,12 +287,13 @@
                            		
                             </div>
                             
-							</div>	
+							
 							
                        </div>
                       
                  </section>
           
+         
            
        
 

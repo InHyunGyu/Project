@@ -25,7 +25,7 @@ public class VoiceListController {
 	@Autowired
 	VoiceListRepository repo;
 	
-	final String uploadPath="/Users/heeju/Documents/fileIO";
+	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile";
 	
 	@RequestMapping(value="/voice_new", method=RequestMethod.GET)
 	public String voice_new(
@@ -88,6 +88,7 @@ public class VoiceListController {
 		return "userBoard/voice_all";
 	}
 	
+
 	public int getNoticeCount(){
 		int noticeCount = repo.getNoticeCount();
 		return noticeCount;
@@ -96,4 +97,5 @@ public class VoiceListController {
 		List<Posts> list = repo.selectNoticeAll();
 		return list;
 	}
+
 }

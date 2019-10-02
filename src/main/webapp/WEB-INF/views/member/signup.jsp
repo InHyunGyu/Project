@@ -193,6 +193,11 @@
 								"recommender" : recommender
 							},
 							success : function(mesa){
+								alert("");
+								if(mesa == "ok"){
+									location.href="emailSendAction";
+								}
+							/* 
 								if(mesa === "success"){
 									alert("등록 성공하였습니다. 화면 이동합니다.");
 									location.href ="main"
@@ -200,7 +205,8 @@
 								else{
 									alert("등록 실패하였습니다. 화면 이동합니다.");
 									location.href ="main"
-								}
+								} 
+							*/
 							}
 						}); 
 					}
@@ -265,7 +271,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span

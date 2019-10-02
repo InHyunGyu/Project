@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Modify</title>
+        <title>회원 정보 수정</title>
         <!-- Favicons-->
         <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
@@ -28,21 +28,52 @@
         <script src="resources/assets/js/login2.js"></script>
 <script >
 	$(function(){
+		
 		var flagid = false;
 		var flagpwd = false;
 		var flagreco = true;
 		
+		var memberPwd   = $("#memberPwd").val();
+		var memberName  = $("#memberName").val();
+		var memberPhone = $("#memberPhone").val();
+		var memberEmail = $("#memberEmail").val();
+		var myintro     = $("myintro").val();
 		
-		var memberpwd = $("#memberpwd").val();
 		var recocheckbtn = $("#recocheckbtn").val();
-		var memberEmail =$("#memberEmail").val();
 		var memberphone = $("#memberphone").val();
 		
 		var tel1 = 	$("#tel1").val();
 		var tel2 = 	$("#tel2").val();
 		var tel3 = 	$("#tel3").val();
 		
+		//패스워드 유효성 검사 함수 호출
+		pwdValidation();
+		//수정버튼 함수 호출
+		modisubmit();
 		
+
+
+		$("#signup").on('click', function() {
+			location.reload();
+		})
+		
+		$("#memberDelete").on('click', function() {
+			var memberId = $("#loginId").val();
+			var memberPwd = $("#loginPwd").val();
+			var send = {
+				"memberId" : memberId,
+				"memberPwd" : memberPwd
+			}
+			$.ajax({
+				method : 'post',
+				url : 'memberDelete',
+				data : send,
+				success : function() {
+					location.href="main";
+				}
+			})
+		})
+
 	
 		//비밀번호 유효성 검사
 		$("#memberpwd").on("keyup",function(){
@@ -67,7 +98,97 @@
 				}
 			});
 		});
+
 	});
+	
+
+	
+	
+	function modisubmit(){
+		$("#modiBTN").on('click', function() {
+			memberPwd   = $("#memberPwd").val();
+			memberName  = $("#memberName").val();
+			memberPhone = $("#memberPhone").val();
+			memberEmail = $("#memberEmail").val();
+			myintro     = $("#myintro").val();
+			
+			var memberId  = $("#memberId").val();
+			var memberPwd = $("#memberPwd").val();
+			
+			//파일 추츨하기
+	        //확장명이 붙은 파일명을 저장하기
+	        var fd = new FormData(); 
+			//이때 fileValue에 담기는 값은 /로 분할된 각 요소들의 집합, 즉 배열
+	        var fileValue = $("#photoname").val().split("\\");
+			
+	        var fileNameWexe = fileValue[fileValue.length-1]; // 파일명
+	        var SplitFileName = fileNameWexe.split(".");   
+	        var fileName = SplitFileName[0];
+	        //파일을 담아서 보내주기 위해 변수 설정
+	        var inputFile = $("input[name='photoname']");
+			var files = inputFile[0].files;
+			
+			
+			
+	        //파일 관련 객체를 보내야 하므로 FormData객체 생성하여
+	        //파일이름(확장명 포함), 제목, 내용, 태그를 넣어준다. 
+	        fd = new FormData();
+	        
+	        fd.append("photoname",fileNameWexe); //업로드한 파일명
+	        fd.append("uploadFile", files[0]);  //파일 그 자체
+			fd.append("memberId", memberId);
+			fd.append("memberPwd", memberPwd);
+			fd.append("memberName", memberName);
+			fd.append("memberPhone", memberPhone);
+			fd.append("memberEmail", memberEmail);
+			fd.append("myintro", myintro);
+			
+			
+			$.ajax({
+				method : 'post',
+				url : 'memberUpdate',
+				data : fd,
+				//*주의*파일을 보낼 시, string화 하면 안 돼서 타입 정하지 말고, 데이타 프로세싱도 하면 안 된다. 
+				processData: false,
+				contentType: false,
+				success : function(result) {
+					if (result == "ok") {
+						alert("수정 성공");
+						location.href="main"; //main uri호출하여 main.jsp로 이동
+					} else {
+						alert("수정 실패");
+					}
+				}
+			})
+		})
+		
+	}
+	
+	function pwdValidation(){
+		//비밀번호 유효성 검사
+		$("#memberPwd").on("keyup",function(){
+			var memberpwd = $("#memberPwd").val();
+			if(memberpwd.length <3 || memberpwd.length > 15){
+				$("#checkpwdline").html("Password 는 3~15사이입니다.");
+				return;
+			}
+			else{
+				$("#checkpwdline").html("");
+			}
+			
+			//비밀번호 동일한지 검사
+			$("#pwdcheck").on("keyup",function(){
+				var checkpwd = $("#pwdcheck").val();
+				if(memberpwd !== checkpwd){
+					$("#checkpwdcheck").html("비밀번호가 일치하지 않습니다.");
+					return;
+				}else{
+					$("#checkpwdcheck").html("");
+					flagpwd=true;
+				}
+			});
+		});
+	}
 	</script>
 	
     </head>
@@ -122,7 +243,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -163,29 +284,26 @@
                             <form method="post" action="modify">
 							
 								<div class="form-group" >
-									<input class="form-control" type="text" value="${vo.memberId}" name="memberId" id="memberId" disabled="disabled" >
+									<input class="form-control" type="text" value="${memberId}" name="memberId" id="memberId" disabled="disabled" >
 								</div>
 								
 								<div class="form-group">
-									<input class="form-control" type="password" placeholder="Pasword" name="memberPwd" id="memberPwd">
+									<input class="form-control" type="password" placeholder="Pasword" name="memberPwd" id="memberPwd"><span id="checkpwdline"></span>
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="password" placeholder="Pasword" id="pwdcheck">
+									<input class="form-control" type="password" placeholder="Pasword check" id="pwdcheck"><span id="checkpwdcheck"></span>
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" value="${vo.memberName}" disabled="disabled" name="memberName" id="memberName">
+									<input class="form-control" type="text" value="${memberName}" name="memberName" id="memberName">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" placeholder="Phone" name="memberPhone" id="memberPhone">
+									<input class="form-control" type="text" value="${memberPhone }" name="memberPhone" id="memberPhone">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="date" placeholder="Birth" name="memberBirth" id="memberBirth" value="${vo.memberBirth}" disabled="disabled">
+									<input class="form-control" type="email" value="${memberEmail}" name="memberEmail" id="memberEmail">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="email" placeholder="E-mail" name="memberEmail" id="memberEmail">
-								</div>
-								<div class="form-group">
-									<textarea class="form-control" rows="4" cols="50" name="myintro">Introduction</textarea>
+									<textarea class="form-control" rows="4" cols="50" name="myintro" id="myintro">${myintro}</textarea>
 								</div>
 								<div class="form-group">
 									<input class="form-control" type="file"  name="photoname" id="photoname">

@@ -55,6 +55,7 @@ public class MemberController {
 	@Autowired
 	FollowRepository followRepo;
 	
+
 	final String uploadPath = "/resources/assets/userFiles"; 
 	String realpath;
 	String savedFilename; //UUID 및 date 문자열을 포함한 확장자를 포함한 파일명
@@ -89,8 +90,8 @@ public class MemberController {
 	}
 	@RequestMapping(value="/imageFetch", method=RequestMethod.GET)
 	@ResponseBody
-	public String imageFetch(HttpSession session, HttpServletRequest request){
-		String memberId = (String)session.getAttribute("memberId");
+	public String imageFetch(HttpSession session, HttpServletRequest request,String memberId){
+	
 		System.out.println(memberId);
 		MemberInfo member = repo.selectOne(memberId);
 		String photoname = member.getPhotoname();
@@ -146,12 +147,54 @@ public class MemberController {
 		return "download?memberId=" + memberId;
 	}
 	
+	
+	@RequestMapping(value="/memberUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public String memberUpdate(MemberInfo member, HttpServletRequest request,
+			MultipartFile[] uploadFile, HttpServletResponse response,
+			HttpSession session)
+	{
+		System.out.println("정보 수정 메서드 호출 ");
+		response.setHeader("Content-Type", "text/html;charset=UTF-8");
+		String memberId = (String) session.getAttribute("memberId");
+		
+		//이 아래 메서드를 통해 savedFileName 이름 생성. 
+		createContentId(member, request);
+		
+		String fullpath = realpath + "\\" + savedFilename; 
+		
+		member.setPhotoname(savedFilename);
+		member.setSavefile(fullpath);
+		
+		int result = repo.memberUpdate(member);
+		
+		if(result > 0) System.out.println("삽입성공!");
+		
+		//multipart로 받아온 파일을 지정한 realpath경로에  savedFilename의 이름으로 저장한다.  
+		
+		for (MultipartFile multipartFile : uploadFile) 
+		{
+			File saveFile = new File(realpath, savedFilename);
+			try{
+				multipartFile.transferTo(saveFile); 
+			}catch(Exception e){
+				e.printStackTrace(); 
+			}
+		}
+		
+		if(result > 0) return "ok";
+		
+		return null;
+	}
+	
+	
 	//파일 다운로드 및 이미지 
 		@RequestMapping(value="/download", method=RequestMethod.GET) 
-		public String download(MemberInfo member, HttpServletResponse response, HttpSession session) 
+		@ResponseBody
+		public String download(MemberInfo member, HttpServletResponse response, HttpSession session,String memberId) 
 		/*참고: 만일 리턴 타입이 void이면 download.jsp를 찾는다. */
 		{
-			String memberId = (String) session.getAttribute("memberId");
+		
 			MemberInfo fetchedMember 		= repo.selectOne(memberId);
 			System.out.println(fetchedMember);
 			
@@ -209,6 +252,14 @@ public class MemberController {
 	}
 	
 */	
+
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String loginPage (){
+		
+		return "member/login";
+	}
+	
+
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
@@ -248,6 +299,13 @@ public class MemberController {
 	}
 	
 	//화면이동
+	@RequestMapping(value="/emailSendAction", method=RequestMethod.GET)
+	public String emailSendAction(){
+
+		return "member/emailSendAction";
+	}
+		
+	//화면이동
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup(){
 
@@ -256,6 +314,7 @@ public class MemberController {
 	}
 	//회원등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
+	@ResponseBody
 	public String signupPro(MemberInfo member, HttpSession session){
 		HttpServletResponse response = null;
 		int temp = serivce.signup(member);
@@ -265,7 +324,7 @@ public class MemberController {
 		session.setAttribute("userpwd", member.getMemberPwd());
 		
 		//회원가입을 위해 본인 확인 이메일 보내기 위한 코드 설정
-		String host = "http://localhost:8088/www/";
+		String host = "http://localhost:8998/www/";
 		String from = "dlgkrals6000@gmail.com"; 
 		String to   = repo.getUserEmail(member.getMemberId()); 
 		System.out.println(to);
@@ -313,8 +372,10 @@ public class MemberController {
 				e1.printStackTrace();
 			}
 		}
-		//본인 확인 이메일  코드 완료
+		System.out.println("본인 확인 이메일  코드 완료");
 		
+		 
+		return "ok"; 
 /*
 		String result = "";
 		switch(temp){
@@ -327,7 +388,6 @@ public class MemberController {
 		}
 */
 		
-		return "member/emailSendAction"; 
 	}
 	
 	@RequestMapping(value="/emailCheckAction", method=RequestMethod.GET)
@@ -381,10 +441,6 @@ public class MemberController {
 	public String myblog(){
 		return "member/myblog";
 	}
-	
-
-	
-	
 
 	//ID체크 한명불러오기
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
@@ -399,6 +455,10 @@ public class MemberController {
 		}
 	}
 	
+	
+	
+	
+	
 	@RequestMapping(value="/id_pwd", method=RequestMethod.GET)
 	public String id_pwd(){
 		return "member/id_pwd";
@@ -406,19 +466,84 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="/findid", method=RequestMethod.POST)
-	public String findid(){
-		return "";
+	public MemberInfo findid(MemberInfo member){
+		System.out.println(member);
+		
+		MemberInfo fetchedMember = repo.getMemberId(member);
+		
+		return fetchedMember;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/findpwd", method=RequestMethod.POST)
-	public String findpwd(){
-		return "";
+	public MemberInfo findpwd(MemberInfo member){
+		System.out.println(member);
+		
+		MemberInfo fetchedMember = repo.getMemberPwd(member);
+		System.out.println("fetchedMember="+fetchedMember );
+		
+		return fetchedMember;
 	}
 	
-	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modify(){
-		return"member/modify";
+	//이메일을 이용한 패스워드 찾기
+	@RequestMapping(value="/pwfindMailSend", method=RequestMethod.POST)
+	@ResponseBody
+	public String findpwd(MemberInfo member, HttpSession session){
+		
+		HttpServletResponse response = null;
+		// 이메일 보내기 위한 코드 설정
+		String host = "http://localhost:8088/www/";
+		String from = "dlgkrals6000@gmail.com"; 
+		String to   = repo.getUserEmail(member.getMemberId()); 
+		System.out.println(to);
+		String subject = "[우타짱] 임시 비밀번호입니다."; 
+		String content = "다음 임시비밀번호로 로그인하여 비밀번호를 재설정 해 주시기 바랍니다. 임시비밀번호:" + 
+		new SHA256().getSHA256(to) + "<br><a href='" + host + "tempPwdSet?memberPwd=" 
+		+ new SHA256().getSHA256(to) + "&memberEmail=" + to + "'>홈페이지로 돌아가기</a>";
+		
+		Properties p = new Properties();
+		p.put("mail.smtp.user", from);
+		p.put("mail.smtp.host", "smtp.googlemail.com");
+		p.put("mail.smtp.port", "465");
+		p.put("mail.smtp.starttls.enable", "true");
+		p.put("mail.smtp.auth", "true");
+		p.put("mail.smtp.debug", "true");
+		p.put("mail.smtp.socketFactory.port", "465");
+		p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		p.put("mail.smtp.socketFactory.fallback", "false");
+		
+		
+		try{
+			Authenticator auth = new Gmail(); 
+			Session ses = Session.getInstance(p, auth); 
+			ses.setDebug(true);
+			MimeMessage msg = new MimeMessage(ses); 
+			msg.setSubject(subject);
+			
+			Address fromAddr = new InternetAddress(from); 
+			msg.setFrom(fromAddr);
+			
+			Address toAddr   = new InternetAddress(to); 
+			msg.addRecipient(Message.RecipientType.TO, toAddr);
+			msg.setContent(content, "text/html;charset=UTF8");
+			Transport.send(msg);
+		}catch(Exception e){
+			e.printStackTrace();
+			PrintWriter script;
+			try {
+				script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('오류 발생');");
+				script.println("history.back();");
+				script.println("</script>");
+				script.close();
+				return null;
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		return "ok";
 	}
 	
 	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
@@ -438,7 +563,44 @@ public class MemberController {
 		model.addAttribute("followCount", followCount);
 		
 		return"member/follow_page";
+}
+
+	
+	
+
+	@RequestMapping(value="/tempPwdSet", method=RequestMethod.GET)
+	public String tempPwdSet(MemberInfo member, HttpSession session){
+		
+		String memberEmail = member.getMemberEmail(); 
+		String memberPwd = member.getMemberPwd(); 
+		System.out.println("멤버 이메일:" + memberEmail + "/ 멤버 패스워드:" + memberPwd);
+		int result = repo.tempPwdSet(member); 
+		
+		return "main"; 
 	}
+	
+	
+	
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	public String modify(HttpSession session, Model model){
+		String memberId = (String)session.getAttribute("memberId");
+		MemberInfo member = repo.selectOne(memberId);
+		String memberName = member.getMemberName();
+		String myintro    = member.getMyintro(); 
+		String memberPhone = member.getMemberPhone();
+		String memberEmail = member.getMemberEmail(); 
+		
+		model.addAttribute("memberEmail", memberEmail);
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("memberName", memberName);
+		model.addAttribute("myintro", myintro);
+		model.addAttribute("memberPhone", memberPhone);
+		
+		return"member/modify";
+	}
+	
+	
+
 	
 	@ResponseBody
 	@RequestMapping(value="/memberPost", method=RequestMethod.GET)

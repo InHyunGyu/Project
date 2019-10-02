@@ -156,4 +156,13 @@
 		from posts
 		where memberId = #{memberId}
 	</select>
+	
+	<select id="postLikeList" parameterType="int" resultType="String">
+		select
+			LIKE_ARRAY
+		from 
+			posts
+		where postNo = #{postNo}
+	
+	</select>
 </mapper>

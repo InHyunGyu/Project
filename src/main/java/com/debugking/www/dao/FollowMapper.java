@@ -15,4 +15,10 @@ public interface FollowMapper {
 
 	public void insert(Follower follow);
 
+	public Follower selectOne(Follower follow);
+
+	public void delete(Follower follow);
+
+	public ArrayList<Follower> followList(String memberId);
+
 }

@@ -181,7 +181,7 @@
                                 </ul>
                             </li>
                   
-                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>

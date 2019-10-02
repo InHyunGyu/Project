@@ -21,10 +21,15 @@ public interface VoiceListMapper {
 	public List<Posts> selectNoticeAll(Map<String, String> map, RowBounds rb);
 	
 
-	
-	
 
 
+	public int writing(Posts post); //글쓰기
+
+	public int getVoiceNewCount(Map<String, Object> map);
+
+	public List<Posts> selectNewAll(Map<String, String> map, RowBounds rb);
+
+	public Posts selectPostOne(int postNo); //POSTS 하나만 검색하기
 	
 
 
