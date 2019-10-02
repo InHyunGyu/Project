@@ -13,7 +13,7 @@ public class PostsService {
 	ListRepository repo;
 	
 	public int writing(Posts post) {
-		if(post.getMemberId()=="admin"){
+		if(post.getMemberId().equals("admin")){
 			post.setIsAnnouncement("Y");
 		}else{
 			post.setIsAnnouncement("N");
@@ -21,5 +21,4 @@ public class PostsService {
 		int result= repo.writing(post);
 		return result;
 	}
-	
 }

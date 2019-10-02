@@ -61,9 +61,6 @@ public class MemberController {
 	String savedFilename; //UUID 및 date 문자열을 포함한 확장자를 포함한 파일명
 	String originalFilename;
 	
-	
-	
-	
 	public void createContentId(MemberInfo member, HttpServletRequest request){
 		System.out.println("----------createContentId메서드 호출-----");
 		originalFilename = member.getPhotoname(); 
@@ -79,7 +76,6 @@ public class MemberController {
 		
 		String randomString = UUID.randomUUID().toString();
 		originalFilename    = randomString + originalFilename; //파일명 앞에 ranme 문자열 추가
-		
 		
 		//아래 루프는 중복 파일이 있는지 검사하고 없을 경우에는 그냥 시간 날짜값을 붙여주는 작업이다. 
 		while(true){
@@ -269,11 +265,15 @@ public class MemberController {
 	@ResponseBody
 	public MemberInfo login(HttpSession session, MemberInfo member) {
 		MemberInfo result = repo.login(member);
+		
 		if(result != null){
 			session.setAttribute("memberId", result.getMemberId());
 			session.setAttribute("memberName", result.getMemberName());
+			return result;
 		}
-		return result;
+		else{
+			return null;
+		}
 	}
 	//로그아웃
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
@@ -286,9 +286,9 @@ public class MemberController {
 	//회원탈퇴
 	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
 	public String memberDelete(HttpSession session, MemberInfo member){
-		System.out.println("delete"+member);
-		
-		int result = repo.memberDelete(member);
+		member.setMemberId((String)session.getAttribute("memberId"));
+		MemberInfo temp = repo.selectOne(member.getMemberId());
+		int result = repo.memberDelete(temp);
 		if(result == 1){
 			session.removeAttribute("memberId");
 			session.removeAttribute("memberName");

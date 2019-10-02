@@ -32,11 +32,12 @@
 		.set_list {
     width: 769px;
     height: 48px;
-    padding: 12px 20px 0;
+    padding: 12px 20px 0; 
     border-top: 1px solid #E4E4E4;
     background: #FAFAFA;
     white-space: nowrap;
     letter-spacing: -0.5px;
+}
 
 
   a {
@@ -54,8 +55,9 @@
     font-size:0.85em;
     
 	 }
-	}
+	
 	</style>
+
 
 	<script>
 

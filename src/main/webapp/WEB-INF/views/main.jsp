@@ -53,62 +53,9 @@
 
 
 
+<script src="resources/assets/js/login2.js"></script>
 
-<script>
-	$(function() {
-		
-		
-		$("#loginBTN").on('click', function() {
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
 
-			if (memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-			}
-
-			$.ajax({
-				method : 'post',
-				url : 'login',
-				data : send,
-				success : function(result) {
-					if (!result) {
-						alert("로그인 실패");
-					} else {
-						alert("로그인 성공");
-						location.reload();
-					}
-
-				}
-			})
-		})
-
-		$("#signup").on('click', function() {
-			location.href = "signup"
-		})
-		$("#memberDelete").on('click', function() {
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-			}
-			$.ajax({
-				method : 'post',
-				url : 'memberDelete',
-				data : send,
-				success : function() {
-					location.reload();
-				}
-			})
-		})
-	})
-</script>
 
 </head>
 <body>
@@ -171,7 +118,7 @@
 								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
 							</ul></li>
 						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-						<c:if test="${sessionScope.memberId != 'admin'}">
+						<c:if test="${sessionScope.memberId == 'admin'}">
 						<li class="menu-item-has-children"><a href="managerPage"><span
 								class="menu-item-span">Admin</span></a></li></c:if>
 					</ul>
@@ -590,7 +537,7 @@
 								<a href="logout" style="color: #788487">로그 아웃</a>
 							</p>
 							<p class="text-center">
-								<a href="memberDelete" style="color: #788487">탈퇴</a>
+								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
 							</p>
 						</div>n
 					</aside>
@@ -611,10 +558,10 @@
 								<p class="text-center">
 									<button class="btn btn-outline-secondary" type="button"
 										name="loginBTN" id="loginBTN"
-										style="width: 320px; height: 54px;">login</button>
+										style="width: 320px; height: 54px;">Login</button>
 								<p class="text-center">
-									<a href="signup" style="color: #788487">signup</a> &ensp; <a
-										href="id_pwd" style="color: #788487">id/pwd</a>
+									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
 								</p>
 								<p class="text-center">
 									<button class="btn btn-outline-secondary" type="button"

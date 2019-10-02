@@ -25,6 +25,7 @@
 
 
         <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="resources/assets/js/login2.js"></script>
 <script >
 	$(function(){
 		var flagid = false;
@@ -215,57 +216,6 @@
 				}
 			}
 		});
-		
-		$("#loginBTN").on('click', function() {
-			var memberId = $("#loginId").val();
-			var memberPwd = $("#loginPwd").val();
-
-			if (memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-			}
-
-			$.ajax({
-				method : 'post',
-				url : 'login',
-				data : send,
-				success : function(result) {
-					if (!result) {
-						alert("로그인 실패");
-					} else {
-						alert("로그인 성공");
-						location.href="main";
-					}
-
-				}
-			})
-		})
-
-		$("#signup").on('click', function() {
-			location.reload();
-		})
-		
-		$("#memberDelete").on('click', function() {
-			var memberId = $("#loginId").val();
-			var memberPwd = $("#loginPwd").val();
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-			}
-			$.ajax({
-				method : 'post',
-				url : 'memberDelete',
-				data : send,
-				success : function() {
-					location.href="main";
-				}
-			})
-		})
 	});
 	</script>
 	

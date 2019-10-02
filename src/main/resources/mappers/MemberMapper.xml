@@ -82,9 +82,9 @@
 		select 
 			memberId
 			,memberName
-		From MemberInfo
-		Where memberId=#{memberId} and memberPwd =#{memberPwd} 
-		and emailchecked = 'y'
+		From memberInfo
+		Where memberPwd =#{memberPwd} and emailchecked = 'y' 
+									and memberId =#{memberId} and memberLevel !='Z'
 	</select>
 	
 	

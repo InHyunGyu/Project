@@ -132,6 +132,7 @@ CREATE TABLE pointslog
 	-- 회원이 로그인할 때 쓸 아이디이다. 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memberId varchar2(50) NOT NULL,
 =======
 	memberid varchar2(50) NOT NULL UNIQUE,
@@ -139,6 +140,10 @@ CREATE TABLE pointslog
 =======
 	memberId varchar2(50) NOT NULL,
 >>>>>>> d96f7c996863b040c475d84b9e8f667f2fa201aa
+=======
+
+	memberId varchar2(50) NOT NULL,
+>>>>>>> e47452b78d63cad1cae77a37de664ed8d8e9b8b1
 	theOtherId varchar2(50),
 	eventdate date,
 	amount number,

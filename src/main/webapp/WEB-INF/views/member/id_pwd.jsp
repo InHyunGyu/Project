@@ -30,6 +30,7 @@
 <link href="resources/assets/css/template.css" rel="stylesheet">
 <!-- JavaScripts -->
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+<script src="resources/assets/js/login2.js"></script>
 <style type="text/css">
   a {
   	color: #788487;
@@ -52,6 +53,7 @@
 	$(function(){
 		idPwController();
 		
+ 
 		$("#loginBTN").on('click', function(){
 			var memberId = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
@@ -108,6 +110,7 @@
 		
 		
 		/* 아이디 찾기 버튼 클릭 시 함수 발동*/
+
 		$("#idBTN").on('click', function(){
 			
 			var memberName = $("#memberName").val();
