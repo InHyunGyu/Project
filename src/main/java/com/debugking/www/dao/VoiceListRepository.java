@@ -46,7 +46,40 @@ public class VoiceListRepository {
 		return list;
 	}
 	
+
+	//NEW 페이징 하기 
+	public int getVoiceNewCount(String searchItem, String searchWord) {
+		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchWord", searchWord);
+		
+		int total = mapper.getVoiceNewCount(map);
+		return total;
+	}
+	public List<Posts> selectNewAll(String searchItem, String searchWord, int startRecord, int countPerPage) {
+		List<Posts> list;
+		RowBounds rb = new RowBounds(startRecord, countPerPage);
+		
+		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+		Map<String, String> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchWord", searchWord);
+		list = mapper.selectNewAll(map, rb);
+		return list;
+	}
 	
+	//글쓰기
+	public int writing(Posts post) {
+		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+		int result = mapper.writing(post);
+		return result;
+	}
+	public Posts selectPostOne(int postNo) {
+		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+		Posts result = mapper.selectPostOne(postNo);
+		return result;
+	}
 
 
 

@@ -31,6 +31,15 @@
 <!-- JavaScripts -->
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 <style>
+
+/* 프로필 이미지 썸네일화를 위한 css 설정 */
+img#mypic {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
 div.left {
 	width: 50%;
 	float: left;
@@ -96,6 +105,7 @@ table {
 <script>
 	$(function(){
 		
+
 		
 		$('.click').hover(function() {
 			  $(this).css("color", "#505cfd");
@@ -108,7 +118,6 @@ table {
 		var memberId = '${memberInfo.memberId}'
 		var login = '${sessionScope.memberId}'
 		
-		postList();
 
 		
 		$("#followList").on('click',function(){
@@ -560,8 +569,10 @@ table {
 
 					<div class="col-md-4">
 						<div class="sticky-sidebar">
+
 							<h6 class="single-portfolio-title">${memberInfo.memberId}</h6>
 							<p>${memberInfo.myintro}</p>
+
 							<p>설명 2</p>
 							<hr class="m-t-30 m-b-30">
 							<div class="info-list">

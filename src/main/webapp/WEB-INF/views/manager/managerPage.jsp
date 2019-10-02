@@ -37,9 +37,26 @@
     background: #FAFAFA;
     white-space: nowrap;
     letter-spacing: -0.5px;
-}
-	</style>
+
+
+  a {
+  	color: #788487;
+  }
 	
+	#inputStyle {
+	height: 100%; 
+	width: 20%;
+	color: #495057;
+    background-color: #fff;
+    padding-left: 12px;
+    border: 1px solid #ededed;
+    border-radius: .1875rem;
+    font-size:0.85em;
+    
+	 }
+	}
+	</style>
+
 	<script>
 
 	$(function(){

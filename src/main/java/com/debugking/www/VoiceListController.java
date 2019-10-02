@@ -64,4 +64,34 @@ public class VoiceListController {
 	}
 
 	
+	//글쓰기
+	@RequestMapping(value="/writing", method=RequestMethod.POST)
+	public String writing(Posts post, HttpSession session, MultipartFile upload){
+		
+		post.setMemberId((String)session.getAttribute("memberId"));
+		String originalfile = upload.getOriginalFilename();
+		String savedfile = FileService.saveFile(upload,uploadPath);
+		
+		post.setOriginalFile(originalfile);
+		post.setSavedFile(savedfile);
+		
+		
+		int result = serivce.writing(post);
+		if(result==0){
+			return "userBoard/write"; 
+		}
+		return "redirect:voice_new";
+	}
+	
+	
+	//FILE Detail 클릭클릭 > jsp 필요한거 같기두하구.. 이걸로 같이 써도 될꺼 같기도 하고.. ajax로 해야 되는건가 싶기도 하고..  
+	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
+	public String file_detail(int postNo, Model model){
+		Posts result = repo.selectPostOne(postNo);
+		model.addAttribute("post", result);
+		
+		System.out.println("file_detail"+result);
+		return "userBoard/file_detail";
+	}
+
 }
