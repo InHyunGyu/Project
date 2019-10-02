@@ -54,7 +54,7 @@
 	
 	<script>
 	$(function(){
-		
+		var login = '${sessionScope.memberId}';
 		
 		$("#loginBTN").on('click', function(){
 			var memberId = $("#memberId").val();
@@ -87,9 +87,9 @@
 		$("#replyBTN").on('click', function(){
 			var replyContent = $("#replyContent").val();
 			var postNo = "${post.postNo}";
-			var memberId = "${sessionScope.memberId}";
 			
-			if(memberId == null) {
+			alert(login);
+			if(login.length == 0) {
 				alert("로그인을 해주세요.");
 				return;
 			}
@@ -117,70 +117,89 @@
 		$(".replyDelBTN").on('click', function(){
 			var replyNo = $(this).attr("data-value");
 			
-			$.ajax({
-				method:'get',
-				url:'replyDel',
-				data:'replyNo='+replyNo,
-				success:function(){
-					location.reload();
-				}
-			})
+				$.ajax({
+					method:'get',
+					url:'replyDel',
+					data:'replyNo='+replyNo,
+					success:function(){
+						location.reload();
+					}
+				})
+			
 		})
 		
 		$(".replyModiBTN").on('click', function(){
 			var replyNo = $(this).attr("data-value");
 			var replyContent =  $(this).attr("data-content");
 			
-			var tag = '';
-			
-			tag += '<div class="comment-body">';
-			tag += '<form class="comment-form row">';
-			tag += '<div class="form-group col-md-12">';
-			tag += '<textarea class="form-control" rows="4" cols="100" style="margin: 5px;" id="ModiContent" name="replyContent" >'+replyContent+'</textarea>';
-			tag += '</div>';
-			tag += '<div class="form-submit col-md-12">';
-			tag += '<button class="btn btn-dark" type="button" id="contentModi" name="contentModi" data-replyNo="'+replyNo+'">Modify</button>';
-			tag += '</form>'
-			tag += '</div>'
-
-	     
-			
-            $(this).parent().parent().parent().html(tag);
-			$("#contentModi").on('click', function(){
-				var replyContent = $("#ModiContent").val();
-				var replyNo = $(this).attr("data-replyNo");
+				var tag = '';
 				
-				var send = {
-						
-						'replyNo':replyNo,
-						'replyContent':replyContent
-				}
+				tag += '<div class="comment-body">';
+				tag += '<form class="comment-form row">';
+				tag += '<div class="form-group col-md-12">';
+				tag += '<textarea class="form-control" rows="4" cols="100" style="margin: 5px;" id="ModiContent" name="replyContent" >'+replyContent+'</textarea>';
+				tag += '</div>';
+				tag += '<div class="form-submit col-md-12">';
+				tag += '<button class="btn btn-dark" type="button" id="contentModi" name="contentModi" data-replyNo="'+replyNo+'">Modify</button>';
+				tag += '</form>'
+				tag += '</div>'
+	
+		     
 				
-				$.ajax({
-					method:'post',
-					url:'replyUp',
-					data:send,
-					success:function(){
-						location.reload();
+	            $(this).parent().parent().parent().html(tag);
+				
+				$("#contentModi").on('click', function(){
+					var replyContent = $("#ModiContent").val();
+					var replyNo = $(this).attr("data-replyNo");
+					
+					var send = {
+							
+							'replyNo':replyNo,
+							'replyContent':replyContent
 					}
+					
+					$.ajax({
+						method:'post',
+						url:'replyUp',
+						data:send,
+						success:function(){
+							location.reload();
+						}
+					})
 				})
-				
-				
-			});
-
+			
 		})
 		
 		$("#postLike").on('click', function(){
 			var postNo = $(this).attr("data-value");
 			
-			$.ajax({
-				method:'get',
-				url:'postLike?postNo='+postNo,
-				success:function(){
-					location.reload();
+			if(login.length == 0 || login == null) {
+				alert('로그인을 해주세요');
+				return;
+			} else {
+				
+				var send = {
+						'postNo':postNo,
+						'memberId':login
 				}
-			})
-		})
+				
+				$.ajax({
+					method:'post',
+					url:'postLike',
+					data:send,
+					success:function(res){
+						if(res == 0) {
+							alert('중복 ');
+							return;
+						} else {
+							location.reload();	
+						}
+						
+					}
+				})
+			
+			}
+		})	
 		
 		$("#reported").on('click', function(){
 			var postNo = $(this).attr("data-value");
@@ -345,11 +364,12 @@
 													<p class="idd">${reply.replyContent}</p>
 												</div>
 												<div class="form-group">
+													<c:if test="${sessionScope.memberId == reply.memberId}">
 													<div class="comment-reply">
-														<a class="replyModiBTN" data-value="${reply.replyNo}" data-content="${reply.replyContent}">Modify</a>&ensp;<a class="replyDelBTN" data-value="${reply.replyNo}">Delete</a>
+														<a class="replyModiBTN" data-value="${reply.replyNo}" data-content="${reply.replyContent}" data-name="${reply.memberId}">Modify</a>&ensp;<a class="replyDelBTN" data-name="${reply.memberId}" data-value="${reply.replyNo}">Delete</a>
 													</div>
-												<div id = "modiChange">	
-											</div>
+													</c:if>
+							
 												</div>
 											
 											</div>
@@ -368,14 +388,14 @@
                                         <div class="form-submit col-md-12">
 											<button class="btn btn-dark" type="button" id="replyBTN" name="replyBTN">Comment</button>
 											 
-											 <c:if test="${sessionScope.loginId == post.memberId}">
+											 <c:if test="${sessionScope.memberId == post.memberId}">
 											 <div class="form-group" id = "button_group">
 											 <a href="post_modify?postNo=${post.postNo}"><button class="btn btn-outline-dark" type="button" id="post_modifyBTN" >Modify</button></a>
 		                               		<a href="delete?postNo=${post.postNo}"><button class="btn btn-outline-dark" type="button" id="deleteBTN">Delete</button></a>
 		                               		</div>
 		                               	</c:if>
 		                               	
-		                               	<c:if test="${sessionScope.loginId != post.memberId}">
+		                               	<c:if test="${sessionScope.memberId != post.memberId}">
 											 <div class="form-group" id = "button_group">
 											 <button class="btn btn-outline-dark" type="button" id="postLike" data-value="${post.postNo}">postLike</button>
 		                               		<button class="btn btn-outline-dark" type="button" id="reported" data-value="${post.postNo}">REPORTED</button>

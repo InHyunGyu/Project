@@ -65,7 +65,7 @@ public class ListController {
 		post.setOriginalFile(originalfile);
 		post.setSavedFile(savedfile);
 
-		int result = serivce.writing(post);
+		serivce.writing(post);
 		
 		if(post.getPostType().equals("community")){
 			return "redirect:community"; 
@@ -139,9 +139,13 @@ public class ListController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/postLike", method=RequestMethod.GET)
-	public int postLike(int postNo){
+	@RequestMapping(value="/postLike", method=RequestMethod.POST)
+	public int postLike(int postNo, String memberId){
+
 		int result = repo.postLike(postNo);
+			
+		
+		
 		return result;
 	}
 	
