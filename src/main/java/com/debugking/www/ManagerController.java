@@ -63,22 +63,36 @@ public class ManagerController {
 		return ratingList;
 	}
 	
+	
 	//게시글 이동
 	@RequestMapping(value="/move", method=RequestMethod.POST)
 	@ResponseBody
-	public int move(@RequestParam(value="listchecked") List<String> listchecked,String postType){
-		System.out.println("1");
+	public int move(
+			@RequestParam(value="listchecked") List<String> listchecked,
+			@RequestParam(value="postType") String postType){
+		System.out.println("1"+listchecked);
 		int result = service.move(listchecked,postType);
 		return result;
 	}
+	
+	
 	//게시글 삭제
 	@RequestMapping(value="/deleted", method=RequestMethod.POST)
 	@ResponseBody
-	public int deleted(@RequestParam(value="listchecked") List<String> listchecked){
+	public int deleted(
+			@RequestParam(value="listchecked") List<String> listchecked){
 		int result = service.deleted(listchecked);
 		return result;
 	}
-	
+	//신고 글 삭제
+	@RequestMapping(value="/rep_delete", method=RequestMethod.POST)
+	@ResponseBody
+	public int rep_delete(
+			@RequestParam(value="listchecked") List<String> listchecked
+			){
+		int result = service.deleted(listchecked);
+		return result;
+	}
 	
 	//등업하기 등급 변경하기
 	@RequestMapping(value="/change", method=RequestMethod.POST)
@@ -90,16 +104,23 @@ public class ManagerController {
 	
 		return result;
 	}
-	//공지글 취소하기 (내리기)
+	//공지글 취소하기 (내리기>N)
 	@RequestMapping(value="/cancel", method=RequestMethod.POST)
 	@ResponseBody
 	public int cancel(@RequestParam(value="listchecked") List<String> listchecked){
-		System.out.println("postNo"+listchecked+"//////");
-		
 		int result = service.cancel(listchecked);
 	
 		return result;
 	}
+	//공지글 재등록하기 (올리기>Y)
+	@RequestMapping(value="/registration", method=RequestMethod.POST)
+	@ResponseBody
+	public int registration(@RequestParam(value="listchecked") List<String> listchecked){
+		int result = service.registration(listchecked);
+	
+		return result;
+	}
+	
 	
 	//등업 글쓰기 페이지 이동
 	@RequestMapping(value="/notice_write", method=RequestMethod.GET)
@@ -153,5 +174,6 @@ public class ManagerController {
 		
 		return reportList;
 	}
+	
 	
 }

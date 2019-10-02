@@ -15,7 +15,6 @@ public class ManagerService {
 	ManagerRepository repo;
 
 	public int move(List<String> listchecked, String postType) {
-		System.out.println("2");
 		Map hm = new HashMap();
 		
 		hm.put("postNo", listchecked);
@@ -41,6 +40,7 @@ public class ManagerService {
 			return 1;
 		}
 	}
+	
 	public int change(List<String> listchecked, String memberLevel) {
 		Map hm = new HashMap();
 		
@@ -57,8 +57,8 @@ public class ManagerService {
 	}
 	public int cancel(List<String> listchecked) {
 		Map hm = new HashMap();
-		
-		hm.put("memberId", listchecked);
+		System.out.println(listchecked);
+		hm.put("postNo", listchecked);
 		hm.put("isAnnouncement", "N");
 		int result = repo.cancel(hm);
 		if(result==0){
@@ -68,5 +68,19 @@ public class ManagerService {
 			return 1;
 		}
 	}
+	public int registration(List<String> listchecked) {
+		Map hm = new HashMap();
+		System.out.println(listchecked);
+		hm.put("postNo", listchecked);
+		hm.put("isAnnouncement", "Y");
+		int result = repo.registration(hm);
+		if(result==0){
+			return 0;
+		}
+		else{
+			return 1;
+		}
+	}
+	
 	
 }

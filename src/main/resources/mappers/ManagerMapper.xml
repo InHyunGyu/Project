@@ -108,12 +108,11 @@
 	</delete>
 	
 	<!-- 공지글 내리기 (취소하기) -->
-	<update id="cancel" parameterType="map">
+	<update id="notice" parameterType="map">
     update Posts
     set
     	isAnnouncement=#{isAnnouncement}
-    WHERE
-    postNo IN
+    WHERE postNo IN
          <foreach collection="postNo" item="postNo"  open="(" close=")" separator=",">
             #{postNo}
         </foreach>
@@ -128,7 +127,6 @@
          <foreach collection="memberId" item="memberId"  open="(" close=")" separator=",">
             #{memberId}
         </foreach>
-        order by memberLevel DESC, postDate DESC;
 	</update>
 	
 	<!-- 등급별 멤버 출력 -->
@@ -149,7 +147,7 @@
 			,memberPoint
 			,memberLevel
 		FROM MemberInfo 
-		ORDER BY memberLevel DESC, signupDate asc
+		ORDER BY memberLevel ASC, signupDate DESC
 	</select>
 	
 	

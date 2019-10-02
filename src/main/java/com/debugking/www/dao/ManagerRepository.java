@@ -122,7 +122,18 @@ public class ManagerRepository {
 	
 	public int cancel(Map hm) {
 		ManagerMapper mapper = session.getMapper(ManagerMapper.class);
-		int result= mapper.cancel(hm);
+		int result= mapper.notice(hm);
+		
+		if(result==0){
+			return 0;
+		}
+		else{
+			return 1;
+		}
+	}
+	public int registration(Map hm) {
+		ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+		int result= mapper.notice(hm);
 		
 		if(result==0){
 			return 0;

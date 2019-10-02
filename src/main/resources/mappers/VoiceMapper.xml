@@ -12,8 +12,10 @@
 	
 	<select id="getVoiceCount" parameterType="map" resultType="int">
 		select count(*)
-		From Posts
-		where postType = 'voice' and memberId != 'admin'
+		FROM Posts p , MemberInfo m
+		where p.memberId = m.memberId
+		and p.postType = 'voice' and p.memberId != 'admin'
+		and m.memberLevel !='Z' 
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord} || '%'
 		</if>
@@ -21,20 +23,22 @@
 	
 	<select id="selectAll" resultType="Post" parameterType="map">
 		SELECT
-			postNo
-			,memberId
-			,postTitle
-			,postContent
+			p.postNo
+			,p.memberId
+			,p.postTitle
+			,p.postContent
 			,to_char(postDate, 'YYYY-MM-DD') as postDate
-			,postView
-			,postLike
+			,p.postView
+			,p.postLike
 			<if test="originalFile != null">
-			,originalFile
-			,savedFile
+			,p.originalFile
+			,p.savedFile
 			</if>
-			,reported
-		FROM Posts 
-		where postType = 'voice' and memberId != 'admin' 
+			,p.reported
+		FROM Posts p , MemberInfo m
+		where p.memberId = m.memberId
+		and p.postType = 'voice' and p.memberId != 'admin'
+		and m.memberLevel !='Z' 
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>
@@ -65,30 +69,34 @@
 	<!-- NEW 출력문 -->
 	<select id="getVoiceNewCount" parameterType="map" resultType="int">
 		select count(*)
-		From Posts
-		where postType = 'voice' or memberId != 'admin' and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
+		FROM Posts p , MemberInfo m
+		where p.memberId = m.memberId
+		and p.postType = 'voice' and p.memberId != 'admin'
+		and m.memberLevel !='Z' 
+		and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord} || '%'
 		</if>
 	</select>
 	<select id="selectNewAll" resultType="Post" parameterType="map">
 		SELECT
-			postNo
-			,memberId
-			,postTitle
-			,postContent
+			p.postNo
+			,p.memberId
+			,p.postTitle
+			,p.postContent
 			,to_char(postDate, 'YYYY-MM-DD') as postDate
-			,postView
-			,postLike
-			,postType
-			,isAnnouncement
+			,p.postView
+			,p.postLike
 			<if test="originalFile != null">
-			,originalFile
-			,savedFile
+			,p.originalFile
+			,p.savedFile
 			</if>
-			,reported
-		FROM Posts 
-		where postType = 'voice' and memberId != 'admin' and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
+			,p.reported
+		FROM Posts p , MemberInfo m
+		where p.memberId = m.memberId
+		and p.postType = 'voice' and p.memberId != 'admin'
+		and m.memberLevel !='Z' 
+		and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>

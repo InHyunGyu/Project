@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -45,8 +45,8 @@
 
 	$(function(){
 		writingList();
-		
-		var DATA=[];
+		//체크박스 체크 된 것 배열에 추가하기 
+		var DATA = [];
 		$("#content_table").on("change","#postNoBTN",function(){
 	          if($(this).is(':checked')){
 		           DATA.push($(this).val());
@@ -57,39 +57,16 @@
 	         } 
 		})
 		
-		$("#move").on("click",function(){
+		/* $("#move").on("click",function(){
 			move(DATA);
 			DATA=[];
-		}) 
-		/* $("#deleted").on("click",function(){
+		});
+		$("#deleted").on("click",function(){
 			deleted(DATA);
 			DATA=[];
-		}) */
+		}); */
 		
-		
-		//체크박스 체크 된 것 배열에 추가하기 
-		
-		/* $("input[id=postNoBTN]:checked").each(function(){
-				DATA += $('"data-boardno":checked').val();
-				console.log(DATA);
-			})  */
-			//var a= $(this).attr("data-boardno");
-		//유저 등급 체크 된 것 배열에 추가하기
-		/*var memberDATA=[];
-		 $("#content_select").on("change","#memberIdBTN",function(){
-	         if($(this).is(':checked')){
-	        	  memberDATA.push($(this).val());
-		          console.log(memberDATA);
-	         } else{
-	        	 memberDATA.pop($(this).val());
-	        	 console.log(memberDATA);
-	         }
-		}) */
-		
-		
-			//$("input[id=postNoBTN]:checked").each(function() {
-			//	var test = $(this).val();
-			//})
+		//등급 이동버튼			
 		$("#memberRating").on('click',function(){
 			$.ajax({
 				method:"GET",
@@ -99,6 +76,7 @@
 				}
 			})
 		})
+		//공지 이동버튼
 		$("#noticeList").on('click',function(){
 			$.ajax({
 				mehtod:"GET",
@@ -107,6 +85,7 @@
 
 			})
 		})
+		//신고 글 이동버튼
 		$("#reportList").on('click',function(){
 			$.ajax({
 				method:"GET",
@@ -114,76 +93,120 @@
 				success:reportList
 			})
 		})
-		// 게시글 삭제 
-		function deleted(DATA){
-			jQuery.ajaxSettings.traditional = true;
-			 
-			$.ajax({
-				method:"POST",
-				url:"deleted",
-				data:{
-					"listchecked" : DATA,
-				},
-				success : function(mesa){
-					if(mesa==0){
-						alert("실패");
-					}
-					else{
-						alert("게시글이 삭제 되었습니다.");
-						for(var i=0; i<test.length; i++){
-							$('input[data-boardno |='+test[i]+']').parent().parent().remove();
-						}
-					}
-				}
-			})
-		}
-		// 게시글 이동 
-		function move(DATA){
-			jQuery.ajaxSettings.traditional = true;
-			
-			var postType = $("#moveSelect").val();
-			
-			var senddata = {
-				"listchecked" : DATA,
-				"postType" : postType
-			}
-			alert("postType"+DATA);
-			$.ajax({
-				method:"POST",
-				url:"move",
-				data:senddata,
-				success : function(mesa){
-					if(mesa==0){
-						alert("실패");
-					}
-					else{
-						alert("게시글이 이동하였습니다.");
-						for(var i=0; i<test.length; i++){
-							$('input[data-boardno |='+test[i]+']').parent().parent().remove();
-						}
-					}
-				}
-			})
-		}
 		
-		//전체선택
-		$("#checkAll").click(function() {
+		
+		
+		//전체선택 정적(모델)
+		/* $("#checkAll").click(function() {
 			$("input[id=postNoBTN]:checkbox").each(function() {
 				$(this).attr("checked", true)
 				if($(this).is(':checked')){
 			           DATA.push($(this).val());
 		         } else{
+		        	 $(this).attr("checked", false)
 		        	 DATA.pop($(this).val());
-		        	 console.log(DATA);
 		         }
-				//DATA.push($(this).attr("checked", true));
-				alert("DATA"+DATA);
-				console.log(DATA);
 			});
+		}); */
+		$("#checkAll").click(function(){ 
+			//만약 전체 선택 체크박스가 체크된상태일경우 
+			//해당화면에 전체 checkbox들을 체크해준다 
+			if($("#checkAll").prop("checked")) { 
+				$("input[type=checkbox]").prop("checked",true); 
+			}
+			// 전체선택 체크박스가 해제된 경우
+			//해당화면에 모든 checkbox들의 체크를해제시킨다. 
+			else { 
+				$("input[type=checkbox]").prop("checked",false); 
+			} 
 		});
 		
-	})//끝.
-	
+		//$("input[id=postNoBTN]:checked").each(function() {
+		//	var test = $(this).val();
+		//})
+		/* $("input[id=postNoBTN]:checked").each(function(){
+				DATA += $('"data-boardno":checked').val();
+				console.log(DATA);
+			})  */
+		//var a= $(this).attr("data-boardno");
+			//유저 등급 체크 된 것 배열에 추가하기
+			/*var memberDATA=[];
+			 $("#content_select").on("change","#memberIdBTN",function(){
+			     if($(this).is(':checked')){
+			    	  memberDATA.push($(this).val());
+			          console.log(memberDATA);
+			     } else{
+			    	 memberDATA.pop($(this).val());
+			    	 console.log(memberDATA);
+			     }
+				}) */
+	})		//끝.
+	// 게시글 이동 
+	function move(){
+		jQuery.ajaxSettings.traditional = true;
+		var list = [];
+		 $("input[id=postNoBTN]").each(function(index, item){
+			   if($(item).is(':checked')){
+				   list.push($(item).val());
+		         } 
+		   });
+		 
+		var postType = $("#moveSelect").val();
+		var senddata = {
+			"listchecked" : list.toString(),
+			"postType" : postType
+		}
+		 
+		/* var fd = new FormData();
+		fd.append("listchecked", DATA);
+		fd.append("postType", postType); */
+		
+		
+		$.ajax({
+			method:"POST",
+			url:"move",
+			data:senddata,
+			success : function(mesa){
+				if(mesa==0){
+					alert("실패");
+				}
+				else{
+					alert("게시글이 이동하였습니다.");
+					for(var i=0; i<list.length; i++){
+						$('input[data-boardno |='+list[i]+']').parent().parent().remove();
+					}
+				}
+			}
+		});
+	}
+	// 게시글 삭제 
+	function deleted(){
+		jQuery.ajaxSettings.traditional = true;
+		var list = [];
+		 $("input[id=postNoBTN]").each(function(index, item){
+			   if($(item).is(':checked')){
+				   list.push($(item).val());
+		         } 
+		   });
+		$.ajax({
+			method:"POST",
+			url:"deleted",
+			data:{
+				"listchecked" : list.toString(),
+			},
+			success : function(mesa){
+				if(mesa==0){
+					alert("실패");
+				}
+				else{
+					alert("게시글이 삭제 되었습니다.");
+					for(var i=0; i<list.length; i++){
+						$('input[data-boardno |='+list[i]+']').parent().parent().remove();
+					}
+				}
+			}
+		});
+	}
 	function writingList(){	
 		var tag1="게시글 관리";
 		
@@ -233,9 +256,9 @@
 	    tag3 += '<option value="video">video</option>'
 	    tag3 += '<option value="streaming">streaming</option>'
 	    tag3 += '<option value="community">community</option>'
-	    tag3 += '</select>'   
+	    tag3 += '</select>'
 		tag3 += '<div class="form-group" style="float: right;">'
-		tag3 += '<a href="#" id="move">move</a>'		
+		tag3 += '<a href="#" onclick="move();">move</a>'		
 		tag3 += '<a> | </a>'
 		tag3 += '<a href="#" onclick="deleted();">delete</a>'
 		tag3 += '</div>'
@@ -256,7 +279,7 @@
 		$("#content_select").html(tag3);
 		
 	}
-	 /* function reportList(reportList){
+	function reportList(reportList){
 		var tag1="신고 글 관리";
 		
 		var tag2 =''
@@ -269,7 +292,7 @@
 		tag2 += '</colgroup>'
 		tag2 += '<thead>'
 		tag2 += '<tr>'		
-		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th><input type="checkbox" id="checkAll"></th>'
 		tag2 += '<th>글제목</th>'
 		tag2 += '<th>작성자</th>'
 		tag2 += '<th>작성일</th>'
@@ -285,7 +308,7 @@
 		else{
 			$.each(reportList,function(index,item){
 				tag2 += '<tr>'
-				tag2 += '<td><input type="checkbox" id="memberIdBTN" value="'+item.memberId+'" data-boardno="'+item.memberId+'"></td>'
+				tag2 += '<td><input type="checkbox" id="memberIdBTN" value="'+item.postNo+'" data-boardno="'+item.postNo+'"></td>'
 				tag2 += '<td>'+item.postTitle+'</td>'		
 				tag2 += '<td>'+item.memberId+'</td>'
 				tag2 += '<td>'+item.postDate+'</td>'
@@ -298,7 +321,7 @@
 		var tag3 = ''
 		tag3 += '<input type="checkbox">'
 		tag3 += '<div class="form-group" style="float: right;">'
-		tag3 += '<a href="#" id="deleted">delete</a>'
+		tag3 += '<a href="#" onclick="rep_delete()">delete</a>'
 		tag3 += '</div>'
 		
 		var tag4 = '';
@@ -331,7 +354,7 @@
 		tag2 += '</colgroup>'
 		tag2 += '<thead>'
 		tag2 += '<tr>'		
-		tag2 += '<th><input type="checkbox" ></th>'
+		tag2 += '<th><input type="checkbox" id="checkAll"></th>'
 		tag2 += '<th>회원 아이디</th>'
 		tag2 += '<th>회원 생일 </th>'
 		tag2 += '<th>등업 대기 등급</th>'
@@ -362,9 +385,10 @@
 		tag3 += '<input type="checkbox">'
 		tag3 += '<div class="form-group" style="float: right;">'
 		tag3 += '<select class="form-control col-lg-4" style="height: 30px;" id="changeLevel">'
-		tag3 += '<option value="beginner">Beginner</option>'
-		tag3 += '<option value="regular">Regular</option>'
-		tag3 += '<option value="manager">Manager</option>'
+		tag3 += '<option value="A">Beginner</option>'
+		tag3 += '<option value="B">Regular</option>'
+		tag3 += '<option value="C">Manager</option>'
+		tag3 += '<option value="Z">expulsion</option>'
 		tag3 += '</select>'
 		tag3 += '<a href="#" id="change">change</a>'
 		tag3 += '<a> | </a>'
@@ -374,8 +398,15 @@
 		$("#content_title").html(tag1);
 		$("#content_table").html(tag2);
 		$("#content_select").html(tag3);
+		$("#add").html("");
 		
 		$("#change").on("click",change);
+		//전체선택 동적(ajax)
+		$("#checkAll").click(function() {
+			$("input[id=memberIdBTN]:checkbox").each(function() {
+				$(this).attr("checked", true)
+			});
+		});
 	}
 		
 	function noticeList(noticeList){
@@ -391,7 +422,7 @@
 			tag2 += '</colgroup>'
 			tag2 += '<thead>'
 			tag2 += '<tr>'		
-			tag2 += '<th><input type="checkbox"></th>'
+			tag2 += '<th><input type="checkbox" id="checkAll"></th>'
 			tag2 += '<th>게시판</th>'
 			tag2 += '<th>제목</th>'
 			tag2 += '<th>공지</th>'
@@ -407,7 +438,7 @@
 			else{
 				$.each(noticeList,function(index,item){
 					tag2 += '<tr>'
-					tag2 += '<td ><input type="checkbox" id="memberIdBTN" value="'+item.memberId+'" name="noticeCheck"></td>'
+					tag2 += '<td ><input type="checkbox" id="memberIdBTN" value="'+item.postNo+'"></td>'
 					tag2 += '<td>'+item.postType+'</td>'		
 					tag2 += '<td>'+item.postTitle+'</td>'
 					tag2 += '<td>'+item.isAnnouncement+'</td>'
@@ -420,7 +451,7 @@
 			var tag3 = ''
 			tag3 += '<input type="checkbox">'
 			tag3 += '<div class="form-group" style="float: right;">'
-			tag3 += '<a href="#" onclick="registration">registration</a>'		
+			tag3 += '<a href="#" onclick="registration();">registration</a>'		
 			tag3 += '<a> | </a>'
 			tag3 += '<a href="#" onclick="cancel();">cancel</a>'
 			tag3 += '</div>'
@@ -434,28 +465,31 @@
 			$("#content_table").html(tag2);
 			$("#content_select").html(tag3);
 			
-		}*/
+			$("#checkAll").click(function() {
+				$("input[id=memberIdBTN]:checkbox").each(function() {
+					$(this).attr("checked", true)
+				});
+			});
+		}
 	function notice_write(){
 		location.href="notice_write";
 	}
 	// 등급변경
-	/* function change(){
+	function change(){
 		var list = [];
 		jQuery.ajaxSettings.traditional = true;
-	   $("input[name=gradeCheck]").each(function(index, item){
+	   $("input[id=memberIdBTN]").each(function(index, item){
 		   if($(item).is(':checked')){
 			   list.push($(item).val());
 	         } 
 	   });
-		
 	   var changeLevel =  $("#changeLevel").val();
-	   alert("들어왔엉"+changeLevel);
 	   $.ajax({
 		   method:"POST",
 		   url:"change",
 		   data:{
-			   "listchecked" : list,
-			   "memberLevel" : changeLevel
+			   "listchecked" : list.toString(),
+			   "memberLevel" : changeLevel,
 			   },
 			   success : function(mesa){
 				   if(mesa==0){
@@ -463,39 +497,110 @@
 					   }
 				   else{
 					   alert("등업 성공하였습니다.");
-					   for(var i=0; i<test.length; i++){
-							$('input[data-boardno |='+test[i]+']').parent().parent().remove();
-						}
+					   location.reload();
 					}
 			 	}	
 		})
-	} */
-	
+	}
+	// 활동중지
 	function stop_activity(){
-		// 활동중지 
-	}
-	function rep_delete(){
-		// 댓글삭제
-	}
-	function registration(){
-		// 공지 등록
-	}
-	
-	// 공지 등록 취소
-	/* function cancel(){
 		var list = [];
 		jQuery.ajaxSettings.traditional = true;
-		$("input[name=noticeCheck]").each(function(index, item){
+	   $("input[id=memberIdBTN]").each(function(index, item){
+		   if($(item).is(':checked')){
+			   list.push($(item).val());
+	         } 
+	   });
+	   var changeLevel =  $("#changeLevel").val();
+	   $.ajax({
+		   method:"POST",
+		   url:"change",
+		   data:{
+			   "listchecked" : list.toString(),
+			   "memberLevel" : changeLevel,
+			   },
+			   success : function(mesa){
+				   if(mesa==0){
+					   alert("실패");
+					   }
+				   else{
+					   alert("등업 성공하였습니다.");
+					   location.reload();
+					}
+			 	}	
+		})
+	}
+	//신고 글 삭제
+	function rep_delete(){
+		jQuery.ajaxSettings.traditional = true;
+		var list = [];
+		
+		$("input[id=memberIdBTN]").each(function(index, item){
 			if($(item).is(':checked')){
 				list.push($(item).val());
 			} 
 	   });
-		
+
+		$.ajax({
+			method:"POST",
+			url:"rep_delete",
+			data:{
+				"listchecked" : list.toString(),
+			},
+			success : function(mesa){
+				if(mesa == 0){
+					alert("실패");
+				}
+				else{
+					alert("신고 글 삭제 성공하였습니다.");
+					for(var i=0; i<list.length; i++){
+						$('input[data-boardno |='+list[i]+']').parent().parent().remove();
+					}
+				}
+			}
+		})
+	}
+	// 공지 등록
+	function registration(){
+		var list = [];
+		jQuery.ajaxSettings.traditional = true;
+		$("input[id=memberIdBTN]").each(function(index, item){
+			if($(item).is(':checked')){
+				list.push($(item).val());
+			} 
+	   });
+		$.ajax({
+			method:"POST",
+			url:"registration",
+			data:{
+				"listchecked" : list.toString(),
+			},
+			success : function(mesa){
+				if(mesa==0){
+					alert("실패");
+				}
+				else{
+					alert("공지 등록 성공하였습니다.");
+					location.reload();
+				}
+			}
+		})
+	}
+	
+	// 공지 등록 취소
+	function cancel(){
+		var list = [];
+		jQuery.ajaxSettings.traditional = true;
+		$("input[id=memberIdBTN]").each(function(index, item){
+			if($(item).is(':checked')){
+				list.push($(item).val());
+			} 
+	   });
 		$.ajax({
 			method:"POST",
 			url:"cancel",
 			data:{
-				"listchecked" : list,
+				"listchecked" : list.toString(),
 			},
 			success : function(mesa){
 				if(mesa==0){
@@ -503,11 +608,11 @@
 				}
 				else{
 					alert("공지 취소 성공하였습니다.");
-					writingList();
+					location.reload();
 				}
 			}
 		})
-	} */
+	}
 	</script>
     </head>
     <body>
