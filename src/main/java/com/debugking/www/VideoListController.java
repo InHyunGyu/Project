@@ -41,7 +41,7 @@ public class VideoListController {
 		
 		System.out.println(navi.getStartRecord());
 		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
-		System.out.println(list);
+		
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
@@ -53,12 +53,48 @@ public class VideoListController {
 	
 
 	@RequestMapping(value="/video_weekly", method=RequestMethod.GET)
-	public String video_weekly(){
+	public String video_weekly(@RequestParam(value="searchItem" , defaultValue="postTitle") String searchItem, 
+			@RequestParam(value="searchWord",  defaultValue="")      String searchWord, 
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
+			Model model){
+		
+		int totalRecordCount = repo.getVideoCount(searchItem, searchWord);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		
+		System.out.println(navi.getStartRecord());
+		List<Posts>list = repo.selectWeek(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		
+		model.addAttribute("searchItem", searchItem);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("navi", navi);
+		model.addAttribute("list", list);
+		System.out.println(list); 
+		
 		return "userBoard/video_weekly";
 	}
 
 	@RequestMapping(value="/video_monthly", method=RequestMethod.GET)
-	public String video_monthly(){
+	public String video_monthly(@RequestParam(value="searchItem" , defaultValue="postTitle") String searchItem, 
+			@RequestParam(value="searchWord",  defaultValue="")      String searchWord, 
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
+			Model model){
+			
+		
+		int totalRecordCount = repo.getVideoCount(searchItem, searchWord);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		
+		System.out.println(navi.getStartRecord());
+		List<Posts>list = repo.selectMonth(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		
+		model.addAttribute("searchItem", searchItem);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("navi", navi);
+		model.addAttribute("list", list);
+		System.out.println(list); 
+		
+		
+			
+			
 		return "userBoard/video_monthly";
 	}
 

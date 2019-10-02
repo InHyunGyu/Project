@@ -11,6 +11,28 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>UtaJJang</title>
+        
+              
+        
+<!-- musicom css -->
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="resources/images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="resources/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/icomoon.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/simple-line-icons.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.theme.default.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/style_frame.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/spinner.css">
+   
+ 
+   
+<!-- musicom css end -->
+        
+        
+        
         <!-- Favicons-->
         <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
@@ -24,7 +46,11 @@
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
         
-      
+
+        
+        
+         
+        
         
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
@@ -47,7 +73,6 @@
     border: 1px solid #ededed;
     border-radius: .1875rem;
     font-size:0.85em;
-    
 	 }
 	
 	</style>
@@ -169,35 +194,31 @@ $(function(){
 	</header>
 	<!-- Header end-->
         
-        <!-- Wrapper-->
+       <!-- Wrapper-->
         <div class="wrapper">
-            
-			
-			<section class="module-cover parallax text-center" data-background="resources/assets/images/back.png" data-overlay="0.3">
+            <section class="module-cover parallax text-center" data-background="resources/assets/images/back.png" data-overlay="0.3">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                      
+                           <h2>Video_New</h2>
                         </div>
                     </div>
                 </div>
             </section>
 			
             
-             <section class="module p-t-30 p-b-30">
+              <section class="module p-t-30 p-b-30">
               
                 <div class="container" >
                 
                     <div class="row">
                         <div class="col-md-12 m-auto">
-                        
-                            <h6 class="text-special text-center m-b-40"><a href="http://13.125.249.19">Recording</a></h6>
-                            
+                      
                           
                              <div class="row" style="float: right; margin-bottom: 10px;  ">
 						<form action="video_new" method="get">
 						<div class="form-group" style= "height: 36px;">
-							<select class="form-control col-md-2" name="searchItem" style="height: 100%;">
+							<select class="form-control col-md-3" name="searchItem" style="height: 100%;">
 								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
 								<option value="memberId"
 									${searchItem == 'memberId' ? 'selected' : ''}>글쓴이</option>
@@ -210,27 +231,86 @@ $(function(){
 						</form>
 					</div>
 				
-                             
-                            
-           
-                               <c:forEach var="board" items="${list}" varStatus="stat">
-                                <div class="movie" style="display:inline-flex;">
-                                    <div class="demo-item" ><a href="/uta"><video width="300" height="300"  controls="controls" preload="metadata">
-                             <source src="resources/savefile/${board.savedFile}" type="video/webm" >
-                                   </video></a>
-                                        <h6>${board.postTitle}</h6> 
-                                    </div> 
-                                </div>
-                              </c:forEach>
-                                
-                               </div> 
-                            </div>
-                            </div>
-                    </section>                           
-                         </div>
-                         
-                         
-                         <div>
+                           <h4 class="text-special text-center m-b-40"><a href="https:www.utarecording.shop">Go to the Recording</a></h4>
+
+ 
+
+
+						<div id="main_index_body">
+
+							<section id="fh5co-home" data-section="home">
+								<div class="container2">
+
+
+									<c:forEach var="board" items="${list}" varStatus="stat">
+										<div id="music_video_list_wrap" style="display: block;">
+											<div
+												class="music_video_list_item to-animate-2 fadeInUp animated"
+												video="3GLrB9GvBq8" style="width: 33%">
+												<div class="music_video_list_item_wrap">
+													<div style="position: relative;">
+														<div class="music_video_list_item_thumbnail_cover"
+															onmouseenter="fnMouseEnterOnMusic(this);"
+															onmouseleave="fnMouseLeaveOnMusic(this);"
+															onmousemove="fnMouseEnterOnMusic(this);"
+															onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+
+															<img class="music_video_list_item_thumbnail_cover_img"
+																src="resources/images/icon_play_round.png"
+																onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+														</div>
+
+
+														<video width="300" height="300" controls="controls"
+															preload="metadata">
+															<source src="resources/savefile/${board.savedFile}"
+																type="video/webm">
+														</video>
+
+														<div class="music_video_list_item_title_div">
+															<div class="music_video_list_item_music_name_div">
+																<a class="music_video_list_item_music_name"
+																	href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
+															</div>
+															<a class="music_video_list_item_artist"
+																href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+															<span class="music_video_list_item_release_date">${board.postDate}</span>
+														</div>
+														<div class="music_video_list_item_fav_div"
+															style="line-height: 4;">
+															<img class="music_video_list_item_fav_img"
+																src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소"
+																onclick="favoriteMusic(this, &quot;3GLrB9GvBq8&quot;);">
+														</div>
+													</div>
+												</div>
+
+												<div class="music_video_list_item_wrap">
+													<div style="position: relative;"></div>
+												</div>
+											</div>
+										</div>
+
+									</c:forEach>
+								</div>
+							</section>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+                           
+                        </div>
+                       
 							<div class="row">
                                 <div class="col-md-12">
                                     <nav>
@@ -246,7 +326,14 @@ $(function(){
                                 </div>
                            		
                             </div>
-							</div>	
+                            
+							
+							
+                       </div>
+                      
+                 </section>
+          
+           
 							
                       
             

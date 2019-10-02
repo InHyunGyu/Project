@@ -39,12 +39,17 @@ public class HomeController {
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
 		System.out.println(navi.getStartRecord());
-		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
-		System.out.println(list);
+		List<Posts> newList = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
-		model.addAttribute("list", list);
+		model.addAttribute("newList", newList);
+		
+		List<Posts> weekList = repo.selectWeek(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		model.addAttribute("weekList", weekList);
+		
+		List<Posts> monthList = repo.selectMonth(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		model.addAttribute("monthList", monthList);
 		
 		
 		return "main";
@@ -63,13 +68,17 @@ public class HomeController {
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
 		System.out.println(navi.getStartRecord());
-		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
-		System.out.println(list);
+		List<Posts> newList = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
-		model.addAttribute("list", list);
+		model.addAttribute("newList", newList);
 		
+		List<Posts> weekList = repo.selectWeek(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		model.addAttribute("weekList", weekList);
+		
+		List<Posts> monthList = repo.selectMonth(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		model.addAttribute("monthList", monthList);
 		
 		return "main";
 	}

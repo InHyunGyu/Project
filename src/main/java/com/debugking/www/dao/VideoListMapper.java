@@ -18,7 +18,9 @@ public interface VideoListMapper {
 	public List<Posts> selectAll(Map<String, String> map, RowBounds rb); // 전체 선택하기 
 
 	
-	
+	public List<Posts> selectWeek(Map<String, String> map, RowBounds rb); //주별
+
+	public List<Posts> selectMonth(Map<String, String> map, RowBounds rb);
 	
 	
 }

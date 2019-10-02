@@ -49,6 +49,36 @@ public class VideoListRepository {
 			
 			return list;
 		}
+
+		public List<Posts> selectWeek(String searchItem, String searchWord, int startRecord, int countPerPage) {
+			
+			List<Posts> list;
+            RowBounds rb = new RowBounds(startRecord, countPerPage);
+			
+            VideoListMapper mapper = session.getMapper(VideoListMapper.class);
+            Map<String, String> map = new HashMap<>();
+			map.put("searchItem", searchItem);
+			map.put("searchWord", searchWord);
+			list = mapper.selectWeek(map, rb);
+			
+			return list;
+		}
+
+		public List<Posts> selectMonth(String searchItem, String searchWord, int startRecord, int countPerPage) {
+
+
+			List<Posts> list;
+            RowBounds rb = new RowBounds(startRecord, countPerPage);
+			
+            VideoListMapper mapper = session.getMapper(VideoListMapper.class);
+            Map<String, String> map = new HashMap<>();
+			map.put("searchItem", searchItem);
+			map.put("searchWord", searchWord);
+			list = mapper.selectMonth(map, rb);
+			
+			return list;
+			
+		}
 		
 	
 	

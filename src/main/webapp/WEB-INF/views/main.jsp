@@ -29,12 +29,35 @@
 <!-- Template core CSS-->
 <link href="resources/assets/css/template.css" rel="stylesheet">
 <!-- JavaScripts -->
+	
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+
+
+<!-- musicom css -->
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="resources/images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="resources/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/icomoon.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/simple-line-icons.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.theme.default.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/style_frame.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/spinner.css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet"> 
+ 
+   
+<!-- musicom css end -->
+
 
 
 
 <script>
 	$(function() {
+		
+		
 		$("#loginBTN").on('click', function() {
 			var memberId = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
@@ -177,7 +200,7 @@
 					<div class="col-md-12">
 						<h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
 						<p class="m-b-40">
-							Hi <br> Hi
+							
 						</p>
 					</div>
 				</div>
@@ -185,66 +208,13 @@
 		</section>
 		<!-- Hero end-->
 		
-  <!-- Sliders-->
-		<div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="space m-b-50"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="review-slides owl-carousel">
-                                <div class="review">
-                                    <div class="review-icons"><img src="resources/assets/images/avatar/1.jpg" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <blockquote>
-                                            <p>I don't work from drawings. I don't make sketches and drawings <br/> and color sketches into a final painting.</p>
-                                            <footer class="blockquote-footer">Albert Einstein</footer>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="review">
-                                    <div class="review-icons"><img src="resources/assets/images/avatar/1.jpg" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <blockquote>
-                                            <p>To be yourself in a world that is constantly trying to make you <br/> something else is the greatest accomplishment.</p>
-                                            <footer class="blockquote-footer">Ralph Waldo Emerson</footer>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="review">
-                                    <div class="review-icons"><img src="resources/assets/images/avatar/1.jpg" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <blockquote>
-                                            <p>Imperfection is beauty, madness is genius and it's better to be <br/> absolutely ridiculous than absolutely boring.</p>
-                                            <footer class="blockquote-footer">Marilyn Monroe</footer>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="space m-b-50"></div>
-                        </div>
-                    </div>
-                </div>
-  <!-- Sliders end-->
-         
-		           
-
-		<!-- Portfolio-->
-		<section class="module p-b-0">
-			<div class="container">
+  <!-- musicom-->
+	<section class="module p-b-0">
+			<div class="container" >
 				<div class="row">
 					<div class="col-md-6 m-auto text-center">
-						<h1>Video Best</h1>
-						<p class="lead">Highly recommended video by bulletin board</p>
+						<h1 style="font-family: 'Love Ya Like A Sister', cursive;">Video Best</h1>
+						<p class="lead" style="font-family: 'Love Ya Like A Sister', cursive;">Highly recommended video by bulletin board</p>
 					</div>
 				</div>
 				<div class="row">
@@ -254,77 +224,240 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<ul class="filters serif">
-							<li><a href="#" data-filter=".packaging">New</a></li>
-							<li><a class="current" href="#" data-filter=".digital">Weekly</a></li>
-							<li><a href="#" data-filter=".branding">Monthly</a></li>
-							<li><a href="#" data-filter="*">ALL</a></li>
+						<ul class="filters serif" style="font-family: 'Love Ya Like A Sister', cursive;">
+						
+							<li><a class="current" href="#" data-filter=".weekly">Weekly</a></li>
+							<li><a href="#" data-filter=".monthly">Monthly</a></li>
+							<li><a href="#" data-filter=".new">New</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<div class="container-fluid">
-				<div class="row row-portfolio" data-columns="3">
-					<div class="grid-sizer"></div>
+	
 					
-					
-						
-								
+                
+                
+                
+                
+                	<div id="main_index_body">
+
+				<section id="fh5co-home" data-section="home">
+                
+                
+                <div class="container-fluid">
+                    <div class="row row-portfolio" data-columns="3" style="position: relative; height: 1399.2px;">
+                        <div class="grid-sizer"></div>
+                        
+                        
+                        
+                                <c:forEach var="board" items="${weekList}" varStatus="stat">
+                                 <div class="portfolio-item weekly" style="position: absolute; left: 0px; top: 0px;">
+                            <div class="portfolio-item-wrapper">
+							<div id="music_video_list_wrap" style="display: block;">
+								<div
+									class="music_video_list_item to-animate-2 fadeInUp animated"
+									video="3GLrB9GvBq8" style="width: 100%">
+									<div class="music_video_list_item_wrap"> 
+										<div style="position: relative;">
+											<div class="music_video_list_item_thumbnail_cover"
+												onmouseenter="fnMouseEnterOnMusic(this);"
+												onmouseleave="fnMouseLeaveOnMusic(this);"
+												onmousemove="fnMouseEnterOnMusic(this);"
+												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+
+												<img class="music_video_list_item_thumbnail_cover_img"
+													src="resources/images/icon_play_round.png"
+													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+											</div>
+
+
+											<video width="300" height="300" controls="controls"
+												preload="metadata">
+												<source src="resources/savefile/${board.savedFile}"
+													type="video/webm">
+											</video>
+
+											<div class="music_video_list_item_title_div">
+												<div class="music_video_list_item_music_name_div">
+													<a class="music_video_list_item_music_name"
+														href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
+												</div>
+												<a class="music_video_list_item_artist"
+													href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+												<span class="music_video_list_item_release_date">${board.postDate}</span>
+											</div>
+											<div class="music_video_list_item_fav_div"
+												style="line-height: 4;">
+												<img class="music_video_list_item_fav_img"
+													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+											</div>
+										</div>
+									</div>
+									<div
+										class="music_video_list_item to-animate-2 fadeInUp animated"
+										video="3ymwOvzhwHs" style="width: 25%">
+										<div class="music_video_list_item_wrap">
+											<div style="position: relative;"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							 </div>
+                        </div>
+						</c:forEach>
                                 
-                          
-                            
-					
-					
-					<c:forEach var="board" items="${list}" varStatus="stat">
-					<div class="portfolio-item branding">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								
-								<video width="300" height="300"  controls="controls" preload="metadata">
-                             <source src="resources/savefile/${board.savedFile}" type="video/webm" >
-                                   </video>
-								
-								
+                           
+                        
+                         <c:forEach var="board" items="${monthList}" varStatus="stat">
+                        <div class="portfolio-item monthly" style="position: absolute; left: 466.4px; top: 0px;">
+                            <div class="portfolio-item-wrapper">
+                                <div id="music_video_list_wrap" style="display: block;">
+								<div
+									class="music_video_list_item to-animate-2 fadeInUp animated"
+									video="3GLrB9GvBq8" style="width: 100%">
+									<div class="music_video_list_item_wrap">
+										<div style="position: relative;">
+											<div class="music_video_list_item_thumbnail_cover"
+												onmouseenter="fnMouseEnterOnMusic(this);"
+												onmouseleave="fnMouseLeaveOnMusic(this);"
+												onmousemove="fnMouseEnterOnMusic(this);"
+												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+
+												<img class="music_video_list_item_thumbnail_cover_img"
+													src="resources/images/icon_play_round.png"
+													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+											</div>
+
+
+											<video width="300" height="300" controls="controls"
+												preload="metadata">
+												<source src="resources/savefile/${board.savedFile}"
+													type="video/webm">
+											</video>
+
+											<div class="music_video_list_item_title_div">
+												<div class="music_video_list_item_music_name_div">
+													<a class="music_video_list_item_music_name"
+														href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
+												</div>
+												<a class="music_video_list_item_artist"
+													href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+												<span class="music_video_list_item_release_date">${board.postDate}</span>
+											</div>
+											<div class="music_video_list_item_fav_div"
+												style="line-height: 4;">
+												<img class="music_video_list_item_fav_img"
+													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+											</div>
+										</div>
+									</div>
+									<div
+										class="music_video_list_item to-animate-2 fadeInUp animated"
+										video="3ymwOvzhwHs" style="width: 25%">
+										<div class="music_video_list_item_wrap">
+											<div style="position: relative;"></div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">${board.postTitle}</h6>
-								<span class="portfolio-item-subtitle serif">Digital</span>
+	
+                            </div>
+                        </div>
+                        </c:forEach>
+                        
+                        
+                        
+                        
+                        
+                         <c:forEach var="board" items="${newList}" varStatus="stat">
+                        <div class="portfolio-item new" style="position: absolute; left: 0px; top: 466.4px;">
+                            <div class="portfolio-item-wrapper">
+                              
+                              
+                                <div id="music_video_list_wrap" style="display: block;">
+								<div
+									class="music_video_list_item to-animate-2 fadeInUp animated"
+									video="3GLrB9GvBq8" style="width: 100%">
+									<div class="music_video_list_item_wrap">
+										<div style="position: relative;">
+											<div class="music_video_list_item_thumbnail_cover"
+												onmouseenter="fnMouseEnterOnMusic(this);"
+												onmouseleave="fnMouseLeaveOnMusic(this);"
+												onmousemove="fnMouseEnterOnMusic(this);"
+												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+
+												<img class="music_video_list_item_thumbnail_cover_img"
+													src="resources/images/icon_play_round.png"
+													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+											</div>
+
+
+											<video width="300" height="300" controls="controls"
+												preload="metadata">
+												<source src="resources/savefile/${board.savedFile}"
+													type="video/webm">
+											</video>
+
+											<div class="music_video_list_item_title_div">
+												<div class="music_video_list_item_music_name_div">
+													<a class="music_video_list_item_music_name"
+														href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
+												</div>
+												<a class="music_video_list_item_artist"
+													href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+												<span class="music_video_list_item_release_date">${board.postDate}</span>
+											</div>
+											<div class="music_video_list_item_fav_div"
+												style="line-height: 4;">
+												<img class="music_video_list_item_fav_img"
+													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+											</div>
+										</div>
+									</div>
+									<div
+										class="music_video_list_item to-animate-2 fadeInUp animated"
+										video="3ymwOvzhwHs" style="width: 25%">
+										<div class="music_video_list_item_wrap">
+											<div style="position: relative;"></div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					  </c:forEach>
-					
-					
+	
+                              
+                              
+                              
+                            </div>
+                        </div>
+                        </c:forEach>
+               
+                       
+                    </div>
+                </div>
+                
+            </section>
+            </div>
+             </section>
+  <!-- musicom end-->
+        
+         
+		           
+
+
+		
+		
+		           
+
+		
 					
 				
 				
-				</div>
-			</div>
-		</section>
+				
+				
+					
+			
 		<!-- Portfolio end-->
-
-
-
-
-
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="space m-b-50"></div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<div class="space m-b-50"></div>
-				</div>
-			</div>
-		</div>
-
-
-
 
 
 		<!-- Footer-->
@@ -414,8 +547,8 @@
 						<div class="col-md-12">
 							<div class="copyright">
 								<p>
-									© 2018 Boomerang, All Rights Reserved. Design with love by <a
-										href="#">2theme</a>
+									© 2019 Utajjang, All Rights Reserved. Design with love by <a
+										href="#">Debugking</a>
 								</p>
 							</div>
 						</div>
@@ -508,3 +641,11 @@
 	<script src="resources/assets/js/custom/custom.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
