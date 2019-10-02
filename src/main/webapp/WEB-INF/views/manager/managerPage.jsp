@@ -319,25 +319,15 @@
 		tag2 += '</tbody>'
 		
 		var tag3 = ''
-		tag3 += '<input type="checkbox">'
 		tag3 += '<div class="form-group" style="float: right;">'
 		tag3 += '<a href="#" onclick="rep_delete()">delete</a>'
 		tag3 += '</div>'
 		
-		var tag4 = '';
-		tag4 += '<select class="form-control col-lg-3" >'
-		tag4 += '<option value="voice">voice</option>'
-		tag4 += '<option value="video">video</option>'
-		tag4 += '<option value="streaming">streaming</option>'
-		tag4 += '<option value="community">community</option>'
-		tag4 += '</select>'
-		tag4 += '<input class="form-control col-lg-8" type="search" placeholder="Search" >'
-		tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
-		
 		$("#content_title").html(tag1);
-		$("#add").html(tag4);
+		$("#add").html("");
 		$("#content_table").html(tag2);
 		$("#content_select").html(tag3);
+		$(".paging").html("");
 		
 	} 
 	
@@ -382,13 +372,12 @@
 		tag2 += '</tbody>'
 		
 		var tag3 = ''
-		tag3 += '<input type="checkbox">'
 		tag3 += '<div class="form-group" style="float: right;">'
 		tag3 += '<select class="form-control col-lg-4" style="height: 30px;" id="changeLevel">'
-		tag3 += '<option value="A">Beginner</option>'
-		tag3 += '<option value="B">Regular</option>'
-		tag3 += '<option value="C">Manager</option>'
-		tag3 += '<option value="Z">expulsion</option>'
+		tag3 += '<option value="A">A</option>'
+		tag3 += '<option value="B">B</option>'
+		tag3 += '<option value="C">C</option>'
+		tag3 += '<option value="Z">Z</option>'
 		tag3 += '</select>'
 		tag3 += '<a href="#" id="change">change</a>'
 		tag3 += '<a> | </a>'
@@ -449,7 +438,6 @@
 			tag2 += '</tbody>'
 			
 			var tag3 = ''
-			tag3 += '<input type="checkbox">'
 			tag3 += '<div class="form-group" style="float: right;">'
 			tag3 += '<a href="#" onclick="registration();">registration</a>'		
 			tag3 += '<a> | </a>'
@@ -464,7 +452,7 @@
 			$("#add").html(tag4);
 			$("#content_table").html(tag2);
 			$("#content_select").html(tag3);
-			
+			$(".paging").html("");
 			$("#checkAll").click(function() {
 				$("input[id=memberIdBTN]:checkbox").each(function() {
 					$(this).attr("checked", true)
