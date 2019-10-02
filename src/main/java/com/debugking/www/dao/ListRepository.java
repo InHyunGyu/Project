@@ -2,13 +2,11 @@ package com.debugking.www.dao;
 
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import com.debugking.www.dto.Posts;
 import com.debugking.www.dto.Replies;
@@ -78,6 +76,7 @@ public class ListRepository {
 
 		public int postLike(int postNo) {
 			ListMapper mapper = session.getMapper(ListMapper.class);
+			
 			int result = mapper.postLike(postNo);
 			return result;
 		}
@@ -117,6 +116,14 @@ public class ListRepository {
 			RowBounds rb = new RowBounds(startRecord, countPerPage);
 			
 			ArrayList<Posts> list = mapper.memberPost(memberId, rb);
+			
+			return list;
+		}
+
+		public ArrayList<String> postLikeList(int postNo) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			
+			ArrayList<String> list = mapper.postLikeList(postNo);
 			
 			return list;
 		}

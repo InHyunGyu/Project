@@ -44,4 +44,29 @@ public class FollowRepository {
 		mapper.insert(follow);
 		
 	}
+
+	public Follower selectOne(Follower follow) {
+		FollowMapper mapper = session.getMapper(FollowMapper.class);
+		
+		Follower result = mapper.selectOne(follow);
+		
+		return result;
+	}
+
+	public void delete(Follower follow) {
+		FollowMapper mapper = session.getMapper(FollowMapper.class);
+		
+		mapper.delete(follow);
+		
+	}
+
+	public ArrayList<Follower> followlist(String memberId) {
+		FollowMapper mapper = session.getMapper(FollowMapper.class);
+		
+		ArrayList<Follower> list = new ArrayList<>();
+		
+		list = mapper.followList(memberId);
+		
+		return list;
+	}
 }

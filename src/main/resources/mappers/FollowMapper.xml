@@ -17,7 +17,7 @@
 			m.memberLevel
 		from 
 			memberInfo m, follower f
-		where m.memberId = f.followName and f.followName = #{memberId}	
+		where m.memberId = f.memberId  and f.followName = #{memberId}	
 	</select>
 	
 	<select id="following" parameterType="string" resultType="Member">
@@ -26,7 +26,7 @@
 			m.memberLevel
 		from 
 			memberInfo m, follower f
-		where m.memberId = f.memberId  and m.memberId = #{memberId}	
+		where m.memberId = f.memberId and f.memberId = #{memberId}	
 	</select>
 	
 	<insert id="insert" parameterType="Follower">
@@ -40,4 +40,22 @@
 			#{followName}
 		)
 	</insert>
+	
+	<select id="selectOne" parameterType="Follower" resultType="Follower">
+		select * from follower
+		where followName = #{followName} and memberId = #{memberId}
+	</select>
+	
+	<delete id="delete" parameterType="Follower">
+		delete from follower 
+		where followName = #{followName} and memberId = #{memberId}
+	</delete>
+	
+	<select id="followList" parameterType="string" resultType="Follower">
+		select 
+			followName
+		from 
+			follower
+		where memberId = #{memberId}
+	</select>
 </mapper>

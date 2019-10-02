@@ -1,5 +1,7 @@
 package com.debugking.www.dto;
 
+import java.util.ArrayList;
+
 import lombok.Data;
 
 @Data
@@ -16,4 +18,6 @@ public class Posts {
 	private String originalFile;//
 	private String savedFile;//
 	private int reported;//
+	private ArrayList<String> like_array;
+	private ArrayList<String> reported_array;
 }
