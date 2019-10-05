@@ -98,9 +98,11 @@
 			memberEmail = #{memberEmail},
 			myintro     = #{myintro},
 			photoname   = #{photoname},
-			savefile    = #{savefile}
-		WHERE
-			memberId = #{memberId}
+			savefile    = #{savefile},
+		  
+		    WHERE
+			memberId = #{memberId}    
+			
 	</update>
 	
 	<!-- 회원탈퇴 -->

@@ -201,7 +201,7 @@
                                  <div class="portfolio-item weekly" style="position: absolute; left: 0px; top: 0px;display:none;">
                             <div class="portfolio-item-wrapper">
 							<div id="music_video_list_wrap" style="display: block;">
-								<div
+								<div   
 									class="music_video_list_item to-animate-2 fadeInUp animated" 
 									 style="width: 100%">
 									<div class="music_video_list_item_wrap"> 
