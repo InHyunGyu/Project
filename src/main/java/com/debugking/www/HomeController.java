@@ -44,7 +44,7 @@ public class HomeController {
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
 		model.addAttribute("newList", newList);
-		
+		 
 		List<Posts> weekList = repo.selectWeek(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("weekList", weekList);
 		
