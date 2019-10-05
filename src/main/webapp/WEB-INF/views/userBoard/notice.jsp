@@ -58,6 +58,9 @@
 		})
 	})
 	
+	function notice_write() {
+		location.href = "notice_write";
+	}
 		
 	</script>
     </head>
@@ -234,6 +237,9 @@
                                             <li class="page-item"><a class="page-link" href="notice?&currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-right"></span></a></li>
                                         </ul>
                                     </nav>
+                                    <c:if test="${sessionScope.memberId == 'admin'}">
+                                    	<a class="btn btn-outline-secondary"  onclick="notice_write();" style="float: right; display: inline-block;">Write</a>
+                                    </c:if>
                                 </div>
                             </div>
 					</div>

@@ -155,9 +155,59 @@
 		</section>
 		<!-- Hero end-->
 		
+
   <!-- musicom-->
 	<section class="module p-b-0">
 			<div class="container" >
+
+  <!-- Sliders-->
+		<section class="module-cover-slides" data-module-cover-slides-options="{&quot;animation&quot;: &quot;fade&quot;}" style="margin-top: 100px;">
+  
+   <ul class="slides-container">
+       <li class="parallax" data-overlay="0.5">
+           <img src="assets/images/module-1.jpg" alt="">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h1>Slide 1</h1>
+                   </div>
+               </div>
+           </div>
+       </li>
+       <li class="parallax text-center" data-overlay="0.5">
+           <img src="assets/images/module-21.jpg" alt="">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h1>Slide 2</h1>
+                   </div>
+               </div>
+           </div>
+       </li>
+       <li class="parallax text-right" data-overlay="0.7" data-gradient="1">
+           <img src="assets/images/module-25.jpg" alt="">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h1>Slide 3</h1>
+                   </div>
+               </div>
+           </div>
+       </li>
+   </ul>
+   <div class="slides-navigation">
+       <a class="prev" href="#"><span class="ti-angle-left"></span></a>
+       <a class="next" href="#"><span class="ti-angle-right"></span></a>
+   </div>
+</section>
+  <!-- Sliders end-->
+         
+		           
+
+		<!-- Portfolio-->
+		<section class="module p-b-0">
+			<div class="container">
+
 				<div class="row">
 					<div class="col-md-6 m-auto text-center">
 						<h1 style="font-family: 'Love Ya Like A Sister', cursive;">Video Best</h1>
@@ -338,6 +388,7 @@
 													src="resources/images/icon_play_round.png"
 													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
 											</div>
+
 
 
 											<video width="550" height="300" controls="controls"

@@ -394,13 +394,6 @@
                         <div class="col-lg-4">
                             <div class="sidebar">
 
-                                <!-- Search widget-->
-                                <aside class="widget widget-search">
-                                    <form>
-                                        <input class="form-control" type="search" placeholder="Type Search Words">
-                                        <button class="search-button" type="submit"><span class="fas fa-search"></span></button>
-                                    </form>
-                                </aside>
 
                                 <!-- Categories widget-->
                                 <aside class="widget widget-categories">
@@ -408,30 +401,45 @@
                                         <h6>Categories</h6>
                                     </div>
                                     <ul>
-                                        <li><a href="#">Journey <span class="float-right">112</span></a></li>
+                                        <li><a href="javascript:history.back()">목록으로 </a></li>
                                     </ul>
                                 </aside>
 
                                 <!-- Recent entries widget-->
                                 <aside class="widget widget-recent-entries-custom">
                                     <div class="widget-title">
-                                        <h6>Recent Posts</h6>
+                                        <h6>After Posts</h6>
                                     </div>
                                     <ul>
                                         <li class="clearfix">
-                                            <div class="wi"><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
-                                            <div class="wb"><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2016</span></div>
+                                        	<c:if test="${after != null}">
+                                            	<div class="wi"><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
+                                            	<div class="wb"><a href="file_detail?postNo=${after.postNo}"><span style="font-weight: bold; color: black;">${after.postTitle}</span><br>${after.memberId}<br>${after.postType}</a><span class="post-date">${after.postDate}</span></div>
+											</c:if>        
+											<c:if test="${after == null}">
+												<a>이후 게시글이 없습니다.</a>
+											</c:if>                                
                                         </li>
                                     </ul>
                                 </aside>
 
 
                                 <!-- Tags widget-->
-                                <aside class="widget widget-tag-cloud">
+                                <aside class="widget widget-recent-entries-custom">
                                     <div class="widget-title">
-                                        <h6>Tags</h6>
+                                        <h6>Before Posts</h6>
                                     </div>
-                                    <div class="tag-cloud"><a href="#">e-commerce</a><a href="#">portfolio</a><a href="#">responsive</a><a href="#">bootstrap</a><a href="#">business</a><a href="#">corporate</a></div>
+                                    <ul>
+                                        <li class="clearfix">
+                                        	<c:if test="${before != null}">
+                                            	<div class="wi"><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
+                                            	<div class="wb"><a href="file_detail?postNo=${before.postNo}"><span style="font-weight: bold; color: black;">${before.postTitle}</span><br>${before.memberId}<br>${before.postType}</a><span class="post-date">${before.postDate}</span></div>
+											</c:if>        
+											<c:if test="${before == null}">
+												<a>이전 게시글이 없습니다.</a>
+											</c:if>                                
+                                        </li>
+                                    </ul>
                                 </aside>
                             </div>
                         </div>

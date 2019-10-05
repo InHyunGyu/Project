@@ -65,6 +65,8 @@ public class ListController {
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String write(String postType, Model model){
 
+		System.out.println(postType);
+		
 		model.addAttribute("postType", postType);
 
 		return "userBoard/write";
@@ -104,13 +106,7 @@ public class ListController {
 		//댓글 받아와 모델에 입력하기
 		ArrayList<Replies> replyList = new ArrayList<>();
 		int replyCount = repo.replyCount(postNo);
-	    replyList = repo.replyList(postNo);
-	    model.addAttribute("replyCount", replyCount);
-	    model.addAttribute("replyList", replyList);
 
-	    //확인하고 조회수 증가 후 페이지 이동
-	    Posts post = repo.selectOne(postNo);
-	    model.addAttribute("post", post);
 	   
 		List<likereport> result = lrrepo.selectList(postNo,view); 
 		String memberId = (String)session.getAttribute("memberId");
@@ -124,6 +120,24 @@ public class ListController {
 			System.out.println("로그인 하지 않습니다.");
 			return "userBoard/file_detail";
 		}
+
+		replyList = repo.replyList(postNo);
+		
+		repo.postView(postNo);
+		
+		Posts post = repo.selectOne(postNo);
+		
+		String postType = post.getPostType();
+		
+		Posts after = repo.after(postNo, postType);
+		Posts before = repo.before(postNo, postType);
+		
+		model.addAttribute("before", before);
+		model.addAttribute("after", after);
+		model.addAttribute("post", post);
+		model.addAttribute("replyCount", replyCount);
+		model.addAttribute("replyList", replyList);
+
 		
 		post.setMemberId(memberId);
 		post.setPostNo(postNo);
