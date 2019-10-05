@@ -98,10 +98,10 @@
 			memberEmail = #{memberEmail},
 			myintro     = #{myintro},
 			photoname   = #{photoname},
-			savefile    = #{savefile},
+			savefile    = #{savefile}
 		  
 		    WHERE
-			memberId = #{memberId}    
+			memberId = #{memberId}     
 			
 	</update>
 	
@@ -122,6 +122,15 @@
 		set emailchecked = 'y'
 		where memberId = #{memberId}
 	</update>
+	
+	<select id="checkEmail" parameterType="String" resultType="String">
+		select 
+			memberEmail  
+		from 
+			memberinfo
+		where 
+			memberEmail = #{memberEmail}
+	</select>
 	
 	<update id="setPhotoname" parameterType="Member">
 		update MemberInfo

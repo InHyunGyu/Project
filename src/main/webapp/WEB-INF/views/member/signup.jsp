@@ -45,6 +45,24 @@
 		/* var userBirth= $("#userBirth").val();
 		var userAddress = 	$("#userAddress").val(); */
 		
+		//이메일 중복 검사
+		
+		$("#checkEmail").on("click",function(){
+			var memberEmail = $("#memberEmail").val(); 
+			$.ajax({
+				url: 'checkEmail',
+				method: 'get',
+				data: {"memberEmail" : memberEmail},
+				success: function(resp){
+					if(resp == memberEmail){
+						alert("이미 이메일이 존재합니다.");
+					}else{
+						alert("사용 가능한 이메일입니다.");
+					}
+				}
+			})
+		})
+		
 		//아이디 유효성 검사 + 중복검사
 		$("#memberId").on("keyup",function(){
 			memberId = $("#memberId").val();
@@ -110,10 +128,7 @@
 			});
 		});
 		
-		//이메일 유효성 검사 아오 눈아퍼
-		$("#memberEmail").on("click",function(){
-			return true; //일단 패스합니다.
-		});
+		
 		$("#recommender").on("keyup",function(){
 			flagreco=false;
 		})
@@ -173,11 +188,11 @@
 					memberbirth.select();
 					return false;
 				}
-				if(flagreco==false){
+				/* if(flagreco==false){
 					alert("추천인 확인버튼을 누르세요");
 					return false;
-				}else{
-					alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
+				} */else{
+					//alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
 		 			
 					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
 						$.ajax({
@@ -193,7 +208,6 @@
 								"recommender" : recommender
 							},
 							success : function(mesa){
-								alert("");
 								if(mesa == "ok"){
 									location.href="emailSendAction";
 								}
