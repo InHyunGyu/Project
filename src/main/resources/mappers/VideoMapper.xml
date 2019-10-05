@@ -16,11 +16,48 @@
 	</select>
 	
 	
+	
+<select id="getVideoWeekCount" parameterType="map" resultType="int">
+		select count(*)
+		From Posts
+		where postType = 'video'
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord} || '%'
+		</if>
+		<![CDATA[
+        and postDate >=(select TRUNC(sysdate,'IW') from dual) AND postDate < (select TRUNC(sysdate,'IW')+6 from dual)
+    ]]>
+		
+	</select>
+	
+	
+	
+<select id="getVideoMonthCount" parameterType="map" resultType="int">
+		select count(*)
+		From Posts
+		where postType = 'video'
+		<if test="searchItem != null">
+			and ${searchItem} LIKE '%'||#{searchWord} || '%'
+		</if>
+		
+		<![CDATA[
+        and postDate >=(select TRUNC(sysdate,'MM') from dual) AND postDate < (SELECT LAST_DAY(SYSDATE) FROM DUAL)
+    ]]> 
+	</select>		
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<select id="selectAll" resultType="Post" parameterType="map">
 		SELECT
 			postNo
 			,memberId
-			,postTitle
+			,postTitle 
 			,postContent
 			,to_char(postDate, 'YYYY-MM-DD') as postDate
 			,postView

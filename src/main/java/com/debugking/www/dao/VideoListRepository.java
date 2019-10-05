@@ -35,6 +35,28 @@ public class VideoListRepository {
 			int total = mapper.getVideoCount(map);
 			return total;
 		}
+		
+		public int getVideoWeekCount(String searchItem, String searchWord) {
+			VideoListMapper mapper = session.getMapper(VideoListMapper.class);
+			Map<String, Object> map = new HashMap<>();
+			map.put("searchItem", searchItem);
+			map.put("searchWord", searchWord);
+			
+			int total = mapper.getVideoWeekCount(map);
+			return total;
+		}
+		
+		
+		public int getVideoMonthCount(String searchItem, String searchWord) {
+			VideoListMapper mapper = session.getMapper(VideoListMapper.class);
+			Map<String, Object> map = new HashMap<>();
+			map.put("searchItem", searchItem);
+			map.put("searchWord", searchWord);
+			
+			int total = mapper.getVideoMonthCount(map);
+			return total;
+		}
+		
 
 		public List<Posts> selectAll(String searchItem, String searchWord, int startRecord, int countPerPage) {
 			List<Posts> list;

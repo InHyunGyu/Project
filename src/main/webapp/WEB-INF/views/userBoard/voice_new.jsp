@@ -94,6 +94,9 @@
         <!-- Preloader end-->
 
 
+
+
+
        <!-- Header-->
 	<header class="header header-transparent">
 		<div class="container-fluid">
@@ -290,25 +293,23 @@
 
 			<!-- 페이징 하기 -->
 
-			<div class="row">
-				<div class="col-md-12">
+			
 					<nav>
 						<ul class="pagination justify-content-center">
 							<li class="page-item"><a class="page-link"
-								href="voice_new?&currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}"><span
+								href="voice_new?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}"><span
 									class="fas fa-angle-left"></span></a></li>
 							<c:forEach var="page" begin="${navi.startPageGroup}"
 								end="${navi.endPageGroup}">
 								<li class="page-item"><a class="page-link"
-									href="voice_new?&currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">${page}</a></li>
+									href="voice_new?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">${page}</a></li>
 							</c:forEach>
 							<li class="page-item"><a class="page-link"
-								href="voice_new?&currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span
+								href="voice_new?currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span
 									class="fas fa-angle-right"></span></a></li>
 						</ul>
 					</nav>
-				</div>
-			</div>
+			
 
 			<button type="button" class="btn btn-outline-secondary"
 				id="btnWriteForm" style="float: right;">WRITE</button>

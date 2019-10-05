@@ -64,7 +64,7 @@ public class VideoListController {
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
 			Model model){
 		int countPerPage=3;
-		int totalRecordCount = repo.getVideoCount(searchItem, searchWord);
+		int totalRecordCount = repo.getVideoWeekCount(searchItem, searchWord);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
 		System.out.println(navi.getStartRecord());
@@ -86,7 +86,7 @@ public class VideoListController {
 			Model model){
 			
 		int countPerPage=3;
-		int totalRecordCount = repo.getVideoCount(searchItem, searchWord);
+		int totalRecordCount = repo.getVideoMonthCount(searchItem, searchWord);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
 		System.out.println(navi.getStartRecord());
