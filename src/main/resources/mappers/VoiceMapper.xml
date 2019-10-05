@@ -126,9 +126,6 @@
    
    
    
-   
-   
-   
    <select id="selectNewAll" resultType="Post" parameterType="map">
       SELECT
          p.postNo
