@@ -38,6 +38,7 @@ public class ListController {
 
 	@RequestMapping(value="/video_new", method=RequestMethod.GET)
 	public String video_new(){
+		System.out.println("video new »£√‚");
 		return "userBoard/video_new";
 	}
 
