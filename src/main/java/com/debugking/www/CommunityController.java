@@ -35,11 +35,13 @@ public class CommunityController {
 									@RequestParam(value="currentPage",  defaultValue="1")int currentPage, Model model){
 		ArrayList<Posts> list = new ArrayList<>();
 		String postType = "community";
-
+        
 		int totalRecordCount = repo.getPostCount(searchItem, searchWord);
-		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
-		list = repo.selectAll(postType, searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		int countPerPage=10;
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
+		
+		list = repo.selectAll(postType, searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
@@ -93,7 +95,7 @@ public class CommunityController {
 		Posts post = repo.selectOne(postNo);
 		
 		if(post.getSavedFile() != null){
-			FileService.deleteFile(uploadPath+"/"+post.getSavedFile());
+			FileService.deleteFile(uploadPath+"/"+post.getSavedFile()); 
 		}
 		repo.postDelete(postNo);
 		

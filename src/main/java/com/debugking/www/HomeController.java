@@ -34,21 +34,21 @@ public class HomeController {
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
 			Model model){
 		
-		
+		int countPerPage=6;
 		int totalRecordCount = repo.getVideoCount(searchItem, searchWord);
-		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
 		System.out.println(navi.getStartRecord());
-		List<Posts> newList = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> newList = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
 		model.addAttribute("newList", newList);
 		
-		List<Posts> weekList = repo.selectWeek(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> weekList = repo.selectWeek(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("weekList", weekList);
 		
-		List<Posts> monthList = repo.selectMonth(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> monthList = repo.selectMonth(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("monthList", monthList);
 		
 		
@@ -63,22 +63,23 @@ public class HomeController {
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
 			Model model){
 		
-		
+		int countPerPage=6;
 		int totalRecordCount = repo.getVideoCount(searchItem, searchWord);
-		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
 		System.out.println(navi.getStartRecord());
-		List<Posts> newList = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> newList = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
 		model.addAttribute("newList", newList);
 		
-		List<Posts> weekList = repo.selectWeek(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> weekList = repo.selectWeek(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("weekList", weekList);
 		
-		List<Posts> monthList = repo.selectMonth(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> monthList = repo.selectMonth(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("monthList", monthList);
+		
 		
 		return "main";
 	}

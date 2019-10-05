@@ -38,10 +38,11 @@ public class ManagerController {
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
 			Model model){
 		
+		int countPerPage=10;
 		int totalRecordCount = repo.getPostCount(searchItem);
-		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
-		List<Posts> list = repo.selectPostAll(searchItem, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> list = repo.selectPostAll(searchItem, navi.getStartRecord(), countPerPage);
 		
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("navi", navi);
@@ -56,10 +57,11 @@ public class ManagerController {
 			@RequestParam(value="memberLevel" , defaultValue="beginner") String memberLevel,
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
 			Model model){
+		int countPerPage=10;
 		int totalRecordCount = repo.getMemberInfoCount(memberLevel);
-		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
-		List<MemberInfo> ratingList = repo.selectMemberInfoAll(memberLevel, navi.getStartRecord(), navi.getCountPerPage());
+		List<MemberInfo> ratingList = repo.selectMemberInfoAll(memberLevel, navi.getStartRecord(), countPerPage);
 		return ratingList;
 	}
 	
@@ -151,11 +153,13 @@ public class ManagerController {
 	public List<Posts> noticeList(
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage
 			){
+		
+		int countPerPage=10;
 		int totalRecordCount = repo.getNoticeCount();
 		System.out.println(totalRecordCount);
-		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
-		List<Posts> noticeList = repo.selectNoticeAll( navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> noticeList = repo.selectNoticeAll( navi.getStartRecord(), countPerPage);
 		
 		
 		return noticeList;
@@ -167,10 +171,12 @@ public class ManagerController {
 	public List<Posts> reportList(
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage
 			){
+		
+		int countPerPage=10;
 		int totalRecordCount = repo.getreportCount();
 		System.out.println("리포트갯수  "+totalRecordCount);
-		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
-		List<Posts> reportList = repo.selectreportAll( navi.getStartRecord(), navi.getCountPerPage());
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
+		List<Posts> reportList = repo.selectreportAll( navi.getStartRecord(), countPerPage);
 		
 		return reportList;
 	}

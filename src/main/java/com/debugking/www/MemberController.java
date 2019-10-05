@@ -90,8 +90,8 @@ public class MemberController {
 	}
 	@RequestMapping(value="/imageFetch", method=RequestMethod.GET)
 	@ResponseBody
-	public String imageFetch(HttpSession session, HttpServletRequest request){
-		String memberId = (String)session.getAttribute("memberId");
+	public String imageFetch(HttpSession session, HttpServletRequest request,String memberId){
+	
 		System.out.println(memberId);
 		MemberInfo member = repo.selectOne(memberId);
 		String photoname = member.getPhotoname();
@@ -191,10 +191,10 @@ public class MemberController {
 	//파일 다운로드 및 이미지 
 		@RequestMapping(value="/download", method=RequestMethod.GET) 
 		@ResponseBody
-		public String download(MemberInfo member, HttpServletResponse response, HttpSession session) 
+		public String download(MemberInfo member, HttpServletResponse response, HttpSession session,String memberId) 
 		/*참고: 만일 리턴 타입이 void이면 download.jsp를 찾는다. */
 		{
-			String memberId = (String) session.getAttribute("memberId");
+		
 			MemberInfo fetchedMember 		= repo.selectOne(memberId);
 			System.out.println(fetchedMember);
 			
@@ -605,14 +605,14 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/memberPost", method=RequestMethod.GET)
 	public ArrayList<Posts> memberPost(String memberId, Model model){
-		
+		int countPerPage=10;
 		int postCount = listRepo.postCount(memberId);
 		int currentPage = 1;
-		PageNavigator navi = new PageNavigator(currentPage, postCount);
+		PageNavigator navi = new PageNavigator(currentPage, postCount,countPerPage);
 		
 		ArrayList<Posts> list = new ArrayList<>();
 		
-		list = listRepo.memberPost(memberId, navi.getStartRecord(), navi.getCountPerPage());
+		list = listRepo.memberPost(memberId, navi.getStartRecord(), countPerPage);
 		
 		model.addAttribute("navi", navi);
 		
