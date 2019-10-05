@@ -35,15 +35,15 @@ public class VoiceListController {
 			Model model){
 		//int noticeCount = repo.getNoticeCount();
 		int totalRecordCount = repo.getVoiceCount(searchItem, searchWord);
-		
-		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		int countPerPage=10;
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
 		int noticeCount = getNoticeCount();
 		List<Posts> noticeList = selectNoticeAll();
 		model.addAttribute("noticeCount", noticeCount);
 		model.addAttribute("noticeList", noticeList);
 		
-		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
@@ -54,13 +54,54 @@ public class VoiceListController {
 	}
 	
  	@RequestMapping(value="/voice_weekly", method=RequestMethod.GET)
-	public String voice_weekly(){
+	public String voice_weekly(@RequestParam(value="searchItem" , defaultValue="postTitle") String searchItem, 
+			@RequestParam(value="searchWord",  defaultValue="")      String searchWord, 
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
+			Model model){
+		//int noticeCount = repo.getNoticeCount();
+		int totalRecordCount = repo.getVoiceWeekCount(searchItem, searchWord);
+		int countPerPage=10;
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
+		
+		int noticeCount = getNoticeCount();
+		List<Posts> noticeList = selectNoticeAll();
+		model.addAttribute("noticeCount", noticeCount);
+		model.addAttribute("noticeList", noticeList);
+		
+		List<Posts> list = repo.selectWeek(searchItem, searchWord, navi.getStartRecord(), countPerPage);
+		System.out.println(list);
+		model.addAttribute("searchItem", searchItem);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("navi", navi);
+		model.addAttribute("list", list);
+		
 		return "userBoard/voice_weekly";
+		
 	}
 	
 	@RequestMapping(value="/voice_monthly", method=RequestMethod.GET)
-	public String voice_monthly(){
+	public String voice_monthly(@RequestParam(value="searchItem" , defaultValue="postTitle") String searchItem, 
+			@RequestParam(value="searchWord",  defaultValue="")      String searchWord, 
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
+			Model model){
+		//int noticeCount = repo.getNoticeCount();
+		int totalRecordCount = repo.getVoiceMonthCount(searchItem, searchWord);
+		int countPerPage=10;
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
+		
+		int noticeCount = getNoticeCount();
+		List<Posts> noticeList = selectNoticeAll();
+		model.addAttribute("noticeCount", noticeCount);
+		model.addAttribute("noticeList", noticeList);
+		
+		List<Posts> list = repo.selectMonth(searchItem, searchWord, navi.getStartRecord(), countPerPage);
+		model.addAttribute("searchItem", searchItem);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("navi", navi);
+		model.addAttribute("list", list);
+		
 		return "userBoard/voice_monthly";
+		
 	}
 	
 	@RequestMapping(value="/voice_all", method=RequestMethod.GET)
@@ -69,11 +110,12 @@ public class VoiceListController {
 			@RequestParam(value="searchWord",  defaultValue="")      String searchWord, 
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
 			Model model){
+		int countPerPage=10;
 		int totalRecordCount = repo.getVoiceCount(searchItem, searchWord);
-		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
 		System.out.println(navi.getStartRecord());
-		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), navi.getCountPerPage());
+		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		
 		int noticeCount = getNoticeCount();
 		List<Posts> noticeList = selectNoticeAll();
@@ -82,10 +124,10 @@ public class VoiceListController {
 		
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
-		
+		 
 		model.addAttribute("navi", navi);
 		model.addAttribute("list", list);
-		return "userBoard/voice_all";
+		return "userBoard/voice_all"; 
 	}
 	
 

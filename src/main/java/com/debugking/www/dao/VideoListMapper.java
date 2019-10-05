@@ -14,6 +14,10 @@ public interface VideoListMapper {
 	public List<MemberInfo> GetVideoList(); // VoiceList 불러오기
 
 	public int getVideoCount(Map<String, Object> map); //갯수불러오기 > 페이지 노 타메니
+	
+	public int getVideoWeekCount(Map<String, Object> map); //갯수불러오기 > 페이지 노 타메니
+	
+	public int getVideoMonthCount(Map<String, Object> map); //갯수불러오기 > 페이지 노 타메니
 
 	public List<Posts> selectAll(Map<String, String> map, RowBounds rb); // 전체 선택하기 
 

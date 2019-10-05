@@ -173,9 +173,9 @@
 					<div class="col-md-12">
 						<ul class="filters serif" style="font-family: 'Love Ya Like A Sister', cursive;">
 						
-							<li><a class="current" href="#" data-filter=".weekly">Weekly</a></li>
-							<li><a href="#" data-filter=".monthly">Monthly</a></li>
-							<li><a href="#" data-filter=".new">New</a></li>
+							<li><a href="#" class="weeklyOn" data-filter=".weekly">Weekly</a></li>
+							<li><a href="#" class="monthlyOn" data-filter=".monthly">Monthly</a></li>
+							<li><a href="#" class="newOn" data-filter=".new">New</a></li>
 						</ul>
 					</div>
 				</div>
@@ -198,12 +198,12 @@
                         
                         
                                 <c:forEach var="board" items="${weekList}" varStatus="stat">
-                                 <div class="portfolio-item weekly" style="position: absolute; left: 0px; top: 0px;">
+                                 <div class="portfolio-item weekly" style="position: absolute; left: 0px; top: 0px;display:none;">
                             <div class="portfolio-item-wrapper">
 							<div id="music_video_list_wrap" style="display: block;">
 								<div
-									class="music_video_list_item to-animate-2 fadeInUp animated"
-									video="3GLrB9GvBq8" style="width: 100%">
+									class="music_video_list_item to-animate-2 fadeInUp animated" 
+									 style="width: 100%">
 									<div class="music_video_list_item_wrap"> 
 										<div style="position: relative;">
 											<div class="music_video_list_item_thumbnail_cover"
@@ -216,9 +216,9 @@
 													src="resources/images/icon_play_round.png"
 													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
 											</div>
+ 
 
-
-											<video width="300" height="300" controls="controls"
+											<video width="550" height="300" controls="controls"
 												preload="metadata">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
@@ -240,24 +240,24 @@
 											</div>
 										</div>
 									</div>
-									<div
+									<div 
 										class="music_video_list_item to-animate-2 fadeInUp animated"
 										video="3ymwOvzhwHs" style="width: 25%">
 										<div class="music_video_list_item_wrap">
 											<div style="position: relative;"></div>
-										</div>
+										</div> 
 									</div>
 								</div>
 							</div>
 							
 							 </div>
                         </div>
-						</c:forEach>
-                                
+						</c:forEach> 
+                           
                            
                         
                          <c:forEach var="board" items="${monthList}" varStatus="stat">
-                        <div class="portfolio-item monthly" style="position: absolute; left: 466.4px; top: 0px;">
+                        <div class="portfolio-item monthly" style="position: absolute; left: 466.4px; top: 0px;display:none;">
                             <div class="portfolio-item-wrapper">
                                 <div id="music_video_list_wrap" style="display: block;">
 								<div
@@ -277,7 +277,7 @@
 											</div>
 
 
-											<video width="300" height="300" controls="controls"
+											<video width="550" height="300" controls="controls"
 												preload="metadata">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
@@ -340,7 +340,7 @@
 											</div>
 
 
-											<video width="300" height="300" controls="controls"
+											<video width="550" height="300" controls="controls"
 												preload="metadata">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">

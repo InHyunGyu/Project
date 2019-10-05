@@ -7,7 +7,9 @@
    <select id="getNoticeCount" resultType="int">
       select count(*)
       From Posts
-      where isAnnouncement='Y'
+      where isAnnouncement='Y'  
+      and postType='voice'
+      
    </select>
    
    <select id="getVoiceCount" parameterType="map" resultType="int">
@@ -42,7 +44,7 @@
       <if test="searchItem != null">
          and ${searchItem} LIKE '%'||#{searchWord}||'%'
       </if>
-      ORDER BY postNo DESC
+      ORDER BY postDate DESC
    </select>
    <select id="selectNoticeAll" resultType="Post" parameterType="map">
       SELECT
@@ -68,7 +70,7 @@
    
    <!-- NEW 출력문 -->
    <select id="getVoiceNewCount" parameterType="map" resultType="int">
-      select count(*)
+      select count(*) 
       FROM Posts p , MemberInfo m
       where p.memberId = m.memberId
       and p.postType = 'voice' and p.memberId != 'admin'
@@ -78,6 +80,52 @@
          and ${searchItem} LIKE '%'||#{searchWord} || '%'
       </if>
    </select>
+   
+   
+    <!-- Week 출력문 -->
+   <select id="getVoiceWeekCount" parameterType="map" resultType="int">
+      select count(*)
+      FROM Posts p , MemberInfo m
+      where p.memberId = m.memberId
+      and p.postType = 'voice' and p.memberId != 'admin'
+      and m.memberLevel !='Z' 
+      and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
+      <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord} || '%'
+      </if>
+       <![CDATA[
+        and postDate >=(select TRUNC(sysdate,'IW') from dual) AND postDate < (select TRUNC(sysdate,'IW')+6 from dual)
+    ]]>
+      
+   </select>
+   
+   
+    <!-- Month 출력문 -->
+   <select id="getVoiceMonthCount" parameterType="map" resultType="int">
+      select count(*)
+      FROM Posts p , MemberInfo m
+      where p.memberId = m.memberId
+      and p.postType = 'voice' and p.memberId != 'admin'
+      and m.memberLevel !='Z' 
+      and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
+      <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord} || '%'
+      </if>
+      
+       <![CDATA[
+        and postDate >=(select TRUNC(sysdate,'MM') from dual) AND postDate < (SELECT LAST_DAY(SYSDATE) FROM DUAL)
+    ]]> 
+      
+   </select>
+   
+   
+   
+   
+   
+   
+   
+   
+   
    <select id="selectNewAll" resultType="Post" parameterType="map">
       SELECT
          p.postNo
@@ -96,11 +144,71 @@
       where p.memberId = m.memberId
       and p.postType = 'voice' and p.memberId != 'admin'
       and m.memberLevel !='Z' 
-      and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
       <if test="searchItem != null">
          and ${searchItem} LIKE '%'||#{searchWord}||'%'
       </if> 
-      ORDER BY postNo DESC
+      ORDER BY postDate DESC
    </select>
+   
+   
+   <select id="selectWeek" resultType="Post" parameterType="map">
+      SELECT
+         p.postNo
+         ,p.memberId
+         ,p.postTitle
+         ,p.postContent
+         ,to_char(postDate, 'YYYY-MM-DD') as postDate
+         ,p.postView
+         ,p.postLike
+         <if test="originalFile != null">
+         ,p.originalFile
+         ,p.savedFile
+         </if>
+         ,p.reported 
+      FROM Posts p , MemberInfo m
+      where p.memberId = m.memberId
+      and p.postType = 'voice' and p.memberId != 'admin'
+      and m.memberLevel !='Z' 
+      <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord}||'%'
+      </if> 
+      <![CDATA[
+        and postDate >=(select TRUNC(sysdate,'IW') from dual) AND postDate < (select TRUNC(sysdate,'IW')+6 from dual)
+    ]]>
+        
+      ORDER BY p.postDate DESC
+   </select>
+   
+   
+     <select id="selectMonth" resultType="Post" parameterType="map">
+      SELECT
+         p.postNo
+         ,p.memberId
+         ,p.postTitle
+         ,p.postContent
+         ,to_char(postDate, 'YYYY-MM-DD') as postDate
+         ,p.postView
+         ,p.postLike
+         <if test="originalFile != null">
+         ,p.originalFile
+         ,p.savedFile
+         </if>
+         ,p.reported
+      FROM Posts p , MemberInfo m
+      where p.memberId = m.memberId
+      and p.postType = 'voice' and p.memberId != 'admin'
+      and m.memberLevel !='Z' 
+      <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord}||'%'
+      </if> 
+   <![CDATA[
+        and postDate >=(select TRUNC(sysdate,'MM') from dual) AND postDate < (SELECT LAST_DAY(SYSDATE) FROM DUAL)
+    ]]> 
+       
+      ORDER BY p.postDate DESC
+   </select>
+    
+   
+   
    
 </mapper>

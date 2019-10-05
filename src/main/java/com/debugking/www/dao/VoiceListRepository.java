@@ -78,6 +78,35 @@ public class VoiceListRepository {
 		int total = mapper.getVoiceNewCount(map);
 		return total;
 	}
+	
+	//Week 페이징 하기 
+		public int getVoiceWeekCount(String searchItem, String searchWord) {
+			VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+			Map<String, Object> map = new HashMap<>();
+			map.put("searchItem", searchItem);
+			map.put("searchWord", searchWord);
+			
+			int total = mapper.getVoiceNewCount(map);
+			return total;
+		};
+		
+		
+		//Month 페이징 하기 
+				public int getVoiceMonthCount(String searchItem, String searchWord) {
+					VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+					Map<String, Object> map = new HashMap<>();
+					map.put("searchItem", searchItem);
+					map.put("searchWord", searchWord);
+					
+					int total = mapper.getVoiceNewCount(map);
+					return total;
+				};
+		
+		
+	
+	
+	
+	
 	public List<Posts> selectNewAll(String searchItem, String searchWord, int startRecord, int countPerPage) {
 		List<Posts> list;
 		RowBounds rb = new RowBounds(startRecord, countPerPage);
@@ -89,6 +118,42 @@ public class VoiceListRepository {
 		list = mapper.selectNewAll(map, rb);
 		return list;
 	}
+	
+	
+	public List<Posts> selectWeek(String searchItem, String searchWord, int startRecord, int countPerPage) {
+		List<Posts> list;
+		RowBounds rb = new RowBounds(startRecord, countPerPage);
+		
+		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+		Map<String, String> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchWord", searchWord);
+		list = mapper.selectWeek(map, rb);
+		return list;
+	}
+	
+	
+	public List<Posts> selectMonth(String searchItem, String searchWord, int startRecord, int countPerPage) {
+		List<Posts> list;
+		RowBounds rb = new RowBounds(startRecord, countPerPage);
+		
+		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
+		Map<String, String> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchWord", searchWord);
+		list = mapper.selectMonth(map, rb);
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//글쓰기
 	public int writing(Posts post) {

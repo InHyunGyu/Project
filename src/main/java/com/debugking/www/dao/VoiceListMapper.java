@@ -17,10 +17,13 @@ public interface VoiceListMapper {
 	public int getVoiceCount(Map<String, Object> map); //갯수불러오기 > 페이지 노 타메니
 	public int getNoticeCount(Map<String, Object> map);
 	
+	public int getVoiceWeekCount(Map<String, Object> map);
+	public int getVoiceMonthCount(Map<String, Object>map);
+	
+
 	public List<Posts> selectAll(Map<String, String> map, RowBounds rb); // 전체 선택하기 
 	public List<Posts> selectNoticeAll(Map<String, String> map, RowBounds rb);
 	
-
 
 
 	public int writing(Posts post); //글쓰기
@@ -31,6 +34,10 @@ public interface VoiceListMapper {
 
 	public Posts selectPostOne(int postNo); //POSTS 하나만 검색하기
 	
+	
+	public List<Posts>selectWeek(Map<String,String>map,RowBounds rb); //주간
+	
+	public List<Posts>selectMonth(Map<String,String>map,RowBounds rb); //월간
 
 
 }
