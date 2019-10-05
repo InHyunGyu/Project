@@ -25,7 +25,26 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+		<script src="resources/assets/js/login2.js"></script>
+	
+	
+		<!--board-->	
+	<link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="resources/board/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="resources/board/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="resources/board/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="resources/board/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="resources/board/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="resources/board/css/util.css">
+	<link rel="stylesheet" type="text/css" href="resources/board/css/main.css">
+<!--===============================================================================================-->
+	
+	
+	
 	<style type="text/css">
+	
+	
+	
   a {
   	color: #788487;
   }
@@ -45,34 +64,6 @@
 	</style>
 	<script>
 	$(function(){
-		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			
-			if(memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'login',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
-		
-		$("#signup").on('click', function(){
-			location.href="signup"
-		})
-		
 		$("#btnWriteForm").on('click',function(){
 			if(${empty sessionScope.memberId}){
 				alert("로그인한 후 글쓰기가능합니다.");
@@ -123,7 +114,6 @@
 										<li><a href="voice_weekly">Weekly</a></li>
 										<li><a href="voice_monthly">Monthly</a></li>
 									</ul></li>
-								<li><a href="voice_all">ALL</a></li>
 							</ul></li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -138,7 +128,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -176,103 +166,157 @@
                     </div>
                 </div>
 			</section>          
+          </div>
           
           
           
           
           
-          
-                <section class="module p-t-30 p-b-30">
-			 <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 m-auto">
+                  <section class="module p-t-30 p-b-100">
+		<div class="container">
+
+			<div class="col-md-12 m-auto">
 				<div class="table-responsive">
 					<!-- 검색창 -->
-					
-					<div style="float: right; margin-bottom: 10px; ">
-						<form action="voice_new" method="get">
-						<div class="form-group" style= "height: 36px;">
-							<select class="form-control col-md-3" name="searchItem" style="height: 100%;">
-								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
-								<option value="memberId"
-									${searchItem == 'memberId' ? 'selected' : ''}>글쓴이</option>
-								<option value="postContent"
-									${searchItem == 'postContent' ? 'selected' : ''}>내용</option>
-							</select> 
-							<input class="form-control col-md-6" type="text" name="searchWord" value="${searchWord}" style="height: 100%;"/> 
-							<input class="col-md-2" type="submit" value="검색" id="inputStyle"/>
-						</div>
+					<div style="float: right; margin-bottom: 10px;">
+						<form action="voice_weekly" method="get"> 
+							<div class="form-group"
+								style="height: 50px; display: inline-flex;">
+								<select class="form-control col-md-3" name="searchItem"
+									style="height: 100%; width: 130px;">
+									<option value="postTitle"
+										${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
+									<option value="memberId"
+										${searchItem == 'memberId' ? 'selected' : ''}>글쓴이</option>
+									<option value="postContent"
+										${searchItem == 'postContent' ? 'selected' : ''}>내용</option>
+								</select> <input class="form-control col-md-6" type="text"
+									name="searchWord" value="${searchWord}" style="height: 100%;" />
+								<input class="col-md-2" type="submit" value="검색" id="inputStyle" />
+							</div>
 						</form>
-					
 					</div>
-					<table class="table table-striped table-sm table-hover" style="margin: 30px; text-align: center;">
-                        	
-                        	<colgroup>
-								<col style="width: 5%;" />
-								<col style="width: auto%;" />
-								<col style="width: 20%;" />
-								<col style="width: 15%;" />
-								<col style="width: 10%;" />
-								<col style="width: 10%;" />
-							</colgroup>
-                        	
-                        	<tr>
-                        		<th>No</th>
-                        		<th>글제목</th>
-                        		<th>작성자</th>
-                        		<th>작성일</th>
-                        		<th>조회수</th>
-                        		<th>추천수</th>
-                        	</tr>
-                        
+				</div>
+			</div>
+
+
+
+
+
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">No</th>
+								<th class="column2">글제목</th>
+								<th class="column3">작성자</th>
+								<th class="column4">작성일</th>
+								<th class="column5">조회수</th>
+								<th class="column6">추천수</th>
+							</tr>
+						</thead>
+
+						<tbody>
 							<!-- 게시글이 없는 경우 -->
 							<c:if test="${empty list}">
+								
+								<c:if test="${not empty noticeList}">
+								<c:forEach var="board" items="${noticeList}">
+									<tr style="background-color: #c9ccc8;">
+										<td class="column1">공지</td>
+										<td class="column2"><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
+										<td class="column3"><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
+										<td class="column4">${board.postDate}</td>
+										<td class="column5">${board.postView}</td>
+										<td class="column6">${board.postLike}</td>
+									</tr>
+								</c:forEach> 
+							</c:if>
+								
+								
+								
 								<tr>
-									<td colspan="6" align="center">데이터가 없습니다.</td>
+									<td colspan="6" align="center" style="text-align:center;">데이터가 없습니다.</td>
 								</tr>
 							</c:if>
 							<!-- 게시글이 있는 경우 -->
+							
+
 							<c:if test="${not empty list}">
-								<c:forEach var="board" items="${list}" varStatus="stat">
-									<tr>
-										<td>${stat.count + navi.startRecord}</td>
-										<td><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
-										<td>${board.memberId}</td>
-										<td>${board.postDate}</td>
-										<td>${board.postView}</td>
-										<td>${board.postLike}</td>
+							
+							
+							
+							
+							<c:if test="${not empty noticeList}">
+								<c:forEach var="board" items="${noticeList}">
+									<tr style="background-color: #c9ccc8;">
+										<td class="column1">공지</td>
+										<td class="column2"><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
+										<td class="column3"><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
+										<td class="column4">${board.postDate}</td>
+										<td class="column5">${board.postView}</td>
+										<td class="column6">${board.postLike}</td>
 									</tr>
-								</c:forEach>
+								</c:forEach> 
 							</c:if>
 							
-							<!-- 페이징 하기 -->
-				
+							
+							
+							
+							
+							
+								<c:forEach var="board" items="${list}" varStatus="stat">
+									<tr>
+										<td class="column1">${stat.count + navi.startRecord}</td>
+										<td class="column2"><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
+										<td class="column3"><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
+										<td class="column4">${board.postDate}</td>
+										<td class="column5">${board.postView}</td>
+										<td class="column6">${board.postLike}</td>
+									</tr> 
+
+								</c:forEach>
+							</c:if>
 						</tbody>
+
 					</table>
 				</div>
-				<div>
-					<div class="row">
-                                <div class="col-md-12">
-                                    <nav>
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item"><a class="page-link" href="voice_weekly?&currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-left"></span></a></li>
-                                            <c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup}">
-												<li class="page-item"><a class="page-link" href="voice_weekly?&currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">${page}</a></li>
-											</c:forEach>
-                                            <li class="page-item"><a class="page-link" href="voice_weekly?&currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-right"></span></a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-					</div>
-					<button type="button" class="btn btn-outline-secondary"
-						id="btnWriteForm" style="float: right;">글쓰기</button>
+			</div>
+
+			<!-- 페이징 하기 --> 
+
+			<div class="row">
+				<div class="col-md-12">
+					<nav>
+						<ul class="pagination justify-content-center">
+							<li class="page-item"><a class="page-link"
+								href="voice_weekly?&currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}"><span
+									class="fas fa-angle-left"></span></a></li>
+							<c:forEach var="page" begin="${navi.startPageGroup}"
+								end="${navi.endPageGroup}">
+								<li class="page-item"><a class="page-link"
+									href="voice_weekly?&currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">${page}</a></li>
+							</c:forEach>
+							<li class="page-item"><a class="page-link"
+								href="voice_weekly?&currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span
+									class="fas fa-angle-right"></span></a></li>
+						</ul>
+					</nav>
 				</div>
-</div>
-</div>
-</section>
-                
-          </div>
+			</div>
+
+			<button type="button" class="btn btn-outline-secondary"
+				id="btnWriteForm" style="float: right;">WRITE</button>
+
+		</div>
+
+
+	</section>
+              
+              
+              
+              
 
             <!-- Footer-->
             <footer class="footer">

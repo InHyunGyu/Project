@@ -25,6 +25,7 @@
 
 
         <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="resources/assets/js/login2.js"></script>
 <script >
 	$(function(){
 		
@@ -51,6 +52,7 @@
 		modisubmit();
 		
 
+
 		$("#signup").on('click', function() {
 			location.reload();
 		})
@@ -71,6 +73,32 @@
 				}
 			})
 		})
+
+	
+		//비밀번호 유효성 검사
+		$("#memberpwd").on("keyup",function(){
+			memberpwd = $("#memberpwd").val();
+			if(memberpwd.length <3 || memberpwd.length > 15){
+				$("#checkpwdline").html("Password 는 3~15사이입니다.");
+				return false;
+			}
+			else{
+				$("#checkpwdline").html("");
+			}
+			
+			//비밀번호 동일한지 검사
+			$("#checkpwd").on("keyup",function(){
+				var checkpwd = $("#checkpwd").val();
+				if(memberpwd !== checkpwd){
+					$("#checkpwdline2").html("비밀번호가 일치하지 않습니다.");
+					return false;
+				}else{
+					$("#checkpwdline2").html("");
+					flagpwd=true;
+				}
+			});
+		});
+
 	});
 	
 
@@ -215,7 +243,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span

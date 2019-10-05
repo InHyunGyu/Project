@@ -38,10 +38,39 @@
 
 	<select id="selectOne" parameterType="int" resultType="Post">
 		select
-			*
+			postNo,
+			memberId,
+			postTitle,
+			postContent,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			isAnnouncement,
+			postLike,
+			postView,
+			reported,
+			postType,
+			originalFile,
+			savedFile
 		from posts
 		where postno = #{postNo}
 	</select>
+	<select id="selectOneId" parameterType="String" resultType="Post">
+		select
+			postNo,
+			memberId,
+			postTitle,
+			postContent,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			isAnnouncement,
+			postLike,
+			postView,
+			reported,
+			postType,
+			originalFile,
+			savedFile
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
 	
 	<insert id="replyInsert" parameterType="Reply">
 		insert into replies
@@ -102,4 +131,56 @@
 	
 	</update>
 	
+	<update id="reported" parameterType="int">
+		update posts set
+			reported = reported + 1
+		where postNo = #{postNo}
+	</update>
+	
+	<update id="postView" parameterType="int">
+		update posts set
+			postView = postView + 1
+		where postNo = #{postNo}
+	</update>
+	
+	<select id="selectList" parameterType="string" resultType="Post">
+		select 
+			* 
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
+	<select id="postCount" parameterType="string" resultType="int">
+		select
+			count(*)
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
+	<select id="memberPost" parameterType="string" resultType="Post">
+		select 
+			postNo,
+			memberId,
+			postTitle,
+			postContent,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			isAnnouncement,
+			postLike,
+			postView,
+			reported,
+			postType,
+			originalFile,
+			savedFile
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
+	<select id="postLikeList" parameterType="int" resultType="String">
+		select
+			LIKE_ARRAY
+		from 
+			posts
+		where postNo = #{postNo}
+	
+	</select>
 </mapper>

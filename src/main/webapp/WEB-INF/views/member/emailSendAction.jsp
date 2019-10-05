@@ -25,6 +25,7 @@
 
 
         <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="resources/assets/js/login2.js"></script>
 <script >
 	$(function(){
 		var flagid = false;
@@ -332,6 +333,7 @@
 				</div>
 			</div>
 			<div class="extra-nav">
+
                     <ul>
                         <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
                         <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation" class="" aria-expanded="true"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>

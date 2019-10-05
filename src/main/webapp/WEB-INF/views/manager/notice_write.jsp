@@ -24,6 +24,7 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+		<script src="resources/assets/js/login2.js"></script>
 	<style type="text/css">
   a {
   	color: #788487;
@@ -44,36 +45,23 @@
 	</style>
 	<script>
 	$(function(){
-		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			
-			if(memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'login',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
 		
-		$("#signup").on('click', function(){
-			location.href="signup"
-		})
 		
 		$("#writing").on('click', function(){
+			var postTitle = $("#postTitle");
+			var postContent =$("#postContent");
 			
+			if(postTitle.val()=='' || postTitle.val()==null){
+				alert("제목 입력하세요.");
+				title.focus();
+				return false;
+			}else if(postContent.val()=='' || postContent.val()==null){
+				alert("내용을 입력하세요");
+				title.focus();
+				return false;
+			}else{
+				notice_write.submit();
+			}
 		})
 	})
 	
@@ -130,7 +118,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -169,29 +157,29 @@
 								Notice
 							</h6>
 						</div>
-						<div class="m-b-20" id="write">
-							<div class="form-group">	
-								<select class="form-control col-md-3">
-									<option value="voice">voice</option>
-									<option value="video">video</option>
-									<option value="community">community</option>
-								</select>
-								<input class="form-control col-md-9" type="text" placeholder="Title" id="title" name="title"
-								style="height:54px; width: 400px;">
+						<form action="notice_write" method="POST" id="notice_write" enctype="multipart/form-data">
+							<div class="m-b-20" id="write">
+								<div class="form-group">	
+									<select class="form-control col-md-3" name="postType" >
+										<option value="ALL">All</option>
+										<option value="voice">voice</option>
+										<option value="video">video</option>
+										<option value="community">community</option>
+									</select>
+									<input class="form-control col-md-9" type="text" placeholder="Title" id="postTitle" name="postTitle"
+									style="height:54px; width: 400px;">
+								</div>
+								<div class="form-group">
+									<textarea class="form-control" id="postContent" name="postContent" rows="15" cols="100" placeholder="content"></textarea>
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="file" id="upload" name="upload" />
+								</div>
+								<div class="form-group">
+									<button class="btn btn-block btn-round btn-brand" type="button" id="writing">Notice Write</button>
+								</div>
 							</div>
-							<div class="form-group">
-								<textarea class="form-control" id="content" name="content" rows="15" cols="100" placeholder="content"></textarea>
-							</div>
-							<div class="form-group">
-								<input class="form-control" type="file" id="upload" name="upload" />
-							</div>
-							<div class="form-group">
-								<button class="btn btn-block btn-round btn-brand" type="button" id="writing">Notice Write</button>
-							</div>
-						
-						
-						</div>
-						
+						</form>
 					</div>
 				</div>
 			</div>

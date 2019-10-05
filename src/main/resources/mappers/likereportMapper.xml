@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.debugking.www.dao.likereportMapper">
+
+	<select id="selectList" parameterType="map" resultType="likereport">
+		select *
+		From likereport
+		Where postNo = #{postNo} and checkType = #{checkType}
+	</select>
+	<insert id="insertLR" parameterType="map" >
+		insert into likereport
+		(
+			  likeseq
+			  ,postNo
+			  ,memberId
+			  ,checkType
+		)
+		values
+		(
+			likeseq.nextval
+			,#{postNo}
+			,#{memberId}
+			,#{checkType}
+		)
+	</insert>
+	
+	
+</mapper>

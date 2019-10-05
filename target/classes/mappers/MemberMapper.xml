@@ -12,7 +12,7 @@
 			,memberName
 			,memberPhone
 			,memberBirth
-			,signupDate
+			,to_char(signupDate, 'YYYY-MM-DD') as signupDate
 			,memberEmail
 			,memberPoint
 			,photoname
@@ -82,9 +82,9 @@
 		select 
 			memberId
 			,memberName
-		From MemberInfo
-		Where memberId=#{memberId} and memberPwd =#{memberPwd} 
-		and emailchecked = 'y'
+		From memberInfo
+		Where memberPwd =#{memberPwd} and emailchecked = 'y' 
+									and memberId =#{memberId} and memberLevel !='Z'
 	</select>
 	
 	
@@ -133,6 +133,7 @@
 		where memberId = #{memberId}
 	</update>
 	
+
 	<update id="tempPwdSet" parameterType="Member">
 		UPDATE
 			memberinfo
@@ -143,6 +144,6 @@
 	</update>
 	
 	
-	
+
 </mapper>
 

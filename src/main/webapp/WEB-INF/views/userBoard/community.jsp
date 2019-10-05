@@ -25,6 +25,7 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+		<script src="resources/assets/js/login2.js"></script>
 	<style type="text/css">
   a {
   	color: #788487;
@@ -45,34 +46,6 @@
 	</style>
 	<script>
 	$(function(){
-		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			
-			if(memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'login',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
-		
-		$("#signup").on('click', function(){
-			location.href="signup"
-		})
-		
 		$("#btnWriteForm").on('click',function(){
 			if(${empty sessionScope.memberId}){
 				alert("로그인한 후 글쓰기가능합니다.");
@@ -81,7 +54,6 @@
 				location.href="write?postType=community";
 			}
 		})
-		
 	})
 	
 		
@@ -139,7 +111,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -234,7 +206,7 @@
 									<tr>
 										<td>${stat.count + navi.startRecord}</td>
 										<td><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
-										<td>${board.memberId}</td>
+										<td><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
 										<td>${board.postDate}</td>
 										<td>${board.postView}</td>
 										<td>${board.postLike}</td>

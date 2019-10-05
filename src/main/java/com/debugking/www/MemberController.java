@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 import java.util.UUID;
@@ -16,7 +17,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,10 +31,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.debugking.www.dao.FollowRepository;
+import com.debugking.www.dao.ListRepository;
 import com.debugking.www.dao.MemberRepository;
 import com.debugking.www.dto.MemberInfo;
+import com.debugking.www.dto.Posts;
 import com.debugking.www.service.MemberService;
 import com.debugking.www.util.Gmail;
+import com.debugking.www.util.PageNavigator;
 import com.debugking.www.util.SHA256;
 
 
@@ -46,14 +50,16 @@ public class MemberController {
 	MemberService serivce;
 	@Autowired
 	MemberRepository repo;
+	@Autowired
+	ListRepository listRepo;
+	@Autowired
+	FollowRepository followRepo;
 	
+
 	final String uploadPath = "/resources/assets/userFiles"; 
 	String realpath;
 	String savedFilename; //UUID 및 date 문자열을 포함한 확장자를 포함한 파일명
 	String originalFilename;
-	
-	
-	
 	
 	public void createContentId(MemberInfo member, HttpServletRequest request){
 		System.out.println("----------createContentId메서드 호출-----");
@@ -71,7 +77,6 @@ public class MemberController {
 		String randomString = UUID.randomUUID().toString();
 		originalFilename    = randomString + originalFilename; //파일명 앞에 ranme 문자열 추가
 		
-		
 		//아래 루프는 중복 파일이 있는지 검사하고 없을 경우에는 그냥 시간 날짜값을 붙여주는 작업이다. 
 		while(true){
 			File serverFile = new File(realpath + "\\" + originalFilename);
@@ -85,8 +90,8 @@ public class MemberController {
 	}
 	@RequestMapping(value="/imageFetch", method=RequestMethod.GET)
 	@ResponseBody
-	public String imageFetch(HttpSession session, HttpServletRequest request){
-		String memberId = (String)session.getAttribute("memberId");
+	public String imageFetch(HttpSession session, HttpServletRequest request,String memberId){
+	
 		System.out.println(memberId);
 		MemberInfo member = repo.selectOne(memberId);
 		String photoname = member.getPhotoname();
@@ -187,10 +192,10 @@ public class MemberController {
 	//파일 다운로드 및 이미지 
 		@RequestMapping(value="/download", method=RequestMethod.GET) 
 		@ResponseBody
-		public String download(MemberInfo member, HttpServletResponse response, HttpSession session) 
+		public String download(MemberInfo member, HttpServletResponse response, HttpSession session,String memberId) 
 		/*참고: 만일 리턴 타입이 void이면 download.jsp를 찾는다. */
 		{
-			String memberId = (String) session.getAttribute("memberId");
+		
 			MemberInfo fetchedMember 		= repo.selectOne(memberId);
 			System.out.println(fetchedMember);
 			
@@ -248,22 +253,28 @@ public class MemberController {
 	}
 	
 */	
+
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginPage (){
 		
 		return "member/login";
 	}
 	
+
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public MemberInfo login(HttpSession session, MemberInfo member) {
 		MemberInfo result = repo.login(member);
+		
 		if(result != null){
 			session.setAttribute("memberId", result.getMemberId());
 			session.setAttribute("memberName", result.getMemberName());
+			return result;
 		}
-		return result;
+		else{
+			return null;
+		}
 	}
 	//로그아웃
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
@@ -276,9 +287,9 @@ public class MemberController {
 	//회원탈퇴
 	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
 	public String memberDelete(HttpSession session, MemberInfo member){
-		System.out.println("delete"+member);
-		
-		int result = repo.memberDelete(member);
+		member.setMemberId((String)session.getAttribute("memberId"));
+		MemberInfo temp = repo.selectOne(member.getMemberId());
+		int result = repo.memberDelete(temp);
 		if(result == 1){
 			session.removeAttribute("memberId");
 			session.removeAttribute("memberName");
@@ -536,6 +547,28 @@ public class MemberController {
 		return "ok";
 	}
 	
+	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
+	public String follow(String memberId, Model model){
+		MemberInfo info =  repo.selectOne(memberId);
+		
+		int postCount = listRepo.postCount(memberId);
+		
+		ArrayList<Posts> list = new ArrayList<>();
+		list = listRepo.selectList(memberId);
+		
+		int followCount = followRepo.followCount(memberId);
+		
+		model.addAttribute("memberInfo", info);
+		model.addAttribute("postCount", postCount);
+		model.addAttribute("list", list);
+		model.addAttribute("followCount", followCount);
+		
+		return"member/follow_page";
+}
+
+	
+	
+
 	@RequestMapping(value="/tempPwdSet", method=RequestMethod.GET)
 	public String tempPwdSet(MemberInfo member, HttpSession session){
 		
@@ -567,11 +600,24 @@ public class MemberController {
 		return"member/modify";
 	}
 	
-	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
-	public String follow(String memberId, Model model, HttpSession session){
-		System.out.println(memberId);
-		model.addAttribute("memberId", memberId);
+	
+
+	
+	@ResponseBody
+	@RequestMapping(value="/memberPost", method=RequestMethod.GET)
+	public ArrayList<Posts> memberPost(String memberId, Model model){
+		int countPerPage=10;
+		int postCount = listRepo.postCount(memberId);
+		int currentPage = 1;
+		PageNavigator navi = new PageNavigator(currentPage, postCount,countPerPage);
 		
-		return"member/follow_page";
+		ArrayList<Posts> list = new ArrayList<>();
+		
+		list = listRepo.memberPost(memberId, navi.getStartRecord(), countPerPage);
+		
+		model.addAttribute("navi", navi);
+		
+		return list;
 	}
+	
 }

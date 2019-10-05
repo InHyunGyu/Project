@@ -1,5 +1,7 @@
 package com.debugking.www.dao;
 
+import java.util.ArrayList;
+
 import com.debugking.www.dto.MemberInfo;
 
 public interface MemberMapper {
@@ -17,6 +19,7 @@ public interface MemberMapper {
 	
 	public int setPhotoname(MemberInfo member);
 	public int setSavefile(MemberInfo member);
+
 	public MemberInfo getMemberId(MemberInfo member2); //아아다 찾기
 	public MemberInfo getMemberPwd(MemberInfo member2); //비밀번호 찾기
 	public int memberUpdate(MemberInfo member);
@@ -24,4 +27,5 @@ public interface MemberMapper {
 	public int tempPwdSet(MemberInfo member); // 임시 비밀번호 설정
 	
 	
+
 }

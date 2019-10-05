@@ -25,6 +25,7 @@
 
 
         <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="resources/assets/js/login2.js"></script>
 <script >
 	$(function(){
 		var flagid = false;
@@ -48,7 +49,7 @@
 		$("#memberId").on("keyup",function(){
 			memberId = $("#memberId").val();
 			if(memberId.length<3 || memberId.length>15){
-				$("#checkidline").html("<br>id는 3~15사이입니다.");
+				$("#checkidline").html("id는 3~15사이입니다.");
 				return false;
 			}
 			else{
@@ -215,57 +216,6 @@
 				}
 			}
 		});
-		
-		$("#loginBTN").on('click', function() {
-			var memberId = $("#loginId").val();
-			var memberPwd = $("#loginPwd").val();
-
-			if (memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-			}
-
-			$.ajax({
-				method : 'post',
-				url : 'login',
-				data : send,
-				success : function(result) {
-					if (!result) {
-						alert("로그인 실패");
-					} else {
-						alert("로그인 성공");
-						location.href="main";
-					}
-
-				}
-			})
-		})
-
-		$("#signup").on('click', function() {
-			location.reload();
-		})
-		
-		$("#memberDelete").on('click', function() {
-			var memberId = $("#loginId").val();
-			var memberPwd = $("#loginPwd").val();
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-			}
-			$.ajax({
-				method : 'post',
-				url : 'memberDelete',
-				data : send,
-				success : function() {
-					location.href="main";
-				}
-			})
-		})
 	});
 	</script>
 	
@@ -321,7 +271,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -365,7 +315,7 @@
                                         <input class="form-control" type="text" name="memberId" id="memberId" placeholder="ID" style="width: 70%">
                                         <button type="button" class="form-control" id="checkid" style="width: 30%">중복확인</button>
                                     </div>
-                                    <span id="checkidline"></span>
+                                    <span id="checkidline" color></span>
                                     <div class="form-group" >
                                         <input class="form-control" type="password" name="memberPwd" id="memberpwd" placeholder="Pasword">
                                         <span id="checkpwdline"></span>
