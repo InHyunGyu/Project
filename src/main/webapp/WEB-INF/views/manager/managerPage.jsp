@@ -82,7 +82,6 @@
             mehtod:"GET",
             url:"noticeList",
             success: noticeList
-
          })
       })
       //신고 글 이동버튼
@@ -277,6 +276,7 @@
       $("#add").html(tag4);
       $("#content_table").html(tag2);
       $("#content_select").html(tag3);
+      $(".paging").html("");
       
    }
    function reportList(reportList){
@@ -388,6 +388,7 @@
       $("#content_table").html(tag2);
       $("#content_select").html(tag3);
       $("#add").html("");
+      $(".paging").html("");
       
       $("#change").on("click",change);
       //전체선택 동적(ajax)

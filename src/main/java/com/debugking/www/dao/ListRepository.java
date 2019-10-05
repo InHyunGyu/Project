@@ -127,5 +127,11 @@ public class ListRepository {
 			
 			return list;
 		}
+
+		public Posts selectOne(String memberId) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			Posts result = mapper.selectOneId(memberId);
+			return result;
+		}
 		
 }

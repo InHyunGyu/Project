@@ -35,7 +35,7 @@ $(function() {
 		
 		$("#memberDelete").on('click', function() {
 		$.ajax({
-			method : 'POST',
+			method : 'GET',
 			url : 'memberDelete',
 			success : function() {
 				location.reload();

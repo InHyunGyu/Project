@@ -181,5 +181,4 @@ public class ManagerController {
 		return reportList;
 	}
 	
-	
 }

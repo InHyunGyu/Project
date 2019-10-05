@@ -202,8 +202,8 @@
                             <div class="portfolio-item-wrapper">
 							<div id="music_video_list_wrap" style="display: block;">
 								<div
-									class="music_video_list_item to-animate-2 fadeInUp animated"
-									video="3GLrB9GvBq8" style="width: 100%">
+									class="music_video_list_item to-animate-2 fadeInUp animated" 
+									 style="width: 100%">
 									<div class="music_video_list_item_wrap"> 
 										<div style="position: relative;">
 											<div class="music_video_list_item_thumbnail_cover"
@@ -216,7 +216,7 @@
 													src="resources/images/icon_play_round.png"
 													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
 											</div>
-
+ 
 
 											<video width="550" height="300" controls="controls"
 												preload="metadata">
@@ -277,7 +277,7 @@
 											</div>
 
 
-											<video width="300" height="300" controls="controls"
+											<video width="550" height="300" controls="controls"
 												preload="metadata">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
@@ -340,7 +340,7 @@
 											</div>
 
 
-											<video width="300" height="300" controls="controls"
+											<video width="550" height="300" controls="controls"
 												preload="metadata">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
@@ -539,7 +539,7 @@
 							<p class="text-center">
 								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
 							</p>
-						</div>n
+						</div>
 					</aside>
 				</c:if>
 				<c:if test="${sessionScope.memberId == null}">
@@ -563,9 +563,7 @@
 									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
 										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
 								</p>
-								<p class="text-center">
-									<button class="btn btn-outline-secondary" type="button"
-										id="memberDelete" style="width: 320px; height: 54px;">임시탈퇴버튼</button>
+									
 							</div>
 						</div>
 					</aside>

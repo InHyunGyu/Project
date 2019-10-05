@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 /* Drop Tables */
 
 DROP TABLE follower CASCADE CONSTRAINTS;
@@ -13,7 +5,7 @@ DROP TABLE pointslog CASCADE CONSTRAINTS;
 DROP TABLE replies CASCADE CONSTRAINTS;
 DROP TABLE posts CASCADE CONSTRAINTS;
 DROP TABLE memberInfo CASCADE CONSTRAINTS;
-
+drop table likereport CASCADE CONSTRAINTS;
 
 /* Create Sequences */
 
@@ -21,12 +13,14 @@ DROP SEQUENCE followerNumSeq;
 DROP SEQUENCE logNumSeq;
 DROP SEQUENCE replyNoSeq;
 DROP SEQUENCE postNoSeq;
-
+drop sequence likeseq;
 
 CREATE SEQUENCE followNumSeq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE logNumSeq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE replyNoSeq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE postNoSeq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE likeseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE likeseq INCREMENT BY 1 START WITH 1;
 
 select * from memberinfo;
 update memberinfo set emailchecked='y';
@@ -35,6 +29,15 @@ commit;
 
 select * from memberInfo;
 
+
+create table likereport
+(
+    likeseq int,
+    postNo int,
+    memberId varchar2(50),
+    --view ,like, report
+    checkType varchar2(10) 
+)
 -- 회원 정보 테이블이다.
 CREATE TABLE memberInfo
 (
@@ -62,10 +65,6 @@ CREATE TABLE memberInfo
     photoname varchar(500),
     emailchecked varchar(50) default 'n',
 	PRIMARY KEY (memberId)
-    
-    
-
-
 );
 
 
