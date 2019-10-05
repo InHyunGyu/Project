@@ -324,7 +324,7 @@ public class MemberController {
 		session.setAttribute("userpwd", member.getMemberPwd());
 		
 		//회원가입을 위해 본인 확인 이메일 보내기 위한 코드 설정
-		String host = "http://localhost:8999/www/";
+		String host = "http://localhost:8998/www/";
 		String from = "dlgkrals6000@gmail.com"; 
 		String to   = repo.getUserEmail(member.getMemberId()); 
 		System.out.println(to);

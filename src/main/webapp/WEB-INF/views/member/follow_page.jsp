@@ -545,10 +545,10 @@ table {
 					<div class="col-md-4">
 						<div class="sticky-sidebar">
 
-						     <h6 class="single-portfolio-title">${memberId}</h6>
-                     <div class="post-preview"><a href="#"><img id="mypic" src="download?memberId=${memberId}" alt=""></a></div>
-							<p>${memberInfo.myintro}</p> 
-							<hr class="m-t-30 m-b-30">
+						     <h6 class="single-portfolio-title">${memberInfo.memberId}</h6>
+                     <div class="post-preview"><a href="#"><img id="mypic" src="download?memberId=${memberInfo.memberId}" alt=""></a></div>
+							<p>${memberInfo.myintro}</p>   
+							<hr class="m-t-30 m-b-30">  
 							<div class="info-list">
 							
 								<li><span class="info-list-title">Date :</span><span>${memberInfo.signupDate}

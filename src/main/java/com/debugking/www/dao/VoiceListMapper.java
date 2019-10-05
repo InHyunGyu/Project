@@ -20,13 +20,10 @@ public interface VoiceListMapper {
 	public int getVoiceWeekCount(Map<String, Object> map);
 	public int getVoiceMonthCount(Map<String, Object>map);
 	
-	
-	
-	
+
 	public List<Posts> selectAll(Map<String, String> map, RowBounds rb); // 전체 선택하기 
 	public List<Posts> selectNoticeAll(Map<String, String> map, RowBounds rb);
 	
-
 
 
 	public int writing(Posts post); //글쓰기
