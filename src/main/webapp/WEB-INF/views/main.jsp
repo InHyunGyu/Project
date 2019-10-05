@@ -153,12 +153,11 @@
 				</div>
 			</div>
 		</section>
+	
+	 
 		<!-- Hero end-->
 		
 
-  <!-- musicom-->
-	<section class="module p-b-0">
-			<div class="container" >
 
   <!-- Sliders-->
 		<section class="module-cover-slides" data-module-cover-slides-options="{&quot;animation&quot;: &quot;fade&quot;}" style="margin-top: 100px;">
