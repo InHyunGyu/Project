@@ -168,7 +168,8 @@ public class MemberController {
 		
 		member.setPhotoname(savedFilename);
 		member.setSavefile(fullpath);
-		
+		String photoname = member.getPhotoname();
+		session.setAttribute("memberImg", photoname);
 		int result = repo.memberUpdate(member);
 		
 		if(result > 0) System.out.println("삽입성공!");

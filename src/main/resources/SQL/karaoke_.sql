@@ -67,7 +67,7 @@ CREATE TABLE memberInfo
 	PRIMARY KEY (memberId)
 );
 
-
+--deprecated 없어질 테이블
 CREATE TABLE follower
 (
 	followerNum number NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE follower
 );
 
 
-
+--deprecated
 CREATE TABLE pointslog
 (
 	lognum number NOT NULL,
@@ -133,3 +133,12 @@ CREATE TABLE replies
 	PRIMARY KEY (replyNo)
 );
 
+
+--더미 쿼리
+--등급이 beginner이면서 게시물이 5개 이상인 사람 쿼리
+select m.memberid
+from memberinfo m join posts p 
+on m.memberid = p.memberid
+where m.memberlevel = 'beginner'
+group by m.memberid
+having count(p.postno) > 5;
