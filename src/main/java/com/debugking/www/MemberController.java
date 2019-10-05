@@ -273,6 +273,7 @@ public class MemberController {
 		if(result != null){
 			session.setAttribute("memberId", result.getMemberId());
 			session.setAttribute("memberName", result.getMemberName());
+			session.setAttribute("memberImg", result.getPhotoname());
 			return result;
 		}
 		else{

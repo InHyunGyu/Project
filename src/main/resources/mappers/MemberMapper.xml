@@ -82,6 +82,7 @@
 		select 
 			memberId
 			,memberName
+			,photoname
 		From memberInfo
 		Where memberPwd =#{memberPwd} and emailchecked = 'y' 
 									and memberId =#{memberId} and memberLevel !='Z'

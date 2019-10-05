@@ -519,11 +519,13 @@
 					<aside class="widget widget-text">
 						<div class="textwidget">
 							<p class="text-center">
-								<c:if test="${sessionScope.memberImg == null}">
-								<img src="download?memberId=${sessionScope.memberId}"  width="80px">
-								</c:if>
-								<c:if test="${sessionScope.memberImg != null}">
-								<img src="resources/assets/images/" width="80px">
+								<c:if test="${sessionScope.memberId != null}">
+									<c:if test="${sessionScope.memberImg != null}">
+										<img src="download?memberId=${sessionScope.memberId}"  width="80px">
+									</c:if>
+									<c:if test="${sessionScope.memberImg == null}">
+										<img src="resources/assets/images/person.png"  width="80px">
+									</c:if>
 								</c:if>
 							</p>
 							<p class="text-center">${sessionScope.memberId}</p>
