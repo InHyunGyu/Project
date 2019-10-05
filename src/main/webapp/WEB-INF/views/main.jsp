@@ -35,6 +35,8 @@
 
 <script>
 	$(function() {
+		init();
+		
 		$("#loginBTN").on('click', function() {
 			var memberId = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
@@ -85,6 +87,33 @@
 			})
 		})
 	})
+	///////////////////////////////////////작성중인 코드//////////////////////////////////////////
+	function init(){
+		$.ajax({
+			url:'mainAnnoun',
+			type:'get', 
+			success: function(resp){
+				recentAnnoun(resp); 
+			}
+		})
+	}
+	
+	function recentAccoun(resp){
+		var tag = ''; 
+		var resp = [{"posNo":"abcde0000", "posDate":"abcde"},{"posNo":"abcde1111", "posDate":"abcde"},{"posNo":"ab3333e", "posDate":"abcde"},{"posNo":"abcd4", "posDate":"abcde"}];
+		resp 
+		$.each(resp, function(index, item){
+			if(index <3) 
+			tag += '<li><a href="file_detail?postNo="' + item.postNo + '>item.postTitle</a><span class="post-date">'
+					 + item.postDate + '</span></li>';
+					 
+			else return;
+		})
+		
+		alert(tag);
+		$("#recentAnnoun").html(tag);
+	}
+	///////////////////////////////////////작성중인 코드//////////////////////////////////////////
 </script>
 
 </head>
@@ -378,11 +407,10 @@
 									<h6>About Us</h6>
 								</div>
 								<div class="textwidget">
-									<p>Map where your photos were taken and discover local
-										points of interest. Map where your photos.</p>
+									<p>"As long as we live, there is never enough singing!"</p>
 									<p>
-										Location: 12 London Avenue, Suite 18<br> E-mail:
-										support@theme.com<br> Phone: 8 800 123 4567<br>
+										UtaJJang is serviced by team "DebugKing"
+										<br> よろしくお願いします。
 									</p>
 									<ul class="social-icons">
 										<li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -397,9 +425,10 @@
 							<!-- Recent entries widget-->
 							<aside class="widget widget-recent-entries">
 								<div class="widget-title">
-									<h6>Recent Posts</h6>
+									<h6>Announcements</h6>
 								</div>
-								<ul>
+								
+								<ul id="recentAnnoun">
 									<li><a href="#">Map where your photos were taken and
 											discover local points.</a><span class="post-date">May 8,
 											2018</span></li>
@@ -426,7 +455,7 @@
 							<!-- Recent works-->
 							<aside class="widget widget-recent-works">
 								<div class="widget-title">
-									<h6>Portfolio</h6>
+									<h6>Developers</h6>
 								</div>
 								<ul>
 									<li><a href="#"><img

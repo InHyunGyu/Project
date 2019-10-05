@@ -177,6 +177,7 @@ public class MemberController {
 			}
 		}
 		
+		
 		if(result > 0) return "ok";
 		
 		return null;
