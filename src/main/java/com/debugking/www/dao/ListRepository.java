@@ -2,6 +2,7 @@ package com.debugking.www.dao;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -126,6 +127,30 @@ public class ListRepository {
 			ArrayList<String> list = mapper.postLikeList(postNo);
 			
 			return list;
+		}
+
+		public Posts after(int postNo, String postType) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			
+			Posts temp = new Posts();
+			temp.setPostNo(postNo);
+			temp.setPostType(postType);
+			
+			Posts after = mapper.after(temp);
+			
+			return after;
+		}
+
+		public Posts before(int postNo, String postType) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			
+			Posts temp = new Posts();
+			temp.setPostNo(postNo);
+			temp.setPostType(postType);
+			
+			Posts before = mapper.before(temp);
+			
+			return before;
 		}
 		
 }

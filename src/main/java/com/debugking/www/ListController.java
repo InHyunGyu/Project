@@ -68,6 +68,8 @@ public class ListController {
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String write(String postType, Model model){
 
+		System.out.println(postType);
+		
 		model.addAttribute("postType", postType);
 
 		return "userBoard/write";
@@ -108,6 +110,13 @@ public class ListController {
 		
 		Posts post = repo.selectOne(postNo);
 		
+		String postType = post.getPostType();
+		
+		Posts after = repo.after(postNo, postType);
+		Posts before = repo.before(postNo, postType);
+		
+		model.addAttribute("before", before);
+		model.addAttribute("after", after);
 		model.addAttribute("post", post);
 		model.addAttribute("replyCount", replyCount);
 		model.addAttribute("replyList", replyList);

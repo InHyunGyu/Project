@@ -156,10 +156,10 @@
        <!-- Wrapper-->
 	<div class="wrapper">
 		<!-- Hero-->
-		<section class="module-cover parallax text-center fullscreen" data-background="resources/assets/images/module-5.jpg" data-overlay="0.6">
+		<section class="module-cover parallax text-center " data-background="resources/assets/images/write.jpg" data-overlay="0.6"  >
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-6 col-md-6 m-auto">
+					<div class="col-lg-6 col-md-6 m-auto" >
 						<div class="m-b-20">
 							<h6>
 								Writing

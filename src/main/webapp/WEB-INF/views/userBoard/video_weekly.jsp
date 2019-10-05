@@ -233,7 +233,7 @@
                                             <li class="page-item"><a class="page-link" href="video_weekly?&currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-right"></span></a></li>
                                         </ul>
                                     </nav>
-                                    <a class="btn btn-outline-secondary" href="write" style="float: right; display: inline-block;">Write</a>
+                                    <a class="btn btn-outline-secondary" id="btnWriteForm" style="float: right; display: inline-block;">Write</a>
                                 </div>
                            		
                             </div>

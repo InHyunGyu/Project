@@ -165,4 +165,33 @@
 		where postNo = #{postNo}
 	
 	</select>
+	
+	<select id="after" parameterType="Post" resultType="Post">
+		select 
+			postNo,
+			memberId,
+			postTitle,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			postType
+		from posts 
+		where postNo = 
+			(select 
+				MIN(postNo) 
+			from posts 
+			where postNo > #{postNo} and postType=#{postType})
+	</select>
+	
+	<select id="before" parameterType="Post" resultType="Post">
+		select 
+			memberId,
+			postTitle,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			postType
+		from posts 
+		where postNo = 
+			(select
+				MAX(postNo)
+			from posts
+			where #{postNo} > postNo and postType = #{postType})
+	</select>
 </mapper>

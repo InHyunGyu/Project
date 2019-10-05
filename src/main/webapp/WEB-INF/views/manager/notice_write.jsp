@@ -159,14 +159,14 @@
        <!-- Wrapper-->
 	<div class="wrapper">
 		<!-- Hero-->
-		<section class="module-cover parallax text-center fullscreen"
-			data-background="resources/assets/images/module-5.jpg" data-overlay="0.6" style="height:1000px;">
+		<section class="module-cover parallax text-center"
+			data-background="resources/assets/images/manager.jpg" data-overlay="0.6" >
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 col-md-6 m-auto">
 						<div class="m-b-20">
 							<h6>
-								Notice
+								Notice_write
 							</h6>
 						</div>
 						<div class="m-b-20" id="write">

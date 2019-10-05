@@ -112,11 +112,16 @@ table {
 
 		
 		$("#followList").on('click',function(){
+			
 			follower(memberId, login);
 		})
 		
 		$("#postContent").on('click','.follower' ,function(){
+		
 			follower(memberId, login);
+		
+			
+			
 		})
 		
 		$("#postContent").on('click', '.following',function(){
@@ -191,7 +196,7 @@ table {
 				
 				var tag = '';
 				
-				tag += '<div class="left"><h6 class="single-portfolio-title"><a class="follower">Follower</a></h6></div>';
+				tag += '<div class="left"><h6 class="single-portfolio-title"><a class="follower" style="text-decoration:underline;">Follower</a></h6></div>';
 				tag += '<div class="right"><h6 class="single-portfolio-title"><a class="following">Following</a></h6></div>';
 				tag += '<table class="table table-striped table-sm table-hover"> ';
 				tag += '<colgroup>';
@@ -231,12 +236,14 @@ table {
 							tag += '<tr>';
 							tag += '<td><a href="follow_page?memberId='+item.memberId+'">'+item.memberId+'</a></td>';
 							tag += '<td>'+item.memberLevel+'</td>';
-							tag += '<c:if test="${sessionScope.memberId != '+item.memberId+'}">'
-							tag += '<td><button type="button" class="followReq" data-value="'+item.memberId+'" >follow</button></td>';
-							tag += '</c:if>'
-							tag += '<c:if test="${sessionScope.memberId == '+item.memberId+'}">'
-							tag += '<td></td>';
-							tag += '</c:if>'
+							tag += '<td>'
+							if(login != item.memberId) {
+								tag += '<button type="button" class="followReq" data-value="'+item.memberId+'" >follow</button>';
+							} else {
+								
+							}
+							
+							tag += '</td>'
 							
 						}
 						
@@ -277,8 +284,8 @@ table {
 			success:function(res){
 				var tag = '';
 				
-				tag += '<div class="left"><h6 class="single-portfolio-title"><a class="follower" class="click">Follower</a></h6></div>';
-				tag += '<div class="right"><h6 class="single-portfolio-title"><a class="following" class="click">Following</a></h6></div>';
+				tag += '<div class="left"><h6 class="single-portfolio-title"><a class="follower" >Follower</a></h6></div>';
+				tag += '<div class="right"><h6 class="single-portfolio-title"><a class="following" style="text-decoration:underline;">Following</a></h6></div>';
 				tag += '<table class="table table-striped table-sm table-hover"> ';
 				tag += '<colgroup>';
 				tag += '<col style="width: 20%;" />';
@@ -297,7 +304,6 @@ table {
 					tag += '</tr>';
 				} else {
 					$.each(res.list, function(index, item){
-						var memberId = item.followName;
 						var followName = '';
 						var flag = false;
 						$.each(res.memList, function(index, item2){
@@ -317,12 +323,15 @@ table {
 							tag += '<tr>';
 							tag += '<td><a href="follow_page?memberId='+item.followName+'">'+item.followName+'</a></td>';
 							tag += '<td>'+item.memberLevel+'</td>';
-							tag += '<c:if test="${sessionScope.memberId != '+item.followName+'}">'
-							tag += '<td><button type="button" class="followReq" data-value="'+item.followName+'" >follow</button></td>';
-							tag += '</c:if>'
-							tag += '<c:if test="${sessionScope.memberId == '+item.followName+'}">'
-							tag += '<td></td>';
-							tag += '</c:if>'
+							tag += '<td>'
+							
+							if(login != item.followName) {
+								tag += '<button type="button" class="followReq" data-value="'+item.followName+'" >follow</button>';
+
+							} else {
+								
+							}
+							tag += '</td>'
 							
 						}
 						
@@ -395,49 +404,61 @@ table {
 		alert(followName);
 		var login = '${sessionScope.memberId}'
 		
-	
-		var send = {
-				'followName':followName,
-				'memberId':login
-		}
 		
-		$.ajax({
-			method:'get',
-			url:'followBTN',
-			data:send,
-			success:function(res){
-				if(res == 'ok') {
-					alert('ok');
-					return;
-				} else {
-					alert('follow 등록에 실패하였습니다.');
-					return;
-				}
+		if(followName != login) {
+	
+			var send = {
+					'followName':followName,
+					'memberId':login
 			}
-		})	
+			
+			$.ajax({
+				method:'get',
+				url:'followBTN',
+				data:send,
+				success:function(res){
+					if(res == 'ok') {
+						alert('ok');
+						following(followName, login)
+						return;
+					} else {
+						alert('follow 등록에 실패하였습니다.');
+						return;
+					}
+				}
+			})	
+		} else {
+			alert('팔로우 할 수 없습니다.');
+		}
 	}
 	
 	function blockBTN (memberId, login) {
-		var send = {
-				'followName' : memberId,
-				'memberId' : login,
-		}
 		
-		$.ajax({
-			method:'get',
-			url:'block',
-			data: send,
-			success:function (res) {
-				if(res='ok') {
-					alert('삭제 완료');
-					return;
-				} else {
-					alert('삭제 실패');
-					return;
-				}
-				
+		if(memberId != login) {
+		
+			var send = {
+					'followName' : memberId,
+					'memberId' : login,
 			}
-		})
+			
+			$.ajax({
+				method:'get',
+				url:'block',
+				data: send,
+				success:function (res) {
+					if(res='ok') {
+						alert('삭제 완료');
+						return;
+					} else {
+						alert('삭제 실패');
+						return;
+					}
+					
+				}
+			})
+		} else {
+			alert('삭제할 수 없습니다.');
+		}
 	}
 	
 	</script>
@@ -555,7 +576,7 @@ table {
 						<!-- Page Navigation end-->
 					</div>
 
-
+						
 
 
 					<div class="col-md-4">

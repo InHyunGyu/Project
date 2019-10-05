@@ -37,4 +37,8 @@ public interface ListMapper {
 
 	public ArrayList<String> postLikeList(int postNo);
 
+	public Posts before(Posts temp);
+
+	public Posts after(Posts temp);
+
 }

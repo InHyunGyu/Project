@@ -74,13 +74,14 @@ $(function(){
 	})
 	
 	$("#btnWriteForm").on('click',function(){
-			if(${empty sessionScope.memberId}){
-				alert("로그인한 후 글쓰기가능합니다.");
-				return;
-			} else{
-				location.href="write?postType=video";
-			}
-		})
+		if(${empty sessionScope.memberId}){
+			alert("로그인한 후 글쓰기가능합니다.");
+			return;
+		} else{
+			location.href="write?postType=video";
+		}
+	})
+	
 })
 	</script>      
     </head>
@@ -238,7 +239,7 @@ $(function(){
                                             <li class="page-item"><a class="page-link" href="video_new?&currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-right"></span></a></li>
                                         </ul>
                                     </nav>
-                                    <a class="btn btn-outline-secondary" href="write" style="float: right; display: inline-block;">Write</a>
+                                    <a class="btn btn-outline-secondary" id="btnWriteForm" style="float: right; display: inline-block;">Write</a>
                                 </div>
                            		
                             </div>
