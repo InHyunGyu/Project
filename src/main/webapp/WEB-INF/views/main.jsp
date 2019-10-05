@@ -539,7 +539,7 @@
 							<p class="text-center">
 								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
 							</p>
-						</div>n
+						</div>
 					</aside>
 				</c:if>
 				<c:if test="${sessionScope.memberId == null}">
@@ -563,9 +563,7 @@
 									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
 										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
 								</p>
-								<p class="text-center">
-									<button class="btn btn-outline-secondary" type="button"
-										id="memberDelete" style="width: 320px; height: 54px;">임시탈퇴버튼</button>
+									
 							</div>
 						</div>
 					</aside>

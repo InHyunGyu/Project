@@ -152,14 +152,12 @@
 				alert('로그인을 해주세요');
 				return;
 			} else {
-				
 				var send = {
-						'postNo':postNo,
-						'memberId':login
+						'postNo':postNo
 				}
 				
 				$.ajax({
-					method:'post',
+					method:'GET',
 					url:'postLike',
 					data:send,
 					success:function(res){
@@ -180,7 +178,7 @@
 			var postNo = $(this).attr("data-value");
 			
 			$.ajax({
-				method:'get',
+				method:'GET',
 				url:'reported?postNo='+postNo,
 				success:function(){
 					location.reload();
@@ -341,7 +339,8 @@
 												<div class="form-group">
 													<c:if test="${sessionScope.memberId == reply.memberId}">
 													<div class="comment-reply">
-														<a class="replyModiBTN" data-value="${reply.replyNo}" data-content="${reply.replyContent}" data-name="${reply.memberId}">Modify</a>&ensp;<a class="replyDelBTN" data-name="${reply.memberId}" data-value="${reply.replyNo}">Delete</a>
+														<a class="replyModiBTN" data-value="${reply.replyNo}" data-content="${reply.replyContent}" data-name="${reply.memberId}">Modify</a>&ensp;
+														<a class="replyDelBTN" data-name="${reply.memberId}" data-value="${reply.replyNo}">Delete</a>
 													</div>
 													</c:if>
 							

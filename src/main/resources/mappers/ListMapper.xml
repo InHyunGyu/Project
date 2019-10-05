@@ -53,6 +53,24 @@
 		from posts
 		where postno = #{postNo}
 	</select>
+	<select id="selectOneId" parameterType="String" resultType="Post">
+		select
+			postNo,
+			memberId,
+			postTitle,
+			postContent,
+			to_char(postDate,'YYYY-MM-DD') as postDate,
+			isAnnouncement,
+			postLike,
+			postView,
+			reported,
+			postType,
+			originalFile,
+			savedFile
+		from posts
+		where memberId = #{memberId}
+	</select>
+	
 	
 	<insert id="replyInsert" parameterType="Reply">
 		insert into replies

@@ -49,7 +49,7 @@
 		$("#memberId").on("keyup",function(){
 			memberId = $("#memberId").val();
 			if(memberId.length<3 || memberId.length>15){
-				$("#checkidline").html("<br>id는 3~15사이입니다.");
+				$("#checkidline").html("id는 3~15사이입니다.");
 				return false;
 			}
 			else{
@@ -315,7 +315,7 @@
                                         <input class="form-control" type="text" name="memberId" id="memberId" placeholder="ID" style="width: 70%">
                                         <button type="button" class="form-control" id="checkid" style="width: 30%">중복확인</button>
                                     </div>
-                                    <span id="checkidline"></span>
+                                    <span id="checkidline" color></span>
                                     <div class="form-group" >
                                         <input class="form-control" type="password" name="memberPwd" id="memberpwd" placeholder="Pasword">
                                         <span id="checkpwdline"></span>
