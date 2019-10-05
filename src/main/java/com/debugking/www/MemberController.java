@@ -88,6 +88,9 @@ public class MemberController {
 		
 		System.out.println("----------createContentId메서드 호출 종료-----");
 	}
+	
+	
+	
 	@RequestMapping(value="/imageFetch", method=RequestMethod.GET)
 	@ResponseBody
 	public String imageFetch(HttpSession session, HttpServletRequest request,String memberId){
@@ -546,6 +549,16 @@ public class MemberController {
 		
 		return "ok";
 	}
+	@RequestMapping(value="/checkEmail", method=RequestMethod.GET)
+	@ResponseBody
+	public String checkEmail(String memberEmail){
+		System.out.println("이메일 중복확인 컨트롤러 호출");
+		String result = repo.checkEmail(memberEmail);
+		
+		return result;
+	}
+	
+	
 	
 	@RequestMapping(value="/follow_page", method=RequestMethod.GET)
 	public String follow(String memberId, Model model){

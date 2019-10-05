@@ -121,6 +121,15 @@
 		where memberId = #{memberId}
 	</update>
 	
+	<select id="checkEmail" parameterType="String" resultType="String">
+		select 
+			memberEmail  
+		from 
+			memberinfo
+		where 
+			memberEmail = #{memberEmail}
+	</select>
+	
 	<update id="setPhotoname" parameterType="Member">
 		update MemberInfo
 		set photoname = #{photoname}
