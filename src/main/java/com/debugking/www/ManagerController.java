@@ -28,7 +28,7 @@ public class ManagerController {
 			@RequestParam(value="searchItem" , defaultValue="voice") String searchItem,
 			@RequestParam(value="currentPage", defaultValue="1")     int currentPage,
 			Model model){
-		
+		System.out.println("매니저 페이지 호출 ");
 		int totalRecordCount = repo.getVoiceCount(searchItem);
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount);
 		
