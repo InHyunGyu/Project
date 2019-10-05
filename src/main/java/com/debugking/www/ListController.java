@@ -3,7 +3,11 @@ package com.debugking.www;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.debugking.www.dao.ListRepository;
+import com.debugking.www.dao.MemberRepository;
+import com.debugking.www.dao.likereportRepository;
+import com.debugking.www.dto.MemberInfo;
 import com.debugking.www.dto.Posts;
 import com.debugking.www.dto.Replies;
+import com.debugking.www.dto.likereport;
 import com.debugking.www.service.PostsService;
 import com.debugking.www.util.FileService;
 
@@ -32,28 +40,17 @@ public class ListController {
 	@Autowired
 	PostsService serivce;
 
-	final String uploadPath="/Users/heeju/Documents/fileIO";
+	@Autowired
+	MemberRepository memberrepo;
+	
+	@Autowired
+	likereportRepository lrrepo;
+	
+	
+	
+	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile"; 
 
-	@RequestMapping(value="/video_new", method=RequestMethod.GET)
-	public String video_new(){
-		return "userBoard/video_new";
-	}
-
-	@RequestMapping(value="/video_weekly", method=RequestMethod.GET)
-	public String video_weekly(){
-		return "userBoard/video_weekly";
-	}
-
-	@RequestMapping(value="/video_monthly", method=RequestMethod.GET)
-	public String video_monthly(){
-		return "userBoard/video_monthly";
-	}
-
-	@RequestMapping(value="/video_all", method=RequestMethod.GET)
-	public String video_all(){
-		return "userBoard/video_all";
-	}
-
+	
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
 	public String notice(){
 
@@ -98,12 +95,32 @@ public class ListController {
 		
 	}
 
+
+	
+	//파일 들어가기
 	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
-	public String commuDetail(int postNo, Model model){
+	public String commuDetail(int postNo, HttpSession session,Model model){
+/*		 ModelAndView view = new ModelAndView();*/
+		String view = "view";
 		
+		//댓글 받아와 모델에 입력하기
 		ArrayList<Replies> replyList = new ArrayList<>();
-		
 		int replyCount = repo.replyCount(postNo);
+
+	   
+		List<likereport> result = lrrepo.selectList(postNo,view); 
+		String memberId = (String)session.getAttribute("memberId");
+		for(likereport lr : result){
+			if(lr.getMemberId().equals(memberId)){
+				System.out.println("배열에 존재합니다.");
+				return "userBoard/file_detail";
+			}
+		}
+		if(memberId==null){
+			System.out.println("로그인 하지 않습니다.");
+			return "userBoard/file_detail";
+		}
+
 		replyList = repo.replyList(postNo);
 		
 		repo.postView(postNo);
@@ -120,10 +137,18 @@ public class ListController {
 		model.addAttribute("post", post);
 		model.addAttribute("replyCount", replyCount);
 		model.addAttribute("replyList", replyList);
+
 		
+		post.setMemberId(memberId);
+		post.setPostNo(postNo);
+		lrrepo.viewinsertLR(post,view); //배열에 입력
+		System.out.println("3");
+		repo.postView(postNo); //조회수 증가
+		System.out.println("4");
+		System.out.println("배열에 존재하지 않습니다.");
 		return "userBoard/file_detail";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/replyinsert", method=RequestMethod.POST)
 	public String replyinsert(String replyContent, int postNo, HttpSession session){
@@ -134,7 +159,7 @@ public class ListController {
 		
 		return "ok";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/replyDel", method=RequestMethod.GET)
 	public String replyDel(int replyNo){
@@ -167,20 +192,77 @@ public class ListController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/postLike", method=RequestMethod.POST)
-	public int postLike(int postNo, String memberId){
+	@RequestMapping(value="/postLike", method=RequestMethod.GET)
+	public int postLike(int postNo,HttpSession session,Model model){
+		String like = "like";
+		
+		//댓글 받아와 모델에 입력하기
+		ArrayList<Replies> replyList = new ArrayList<>();
+		int replyCount = repo.replyCount(postNo);
+	    replyList = repo.replyList(postNo);
+	    model.addAttribute("replyCount", replyCount);
+	    model.addAttribute("replyList", replyList);
 
-		int result = repo.postLike(postNo);
-			
+	    //확인하고 조회수 증가 후 페이지 이동
+	    Posts post = repo.selectOne(postNo);
+	    model.addAttribute("post", post);
+	    
+		List<likereport> result = lrrepo.selectList(postNo,like); 
+		String memberId = (String)session.getAttribute("memberId");
+		for(likereport lr : result){
+			if(lr.getMemberId().equals(memberId)){
+				System.out.println("배열에 존재합니다.");
+				return 0;
+			}
+		}
+		if(memberId==null){
+			System.out.println("로그인 하지 않습니다.");
+			return 0;
+		}
+		post.setMemberId(memberId);
+		post.setPostNo(postNo);
+		lrrepo.viewinsertLR(post,like); //배열에 입력
 		
-		
-		return result;
+		repo.postLike(postNo); //조회수 증가
+		System.out.println("배열에 존재하지 않습니다.");
+		return 1;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/reported", method=RequestMethod.GET)
-	public int reported(int postNo){
-		int result = repo.reported(postNo);
-		return result;
+	public int reported(int postNo,HttpSession session,Model model){
+		String report ="report";
+		
+		//댓글 받아와 모델에 입력하기
+		ArrayList<Replies> replyList = new ArrayList<>();
+		int replyCount = repo.replyCount(postNo);
+	    replyList = repo.replyList(postNo);
+	    model.addAttribute("replyCount", replyCount);
+	    model.addAttribute("replyList", replyList);
+
+	    //확인하고 조회수 증가 후 페이지 이동
+	    Posts post = repo.selectOne(postNo);
+	    model.addAttribute("post", post);
+	    
+		List<likereport> result = lrrepo.selectList(postNo,report); 
+		String memberId = (String)session.getAttribute("memberId");
+		
+		for(likereport lr : result){
+			if(lr.getMemberId().equals(memberId)){
+				System.out.println("배열에 존재합니다.");
+				return 0;
+			}
+		}
+		if(memberId==null){
+			System.out.println("로그인 하지 않습니다.");
+			return 0;
+		}
+		post.setMemberId(memberId);
+		post.setPostNo(postNo);
+		lrrepo.viewinsertLR(post,report); //배열에 입력
+		
+		repo.reported(postNo); //조회수 증가
+		System.out.println("배열에 존재하지 않습니다.");
+		return 1;
 	}
 }

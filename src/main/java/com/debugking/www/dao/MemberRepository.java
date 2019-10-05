@@ -1,7 +1,5 @@
 package com.debugking.www.dao;
 
-import java.util.ArrayList;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,6 +13,25 @@ import com.debugking.www.dto.MemberInfo;
 public class MemberRepository {
 	@Autowired
 	SqlSession session;
+	
+	//아아다 찾기
+	public MemberInfo getMemberId(MemberInfo member2){
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		
+		MemberInfo member = mapper.getMemberId(member2);
+		
+		return member;
+	}
+	
+	public MemberInfo getMemberPwd(MemberInfo member2) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		
+		MemberInfo member = mapper.getMemberPwd(member2);
+		
+		return member;
+	}
+	
+	
 	//회원 찾기 -한 명 찾기
 	public MemberInfo idCheck(String memberId) {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
@@ -30,11 +47,18 @@ public class MemberRepository {
 		int result = mapper.signup(member);
 		return result;
 	}
+	//회원로그인
 	public MemberInfo login(MemberInfo member) {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
-		MemberInfo result = mapper.login(member);
+		MemberInfo result=null;
+		try{
+			result = mapper.login(member);
+		}catch(Exception e){
+			return null;
+		}
 		return result;
 	}
+	//회원삭제
 	public int memberDelete(MemberInfo member) {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
 		int result = mapper.memberDelete(member);
@@ -76,5 +100,20 @@ public class MemberRepository {
 		
 		return result;
 	}
+	public int memberUpdate(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.memberUpdate(member);
+		
+		return result;
+	}
+
+	public int tempPwdSet(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.tempPwdSet(member);
+		
+		return result; 
+	}
+
+
 
 }

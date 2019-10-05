@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -31,10 +32,10 @@
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 
 <style>
-.module a {
+.module a { 
 	color: #788487;
 }
-
+ 
 .set_list {
 	width: 769px;
 	height: 48px;
@@ -779,4 +780,5 @@
 	<script src="resources/assets/js/custom/plugins.min.js"></script>
 	<script src="resources/assets/js/custom/custom.min.js"></script>
 </body>
+
 </html>

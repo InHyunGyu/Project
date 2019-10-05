@@ -9,6 +9,7 @@
 		<typeAlias type="com.debugking.www.dto.Posts" alias="Post" />
 		<typeAlias type="com.debugking.www.dto.Replies" alias="Reply" />
 		<typeAlias type="com.debugking.www.dto.Follower" alias="Follower" />
+		<typeAlias type="com.debugking.www.dto.likereport" alias="likereport" />
 	</typeAliases>
 	
 	<mappers>
@@ -16,8 +17,13 @@
 		<mapper resource="mappers/PointslogMapper.xml" />
 		<mapper resource="mappers/VoiceMapper.xml" />
 		<mapper resource="mappers/ManagerMapper.xml" />
+
 		<mapper resource="mappers/FollowMapper.xml" />
-		<mapper resource="mappers/CommunityMapper.xml" />
+		<mapper resource="mappers/CommunityMapper.xml" /> 
 		<mapper resource="mappers/ListMapper.xml" />
+		<mapper resource="mappers/VideoMapper.xml"/>
+		
+		<mapper resource="mappers/likereportMapper.xml"/>
+
 	</mappers>
 </configuration>

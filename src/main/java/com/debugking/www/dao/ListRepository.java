@@ -129,6 +129,12 @@ public class ListRepository {
 			return list;
 		}
 
+
+		public Posts selectOne(String memberId) {
+			ListMapper mapper = session.getMapper(ListMapper.class);
+			Posts result = mapper.selectOneId(memberId);
+			return result;
+		}
 		public Posts after(int postNo, String postType) {
 			ListMapper mapper = session.getMapper(ListMapper.class);
 			
@@ -151,6 +157,7 @@ public class ListRepository {
 			Posts before = mapper.before(temp);
 			
 			return before;
+
 		}
 		
 }

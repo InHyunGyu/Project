@@ -29,63 +29,33 @@
 <!-- Template core CSS-->
 <link href="resources/assets/css/template.css" rel="stylesheet">
 <!-- JavaScripts -->
+	
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 
 
+<!-- musicom css -->
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="resources/images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="resources/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/icomoon.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/simple-line-icons.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.theme.default.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/style_frame.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/spinner.css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet"> 
+ 
+   
+<!-- musicom css end -->
 
-<script>
-	$(function() {
-		$("#loginBTN").on('click', function() {
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
 
-			if (memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
 
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-			}
+<script src="resources/assets/js/login2.js"></script>
 
-			$.ajax({
-				method : 'post',
-				url : 'login',
-				data : send,
-				success : function(result) {
-					if (!result) {
-						alert("로그인 실패");
-					} else {
-						alert("로그인 성공");
-						location.reload();
-					}
 
-				}
-			})
-		})
-
-		$("#signup").on('click', function() {
-			location.href = "signup"
-		})
-		$("#memberDelete").on('click', function() {
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			var send = {
-				"memberId" : memberId,
-				"memberPwd" : memberPwd
-			}
-			$.ajax({
-				method : 'post',
-				url : 'memberDelete',
-				data : send,
-				success : function() {
-					location.reload();
-				}
-			})
-		})
-	})
-</script>
 
 </head>
 <body>
@@ -138,7 +108,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -148,7 +118,7 @@
 								<li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
 							</ul></li>
 						<li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
-						<c:if test="${sessionScope.memberId != 'admin'}">
+						<c:if test="${sessionScope.memberId == 'admin'}">
 						<li class="menu-item-has-children"><a href="managerPage"><span
 								class="menu-item-span">Admin</span></a></li></c:if>
 					</ul>
@@ -177,14 +147,18 @@
 					<div class="col-md-12">
 						<h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
 						<p class="m-b-40">
-							Hi <br> Hi
+							
 						</p>
 					</div>
 				</div>
 			</div>
 		</section>
+	
+	 
 		<!-- Hero end-->
 		
+
+
   <!-- Sliders-->
 		<section class="module-cover-slides" data-module-cover-slides-options="{&quot;animation&quot;: &quot;fade&quot;}" style="margin-top: 100px;">
   
@@ -232,10 +206,11 @@
 		<!-- Portfolio-->
 		<section class="module p-b-0">
 			<div class="container">
+
 				<div class="row">
 					<div class="col-md-6 m-auto text-center">
-						<h1>Video Best</h1>
-						<p class="lead">Highly recommended video by bulletin board</p>
+						<h1 style="font-family: 'Love Ya Like A Sister', cursive;">Video Best</h1>
+						<p class="lead" style="font-family: 'Love Ya Like A Sister', cursive;">Highly recommended video by bulletin board</p>
 					</div>
 				</div>
 				<div class="row">
@@ -245,99 +220,241 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<ul class="filters serif">
-							<li><a href="#" data-filter=".packaging">New</a></li>
-							<li><a class="current" href="#" data-filter="*">Weekly</a></li>
-							<li><a href="#" data-filter=".branding">Monthly</a></li>
-							<li><a href="#" data-filter=".digital">ALL</a></li>
+						<ul class="filters serif" style="font-family: 'Love Ya Like A Sister', cursive;">
+						
+							<li><a href="#" class="weeklyOn" data-filter=".weekly">Weekly</a></li>
+							<li><a href="#" class="monthlyOn" data-filter=".monthly">Monthly</a></li>
+							<li><a href="#" class="newOn" data-filter=".new">New</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<div class="container-fluid">
-				<div class="row row-portfolio" data-columns="3">
-					<div class="grid-sizer"></div>
-					<div class="portfolio-item branding">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/1.jpg" alt="">
+	
+					
+                
+                
+                
+                
+                	<div id="main_index_body">
+
+				<section id="fh5co-home" data-section="home">
+                
+                
+                <div class="container-fluid">
+                    <div class="row row-portfolio" data-columns="3" style="position: relative; height: 1399.2px;">
+                        <div class="grid-sizer"></div>
+                        
+                        
+                        
+                                <c:forEach var="board" items="${weekList}" varStatus="stat">
+                                 <div class="portfolio-item weekly" style="position: absolute; left: 0px; top: 0px;display:none;">
+                            <div class="portfolio-item-wrapper">
+							<div id="music_video_list_wrap" style="display: block;">
+								<div   
+									class="music_video_list_item to-animate-2 fadeInUp animated" 
+									 style="width: 100%">
+									<div class="music_video_list_item_wrap"> 
+										<div style="position: relative;">
+											<div class="music_video_list_item_thumbnail_cover"
+												onmouseenter="fnMouseEnterOnMusic(this);"
+												onmouseleave="fnMouseLeaveOnMusic(this);"
+												onmousemove="fnMouseEnterOnMusic(this);"
+												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+
+												<img class="music_video_list_item_thumbnail_cover_img"
+													src="resources/images/icon_play_round.png"
+													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+											</div>
+ 
+
+											<video width="550" height="300" controls="controls"
+												preload="metadata">
+												<source src="resources/savefile/${board.savedFile}"
+													type="video/webm">
+											</video>
+
+											<div class="music_video_list_item_title_div">
+												<div class="music_video_list_item_music_name_div">
+													<a class="music_video_list_item_music_name"
+														href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
+												</div>
+												<a class="music_video_list_item_artist"
+													href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+												<span class="music_video_list_item_release_date">${board.postDate}</span>
+											</div>
+											<div class="music_video_list_item_fav_div"
+												style="line-height: 4;">
+												<img class="music_video_list_item_fav_img"
+													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+											</div>
+										</div>
+									</div>
+									<div 
+										class="music_video_list_item to-animate-2 fadeInUp animated"
+										video="3ymwOvzhwHs" style="width: 25%">
+										<div class="music_video_list_item_wrap">
+											<div style="position: relative;"></div>
+										</div> 
+									</div>
+								</div>
 							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Solave Cleanser</h6>
-								<span class="portfolio-item-subtitle serif">Digital</span>
+							
+							 </div>
+                        </div>
+						</c:forEach> 
+                           
+                           
+                        
+                         <c:forEach var="board" items="${monthList}" varStatus="stat">
+                        <div class="portfolio-item monthly" style="position: absolute; left: 466.4px; top: 0px;display:none;">
+                            <div class="portfolio-item-wrapper">
+                                <div id="music_video_list_wrap" style="display: block;">
+								<div
+									class="music_video_list_item to-animate-2 fadeInUp animated"
+									video="3GLrB9GvBq8" style="width: 100%">
+									<div class="music_video_list_item_wrap">
+										<div style="position: relative;">
+											<div class="music_video_list_item_thumbnail_cover"
+												onmouseenter="fnMouseEnterOnMusic(this);"
+												onmouseleave="fnMouseLeaveOnMusic(this);"
+												onmousemove="fnMouseEnterOnMusic(this);"
+												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+
+												<img class="music_video_list_item_thumbnail_cover_img"
+													src="resources/images/icon_play_round.png"
+													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+											</div>
+
+
+											<video width="550" height="300" controls="controls"
+												preload="metadata">
+												<source src="resources/savefile/${board.savedFile}"
+													type="video/webm">
+											</video>
+
+											<div class="music_video_list_item_title_div">
+												<div class="music_video_list_item_music_name_div">
+													<a class="music_video_list_item_music_name"
+														href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
+												</div>
+												<a class="music_video_list_item_artist"
+													href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+												<span class="music_video_list_item_release_date">${board.postDate}</span>
+											</div>
+											<div class="music_video_list_item_fav_div"
+												style="line-height: 4;">
+												<img class="music_video_list_item_fav_img"
+													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+											</div>
+										</div>
+									</div>
+									<div
+										class="music_video_list_item to-animate-2 fadeInUp animated"
+										video="3ymwOvzhwHs" style="width: 25%">
+										<div class="music_video_list_item_wrap">
+											<div style="position: relative;"></div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					<div class="portfolio-item digital">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/4.jpg" alt="">
+	
+                            </div>
+                        </div>
+                        </c:forEach>
+                        
+                        
+                        
+                        
+                        
+                         <c:forEach var="board" items="${newList}" varStatus="stat">
+                        <div class="portfolio-item new" style="position: absolute; left: 0px; top: 466.4px;">
+                            <div class="portfolio-item-wrapper">
+                              
+                              
+                                <div id="music_video_list_wrap" style="display: block;">
+								<div
+									class="music_video_list_item to-animate-2 fadeInUp animated"
+									video="3GLrB9GvBq8" style="width: 100%">
+									<div class="music_video_list_item_wrap">
+										<div style="position: relative;">
+											<div class="music_video_list_item_thumbnail_cover"
+												onmouseenter="fnMouseEnterOnMusic(this);"
+												onmouseleave="fnMouseLeaveOnMusic(this);"
+												onmousemove="fnMouseEnterOnMusic(this);"
+												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+
+												<img class="music_video_list_item_thumbnail_cover_img"
+													src="resources/images/icon_play_round.png"
+													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+											</div>
+
+
+
+											<video width="550" height="300" controls="controls"
+												preload="metadata">
+												<source src="resources/savefile/${board.savedFile}"
+													type="video/webm">
+											</video>
+
+											<div class="music_video_list_item_title_div">
+												<div class="music_video_list_item_music_name_div">
+													<a class="music_video_list_item_music_name"
+														href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
+												</div>
+												<a class="music_video_list_item_artist"
+													href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+												<span class="music_video_list_item_release_date">${board.postDate}</span>
+											</div>
+											<div class="music_video_list_item_fav_div"
+												style="line-height: 4;">
+												<img class="music_video_list_item_fav_img"
+													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+											</div>
+										</div>
+									</div>
+									<div
+										class="music_video_list_item to-animate-2 fadeInUp animated"
+										video="3ymwOvzhwHs" style="width: 25%">
+										<div class="music_video_list_item_wrap">
+											<div style="position: relative;"></div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Monochrome</h6>
-								<span class="portfolio-item-subtitle serif">Branding</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					<div class="portfolio-item packaging">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/3.jpg" alt="">
-							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Ellie Cashman</h6>
-								<span class="portfolio-item-subtitle serif">Packaging</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					<div class="portfolio-item branding">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/6.jpg" alt="">
-							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">White Sleeve</h6>
-								<span class="portfolio-item-subtitle serif">Digital</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					<div class="portfolio-item digital">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/5.jpg" alt="">
-							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Classic Socks</h6>
-								<span class="portfolio-item-subtitle serif">Branding</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-					<div class="portfolio-item packaging">
-						<div class="portfolio-item-wrapper">
-							<div class="portfolio-item-img">
-								<img src="resources/assets/images/portfolio/2.jpg" alt="">
-							</div>
-							<div class="portfolio-item-caption">
-								<h6 class="portfolio-item-title">Expirience</h6>
-								<span class="portfolio-item-subtitle serif">Packaging</span>
-							</div>
-							<a class="portfolio-item-link" href="file_detail"></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+	
+                              
+                              
+                              
+                            </div>
+                        </div>
+                        </c:forEach>
+               
+                       
+                    </div>
+                </div>
+                
+            </section>
+            </div>
+             </section>
+  <!-- musicom end-->
+        
+         
+		           
+
+
+		
+		
+		           
+
+		
+					
+				
+				
+				
+				
+					
+			
 		<!-- Portfolio end-->
-
-
-
-
-
 
 
 		<!-- Footer-->
@@ -427,8 +544,8 @@
 						<div class="col-md-12">
 							<div class="copyright">
 								<p>
-									© 2018 Boomerang, All Rights Reserved. Design with love by <a
-										href="#">2theme</a>
+									© 2019 Utajjang, All Rights Reserved. Design with love by <a
+										href="#">Debugking</a>
 								</p>
 							</div>
 						</div>
@@ -470,7 +587,7 @@
 								<a href="logout" style="color: #788487">로그 아웃</a>
 							</p>
 							<p class="text-center">
-								<a href="memberDelete" style="color: #788487">탈퇴</a>
+								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
 							</p>
 						</div>
 					</aside>
@@ -491,14 +608,12 @@
 								<p class="text-center">
 									<button class="btn btn-outline-secondary" type="button"
 										name="loginBTN" id="loginBTN"
-										style="width: 320px; height: 54px;">login</button>
+										style="width: 320px; height: 54px;">Login</button>
 								<p class="text-center">
-									<a href="signup" style="color: #788487">signup</a> &ensp; <a
-										href="id_pwd" style="color: #788487">id/pwd</a>
+									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
 								</p>
-								<p class="text-center">
-									<button class="btn btn-outline-secondary" type="button"
-										id="memberDelete" style="width: 320px; height: 54px;">임시탈퇴버튼</button>
+									
 							</div>
 						</div>
 					</aside>
@@ -521,3 +636,11 @@
 	<script src="resources/assets/js/custom/custom.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+

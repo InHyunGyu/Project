@@ -30,7 +30,17 @@
 <link href="resources/assets/css/template.css" rel="stylesheet">
 <!-- JavaScripts -->
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+<script src="resources/assets/js/login2.js"></script>
 <style>
+
+/* 프로필 이미지 썸네일화를 위한 css 설정 */
+img#mypic {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
 div.left {
 	width: 50%;
 	float: left;
@@ -96,6 +106,7 @@ table {
 <script>
 	$(function(){
 		
+
 		
 		$('.click').hover(function() {
 			  $(this).css("color", "#505cfd");
@@ -107,6 +118,7 @@ table {
 		
 		var memberId = '${memberInfo.memberId}'
 		var login = '${sessionScope.memberId}'
+		
 		
 		postList();
 
@@ -130,34 +142,6 @@ table {
 		
 		$("#postList").on('click', function(){
 			postList();
-		})
-		
-		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			
-			if(memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'login',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
-		
-		$("#signup").on('click', function(){
-			location.href="signup"
 		})
 		
 		$(".followReq").on('click', function(){
@@ -513,7 +497,7 @@ table {
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -581,10 +565,11 @@ table {
 
 					<div class="col-md-4">
 						<div class="sticky-sidebar">
-							<h6 class="single-portfolio-title">${memberInfo.memberId}</h6>
-							<p>${memberInfo.myintro}</p>
-							<p>설명 2</p>
-							<hr class="m-t-30 m-b-30">
+
+						     <h6 class="single-portfolio-title">${memberInfo.memberId}</h6>
+                     <div class="post-preview"><a href="#"><img id="mypic" src="download?memberId=${memberInfo.memberId}" alt=""></a></div>
+							<p>${memberInfo.myintro}</p>   
+							<hr class="m-t-30 m-b-30">  
 							<div class="info-list">
 							
 								<li><span class="info-list-title">Date :</span><span>${memberInfo.signupDate}
@@ -595,7 +580,7 @@ table {
 										 class="click" id="postList" data-value="${memberInfo.memberId}">${postCount}</a></span></li>
 							
 							</div>
-							<hr class="m-t-30 m-b-30">
+							<hr class="m-t-30 m-b-30"> 
 							<div class="info-list">
 								<button type="button"
 									class="followReq form-control btn btn-outline-dark col-md-5" style="border-color: black;" data-value="${memberInfo.memberId}" data-login="${sessionScope.memberId}">Follow</button>

@@ -30,6 +30,7 @@
 <link href="resources/assets/css/template.css" rel="stylesheet">
 <!-- JavaScripts -->
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+<script src="resources/assets/js/login2.js"></script>
 <style type="text/css">
   a {
   	color: #788487;
@@ -50,8 +51,9 @@
 	</style>
 <script>
 	$(function(){
-		init();
+		idPwController();
 		
+ 
 		$("#loginBTN").on('click', function(){
 			var memberId = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
@@ -80,6 +82,35 @@
 			location.href="signup"
 		})
 		
+	
+		
+		$("#idFind").on('click', function(){
+			init();
+		})
+		
+		
+	})
+	
+	
+	function idPwController(){
+		//첫 화면 진입 시 아이디 찾기 UI 띄워줌
+		$("#pwdShow").css('display', 'none');
+		
+		//패스워드 찾기 버튼 클릭 시 PW UI 띄워줌.
+		$("#pwdFind").on('click',function(){
+			$("#pwdShow").css('display', '');
+			$("#idShow").css('display', 'none');
+			
+		})
+		
+		$("#idFind").on('click',function(){
+			$("#pwdShow").css('display', 'none');
+			$("#idShow").css('display', '');
+		})
+		
+		
+		/* 아이디 찾기 버튼 클릭 시 함수 발동*/
+
 		$("#idBTN").on('click', function(){
 			
 			var memberName = $("#memberName").val();
@@ -98,75 +129,46 @@
 			$.ajax({
 				method:'post',
 				url:'findid',
-				data:'send',
-				success:function(){
+				data: send,
+				success:function(resp){
+					alert("아이디:" + resp.memberId);
 					location.href="main";
 				}
 			})	
 		})
 		
-		$("#idFind").on('click', function(){
-			init();
-		})
-		
-		$("#pwdFind").on('click',function(){
-			var tag = '';
+		/* 패스워드 찾기 버튼 클릭 시 */
 			
-			tag += '<div class="form-group">'
-				tag += '<input class="form-control" type="text" placeholder="memberId" id="memberId" name="memberId">'
-				tag += '</div>'
-				tag += '<div class="form-group">'
-				tag += '<input class="form-control" type="email" placeholder="memberEmail" id="memberEmail" name="memberEmail">'
-				tag += '</div>'
-				tag += '<div class="form-group">'
-				tag += '<button class="btn btn-block btn-round btn-brand" type="button" id="pwdBTN">PWD</button>'
-				tag += '</div>'
-		            
-		        $("#find").html(tag);
+		$("#pwdBTN").on('click', function(){
+			var memberId = $("#memberId").val();
+			var memberEmail = $("#memberEmail4pwd").val();
 			
+			if(memberId.length == 0 || memberEmail.length == 0) {
+				alert("다시입력해주세요.");
+				return;
+			}
 			
-			$("#pwdBTN").on('click', function(){
-				var memberId = $("#memberId").val();
-				var memberEmail = $("#memberEmail").val();
-				
-				if(memberId.length == 0 || memberEmail.length ==0) {
-					alert("다시입력해주세요.");
-					return;
+			var send = {
+					"memberId":memberId,
+					"memberEmail":memberEmail
+			}
+			
+			$.ajax({
+				method:'post',
+				url:'pwfindMailSend',
+				data:send,
+				success:function(resp){
+					if(resp == "ok")
+					location.href="emailSendAction";
 				}
-				
-				var send = {
-						"memberId":memberId,
-						"memberEmail":memberEmail
-				}
-				
-				$.ajax({
-					method:'post',
-					url:'findpwd',
-					data:'send',
-					success:function(){
-						location.href="main";
-					}
-				})
 			})
 		})
-	})
-	
-function init(){
-		var tag = '';
 		
-		tag += '<div class="form-group">'
-			tag += '<input class="form-control" type="text" placeholder="memberName" id="memberName" name="memberName">'
-			tag += '</div>'
-			tag += '<div class="form-group">'
-			tag += '<input class="form-control" type="email" placeholder="memberEmail" id="memberEmail" name="memberEmail">'
-			tag += '</div>'
-			tag += '<div class="form-group">'
-			tag += '<button class="btn btn-block btn-round btn-brand" type="button" id="idBTN">ID</button>'
-			tag += '</div>'
-	            
-	        $("#find").html(tag);
+		
+		
 		
 	}
+	
 		
 	</script>
 </head>
@@ -220,7 +222,7 @@ function init(){
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -259,8 +261,41 @@ function init(){
 									id="pwdFind">PWD</a>
 							</h6>
 						</div>
-						<div class="m-b-20" id="find">
 
+						<div class="m-b-20" id="find">
+							<!-- 아이디 찾기 화면 -->
+							<div class="m-b-20" id="idShow" display=''>
+								<div class="form-group">
+									<input class="form-control" type="text"
+										placeholder="memberName" id="memberName" name="memberName">
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="email"
+										placeholder="memberEmail" id="memberEmail" name="memberEmail">
+								</div>
+								<div class="form-group">
+									<button class="btn btn-block btn-round btn-brand" type="button"
+										id="idBTN">ID</button>
+								</div>
+							</div>
+							
+							<!-- 패스워드 찾기 화면 -->
+							<div class="m-b-20" id="pwdShow" display='none'>
+								<div class="form-group">
+									<input class="form-control" type="text" placeholder="memberId"
+										id="memberId" name="memberId">'
+								</div>
+
+								<div class="form-group">
+									<input class="form-control" type="email"
+										placeholder="memberEmail" id="memberEmail4pwd" name="memberEmail">'
+								</div>
+
+								<div class="form-group">
+									<button class="btn btn-block btn-round btn-brand" type="button"
+										id="pwdBTN">PWD</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

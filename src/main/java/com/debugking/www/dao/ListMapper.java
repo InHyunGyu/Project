@@ -12,7 +12,8 @@ public interface ListMapper {
 	public int writing(Posts post);
 
 	public Posts selectOne(int postNo);
-
+	public Posts selectOneId(String memberId);
+	
 	public int replyCount(int postNo);
 
 	public int replyInsert(Replies reply);
@@ -37,8 +38,10 @@ public interface ListMapper {
 
 	public ArrayList<String> postLikeList(int postNo);
 
+
 	public Posts before(Posts temp);
 
 	public Posts after(Posts temp);
+
 
 }

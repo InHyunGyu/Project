@@ -23,6 +23,7 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+		<script src="resources/assets/js/login2.js"></script>
 	<style>
 		#button_group {
 			float: right;
@@ -56,33 +57,7 @@
 	$(function(){
 		var login = '${sessionScope.memberId}';
 		
-		$("#loginBTN").on('click', function(){
-			var memberId = $("#memberId").val();
-			var memberPwd = $("#memberPwd").val();
-			
-			if(memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
-				return;
-			}
-			
-			var send = {
-					"memberId" : memberId,
-					"memberPwd" : memberPwd
-			}
-			
-			$.ajax({
-				method:'post',
-				url:'login',
-				data:send,
-				success: function(){
-					location.reload();
-				}
-			})
-		})
 		
-		$("#signup").on('click', function(){
-			location.href="signup"
-		})
 		
 		$("#replyBTN").on('click', function(){
 			var replyContent = $("#replyContent").val();
@@ -177,14 +152,12 @@
 				alert('로그인을 해주세요');
 				return;
 			} else {
-				
 				var send = {
-						'postNo':postNo,
-						'memberId':login
+						'postNo':postNo
 				}
 				
 				$.ajax({
-					method:'post',
+					method:'GET',
 					url:'postLike',
 					data:send,
 					success:function(res){
@@ -205,7 +178,7 @@
 			var postNo = $(this).attr("data-value");
 			
 			$.ajax({
-				method:'get',
+				method:'GET',
 				url:'reported?postNo='+postNo,
 				success:function(){
 					location.reload();
@@ -267,7 +240,7 @@
 								<li><a href="video_all">ALL</a></li>
 							</ul></li>
 
-						<li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
 						</li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -366,7 +339,8 @@
 												<div class="form-group">
 													<c:if test="${sessionScope.memberId == reply.memberId}">
 													<div class="comment-reply">
-														<a class="replyModiBTN" data-value="${reply.replyNo}" data-content="${reply.replyContent}" data-name="${reply.memberId}">Modify</a>&ensp;<a class="replyDelBTN" data-name="${reply.memberId}" data-value="${reply.replyNo}">Delete</a>
+														<a class="replyModiBTN" data-value="${reply.replyNo}" data-content="${reply.replyContent}" data-name="${reply.memberId}">Modify</a>&ensp;
+														<a class="replyDelBTN" data-name="${reply.memberId}" data-value="${reply.replyNo}">Delete</a>
 													</div>
 													</c:if>
 							
