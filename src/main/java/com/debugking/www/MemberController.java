@@ -284,18 +284,20 @@ public class MemberController {
 
 	}
 	//회원탈퇴
-	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
+	@RequestMapping(value="/memberDelete", method=RequestMethod.GET)
 	public String memberDelete(HttpSession session, MemberInfo member){
 		member.setMemberId((String)session.getAttribute("memberId"));
 		MemberInfo temp = repo.selectOne(member.getMemberId());
-		int result = repo.memberDelete(temp);
-		if(result == 1){
+		System.out.println("딜리트 됬습니다.");
+		/*int result = repo.memberDelete(temp);*/
+		/*if(result == 1){
 			session.removeAttribute("memberId");
 			session.removeAttribute("memberName");
 			return "redirect:/"; 
 		}else{
 			return "redirect:/";
-		}
+		}*/
+		return "redirect:/";
 	}
 	
 	//화면이동
@@ -454,10 +456,6 @@ public class MemberController {
 			return "false";
 		}
 	}
-	
-	
-	
-	
 	
 	@RequestMapping(value="/id_pwd", method=RequestMethod.GET)
 	public String id_pwd(){
