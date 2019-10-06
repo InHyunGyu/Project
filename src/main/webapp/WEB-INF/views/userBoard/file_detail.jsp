@@ -132,7 +132,6 @@
 							'replyNo':replyNo,
 							'replyContent':replyContent
 					}
-					
 					$.ajax({
 						method:'post',
 						url:'replyUp',

@@ -29,7 +29,7 @@ public class VideoListController {
 	MemberRepository repo2;
 	
 	
-	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile";
+	final String uploadPath="C:/Spring/DebugKing/src/main/webapp/resources/savefile";
 	
 
 	
