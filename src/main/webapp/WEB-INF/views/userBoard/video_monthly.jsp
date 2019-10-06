@@ -12,6 +12,8 @@
         <meta name="author" content="">
         <title>UtaJJang</title>
         
+        <!-- 홈아이콘바꾸기 -->
+<link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
         
         
            <!-- musicom css -->
@@ -29,6 +31,8 @@
    
 <!-- musicom css end -->
         
+        <!-- swal -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         
         
         
@@ -49,6 +53,11 @@
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 		<script src="resources/assets/js/login2.js"></script>
 	<style type="text/css">
+	
+	img#profileThumb{
+		 border-radius: 50%;
+	}
+	
   a {
   	color: #788487;
   }
@@ -70,12 +79,48 @@
 $(function(){
 	$("#btnWriteForm").on('click',function(){
 			if(${empty sessionScope.memberId}){
-				alert("로그인한 후 글쓰기가능합니다.");
+				swal("로그인한 후 글쓰기가능합니다.");
 				return;
 			} else{
 				location.href="write?postType=video";
 			}
 		})
+		
+		
+var login = '${sessionScope.memberId}';
+	
+	$(".music_video_list_item_fav_img").on('click', function(){
+		var postNo = $(this).attr("data-value");
+		
+		if(login.length == 0 || login == null) {
+			swal('로그인을 해주세요');
+			return;
+		} else {
+			var send = {
+					'postNo':postNo
+			}
+			
+			$.ajax({
+				method:'GET',
+				url:'postLike',
+				data:send,
+				success:function(res){
+					if(res == 0) {
+						swal('이미 좋아요를 누른 게시물 입니다.');
+						return;
+					} else {
+						location.reload();	
+					}
+					
+				}
+			})
+		
+		}
+	})	
+		
+		
+		
+		
 })
 	</script>
     </head>
@@ -114,7 +159,7 @@ $(function(){
 										<li><a href="voice_weekly">Weekly</a></li>
 										<li><a href="voice_monthly">Monthly</a></li>
 									</ul></li>
-								<li><a href="voice_all">ALL</a></li>
+								
 							</ul></li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -126,7 +171,7 @@ $(function(){
 										<li><a href="video_weekly">Weekly</a></li>
 										<li><a href="video_monthly">Monthly</a></li>
 									</ul></li>
-								<li><a href="video_all">ALL</a></li>
+								
 							</ul></li>
 
 						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
@@ -176,9 +221,9 @@ $(function(){
                         <div class="col-md-12 m-auto">
                       
                           
-                             <div class="row" style="float: right; margin-bottom: 10px;  ">
+                             <div class="row" style="float: right; margin-bottom: -10px;  ">
 						<form action="video_monthly" method="get">
-						<div class="form-group" style= "height: 36px;">
+						<div class="form-group" style= "height: 50px;">
 							<select class="form-control col-md-3" name="searchItem" style="height: 100%;">
 								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
 								<option value="memberId"
@@ -191,8 +236,8 @@ $(function(){
 						</div>
 						</form>
 					</div>
-				
-                           <h4 class="text-special text-center m-b-40"><a href="https:www.utarecording.shop">Go to the Recording</a></h4>
+				 
+                           <h4 class="text-special text-center m-b-40" style="margin-left:50px;"><a href="https:www.utarecording.shop">Go to the Recording</a></h4>
 
  
 
@@ -210,20 +255,10 @@ $(function(){
 												video="3GLrB9GvBq8" style="width: 33%">
 												<div class="music_video_list_item_wrap">
 													<div style="position: relative;">
-														<div class="music_video_list_item_thumbnail_cover"
-															onmouseenter="fnMouseEnterOnMusic(this);"
-															onmouseleave="fnMouseLeaveOnMusic(this);"
-															onmousemove="fnMouseEnterOnMusic(this);"
-															onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-
-															<img class="music_video_list_item_thumbnail_cover_img"
-																src="resources/images/icon_play_round.png"
-																onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-														</div>
-
+														
 
 														<video width="300" height="300" controls="controls"
-															preload="metadata">
+															preload="metadata" poster="resources/images/thumbnail.jpg">
 															<source src="resources/savefile/${board.savedFile}"
 																type="video/webm">
 														</video>
@@ -239,9 +274,8 @@ $(function(){
 														</div>
 														<div class="music_video_list_item_fav_div"
 															style="line-height: 4;">
-															<img class="music_video_list_item_fav_img"
-																src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소"
-																onclick="favoriteMusic(this, &quot;3GLrB9GvBq8&quot;);">
+															<img class="music_video_list_item_fav_img" data-value="${board.postNo}"
+													src="resources/images/icon_fav_off.png" alt="좋아요">
 														</div>
 													</div>
 												</div>
@@ -283,7 +317,7 @@ $(function(){
                                             <li class="page-item"><a class="page-link" href="video_monthly?&currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}"><span class="fas fa-angle-right"></span></a></li>
                                         </ul>
                                     </nav>
-                                    <a class="btn btn-outline-secondary" href="write" style="float: right; display: inline-block;">Write</a>
+                                   <a class="btn btn-outline-secondary" id="btnWriteForm" style="float: right; display: inline-block;">Write</a>
                                 </div>
                            		 
                             </div>
@@ -385,48 +419,74 @@ $(function(){
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
-   <!-- Off canvas-->
-        <div class="off-canvas-sidebar">
-            <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a></div>
-                <div class="off-canvas-content">
-                    <!-- Text widget-->
-                    <c:if test="${sessionScope.memberId != null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">${sessionScope.memberId}</p>
-                            <p class="text-center">
-                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
-                            </p>
-                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
-                            <p class="text-center">
+  <!-- Off canvas-->
+	<div class="off-canvas-sidebar">
+		<div class="off-canvas-sidebar-wrapper">
+			<div class="off-canvas-header">
+				<a class="off-canvas-close" href="#"><img
+					src="resources/assets/images/close.png" style="width: 15px;"></a>
+			</div>
+			<div class="off-canvas-content">
+				<!-- Text widget-->
+				<c:if test="${sessionScope.memberId != null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
+							<p class="text-center">
+								<c:if test="${sessionScope.memberId != null}">
+									<c:if test="${sessionScope.memberImg != null}">
+										<img id="profileThumb" src="download?memberId=${sessionScope.memberId}"  width="80px">
+									</c:if>
+									<c:if test="${sessionScope.memberImg == null}">
+										<img src="resources/assets/images/person.png"  width="80px">
+									</c:if>
+								</c:if>
+							</p>
+							<p class="text-center">${sessionScope.memberId}</p>
+							<p class="text-center">
+								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+							</p>
+							<p class="text-center">
+								<a href="modify" style="color: #788487">정보 수정</a>
+							</p>
+							<p class="text-center">
 								<a href="logout" style="color: #788487">로그 아웃</a>
 							</p>
 							<p class="text-center">
-								<a href="memberDelete" style="color: #788487">탈퇴</a>
+								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
 							</p>
-                        </div>
-                    </aside>
-                    </c:if>
-                    <c:if test="${sessionScope.memberId == null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                        	<div class="form-group">
-                        	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
-                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
-                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
-
-                            </div> 
-                        </div>
-                    </aside>
-                    </c:if>
-                </div>
-            </div>
-        </div>
-        <!-- Off canvas end-->
+						</div>
+					</aside>
+				</c:if>
+				<c:if test="${sessionScope.memberId == null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
+							<div class="form-group">
+								<p class="text-center">Login</p>
+								<p class="text-center">
+									<input class="form-control" type="text" id="memberId"
+										name="memberId" placeholder="loginId">
+								</p>
+								<p class="text-center">
+									<input class="form-control" type="password" id="memberPwd"
+										name="memberPwd" placeholder="password">
+								</p>
+								<p class="text-center">
+									<button class="btn btn-outline-secondary" type="button"
+										name="loginBTN" id="loginBTN"
+										style="width: 320px; height: 54px;">Login</button>
+								<p class="text-center">
+									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
+								</p>
+									
+							</div>
+						</div>
+					</aside>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	<!-- Off canvas end-->
 
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 

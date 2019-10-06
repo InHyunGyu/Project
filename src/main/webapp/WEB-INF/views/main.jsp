@@ -28,10 +28,14 @@
 <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
 <!-- Template core CSS-->
 <link href="resources/assets/css/template.css" rel="stylesheet">
+
+
 <!-- JavaScripts -->
 	
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 
+<!-- 홈아이콘바꾸기 -->
+<link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
 
 <!-- musicom css -->
   <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="resources/images/favicon.ico">
@@ -52,9 +56,61 @@
 <!-- musicom css end -->
 
 
+<style>
+	img#profileThumb{
+		 border-radius: 50%;
+	}
+
+</style>
+
+<!-- swal -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <script src="resources/assets/js/login2.js"></script>
+ 
+  
+<script>
+$(function(){
+	var login = '${sessionScope.memberId}';
+	
+	$(".music_video_list_item_fav_img").on('click', function(){
+		var postNo = $(this).attr("data-value");
+		
+		if(login.length == 0 || login == null) {
+			swal('로그인을 해주세요');
+			return;
+		} else {
+			var send = {
+					'postNo':postNo
+			}
+			
+			$.ajax({
+				method:'GET',
+				url:'postLike',
+				data:send,
+				success:function(res){
+					if(res == 0) {
+						swal('이미 좋아요를 누른 게시물 입니다.');
+						return;
+					} else {
+						location.reload();	
+					}
+					
+				}
+			})
+		
+		}
+	})	
+	
+	
+	
+});
 
+
+
+
+</script>
 
 
 </head>
@@ -93,7 +149,7 @@
 										<li><a href="voice_weekly">Weekly</a></li>
 										<li><a href="voice_monthly">Monthly</a></li>
 									</ul></li>
-								<li><a href="voice_all">ALL</a></li>
+								
 							</ul></li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -105,7 +161,7 @@
 										<li><a href="video_weekly">Weekly</a></li>
 										<li><a href="video_monthly">Monthly</a></li>
 									</ul></li>
-								<li><a href="video_all">ALL</a></li>
+							
 							</ul></li>
 
 						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
@@ -153,11 +209,60 @@
 				</div>
 			</div>
 		</section>
+	
+	 
 		<!-- Hero end-->
 		
-  <!-- musicom-->
-	<section class="module p-b-0">
-			<div class="container" >
+
+
+  <!-- Sliders-->
+		<section class="module-cover-slides" data-module-cover-slides-options="{&quot;animation&quot;: &quot;fade&quot;}" style="margin-top: 100px;">
+  
+   <ul class="slides-container">
+       <li class="parallax" data-overlay="0.5">
+           <img src="assets/images/module-1.jpg" alt="">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h1>첫번째공지</h1>
+                   </div>
+               </div>
+           </div>
+       </li>
+       <li class="parallax text-center" data-overlay="0.5">
+           <img src="assets/images/module-21.jpg" alt="">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h1>두번째공지</h1>
+                   </div>
+               </div>
+           </div>
+       </li>
+       <li class="parallax text-right" data-overlay="0.7" data-gradient="1">
+           <img src="assets/images/module-25.jpg" alt="">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h1>세번째공지</h1> 
+                   </div>
+               </div>
+           </div>
+       </li>
+   </ul>
+   <div class="slides-navigation">
+       <a class="prev" href="#"><span class="ti-angle-left"></span></a>
+       <a class="next" href="#"><span class="ti-angle-right"></span></a>
+   </div>
+</section>
+  <!-- Sliders end-->
+         
+		           
+
+		<!-- Portfolio-->
+		<section class="module p-b-0">
+			<div class="container">
+
 				<div class="row">
 					<div class="col-md-6 m-auto text-center">
 						<h1 style="font-family: 'Love Ya Like A Sister', cursive;">Video Best</h1>
@@ -201,25 +306,15 @@
                                  <div class="portfolio-item weekly" style="position: absolute; left: 0px; top: 0px;display:none;">
                             <div class="portfolio-item-wrapper">
 							<div id="music_video_list_wrap" style="display: block;">
-								<div
+								<div   
 									class="music_video_list_item to-animate-2 fadeInUp animated" 
 									 style="width: 100%">
 									<div class="music_video_list_item_wrap"> 
 										<div style="position: relative;">
-											<div class="music_video_list_item_thumbnail_cover"
-												onmouseenter="fnMouseEnterOnMusic(this);"
-												onmouseleave="fnMouseLeaveOnMusic(this);"
-												onmousemove="fnMouseEnterOnMusic(this);"
-												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-
-												<img class="music_video_list_item_thumbnail_cover_img"
-													src="resources/images/icon_play_round.png"
-													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-											</div>
- 
+											
 
 											<video width="550" height="300" controls="controls"
-												preload="metadata">
+												preload="metadata" poster="resources/images/thumbnail.jpg">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
 											</video>
@@ -235,8 +330,8 @@
 											</div>
 											<div class="music_video_list_item_fav_div"
 												style="line-height: 4;">
-												<img class="music_video_list_item_fav_img"
-													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+												<img class="music_video_list_item_fav_img" data-value="${board.postNo}"
+													src="resources/images/icon_fav_off.png" alt="좋아요">
 											</div>
 										</div>
 									</div>
@@ -265,20 +360,11 @@
 									video="3GLrB9GvBq8" style="width: 100%">
 									<div class="music_video_list_item_wrap">
 										<div style="position: relative;">
-											<div class="music_video_list_item_thumbnail_cover"
-												onmouseenter="fnMouseEnterOnMusic(this);"
-												onmouseleave="fnMouseLeaveOnMusic(this);"
-												onmousemove="fnMouseEnterOnMusic(this);"
-												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-
-												<img class="music_video_list_item_thumbnail_cover_img"
-													src="resources/images/icon_play_round.png"
-													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-											</div>
+										
 
 
 											<video width="550" height="300" controls="controls"
-												preload="metadata">
+												preload="metadata" poster="resources/images/thumbnail.jpg">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
 											</video>
@@ -294,8 +380,8 @@
 											</div>
 											<div class="music_video_list_item_fav_div"
 												style="line-height: 4;">
-												<img class="music_video_list_item_fav_img"
-													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+												<img class="music_video_list_item_fav_img" data-value="${board.postNo}"
+													src="resources/images/icon_fav_off.png" alt="좋아요">
 											</div>
 										</div>
 									</div>
@@ -328,20 +414,12 @@
 									video="3GLrB9GvBq8" style="width: 100%">
 									<div class="music_video_list_item_wrap">
 										<div style="position: relative;">
-											<div class="music_video_list_item_thumbnail_cover"
-												onmouseenter="fnMouseEnterOnMusic(this);"
-												onmouseleave="fnMouseLeaveOnMusic(this);"
-												onmousemove="fnMouseEnterOnMusic(this);"
-												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+											
 
-												<img class="music_video_list_item_thumbnail_cover_img"
-													src="resources/images/icon_play_round.png"
-													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-											</div>
 
 
 											<video width="550" height="300" controls="controls"
-												preload="metadata">
+												preload="metadata" poster="resources/images/thumbnail.jpg">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
 											</video>
@@ -357,8 +435,8 @@
 											</div>
 											<div class="music_video_list_item_fav_div"
 												style="line-height: 4;">
-												<img class="music_video_list_item_fav_img"
-													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+												<img class="music_video_list_item_fav_img" data-value="${board.postNo}"
+													src="resources/images/icon_fav_off.png" alt="좋아요">
 											</div>
 										</div>
 									</div>
@@ -519,11 +597,13 @@
 					<aside class="widget widget-text">
 						<div class="textwidget">
 							<p class="text-center">
-								<c:if test="${sessionScope.memberImg == null}">
-								<img src="resources/assets/images/person.png" width="80px">
-								</c:if>
-								<c:if test="${sessionScope.memberImg != null}">
-								<img src="resources/assets/images/" width="80px">
+								<c:if test="${sessionScope.memberId != null}">
+									<c:if test="${sessionScope.memberImg != null}">
+										<img id="profileThumb" src="download?memberId=${sessionScope.memberId}"  width="80px">
+									</c:if>
+									<c:if test="${sessionScope.memberImg == null}">
+										<img src="resources/assets/images/person.png"  width="80px">
+									</c:if>
 								</c:if>
 							</p>
 							<p class="text-center">${sessionScope.memberId}</p>

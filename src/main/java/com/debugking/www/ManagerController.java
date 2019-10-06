@@ -105,6 +105,9 @@ public class ManagerController {
 	
 		return result;
 	}
+	
+	
+	
 	//공지글 취소하기 (내리기>N)
 	@RequestMapping(value="/cancel", method=RequestMethod.POST)
 	@ResponseBody

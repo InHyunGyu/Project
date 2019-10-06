@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Boomerang - Template</title>
+<title>Utajjang</title> 
 <!-- Favicons-->
 <link rel="shortcut icon" href="resources/assets/images/favicon.png">
 <link rel="apple-touch-icon"
@@ -31,7 +31,20 @@
 <!-- JavaScripts -->
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 <script src="resources/assets/js/login2.js"></script>
+
+<!-- 홈아이콘바꾸기 -->
+<link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
+
+<!-- swal -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 <style type="text/css">
+
+img#profileThumb{
+		 border-radius: 50%;
+	}
+
   a {
   	color: #788487;
   }
@@ -139,18 +152,28 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4 col-md-6 m-auto">
-						<div class="m-b-20">
-							<h6>Login</h6>
-						</div>
-						<div class="m-b-20" id="find">
+					
+					
+						<div class="textwidget">
 							<div class="form-group">
-								<input class="form-control" type="text" placeholder="memberId" id="pageId" name="memberId">
-							</div>
-							<div class="form-group">
-								<input class="form-control" type="email" placeholder="memberPwd" id="pagePwd" name="memberPwd">
-							</div>
-							<div class="form-group">
-								<button class="btn btn-block btn-round btn-brand" type="button" id="pageLogin">login</button>
+								<p class="text-center">Login</p>
+								<p class="text-center">
+									<input class="form-control" type="text" id="memberId"
+										name="memberId" placeholder="loginId">
+								</p>
+								<p class="text-center">
+									<input class="form-control" type="password" id="memberPwd"
+										name="memberPwd" placeholder="password">
+								</p>
+								<p class="text-center">
+									<button class="btn btn-outline-secondary" type="button"
+										name="loginBTN" id="loginBTN"
+										style="width: 350px; height: 54px;">Login</button>
+								<p class="text-center">
+									<a href="signup" style="color: #FFFFFF">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #FFFFFF">ID/Password 찾기</a>
+								</p> 
+									
 							</div>
 						</div>
 					</div>
@@ -245,7 +268,7 @@
 						<div class="col-md-12">
 							<div class="copyright">
 								<p>
-									© 2018 Boomerang, All Rights Reserved. Design with love by <a
+									© 2019 Utajjang, All Rights Reserved. Design with love by <a
 										href="#">2theme</a>
 								</p>
 							</div>
@@ -258,47 +281,73 @@
 	</div>
 	<!-- Wrapper end-->
 	<!-- Off canvas-->
-        <div class="off-canvas-sidebar">
-            <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="width: 15px;"></a></div>
-                <div class="off-canvas-content">
-                    <!-- Text widget-->
-                    <c:if test="${sessionScope.memberId != null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">${sessionScope.memberId}</p>
-                            <p class="text-center">
-                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
-                            </p>
-                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
-                            <p class="text-center">
-								<a href="logout" style="color: #788487">로그 아웃</a>
-							</p>
+	<div class="off-canvas-sidebar">
+		<div class="off-canvas-sidebar-wrapper">
+			<div class="off-canvas-header">
+				<a class="off-canvas-close" href="#"><img
+					src="resources/assets/images/close.png" style="width: 15px;"></a>
+			</div>
+			<div class="off-canvas-content">
+				<!-- Text widget-->
+				<c:if test="${sessionScope.memberId != null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
 							<p class="text-center">
-								<a href="memberDelete" style="color: #788487">탈퇴</a>
+								<c:if test="${sessionScope.memberId != null}">
+									<c:if test="${sessionScope.memberImg != null}">
+										<img id="profileThumb" src="download?memberId=${sessionScope.memberId}"  width="80px">
+									</c:if>
+									<c:if test="${sessionScope.memberImg == null}">
+										<img src="resources/assets/images/person.png"  width="80px">
+									</c:if>
+								</c:if>
 							</p>
-                        </div>
-                    </aside>
-                    </c:if>
-                    <c:if test="${sessionScope.memberId == null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                        	<div class="form-group">
-                        	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
-                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" class="loginBTN" style="width: 320px; height: 54px;">login</button>
-                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
-
-                            </div> 
-                        </div>
-                    </aside>
-                    </c:if>
-                </div>
-            </div>
-        </div>
-        <!-- Off canvas end-->
+							<p class="text-center">${sessionScope.memberId}</p>
+							<p class="text-center">
+								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+							</p><br>
+							<p class="text-center">
+								<a href="modify" style="color: #788487">정보 수정</a>
+							</p><br>
+							<p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p><br>
+							<p class="text-center">
+								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
+						</div>
+					</aside>
+				</c:if>
+				<c:if test="${sessionScope.memberId == null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
+							<div class="form-group">
+								<p class="text-center">Login</p>
+								<p class="text-center">
+									<input class="form-control" type="text" id="memberId"
+										name="memberId" placeholder="loginId">
+								</p>
+								<p class="text-center">
+									<input class="form-control" type="password" id="memberPwd"
+										name="memberPwd" placeholder="password">
+								</p>
+								<p class="text-center">
+									<button class="btn btn-outline-secondary" type="button"
+										name="loginBTN" id="loginBTN"
+										style="width: 320px; height: 54px;">Login</button>
+								<p class="text-center">
+									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
+								</p>
+									
+							</div>
+						</div>
+					</aside>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	<!-- Off canvas end-->
 
 	<!-- To top button-->
 	<a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>

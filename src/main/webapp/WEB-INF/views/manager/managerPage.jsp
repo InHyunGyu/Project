@@ -24,7 +24,18 @@
         <!-- JavaScripts -->
       <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
       <script src="resources/assets/js/login2.js"></script>
+      <!-- swal -->
+<script src="https://unpkg.com/sweetswal/dist/sweetswal.min.js"></script>
+      
+      <!-- 홈아이콘바꾸기 -->
+<link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
+      
    <style>
+   img#profileThumb{
+		 border-radius: 50%;
+	}
+   
+   
       .module a {
          color: #788487;
       }
@@ -57,6 +68,15 @@
             } 
       })
       
+      /* $("#move").on("click",function(){
+         move(DATA);
+         DATA=[];
+      });
+      $("#deleted").on("click",function(){
+         deleted(DATA);
+         DATA=[];
+      }); */
+      
       //등급 이동버튼         
       $("#memberRating").on('click',function(){
          $.ajax({
@@ -84,6 +104,20 @@
          })
       })
       
+      
+      
+      //전체선택 정적(모델)
+      /* $("#checkAll").click(function() {
+         $("input[id=postNoBTN]:checkbox").each(function() {
+            $(this).attr("checked", true)
+            if($(this).is(':checked')){
+                    DATA.push($(this).val());
+               } else{
+                  $(this).attr("checked", false)
+                  DATA.pop($(this).val());
+               }
+         });
+      }); */
       $("#checkAll").click(function(){ 
          //만약 전체 선택 체크박스가 체크된상태일경우 
          //해당화면에 전체 checkbox들을 체크해준다 
@@ -96,6 +130,26 @@
             $("input[type=checkbox]").prop("checked",false); 
          } 
       });
+      
+      //$("input[id=postNoBTN]:checked").each(function() {
+      //   var test = $(this).val();
+      //})
+      /* $("input[id=postNoBTN]:checked").each(function(){
+            DATA += $('"data-boardno":checked').val();
+            console.log(DATA);
+         })  */
+      //var a= $(this).attr("data-boardno");
+         //유저 등급 체크 된 것 배열에 추가하기
+         /*var memberDATA=[];
+          $("#content_select").on("change","#memberIdBTN",function(){
+              if($(this).is(':checked')){
+                  memberDATA.push($(this).val());
+                   console.log(memberDATA);
+              } else{
+                 memberDATA.pop($(this).val());
+                 console.log(memberDATA);
+              }
+            }) */
    })      //끝.
    // 게시글 이동 
    function move(){
@@ -112,17 +166,22 @@
          "listchecked" : list.toString(),
          "postType" : postType
       }
-
+       
+      /* var fd = new FormData();
+      fd.append("listchecked", DATA);
+      fd.append("postType", postType); */
+      
+      
       $.ajax({
          method:"POST",
          url:"move",
          data:senddata,
          success : function(mesa){
             if(mesa==0){
-               alert("실패");
+               swal("실패");
             }
             else{
-               alert("게시글이 이동하였습니다.");
+               swal("게시글이 이동하였습니다.");
                for(var i=0; i<list.length; i++){
                   $('input[data-boardno |='+list[i]+']').parent().parent().remove();
                }
@@ -147,10 +206,10 @@
          },
          success : function(mesa){
             if(mesa==0){
-               alert("실패");
+               swal("실패");
             }
             else{
-               alert("게시글이 삭제 되었습니다.");
+               swal("게시글이 삭제 되었습니다.");
                for(var i=0; i<list.length; i++){
                   $('input[data-boardno |='+list[i]+']').parent().parent().remove();
                }
@@ -203,11 +262,11 @@
       
       var tag3 = ''
       tag3 += '<select class="form-control col-lg-2" style="height: 30px;" id="moveSelect">'
-      tag3 += '<option value="voice">voice</option>'
-      tag3 += '<option value="video">video</option>'
-      tag3 += '<option value="streaming">streaming</option>'
-      tag3 += '<option value="community">community</option>'
-      tag3 += '</select>'
+       tag3 += '<option value="voice">voice</option>'
+       tag3 += '<option value="video">video</option>'
+       tag3 += '<option value="streaming">streaming</option>'
+       tag3 += '<option value="community">community</option>'
+       tag3 += '</select>'
       tag3 += '<div class="form-group" style="float: right;">'
       tag3 += '<a href="#" onclick="move();">move</a>'      
       tag3 += '<a> | </a>'
@@ -354,65 +413,67 @@
    function noticeList(noticeList){
       var tag1 ="공지관리"
          
-      var tag2 =''
-      tag2 = '<colgroup>'
-      tag2 += '<col style="width: 5%;" />'
-      tag2 += '<col style="width: 20%;" />'
-      tag2 += '<col style="width: auto%;" />'
-      tag2 += '<col style="width: 10%;" />'
-      tag2 += '<col style="width: 20%;" />'
-      tag2 += '</colgroup>'
-      tag2 += '<thead>'
-      tag2 += '<tr>'      
-      tag2 += '<th><input type="checkbox" id="checkAll"></th>'
-      tag2 += '<th>게시판</th>'
-      tag2 += '<th>제목</th>'
-      tag2 += '<th>공지</th>'
-      tag2 += '<th>공지작성일</th>'
-      tag2 += '</tr>'
-      tag2 += '</thead>'
-      tag2 += '<tbody>'   
-      if(noticeList ==null){
-         tag2 += '<tr>'
-         tag2 += '<td colspan="4" align="center">데이터가 없습니다.</td>'
+         var tag2 =''
+         tag2 = '<colgroup>'
+         tag2 += '<col style="width: 5%;" />'
+         tag2 += '<col style="width: 20%;" />'
+         tag2 += '<col style="width: auto%;" />'
+         tag2 += '<col style="width: 10%;" />'
+         tag2 += '<col style="width: 20%;" />'
+         tag2 += '</colgroup>'
+         tag2 += '<thead>'
+         tag2 += '<tr>'      
+         tag2 += '<th><input type="checkbox" id="checkAll"></th>'
+         tag2 += '<th>게시판</th>'
+         tag2 += '<th>제목</th>'
+         tag2 += '<th>공지</th>'
+         tag2 += '<th>공지작성일</th>'
          tag2 += '</tr>'
-      }
-      else{
-         $.each(noticeList,function(index,item){
+         tag2 += '</thead>'
+         tag2 += '<tbody>'   
+         if(noticeList ==null){
             tag2 += '<tr>'
-            tag2 += '<td ><input type="checkbox" id="memberIdBTN" value="'+item.postNo+'"></td>'
-            tag2 += '<td>'+item.postType+'</td>'      
-            tag2 += '<td>'+item.postTitle+'</td>'
-            tag2 += '<td>'+item.isAnnouncement+'</td>'
-            tag2 += '<td>'+item.postDate+'</td>'
+            tag2 += '<td colspan="4" align="center">데이터가 없습니다.</td>'
             tag2 += '</tr>'
-         })
-      }
-      tag2 += '</tbody>'
-      
-      var tag3 = ''
-      tag3 += '<div class="form-group" style="float: right;">'
-      tag3 += '<a href="#" onclick="registration();">registration</a>'      
-      tag3 += '<a> | </a>'
-      tag3 += '<a href="#" onclick="cancel();">cancel</a>'
-      tag3 += '</div>'
-      
-      var tag4 = '';
-      tag4 += '<button class="form-control" type="button" onclick="notice_write();">공지 글쓰기</button>'
-      
+         }
+         else{
+            $.each(noticeList,function(index,item){
+               tag2 += '<tr>'
+               tag2 += '<td ><input type="checkbox" id="memberIdBTN" value="'+item.postNo+'"></td>'
+               tag2 += '<td>'+item.postType+'</td>'      
+               tag2 += '<td>'+item.postTitle+'</td>'
+               tag2 += '<td>'+item.isAnnouncement+'</td>'
+               tag2 += '<td>'+item.postDate+'</td>'
+               tag2 += '</tr>'
+            })
+         }
+         tag2 += '</tbody>'
+         
+         var tag3 = ''
+         tag3 += '<div class="form-group" style="float: right;">'
+         tag3 += '<a href="#" onclick="registration();">registration</a>'      
+         tag3 += '<a> | </a>'
+         tag3 += '<a href="#" onclick="cancel();">cancel</a>'
+         tag3 += '</div>'
+         
+         var tag4 = '';
+         tag4 += '<button class="form-control" type="button" onclick="notice_write();">공지 글쓰기</button>'
+         
 
-      $("#content_title").html(tag1);
-      $("#add").html(tag4);
-      $("#content_table").html(tag2);
-      $("#content_select").html(tag3);
-      $(".paging").html("");
-      $("#checkAll").click(function() {
-         $("input[id=memberIdBTN]:checkbox").each(function() {
-            $(this).attr("checked", true)
+         $("#content_title").html(tag1);
+         $("#add").html(tag4);
+         $("#content_table").html(tag2);
+         $("#content_select").html(tag3);
+         $(".paging").html("");
+         $("#checkAll").click(function() {
+            $("input[id=memberIdBTN]:checkbox").each(function() {
+               $(this).attr("checked", true)
+            });
          });
-      });
+      }
+   function notice_write(){
+      location.href="notice_write";
    }
-
    // 등급변경
    function change(){
       var list = [];
@@ -432,10 +493,10 @@
             },
             success : function(mesa){
                if(mesa==0){
-                  alert("실패");
+                  swal("실패");
                   }
                else{
-                  alert("등업 성공하였습니다.");
+                  swal("등업 성공하였습니다.");
                   location.reload();
                }
              }   
@@ -460,10 +521,10 @@
             },
             success : function(mesa){
                if(mesa==0){
-                  alert("실패");
+                  swal("실패");
                   }
                else{
-                  alert("등업 성공하였습니다.");
+                  swal("등업 성공하였습니다.");
                   location.reload();
                }
              }   
@@ -488,10 +549,10 @@
          },
          success : function(mesa){
             if(mesa == 0){
-               alert("실패");
+               swal("실패");
             }
             else{
-               alert("신고 글 삭제 성공하였습니다.");
+               swal("신고 글 삭제 성공하였습니다.");
                for(var i=0; i<list.length; i++){
                   $('input[data-boardno |='+list[i]+']').parent().parent().remove();
                }
@@ -516,10 +577,10 @@
          },
          success : function(mesa){
             if(mesa==0){
-               alert("실패");
+               swal("실패");
             }
             else{
-               alert("공지 등록 성공하였습니다.");
+               swal("공지 등록 성공하였습니다.");
                location.reload();
             }
          }
@@ -543,10 +604,10 @@
          },
          success : function(mesa){
             if(mesa==0){
-               alert("실패");
+               swal("실패");
             }
             else{
-               alert("공지 취소 성공하였습니다.");
+               swal("공지 취소 성공하였습니다.");
                location.reload();
             }
          }
@@ -629,18 +690,20 @@
         
         <!-- Wrapper-->
         <div class="wrapper">
-            <!-- Hero-->
-            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-17.jpg" data-overlay="0.3">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Management</h2>
-                            
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Hero end-->
+       <!-- Hero-->
+		<section class="module-cover parallax text-center"
+			data-background="resources/assets/images/manager_page.jpg"
+			data-overlay="0.3">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Management</h2>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Hero end-->
 
             <!-- Blog-->
             <section class="module">
@@ -790,48 +853,74 @@
             <!-- Footer end-->
         </div>
         <!-- Wrapper end-->
-       <!-- Off canvas-->
-        <div class="off-canvas-sidebar">
-            <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a></div>
-                <div class="off-canvas-content">
-                    <!-- Text widget-->
-                     <c:if test="${sessionScope.memberId != null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">${sessionScope.memberId}</p>
-                            <p class="text-center">
-                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
-                            </p>
-                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
-                            <p class="text-center">
+      <!-- Off canvas-->
+	<div class="off-canvas-sidebar">
+		<div class="off-canvas-sidebar-wrapper">
+			<div class="off-canvas-header">
+				<a class="off-canvas-close" href="#"><img
+					src="resources/assets/images/close.png" style="width: 15px;"></a>
+			</div>
+			<div class="off-canvas-content">
+				<!-- Text widget-->
+				<c:if test="${sessionScope.memberId != null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
+							<p class="text-center">
+								<c:if test="${sessionScope.memberId != null}">
+									<c:if test="${sessionScope.memberImg != null}">
+										<img id="profileThumb" src="download?memberId=${sessionScope.memberId}"  width="80px">
+									</c:if>
+									<c:if test="${sessionScope.memberImg == null}">
+										<img src="resources/assets/images/person.png"  width="80px">
+									</c:if>
+								</c:if>
+							</p>
+							<p class="text-center">${sessionScope.memberId}</p>
+							<p class="text-center">
+								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+							</p>
+							<p class="text-center">
+								<a href="modify" style="color: #788487">정보 수정</a>
+							</p>
+							<p class="text-center">
 								<a href="logout" style="color: #788487">로그 아웃</a>
 							</p>
 							<p class="text-center">
-								<a href="memberDelete" style="color: #788487">탈퇴</a>
+								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
 							</p>
-                        </div>
-                    </aside>
-                    </c:if>
-                    <c:if test="${sessionScope.memberId == null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                        	<div class="form-group">
-                        	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
-                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
-                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
-
-                            </div> 
-                        </div>
-                    </aside>
-                    </c:if>
-                </div>
-            </div>
-        </div>
-        <!-- Off canvas end-->
+						</div>
+					</aside>
+				</c:if>
+				<c:if test="${sessionScope.memberId == null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
+							<div class="form-group">
+								<p class="text-center">Login</p>
+								<p class="text-center">
+									<input class="form-control" type="text" id="memberId"
+										name="memberId" placeholder="loginId">
+								</p>
+								<p class="text-center">
+									<input class="form-control" type="password" id="memberPwd"
+										name="memberPwd" placeholder="password">
+								</p>
+								<p class="text-center">
+									<button class="btn btn-outline-secondary" type="button"
+										name="loginBTN" id="loginBTN"
+										style="width: 320px; height: 54px;">Login</button>
+								<p class="text-center">
+									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
+								</p>
+									
+							</div>
+						</div>
+					</aside>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	<!-- Off canvas end-->
 
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 

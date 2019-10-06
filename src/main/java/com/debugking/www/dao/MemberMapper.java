@@ -1,11 +1,14 @@
 package com.debugking.www.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.debugking.www.dto.MemberInfo;
 
 public interface MemberMapper {
 	public MemberInfo selectOne(String memberId); // 셀렉트 한명찾기
+	
+	
 	
 	public int signup(MemberInfo member); //인설트 회원등록
 
@@ -25,7 +28,9 @@ public interface MemberMapper {
 	public int memberUpdate(MemberInfo member);
 	
 	public int tempPwdSet(MemberInfo member); // 임시 비밀번호 설정
-	
+
+	public String checkEmail(String memberEmail);
+	 
 	
 
 }

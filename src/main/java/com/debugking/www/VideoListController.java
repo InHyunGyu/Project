@@ -25,8 +25,7 @@ public class VideoListController {
 	PostsService serivce;
 	@Autowired
 	VideoListRepository repo;
-	@Autowired
-	MemberRepository repo2;
+
 	
 	
 	final String uploadPath="C:/Spring/DebugKing/src/main/webapp/resources/savefile";
@@ -45,13 +44,17 @@ public class VideoListController {
 		
 		System.out.println(navi.getStartRecord());
 		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), countPerPage);
-		
+	
+	   
+	    
+	    
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
 		model.addAttribute("list", list);
 		
-	
+		
+		
 		
 		return "userBoard/video_new";
 		
@@ -91,6 +94,9 @@ public class VideoListController {
 		
 		System.out.println(navi.getStartRecord());
 		List<Posts>list = repo.selectMonth(searchItem, searchWord, navi.getStartRecord(), countPerPage);
+		
+	
+		
 		
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);

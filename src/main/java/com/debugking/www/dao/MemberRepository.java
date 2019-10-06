@@ -1,5 +1,7 @@
 package com.debugking.www.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -113,6 +115,15 @@ public class MemberRepository {
 		
 		return result; 
 	}
+ 
+	public String checkEmail(String memberEmail) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		String result = mapper.checkEmail(memberEmail);
+		
+		return result; 
+	}
+
+	
 
 
 

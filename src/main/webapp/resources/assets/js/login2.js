@@ -4,7 +4,7 @@ $(function() {
 			var memberPwd = $("#memberPwd").val();
 
 			if (memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
+				swal("다시입력해주세요.");
 				return;
 			}
 
@@ -19,16 +19,17 @@ $(function() {
 				data : send,
 				success : function(result) {
 					if (!result) {
-						alert("로그인 실패");
+						swal("로그인 실패");
 					} else {
-						alert("로그인 성공");
-						location.reload();
+						 
+						swal("로그인 성공");
+						location.href="main";   
 					}
 
 				}
 			})
 		})
-
+ 
 		$("#signup").on('click', function() {
 			location.href = "signup"
 		})
