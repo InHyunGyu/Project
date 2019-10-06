@@ -57,15 +57,6 @@
             } 
       })
       
-      /* $("#move").on("click",function(){
-         move(DATA);
-         DATA=[];
-      });
-      $("#deleted").on("click",function(){
-         deleted(DATA);
-         DATA=[];
-      }); */
-      
       //등급 이동버튼         
       $("#memberRating").on('click',function(){
          $.ajax({
@@ -93,20 +84,6 @@
          })
       })
       
-      
-      
-      //전체선택 정적(모델)
-      /* $("#checkAll").click(function() {
-         $("input[id=postNoBTN]:checkbox").each(function() {
-            $(this).attr("checked", true)
-            if($(this).is(':checked')){
-                    DATA.push($(this).val());
-               } else{
-                  $(this).attr("checked", false)
-                  DATA.pop($(this).val());
-               }
-         });
-      }); */
       $("#checkAll").click(function(){ 
          //만약 전체 선택 체크박스가 체크된상태일경우 
          //해당화면에 전체 checkbox들을 체크해준다 
@@ -119,26 +96,6 @@
             $("input[type=checkbox]").prop("checked",false); 
          } 
       });
-      
-      //$("input[id=postNoBTN]:checked").each(function() {
-      //   var test = $(this).val();
-      //})
-      /* $("input[id=postNoBTN]:checked").each(function(){
-            DATA += $('"data-boardno":checked').val();
-            console.log(DATA);
-         })  */
-      //var a= $(this).attr("data-boardno");
-         //유저 등급 체크 된 것 배열에 추가하기
-         /*var memberDATA=[];
-          $("#content_select").on("change","#memberIdBTN",function(){
-              if($(this).is(':checked')){
-                  memberDATA.push($(this).val());
-                   console.log(memberDATA);
-              } else{
-                 memberDATA.pop($(this).val());
-                 console.log(memberDATA);
-              }
-            }) */
    })      //끝.
    // 게시글 이동 
    function move(){
@@ -155,12 +112,7 @@
          "listchecked" : list.toString(),
          "postType" : postType
       }
-       
-      /* var fd = new FormData();
-      fd.append("listchecked", DATA);
-      fd.append("postType", postType); */
-      
-      
+
       $.ajax({
          method:"POST",
          url:"move",
@@ -251,11 +203,11 @@
       
       var tag3 = ''
       tag3 += '<select class="form-control col-lg-2" style="height: 30px;" id="moveSelect">'
-       tag3 += '<option value="voice">voice</option>'
-       tag3 += '<option value="video">video</option>'
-       tag3 += '<option value="streaming">streaming</option>'
-       tag3 += '<option value="community">community</option>'
-       tag3 += '</select>'
+      tag3 += '<option value="voice">voice</option>'
+      tag3 += '<option value="video">video</option>'
+      tag3 += '<option value="streaming">streaming</option>'
+      tag3 += '<option value="community">community</option>'
+      tag3 += '</select>'
       tag3 += '<div class="form-group" style="float: right;">'
       tag3 += '<a href="#" onclick="move();">move</a>'      
       tag3 += '<a> | </a>'
@@ -402,67 +354,65 @@
    function noticeList(noticeList){
       var tag1 ="공지관리"
          
-         var tag2 =''
-         tag2 = '<colgroup>'
-         tag2 += '<col style="width: 5%;" />'
-         tag2 += '<col style="width: 20%;" />'
-         tag2 += '<col style="width: auto%;" />'
-         tag2 += '<col style="width: 10%;" />'
-         tag2 += '<col style="width: 20%;" />'
-         tag2 += '</colgroup>'
-         tag2 += '<thead>'
-         tag2 += '<tr>'      
-         tag2 += '<th><input type="checkbox" id="checkAll"></th>'
-         tag2 += '<th>게시판</th>'
-         tag2 += '<th>제목</th>'
-         tag2 += '<th>공지</th>'
-         tag2 += '<th>공지작성일</th>'
+      var tag2 =''
+      tag2 = '<colgroup>'
+      tag2 += '<col style="width: 5%;" />'
+      tag2 += '<col style="width: 20%;" />'
+      tag2 += '<col style="width: auto%;" />'
+      tag2 += '<col style="width: 10%;" />'
+      tag2 += '<col style="width: 20%;" />'
+      tag2 += '</colgroup>'
+      tag2 += '<thead>'
+      tag2 += '<tr>'      
+      tag2 += '<th><input type="checkbox" id="checkAll"></th>'
+      tag2 += '<th>게시판</th>'
+      tag2 += '<th>제목</th>'
+      tag2 += '<th>공지</th>'
+      tag2 += '<th>공지작성일</th>'
+      tag2 += '</tr>'
+      tag2 += '</thead>'
+      tag2 += '<tbody>'   
+      if(noticeList ==null){
+         tag2 += '<tr>'
+         tag2 += '<td colspan="4" align="center">데이터가 없습니다.</td>'
          tag2 += '</tr>'
-         tag2 += '</thead>'
-         tag2 += '<tbody>'   
-         if(noticeList ==null){
-            tag2 += '<tr>'
-            tag2 += '<td colspan="4" align="center">데이터가 없습니다.</td>'
-            tag2 += '</tr>'
-         }
-         else{
-            $.each(noticeList,function(index,item){
-               tag2 += '<tr>'
-               tag2 += '<td ><input type="checkbox" id="memberIdBTN" value="'+item.postNo+'"></td>'
-               tag2 += '<td>'+item.postType+'</td>'      
-               tag2 += '<td>'+item.postTitle+'</td>'
-               tag2 += '<td>'+item.isAnnouncement+'</td>'
-               tag2 += '<td>'+item.postDate+'</td>'
-               tag2 += '</tr>'
-            })
-         }
-         tag2 += '</tbody>'
-         
-         var tag3 = ''
-         tag3 += '<div class="form-group" style="float: right;">'
-         tag3 += '<a href="#" onclick="registration();">registration</a>'      
-         tag3 += '<a> | </a>'
-         tag3 += '<a href="#" onclick="cancel();">cancel</a>'
-         tag3 += '</div>'
-         
-         var tag4 = '';
-         tag4 += '<button class="form-control" type="button" onclick="notice_write();">공지 글쓰기</button>'
-         
-
-         $("#content_title").html(tag1);
-         $("#add").html(tag4);
-         $("#content_table").html(tag2);
-         $("#content_select").html(tag3);
-         $(".paging").html("");
-         $("#checkAll").click(function() {
-            $("input[id=memberIdBTN]:checkbox").each(function() {
-               $(this).attr("checked", true)
-            });
-         });
       }
-   function notice_write(){
-      location.href="notice_write";
+      else{
+         $.each(noticeList,function(index,item){
+            tag2 += '<tr>'
+            tag2 += '<td ><input type="checkbox" id="memberIdBTN" value="'+item.postNo+'"></td>'
+            tag2 += '<td>'+item.postType+'</td>'      
+            tag2 += '<td>'+item.postTitle+'</td>'
+            tag2 += '<td>'+item.isAnnouncement+'</td>'
+            tag2 += '<td>'+item.postDate+'</td>'
+            tag2 += '</tr>'
+         })
+      }
+      tag2 += '</tbody>'
+      
+      var tag3 = ''
+      tag3 += '<div class="form-group" style="float: right;">'
+      tag3 += '<a href="#" onclick="registration();">registration</a>'      
+      tag3 += '<a> | </a>'
+      tag3 += '<a href="#" onclick="cancel();">cancel</a>'
+      tag3 += '</div>'
+      
+      var tag4 = '';
+      tag4 += '<button class="form-control" type="button" onclick="notice_write();">공지 글쓰기</button>'
+      
+
+      $("#content_title").html(tag1);
+      $("#add").html(tag4);
+      $("#content_table").html(tag2);
+      $("#content_select").html(tag3);
+      $(".paging").html("");
+      $("#checkAll").click(function() {
+         $("input[id=memberIdBTN]:checkbox").each(function() {
+            $(this).attr("checked", true)
+         });
+      });
    }
+
    // 등급변경
    function change(){
       var list = [];
