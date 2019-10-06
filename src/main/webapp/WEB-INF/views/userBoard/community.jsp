@@ -25,6 +25,14 @@
         <link href="resources/assets/css/template.css" rel="stylesheet">
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
+		
+		<!-- swal -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		
+		<!-- 홈아이콘바꾸기 -->
+<link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
+		
+		
 		<script src="resources/assets/js/login2.js"></script>
 		
 			<!--board-->	
@@ -42,6 +50,10 @@
 		
 		
 	<style type="text/css">
+	
+	img#profileThumb{
+		 border-radius: 50%;
+	}
   a {
   	color: #788487;
   }
@@ -63,7 +75,7 @@
 	$(function(){
 		$("#btnWriteForm").on('click',function(){
 			if(${empty sessionScope.memberId}){
-				alert("로그인한 후 글쓰기가능합니다.");
+				swal("로그인한 후 글쓰기가능합니다.");
 				return;
 			} else{
 				location.href="write?postType=community";
@@ -391,48 +403,74 @@
             <!-- Footer end-->
        
         <!-- Wrapper end-->
- 		<!-- Off canvas-->
-        <div class="off-canvas-sidebar">
-            <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a></div>
-                <div class="off-canvas-content">
-                    <!-- Text widget-->
-                    <c:if test="${sessionScope.memberId != null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">${sessionScope.memberId}</p>
-                            <p class="text-center">
-                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
-                            </p>
-                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
-                            <p class="text-center">
-								<a href="logout" style="color: #788487">로그 아웃</a>
-							</p>
+ 	<!-- Off canvas-->
+	<div class="off-canvas-sidebar">
+		<div class="off-canvas-sidebar-wrapper">
+			<div class="off-canvas-header">
+				<a class="off-canvas-close" href="#"><img
+					src="resources/assets/images/close.png" style="width: 15px;"></a>
+			</div>
+			<div class="off-canvas-content">
+				<!-- Text widget-->
+				<c:if test="${sessionScope.memberId != null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
 							<p class="text-center">
-								<a href="memberDelete" style="color: #788487">탈퇴</a>
+								<c:if test="${sessionScope.memberId != null}">
+									<c:if test="${sessionScope.memberImg != null}">
+										<img id="profileThumb" src="download?memberId=${sessionScope.memberId}"  width="80px">
+									</c:if>
+									<c:if test="${sessionScope.memberImg == null}">
+										<img src="resources/assets/images/person.png"  width="80px">
+									</c:if>
+								</c:if>
 							</p>
-                        </div>
-                    </aside>
-                    </c:if>
-                    <c:if test="${sessionScope.memberId == null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                        	<div class="form-group">
-                        	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
-                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
-                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
-
-                            </div> 
-                        </div>
-                    </aside>
-                    </c:if>
-                </div>
-            </div>
-        </div>
-        <!-- Off canvas end-->
+							<p class="text-center">${sessionScope.memberId}</p>
+							<p class="text-center">
+								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+							</p><br>
+							<p class="text-center">
+								<a href="modify" style="color: #788487">정보 수정</a>
+							</p><br>
+							<p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p><br>
+							<p class="text-center">
+								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
+						</div>
+					</aside>
+				</c:if>
+				<c:if test="${sessionScope.memberId == null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
+							<div class="form-group">
+								<p class="text-center">Login</p>
+								<p class="text-center">
+									<input class="form-control" type="text" id="memberId"
+										name="memberId" placeholder="loginId">
+								</p>
+								<p class="text-center">
+									<input class="form-control" type="password" id="memberPwd"
+										name="memberPwd" placeholder="password">
+								</p>
+								<p class="text-center">
+									<button class="btn btn-outline-secondary" type="button"
+										name="loginBTN" id="loginBTN"
+										style="width: 320px; height: 54px;">Login</button>
+								<p class="text-center">
+									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
+								</p>
+									
+							</div>
+						</div>
+					</aside>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	<!-- Off canvas end-->
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
         <!-- Scripts-->

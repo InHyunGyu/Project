@@ -122,6 +122,7 @@ public class ListController {
 			String postType = post.getPostType();
 			
 			Posts after = repo.after(postNo, postType);
+			
 			Posts before = repo.before(postNo, postType);
 			
 			model.addAttribute("before", before);

@@ -1,16 +1,16 @@
-@font-face {
+/* @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon/icomoon.eot?srf3rx");
   src: url("../fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"), url("../fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"), url("../fonts/icomoon/icomoon.woff?srf3rx") format("woff"), url("../fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
-/* =======================================================
+=======================================================
 *
 * 	Template Style
 *	Edit this section
 *
-* ======================================================= */
+* =======================================================
 
 *:focus {
     outline: none;
@@ -65,13 +65,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .noselect {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-                        supported by Chrome and Opera */
+    -webkit-touch-callout: none; iOS Safari
+    -webkit-user-select: none; Safari
+    -khtml-user-select: none; Konqueror HTML
+    -moz-user-select: none; Firefox
+    -ms-user-select: none; Internet Explorer/Edge
+    user-select: none; Non-prefixed version, currently
+                        supported by Chrome and Opera
 }
 
 #fh5co-header {
@@ -143,12 +143,12 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   height: 20px;
 }
-/*
+
 #fh5co-header #navbar li#navbar_nickname a span {
     float: left;
     margin-top: 1px;
 }
-*/
+
 #fh5co-header #navbar li a span:before {
   content: "";
   position: absolute;
@@ -173,12 +173,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #000;
 }
 #fh5co-header #navbar li a:hover span:before {
-  /*visibility: visible;
+  visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
   -ms-transform: scaleX(1);
   -o-transform: scaleX(1);
-  transform: scaleX(1);*/
+  transform: scaleX(1);
 }
 #fh5co-header #navbar li.active a {
   background: transparent;
@@ -325,7 +325,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/*todo*/
+todo
 #frame_body #frame_aside { position: fixed; width: 450px; height: 100%; min-height: 500px; right: 0; top: 0; padding-top: 55px; border-left: 1px solid #AAAAAA; background-color: #FFFFFF; }
 
 #frame_body #player_container { position: relative; width: 450px; }
@@ -346,10 +346,10 @@ h1, h2, h3, h4, h5, h6 {
 #frame_body #player_control_volume_btn { margin-right: 8px; margin-left: 30px; margin-top: 12px; height: 23px; cursor: pointer; }
 #frame_body #player_control_wrap { position: relative; width: 100%; height: 120px; display: block; z-index: 90; opacity: 1;
     background: rgba(0,0,0,0.75);
-    background: -webkit-linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0.75), rgba(0,0,0,0.6), rgba(0,0,0,0.45), rgba(0,0,0,0.3), rgba(0,0,0,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0.75), rgba(0,0,0,0.6), rgba(0,0,0,0.45), rgba(0,0,0,0.3), rgba(0,0,0,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0.75), rgba(0,0,0,0.6), rgba(0,0,0,0.45), rgba(0,0,0,0.3), rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0.75), rgba(0,0,0,0.6), rgba(0,0,0,0.45), rgba(0,0,0,0.3), rgba(0,0,0,0)); /* Standard syntax */
+    background: -webkit-linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0.75), rgba(0,0,0,0.6), rgba(0,0,0,0.45), rgba(0,0,0,0.3), rgba(0,0,0,0)); For Safari 5.1 to 6.0
+    background: -o-linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0.75), rgba(0,0,0,0.6), rgba(0,0,0,0.45), rgba(0,0,0,0.3), rgba(0,0,0,0)); For Opera 11.1 to 12.0
+    background: -moz-linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0.75), rgba(0,0,0,0.6), rgba(0,0,0,0.45), rgba(0,0,0,0.3), rgba(0,0,0,0)); For Firefox 3.6 to 15
+    background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0.75), rgba(0,0,0,0.6), rgba(0,0,0,0.45), rgba(0,0,0,0.3), rgba(0,0,0,0)); Standard syntax
 }
 #frame_body #player_control_wrap > div { opacity: 0; height: 0; overflow: hidden;
     -moz-transition: opacity 0.4s ease;
@@ -424,10 +424,10 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     z-index: 2;
     background: rgba(0, 0, 0, 0.35);
-    /*background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0.35), rgba(0,0,0,0.5));
+    background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0.35), rgba(0,0,0,0.5));
     background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0.35), rgba(0,0,0,0.5));
     background: -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0.35), rgba(0,0,0,0.5));
-    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0.35), rgba(0,0,0,0.5));*/
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0.35), rgba(0,0,0,0.5));
 }
 
 #fh5co-home {
@@ -445,7 +445,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 #fh5co-home a {
   color: rgba(255, 255, 255, 0.8) !important;
-  /* text-decoration: underline; */
+  text-decoration: underline;
 }
 #fh5co-home a:hover {
   color: #fff;
@@ -1000,7 +1000,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 35px;
   height: 2px;
   background: #1fb5f6;
-}
+} */
 #fh5co-footer .contact-info {
   margin: 0 0 60px 0;
   padding: 0;
@@ -1554,7 +1554,7 @@ h1, h2, h3, h4, h5, h6 {
 .music_list_wrap .music_list_item_fav { width: 45px; padding: 11px; margin-top: 2.5px; vertical-align: top; }
 .music_list_wrap .music_list_item_play { width: 45px; padding: 13px; margin-top: 2.5px; vertical-align: top; }
 
-.music_list_wrap .music_list_item.on { height: 120px; }
+.music_list_wrap .music_list_item.on { height: 120px; } 
 .music_list_wrap .music_list_item.on .music_list_item_thumbnail_div { opacity: 1;}
 .music_list_wrap .music_list_item.on .music_list_item_thumbnail { width: 160px; height: 90px; margin-top: 15px; }
 .music_list_wrap .music_list_item.on .music_list_item_music_name { line-height: 110px; }
@@ -2814,7 +2814,7 @@ h1, h2, h3, h4, h5, h6 {
     #profile_index_body #music_player_section .music_player_section_wrap.non_iphone.play_on.large_on #player_lyrics_wrap { bottom: 0; }
     #profile_index_body #music_player_section .music_player_section_wrap.non_iphone.play_on.lyrics_on.large_on #player_lyrics_wrap { bottom: 75px; }
 
-
+ 
     /***********************************/
     /*     Music Detail     */
     /***********************************/

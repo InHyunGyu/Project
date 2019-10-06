@@ -31,7 +31,18 @@
 <!-- JavaScripts -->
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 <script src="resources/assets/js/login2.js"></script>
+<!-- swal -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!-- 홈아이콘바꾸기 -->
+<link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
+
 <style>
+
+img#profileThumb{
+		 border-radius: 50%;
+	}
+
 
 /* 프로필 이미지 썸네일화를 위한 css 설정 */
 img#mypic {
@@ -146,7 +157,7 @@ table {
 		
 		$(".followReq").on('click', function(){
 			if(login.length == 0 || login == null) {
-				alert("로그인 해주세요.");
+				swal("로그인 해주세요.");
 				return;
 			} else {
 				followBTN(memberId, login)	
@@ -155,7 +166,7 @@ table {
 		
 		$(".block").on('click', function(){
 			if(login.length == 0 || login == null) {
-				alert("로그인 해주세요.");
+				swal("로그인 해주세요.");
 				return;
 			} else {
 				blockBTN(memberId, login);	
@@ -354,10 +365,10 @@ table {
 			success:function(res){
 				
 				var tag = ''
-				
+				 
 					$.each(res, function(index, item){
-						tag += '<div class="post-preview"><a href="#"><img src="resources/assets/images/blog/1.jpg" alt=""></a></div>';
-						tag += '<div class="post-wrapper">';
+						tag += '<div class="post-preview"><a href="#"><img src="download?memberId='+item.memberId+' alt=""></a></div>';
+						tag += '<div class="post-wrapper">'; 
 						tag += '<div class="post-header">';
 						tag += '<h2 class="post-title"><a href="blog-single.html">'+item.postTitle+'</a></h2>';
 						tag += '<ul class="post-meta">';
@@ -385,7 +396,7 @@ table {
 		}
 	
 	function followBTN(followName) {
-		alert(followName);
+		swal(followName);
 		var login = '${sessionScope.memberId}'
 		
 		
@@ -402,17 +413,17 @@ table {
 				data:send,
 				success:function(res){
 					if(res == 'ok') {
-						alert('ok');
+						swal('ok');
 						following(followName, login)
 						return;
 					} else {
-						alert('follow 등록에 실패하였습니다.');
+						swal('follow 등록에 실패하였습니다.');
 						return;
 					}
 				}
 			})	
 		} else {
-			alert('팔로우 할 수 없습니다.');
+			swal('팔로우 할 수 없습니다.');
 		}
 	}
 	
@@ -431,17 +442,17 @@ table {
 				data: send,
 				success:function (res) {
 					if(res='ok') {
-						alert('삭제 완료');
+						swal('삭제 완료');
 						return;
 					} else {
-						alert('삭제 실패');
+						swal('삭제 실패');
 						return;
 					}
 					
 				}
 			})
 		} else {
-			alert('삭제할 수 없습니다.');
+			swal('삭제할 수 없습니다.');
 		}
 	}
 	
@@ -704,7 +715,8 @@ table {
 	<div class="off-canvas-sidebar">
 		<div class="off-canvas-sidebar-wrapper">
 			<div class="off-canvas-header">
-				<a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a>
+				<a class="off-canvas-close" href="#"><img
+					src="resources/assets/images/close.png" style="width: 15px;"></a>
 			</div>
 			<div class="off-canvas-content">
 				<!-- Text widget-->
@@ -712,13 +724,19 @@ table {
 					<aside class="widget widget-text">
 						<div class="textwidget">
 							<p class="text-center">
-								<img src="resources/assets/images/person.png" alt=""
-									width="80px">
+								<c:if test="${sessionScope.memberId != null}">
+									<c:if test="${sessionScope.memberImg != null}">
+										<img id="profileThumb" src="download?memberId=${sessionScope.memberId}"  width="80px">
+									</c:if>
+									<c:if test="${sessionScope.memberImg == null}">
+										<img src="resources/assets/images/person.png"  width="80px">
+									</c:if>
+								</c:if>
 							</p>
 							<p class="text-center">${sessionScope.memberId}</p>
 							<p class="text-center">
-                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
-                            </p>
+								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+							</p>
 							<p class="text-center">
 								<a href="modify" style="color: #788487">정보 수정</a>
 							</p>
@@ -726,9 +744,9 @@ table {
 								<a href="logout" style="color: #788487">로그 아웃</a>
 							</p>
 							<p class="text-center">
-								<a href="memberDelete" style="color: #788487">탈퇴</a>
+								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
 							</p>
-						</div>
+						</div> 
 					</aside>
 				</c:if>
 				<c:if test="${sessionScope.memberId == null}">
@@ -747,12 +765,12 @@ table {
 								<p class="text-center">
 									<button class="btn btn-outline-secondary" type="button"
 										name="loginBTN" id="loginBTN"
-										style="width: 320px; height: 54px;">login</button>
+										style="width: 320px; height: 54px;">Login</button>
 								<p class="text-center">
-									<a href="signup" style="color: #788487">signup</a> &ensp; <a
-										href="id_pwd" style="color: #788487">id/pwd</a>
+									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
 								</p>
-
+									
 							</div>
 						</div>
 					</aside>

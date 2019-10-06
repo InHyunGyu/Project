@@ -21,10 +21,45 @@
         <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
+        <!-- swal -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        
         <!-- JavaScripts -->
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 		<script src="resources/assets/js/login2.js"></script>
+		
+  
+        
+        <!-- musicom css -->
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="resources/images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="resources/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/icomoon.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/simple-line-icons.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/owl.theme.default.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/style_frame.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/slick-theme.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/spinner.css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet"> 
+ 
+   
+<!-- musicom css end -->
+        
 	<style>
+	
+	img#profileThumb{
+		 border-radius: 50%; 
+	}
+	
+	img.repler{
+	width:60px; 
+	height:60px;
+	border-radius:0%;
+	}
+	
 		#button_group {
 			float: right;
 		}
@@ -55,6 +90,8 @@
 	
 	<script>
 	$(function(){
+		
+		
 		var login = '${sessionScope.memberId}';
 		
 		
@@ -63,14 +100,14 @@
 			var replyContent = $("#replyContent").val();
 			var postNo = "${post.postNo}";
 			
-			alert(login);
+			swal(login);
 			if(login.length == 0) {
-				alert("로그인을 해주세요.");
+				swal("로그인을 해주세요.");
 				return;
 			}
 			
 			if(replyContent.length == 0) {
-				alert("댓글 내용을 입력해주세요.");
+				swal("댓글 내용을 입력해주세요.");
 				return;
 			}
 			
@@ -148,7 +185,7 @@
 			var postNo = $(this).attr("data-value");
 			
 			if(login.length == 0 || login == null) {
-				alert('로그인을 해주세요');
+				swal('로그인을 해주세요');
 				return;
 			} else {
 				var send = {
@@ -161,11 +198,11 @@
 					data:send,
 					success:function(res){
 						if(res == 0) {
-							alert('중복 ');
+							swal('이미 좋아요를 누른 게시물 입니다.'); 
 							return;
 						} else {
 							location.reload();	
-						}
+						} 
 						
 					}
 				})
@@ -179,8 +216,13 @@
 			$.ajax({
 				method:'GET',
 				url:'reported?postNo='+postNo,
-				success:function(){
-					location.reload();
+				success:function(res){
+					if(res == 0) {
+						swal('이미 신고를 누른 게시물 입니다.'); 
+						return;
+					} else {
+						location.reload();	
+					} 
 				}
 			})
 		})
@@ -307,7 +349,39 @@
                                         </ul>
                                     </div>
                                     <div class="post-content">
-                                        <p>${post.postContent}</p>
+                                    
+                                    
+                                    <!-- 영상목록 시작 -->
+                                         <div id="music_video_list_wrap" style="display: block;">
+											<div
+												class="music_video_list_item to-animate-2 fadeInUp animated"
+												video="3GLrB9GvBq8" style="width: 63%">
+												<div class="music_video_list_item_wrap">
+													<div style="position: relative;">
+														
+										
+                                                        	<video width="350" height="300" controls="controls"
+															preload="metadata" poster="resources/images/thumbnail.jpg">
+															<source src="resources/savefile/${post.savedFile}"
+																type="video/webm">
+														</video>
+                                                       
+                                                    
+														
+													</div>
+												</div>
+
+												<div class="music_video_list_item_wrap">
+													<div style="position: relative;"></div>
+												</div>
+											</div>
+										</div>
+										<!-- 영상목록 끝 -->
+										 
+										     <br>	
+										     <p>${post.postContent}</p>
+										
+                                       
                                     </div>
                                    
                                 </div>
@@ -325,7 +399,7 @@
                                    	<c:if test="${not empty replyList}">
 										<c:forEach var="reply" items="${replyList}">
 											
-											<div class="comment-author"><img class="avatar" src="resources/assets/images/avatar/1.jpg" alt=""></div>
+											<div class="comment-author"><img class="repler" src="download?memberId=${reply.memberId}" alt=""></div>
 											
 											<div class="comment-body">
 												<div class="comment-meta">
@@ -400,7 +474,7 @@
                                         <h6>Categories</h6>
                                     </div>
                                     <ul>
-                                        <li><a href="javascript:history.back()">목록으로 </a></li>
+                                        <li><a href="javascript:history.back()">이전화면 </a></li>
                                     </ul>
                                 </aside>
 
@@ -412,7 +486,7 @@
                                     <ul>
                                         <li class="clearfix">
                                         	<c:if test="${after != null}">
-                                            	<div class="wi"><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
+                                            	<div class="wi"><a href="#"><img src="resources/images/thumbnail.jpg" alt=""></a></div>
                                             	<div class="wb"><a href="file_detail?postNo=${after.postNo}"><span style="font-weight: bold; color: black;">${after.postTitle}</span><br>${after.memberId}<br>${after.postType}</a><span class="post-date">${after.postDate}</span></div>
 											</c:if>        
 											<c:if test="${after == null}">
@@ -431,9 +505,9 @@
                                     <ul>
                                         <li class="clearfix">
                                         	<c:if test="${before != null}">
-                                            	<div class="wi"><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></div>
+                                            	<div class="wi"><a href="#"><img src="resources/images/thumbnail.jpg" alt=""></a></div>
                                             	<div class="wb"><a href="file_detail?postNo=${before.postNo}"><span style="font-weight: bold; color: black;">${before.postTitle}</span><br>${before.memberId}<br>${before.postType}</a><span class="post-date">${before.postDate}</span></div>
-											</c:if>        
+											</c:if>         
 											<c:if test="${before == null}">
 												<a>이전 게시글이 없습니다.</a>
 											</c:if>                                
@@ -526,47 +600,73 @@
         </div>
         <!-- Wrapper end-->
  		<!-- Off canvas-->
-        <div class="off-canvas-sidebar">
-            <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a></div>
-                <div class="off-canvas-content">
-                    <!-- Text widget-->
-                    <c:if test="${sessionScope.memberId != null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">${sessionScope.memberId}</p>
-                            <p class="text-center">
-                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
-                            </p>
-                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
-                            <p class="text-center">
-								<a href="logout" style="color: #788487">로그 아웃</a>
-							</p>
+	<div class="off-canvas-sidebar">
+		<div class="off-canvas-sidebar-wrapper">
+			<div class="off-canvas-header">
+				<a class="off-canvas-close" href="#"><img
+					src="resources/assets/images/close.png" style="width: 15px;"></a>
+			</div>
+			<div class="off-canvas-content">
+				<!-- Text widget-->
+				<c:if test="${sessionScope.memberId != null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
 							<p class="text-center">
-								<a href="memberDelete" style="color: #788487">탈퇴</a>
+								<c:if test="${sessionScope.memberId != null}">
+									<c:if test="${sessionScope.memberImg != null}">
+										<img id="profileThumb" src="download?memberId=${sessionScope.memberId}"  width="80px">
+									</c:if>
+									<c:if test="${sessionScope.memberImg == null}">
+										<img src="resources/assets/images/person.png"  width="80px">
+									</c:if>
+								</c:if>
 							</p>
-                        </div>
-                    </aside>
-                    </c:if>
-                    <c:if test="${sessionScope.memberId == null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                        	<div class="form-group">
-                        	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="memberId" name="memberId" placeholder="loginId"></p>
-                            <p class="text-center"><input class="form-control" type="password" id="memberPwd" name="memberPwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
-                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
-
-                            </div> 
-                        </div>
-                    </aside>
-                    </c:if>
-                </div>
-            </div>
-        </div>
-        <!-- Off canvas end-->
+							<p class="text-center">${sessionScope.memberId}</p>
+							<p class="text-center">
+								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+							</p><br>
+							<p class="text-center">
+								<a href="modify" style="color: #788487">정보 수정</a>
+							</p><br>
+							<p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p><br>
+							<p class="text-center">
+								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
+						</div>
+					</aside>
+				</c:if>
+				<c:if test="${sessionScope.memberId == null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
+							<div class="form-group">
+								<p class="text-center">Login</p>
+								<p class="text-center">
+									<input class="form-control" type="text" id="memberId"
+										name="memberId" placeholder="loginId">
+								</p>
+								<p class="text-center">
+									<input class="form-control" type="password" id="memberPwd"
+										name="memberPwd" placeholder="password">
+								</p>
+								<p class="text-center">
+									<button class="btn btn-outline-secondary" type="button"
+										name="loginBTN" id="loginBTN"
+										style="width: 320px; height: 54px;">Login</button>
+								<p class="text-center">
+									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
+								</p>
+									
+							</div>
+						</div>
+					</aside>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	<!-- Off canvas end-->
 
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 

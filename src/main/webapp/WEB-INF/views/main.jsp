@@ -28,10 +28,14 @@
 <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
 <!-- Template core CSS-->
 <link href="resources/assets/css/template.css" rel="stylesheet">
+
+
 <!-- JavaScripts -->
 	
 <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 
+<!-- 홈아이콘바꾸기 -->
+<link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
 
 <!-- musicom css -->
   <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="resources/images/favicon.ico">
@@ -59,9 +63,54 @@
 
 </style>
 
+<!-- swal -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <script src="resources/assets/js/login2.js"></script>
+ 
+  
+<script>
+$(function(){
+	var login = '${sessionScope.memberId}';
+	
+	$(".music_video_list_item_fav_img").on('click', function(){
+		var postNo = $(this).attr("data-value");
+		
+		if(login.length == 0 || login == null) {
+			swal('로그인을 해주세요');
+			return;
+		} else {
+			var send = {
+					'postNo':postNo
+			}
+			
+			$.ajax({
+				method:'GET',
+				url:'postLike',
+				data:send,
+				success:function(res){
+					if(res == 0) {
+						swal('이미 좋아요를 누른 게시물 입니다.');
+						return;
+					} else {
+						location.reload();	
+					}
+					
+				}
+			})
+		
+		}
+	})	
+	
+	
+	
+});
 
+
+
+
+</script>
 
 
 </head>
@@ -175,7 +224,7 @@
            <div class="container">
                <div class="row">
                    <div class="col-md-12">
-                       <h1>Slide 1</h1>
+                       <h1>첫번째공지</h1>
                    </div>
                </div>
            </div>
@@ -185,7 +234,7 @@
            <div class="container">
                <div class="row">
                    <div class="col-md-12">
-                       <h1>Slide 2</h1>
+                       <h1>두번째공지</h1>
                    </div>
                </div>
            </div>
@@ -195,7 +244,7 @@
            <div class="container">
                <div class="row">
                    <div class="col-md-12">
-                       <h1>Slide 3</h1>
+                       <h1>세번째공지</h1> 
                    </div>
                </div>
            </div>
@@ -262,20 +311,10 @@
 									 style="width: 100%">
 									<div class="music_video_list_item_wrap"> 
 										<div style="position: relative;">
-											<div class="music_video_list_item_thumbnail_cover"
-												onmouseenter="fnMouseEnterOnMusic(this);"
-												onmouseleave="fnMouseLeaveOnMusic(this);"
-												onmousemove="fnMouseEnterOnMusic(this);"
-												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-
-												<img class="music_video_list_item_thumbnail_cover_img"
-													src="resources/images/icon_play_round.png"
-													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-											</div>
- 
+											
 
 											<video width="550" height="300" controls="controls"
-												preload="metadata">
+												preload="metadata" poster="resources/images/thumbnail.jpg">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
 											</video>
@@ -291,8 +330,8 @@
 											</div>
 											<div class="music_video_list_item_fav_div"
 												style="line-height: 4;">
-												<img class="music_video_list_item_fav_img"
-													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+												<img class="music_video_list_item_fav_img" data-value="${board.postNo}"
+													src="resources/images/icon_fav_off.png" alt="좋아요">
 											</div>
 										</div>
 									</div>
@@ -321,20 +360,11 @@
 									video="3GLrB9GvBq8" style="width: 100%">
 									<div class="music_video_list_item_wrap">
 										<div style="position: relative;">
-											<div class="music_video_list_item_thumbnail_cover"
-												onmouseenter="fnMouseEnterOnMusic(this);"
-												onmouseleave="fnMouseLeaveOnMusic(this);"
-												onmousemove="fnMouseEnterOnMusic(this);"
-												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-
-												<img class="music_video_list_item_thumbnail_cover_img"
-													src="resources/images/icon_play_round.png"
-													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-											</div>
+										
 
 
 											<video width="550" height="300" controls="controls"
-												preload="metadata">
+												preload="metadata" poster="resources/images/thumbnail.jpg">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
 											</video>
@@ -350,8 +380,8 @@
 											</div>
 											<div class="music_video_list_item_fav_div"
 												style="line-height: 4;">
-												<img class="music_video_list_item_fav_img"
-													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+												<img class="music_video_list_item_fav_img" data-value="${board.postNo}"
+													src="resources/images/icon_fav_off.png" alt="좋아요">
 											</div>
 										</div>
 									</div>
@@ -384,21 +414,12 @@
 									video="3GLrB9GvBq8" style="width: 100%">
 									<div class="music_video_list_item_wrap">
 										<div style="position: relative;">
-											<div class="music_video_list_item_thumbnail_cover"
-												onmouseenter="fnMouseEnterOnMusic(this);"
-												onmouseleave="fnMouseLeaveOnMusic(this);"
-												onmousemove="fnMouseEnterOnMusic(this);"
-												onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-
-												<img class="music_video_list_item_thumbnail_cover_img"
-													src="resources/images/icon_play_round.png"
-													onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-											</div>
+											
 
 
 
 											<video width="550" height="300" controls="controls"
-												preload="metadata">
+												preload="metadata" poster="resources/images/thumbnail.jpg">
 												<source src="resources/savefile/${board.savedFile}"
 													type="video/webm">
 											</video>
@@ -414,8 +435,8 @@
 											</div>
 											<div class="music_video_list_item_fav_div"
 												style="line-height: 4;">
-												<img class="music_video_list_item_fav_img"
-													src="resources/images/icon_fav_off.png" alt="즐겨찾기 취소">
+												<img class="music_video_list_item_fav_img" data-value="${board.postNo}"
+													src="resources/images/icon_fav_off.png" alt="좋아요">
 											</div>
 										</div>
 									</div>

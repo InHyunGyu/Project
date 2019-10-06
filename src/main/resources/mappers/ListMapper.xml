@@ -201,6 +201,7 @@
 	
 	<select id="before" parameterType="Post" resultType="Post">
 		select 
+		    postNo,
 			memberId,
 			postTitle,
 			to_char(postDate,'YYYY-MM-DD') as postDate,
@@ -209,7 +210,7 @@
 		where postNo = 
 			(select
 				MAX(postNo)
-			from posts
+			from posts 
 			where #{postNo} > postNo and postType = #{postType})
 	</select>
 </mapper>

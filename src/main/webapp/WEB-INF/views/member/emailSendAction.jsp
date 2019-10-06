@@ -26,6 +26,17 @@
 
         <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
         <script src="resources/assets/js/login2.js"></script>
+        <!-- swal -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        
+        <!-- 홈아이콘바꾸기 -->
+<link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
+        <style>
+        img#profileThumb{
+		 border-radius: 50%;
+	}
+        
+        </style>
 <script >
 	$(function(){
 		var flagid = false;
@@ -60,12 +71,12 @@
 		$("#checkid").on("click",function(){
 			memberId = 	$("#memberId").val();
 			if(memberId=="" || memberId==null){
-				alert("ID입력하세요");
+				swal("ID입력하세요");
 				checkId.select();
 				return false;
 			}
 			else if(flagid=false){
-				alert("중복하세요");
+				swal("중복하세요");
 				return false;
 			}
 			else{
@@ -75,11 +86,11 @@
 					data : "memberId="+ memberId,
 					success: function(result){
 						if(result=="true"){
-							alert("동일한 ID가 존재합니다.");
+							swal("동일한 ID가 존재합니다.");
 						}
 						else {
 							flagid=true;
-							alert("사용 가능합니다.");
+							swal("사용 가능합니다.");
 						}
 					}
 				});
@@ -128,12 +139,12 @@
 					success: function(result){
 						if(result=="true"){
 							flagreco=true;
-							alert("확인");
+							swal("확인");
 							
 						}
 						else {
 							flagreco=false;
-							alert("동일한 ID가 존재하지 않습니다.");
+							swal("동일한 ID가 존재하지 않습니다.");
 						}
 					}
 				})
@@ -154,30 +165,30 @@
 			var memberbirth = $("#memberbirth").val();
 			var recommender =$("#recommender").val();
 			
-			//alert("tel2"+tel2+"tel3"+tel3);
+			//swal("tel2"+tel2+"tel3"+tel3);
 			if(!recommender){
 				flagreco=true;
 			}
 			if(tel2 == "" || tel3 == ""||tel2 == null||tel3 == null ||isNaN(tel2) || isNaN(tel3)){
-				alert("전화번호 제대로 입력하세요");
+				swal("전화번호 제대로 입력하세요");
 				tel2.select();
 				return false;
 			}else{
 				memberphone = tel1+tel2+tel3;
 				if(membername==null){
-					alert("이름을 입력하세요");
+					swal("이름을 입력하세요");
 					membername.select();
 					return false;
 				}else if(memberbirth==null){
-					alert("생일을 입력하세요");
+					swal("생일을 입력하세요");
 					memberbirth.select();
 					return false;
 				}
 				if(flagreco==false){
-					alert("추천인 확인버튼을 누르세요");
+					swal("추천인 확인버튼을 누르세요");
 					return false;
 				}else{
-					alert("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
+					swal("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
 		 			
 					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
 						$.ajax({
@@ -194,18 +205,18 @@
 							},
 							success : function(mesa){
 								if(mesa === "success"){
-									alert("등록 성공하였습니다. 화면 이동합니다.");
+									swal("등록 성공하였습니다. 화면 이동합니다.");
 									location.href ="main"
 								}
 								else{
-									alert("등록 실패하였습니다. 화면 이동합니다.");
+									swal("등록 실패하였습니다. 화면 이동합니다.");
 									location.href ="main"
 								}
 							}
 						}); 
 					}
 					else{
-						alert("다시 확인하세요.");
+						swal("다시 확인하세요.");
 					} 
 				}
 			}
@@ -216,7 +227,7 @@
 			var memberPwd = $("#loginPwd").val();
 
 			if (memberId.length == 0 || memberPwd.length == 0) {
-				alert("다시입력해주세요.");
+				swal("다시입력해주세요.");
 				return;
 			}
 
@@ -231,9 +242,9 @@
 				data : send,
 				success : function(result) {
 					if (!result) {
-						alert("로그인 실패");
+						swal("로그인 실패");
 					} else {
-						alert("로그인 성공");
+						swal("로그인 성공");
 						location.href="main";
 					}
 
@@ -441,47 +452,73 @@
         </div>
         <!-- Wrapper end-->
 		<!-- Off canvas-->
-        <div class="off-canvas-sidebar">
-            <div class="off-canvas-sidebar-wrapper">
-                <div class="off-canvas-header"><a class="off-canvas-close" href="#"><img src="resources/assets/images/close.png" style="height: 15px;"></a></div>
-                <div class="off-canvas-content">
-                    <!-- Text widget-->
-                    <c:if test="${sessionScope.memberId != null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                            <p class="text-center"><img src="resources/assets/images/person.png" alt="" width="80px"></p>
-                            <p class="text-center">${sessionScope.memberId}</p>
-                            <p class="text-center">
-                            	<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
-                            </p>
-                            <p class="text-center"><a href="modify" style="color: #788487">정보 수정</a></p>
-                           <p class="text-center">
-								<a href="logout" style="color: #788487">로그 아웃</a>
-							</p>
+	<div class="off-canvas-sidebar">
+		<div class="off-canvas-sidebar-wrapper">
+			<div class="off-canvas-header">
+				<a class="off-canvas-close" href="#"><img
+					src="resources/assets/images/close.png" style="width: 15px;"></a>
+			</div>
+			<div class="off-canvas-content">
+				<!-- Text widget-->
+				<c:if test="${sessionScope.memberId != null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
 							<p class="text-center">
-								<a href="memberDelete" style="color: #788487">탈퇴</a>
+								<c:if test="${sessionScope.memberId != null}">
+									<c:if test="${sessionScope.memberImg != null}">
+										<img id="profileThumb" src="download?memberId=${sessionScope.memberId}"  width="80px">
+									</c:if>
+									<c:if test="${sessionScope.memberImg == null}">
+										<img src="resources/assets/images/person.png"  width="80px">
+									</c:if>
+								</c:if>
 							</p>
-                        </div>
-                    </aside>
-                    </c:if>
-                    <c:if test="${sessionScope.memberId == null}">
-                    <aside class="widget widget-text">
-                        <div class="textwidget">
-                        	<div class="form-group">
-                        	<p class="text-center">Login</p>
-                            <p class="text-center"><input class="form-control" type="text" id="loginId" name="memberId" placeholder="loginId"></p>
-                            <p class="text-center"><input class="form-control" type="password" id="loginPwd" name="memberPwd" placeholder="password"></p>
-                            <p class="text-center"><button class="btn btn-outline-secondary" type="button"  name="loginBTN" id="loginBTN" style="width: 320px; height: 54px;">login</button>
-                           <p class="text-center"><a href="signup" style="color: #788487">signup</a> &ensp; <a href="id_pwd" style="color: #788487">id/pwd</a></p>
-
-                            </div> 
-                        </div>
-                    </aside>
-                    </c:if>
-                </div>
-            </div>
-        </div>
-        <!-- Off canvas end-->
+							<p class="text-center">${sessionScope.memberId}</p>
+							<p class="text-center">
+								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
+							</p><br>
+							<p class="text-center">
+								<a href="modify" style="color: #788487">정보 수정</a>
+							</p><br>
+							<p class="text-center">
+								<a href="logout" style="color: #788487">로그 아웃</a>
+							</p><br>
+							<p class="text-center">
+								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
+							</p>
+						</div>
+					</aside>
+				</c:if>
+				<c:if test="${sessionScope.memberId == null}">
+					<aside class="widget widget-text">
+						<div class="textwidget">
+							<div class="form-group">
+								<p class="text-center">Login</p>
+								<p class="text-center">
+									<input class="form-control" type="text" id="memberId"
+										name="memberId" placeholder="loginId">
+								</p>
+								<p class="text-center">
+									<input class="form-control" type="password" id="memberPwd"
+										name="memberPwd" placeholder="password">
+								</p>
+								<p class="text-center">
+									<button class="btn btn-outline-secondary" type="button"
+										name="loginBTN" id="loginBTN"
+										style="width: 320px; height: 54px;">Login</button>
+								<p class="text-center">
+									<a href="signup" style="color: #788487">회원가입</a> &ensp; <a
+										href="id_pwd" style="color: #788487">ID/Password 찾기</a>
+								</p>
+									
+							</div>
+						</div>
+					</aside>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	<!-- Off canvas end-->
 
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
 
