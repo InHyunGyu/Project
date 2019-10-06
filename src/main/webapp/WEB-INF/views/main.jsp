@@ -52,6 +52,13 @@
 <!-- musicom css end -->
 
 
+<style>
+	img#profileThumb{
+		 border-radius: 50%;
+	}
+
+</style>
+
 
 <script src="resources/assets/js/login2.js"></script>
 
@@ -571,7 +578,7 @@
 							<p class="text-center">
 								<c:if test="${sessionScope.memberId != null}">
 									<c:if test="${sessionScope.memberImg != null}">
-										<img src="download?memberId=${sessionScope.memberId}"  width="80px">
+										<img id="profileThumb" src="download?memberId=${sessionScope.memberId}"  width="80px">
 									</c:if>
 									<c:if test="${sessionScope.memberImg == null}">
 										<img src="resources/assets/images/person.png"  width="80px">
