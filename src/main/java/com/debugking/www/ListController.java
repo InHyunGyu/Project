@@ -101,52 +101,56 @@ public class ListController {
 	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
 	public String commuDetail(int postNo, HttpSession session,Model model){
 /*		 ModelAndView view = new ModelAndView();*/
-		String view = "view";
 		
-		//댓글 받아와 모델에 입력하기
-		ArrayList<Replies> replyList = new ArrayList<>();
-		int replyCount = repo.replyCount(postNo);
+		
+		String checkType = "view";
+	        
+	      //댓글 받아와 모델에 입력하기
+	      ArrayList<Replies> replyList = new ArrayList<>();
+	      int replyCount = repo.replyCount(postNo);
+	       replyList = repo.replyList(postNo);
+	       model.addAttribute("replyCount", replyCount);
+	       model.addAttribute("replyList", replyList);
+	       
+	       
+	       
+	       
 
-	   
-		List<likereport> result = lrrepo.selectList(postNo,view); 
-		String memberId = (String)session.getAttribute("memberId");
-		for(likereport lr : result){
-			if(lr.getMemberId().equals(memberId)){
-				System.out.println("배열에 존재합니다.");
-				return "userBoard/file_detail";
-			}
-		}
-		if(memberId==null){
-			System.out.println("로그인 하지 않습니다.");
-			return "userBoard/file_detail";
-		}
+	       //확인하고 조회수 증가 후 페이지 이동
+	       Posts post = repo.selectOne(postNo);
 
-		replyList = repo.replyList(postNo);
-		
-		repo.postView(postNo);
-		
-		Posts post = repo.selectOne(postNo);
-		
-		String postType = post.getPostType();
-		
-		Posts after = repo.after(postNo, postType);
-		Posts before = repo.before(postNo, postType);
-		
-		model.addAttribute("before", before);
-		model.addAttribute("after", after);
-		model.addAttribute("post", post);
-		model.addAttribute("replyCount", replyCount);
-		model.addAttribute("replyList", replyList);
-
-		
-		post.setMemberId(memberId);
-		post.setPostNo(postNo);
-		lrrepo.viewinsertLR(post,view); //배열에 입력
-		System.out.println("3");
-		repo.postView(postNo); //조회수 증가
-		System.out.println("4");
-		System.out.println("배열에 존재하지 않습니다.");
-		return "userBoard/file_detail";
+			String postType = post.getPostType();
+			
+			Posts after = repo.after(postNo, postType);
+			Posts before = repo.before(postNo, postType);
+			
+			model.addAttribute("before", before);
+			model.addAttribute("after", after);
+			model.addAttribute("post", post);
+	       
+	      
+	      List<likereport> result = lrrepo.selectList(postNo,checkType); 
+	      String memberId = (String)session.getAttribute("memberId");
+	      for(likereport lr : result){
+	         if(lr.getMemberId().equals(memberId)){
+	            System.out.println("배열에 존재합니다."); 
+	            return "userBoard/file_detail";
+	         }
+	      }
+	      if(memberId==null){
+	         System.out.println("로그인 하지 않습니다.");
+	         return "userBoard/file_detail";
+	      }
+	      
+	      post.setMemberId(memberId);
+	      post.setPostNo(postNo);
+	      lrrepo.viewinsertLR(post,checkType); //배열에 입력
+	      System.out.println("3");
+	      repo.postView(postNo); //조회수 증가
+	      System.out.println("4");
+	      System.out.println("배열에 존재하지 않습니다.");
+	      return "userBoard/file_detail";
+	
 	}
 
 	@ResponseBody
@@ -194,7 +198,7 @@ public class ListController {
 	@ResponseBody
 	@RequestMapping(value="/postLike", method=RequestMethod.GET)
 	public int postLike(int postNo,HttpSession session,Model model){
-		String like = "like";
+		String checkType = "like";
 		
 		//댓글 받아와 모델에 입력하기
 		ArrayList<Replies> replyList = new ArrayList<>();
@@ -207,7 +211,7 @@ public class ListController {
 	    Posts post = repo.selectOne(postNo);
 	    model.addAttribute("post", post);
 	    
-		List<likereport> result = lrrepo.selectList(postNo,like); 
+		List<likereport> result = lrrepo.selectList(postNo,checkType); 
 		String memberId = (String)session.getAttribute("memberId");
 		for(likereport lr : result){
 			if(lr.getMemberId().equals(memberId)){
@@ -221,7 +225,7 @@ public class ListController {
 		}
 		post.setMemberId(memberId);
 		post.setPostNo(postNo);
-		lrrepo.viewinsertLR(post,like); //배열에 입력
+		lrrepo.viewinsertLR(post,checkType); //배열에 입력
 		
 		repo.postLike(postNo); //조회수 증가
 		System.out.println("배열에 존재하지 않습니다.");
@@ -231,7 +235,7 @@ public class ListController {
 	@ResponseBody
 	@RequestMapping(value="/reported", method=RequestMethod.GET)
 	public int reported(int postNo,HttpSession session,Model model){
-		String report ="report";
+		String checkType = "report";
 		
 		//댓글 받아와 모델에 입력하기
 		ArrayList<Replies> replyList = new ArrayList<>();
@@ -244,7 +248,7 @@ public class ListController {
 	    Posts post = repo.selectOne(postNo);
 	    model.addAttribute("post", post);
 	    
-		List<likereport> result = lrrepo.selectList(postNo,report); 
+		List<likereport> result = lrrepo.selectList(postNo,checkType); 
 		String memberId = (String)session.getAttribute("memberId");
 		
 		for(likereport lr : result){
@@ -259,7 +263,7 @@ public class ListController {
 		}
 		post.setMemberId(memberId);
 		post.setPostNo(postNo);
-		lrrepo.viewinsertLR(post,report); //배열에 입력
+		lrrepo.viewinsertLR(post,checkType); //배열에 입력
 		
 		repo.reported(postNo); //조회수 증가
 		System.out.println("배열에 존재하지 않습니다.");

@@ -28,16 +28,17 @@
 			#{savedFile}
 			</if>
 		)
-  	</insert>
+  	</insert> 
   	
   	<select id="getBoardCount" parameterType="map" resultType="int">
 		select count(*)
 		from posts
+		where postType='community'
 		<if test="searchItem != null">
-			where ${searchItem} like '%'||#{searchWord}||'%'
-		</if>
+			and ${searchItem} like '%'||#{searchWord}||'%'
+		</if> 
 	</select>
-	
+	 
 	<select id="selectAll" parameterType="map" resultType="Post">
 		SELECT
 			postNo

@@ -392,7 +392,7 @@
 		tag2 += '</colgroup>'
 		tag2 += '<thead>'
 		tag2 += '<tr>'
-		tag2 += '<th><input type="checkbox"></th>'
+		tag2 += '<th><input type="checkbox"></th>' 
 		tag2 += '<th>게시판</th>'
 		tag2 += '<th>제목</th>'
 		tag2 += '<th>공지작성일</th>'

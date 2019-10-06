@@ -155,7 +155,17 @@
 								<textarea class="form-control" id="postContent" name="postContent" rows="15" cols="100" placeholder="content"></textarea>
 							</div>
 							<div class="form-group">
-								<input class="form-control" type="file" id="upload" name="upload" />
+				
+						<input class="form-control" type="file" id="upload" name="upload" onchange="changeValue(this)"/>
+
+                        <button type="button" id="btn-upload">upload</button>
+
+
+
+
+						
+						
+						
 							</div>
 							<div class="form-group">
 								<button class="btn btn-block btn-round btn-brand" type="button" id="writingBTN">Write</button>
