@@ -679,18 +679,20 @@
         
         <!-- Wrapper-->
         <div class="wrapper">
-            <!-- Hero-->
-            <section class="module-cover parallax text-center" data-background="resources/assets/images/module-17.jpg" data-overlay="0.3">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Management</h2>
-                            
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Hero end-->
+       <!-- Hero-->
+		<section class="module-cover parallax text-center"
+			data-background="resources/assets/images/manager_page.jpg"
+			data-overlay="0.3">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Management</h2>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Hero end-->
 
             <!-- Blog-->
             <section class="module">
@@ -880,7 +882,7 @@
                     </c:if>
                 </div>
             </div>
-        </div>
+        </div> 
         <!-- Off canvas end-->
 
         <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>

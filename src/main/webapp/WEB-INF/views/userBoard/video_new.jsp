@@ -226,20 +226,10 @@ $(function(){
 												video="3GLrB9GvBq8" style="width: 33%">
 												<div class="music_video_list_item_wrap">
 													<div style="position: relative;">
-														<div class="music_video_list_item_thumbnail_cover"
-															onmouseenter="fnMouseEnterOnMusic(this);"
-															onmouseleave="fnMouseLeaveOnMusic(this);"
-															onmousemove="fnMouseEnterOnMusic(this);"
-															onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
+														
 
-															<img class="music_video_list_item_thumbnail_cover_img"
-																src="resources/images/icon_play_round.png"
-																onclick="playMainLatestMusic(&quot;3GLrB9GvBq8&quot;);">
-														</div>
-
-
-														<video width="300" height="300" controls="controls"
-															preload="metadata">
+														<video width="350" height="300" controls="controls"
+															preload="metadata" poster="resources/images/thumbnail.jpg">
 															<source src="resources/savefile/${board.savedFile}"
 																type="video/webm">
 														</video>

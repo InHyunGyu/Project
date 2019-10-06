@@ -100,9 +100,9 @@
 			myintro     = #{myintro},
 			photoname   = #{photoname},
 			savefile    = #{savefile}
-		  
+		   
 		    WHERE
-			memberId = #{memberId}     
+			memberId = #{memberId}      
 			
 	</update>
 	
