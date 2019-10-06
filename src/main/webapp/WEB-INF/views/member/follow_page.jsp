@@ -367,10 +367,10 @@ table {
 				var tag = ''
 				 
 					$.each(res, function(index, item){
-						tag += '<div class="post-preview"><a href="#"><img src="download?memberId='+item.memberId+' alt=""></a></div>';
+						tag += '<div class="post-preview"><a href="#"><img src="resources/images/thumbnail.jpg" alt=""></a></div>';
 						tag += '<div class="post-wrapper">'; 
 						tag += '<div class="post-header">';
-						tag += '<h2 class="post-title"><a href="blog-single.html">'+item.postTitle+'</a></h2>';
+						tag += '<h2 class="post-title"><a href="file_detail?postNo='+item.postNo+'">'+item.postTitle+'</a></h2>';
 						tag += '<ul class="post-meta">';
 						tag += '<li>'+item.postType+'</li>';
 						tag += '<li>'+item.postDate+'</li>';

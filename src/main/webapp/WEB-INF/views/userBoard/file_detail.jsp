@@ -620,7 +620,7 @@
 										<img src="resources/assets/images/person.png"  width="80px">
 									</c:if>
 								</c:if>
-							</p>
+							</p> 
 							<p class="text-center">${sessionScope.memberId}</p>
 							<p class="text-center">
 								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
