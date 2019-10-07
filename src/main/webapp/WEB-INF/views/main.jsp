@@ -533,7 +533,7 @@ $(function(){
 								</div>
 								<ul>
 									<c:forEach var="item" items="${noticeList}">
-										<li><a href="#">${item.postTitle}</a><span class="post-date">${item.postDate}
+										<li><a href="file_detail?postNo=${item.postNo}">${item.postTitle}</a><span class="post-date">${item.postDate}
 												</span></li>
 									</c:forEach>
 								</ul>
@@ -563,9 +563,9 @@ $(function(){
 									
 								</div> 
 								<div class="textwidget">   
-									<p>
+									<p style="color:#788487">
 									<br>우타짱이 마련한 음악을 통한 특별한 만남. 당신을 찾아갑니다.</p>
-									<p>
+									<p style="color:#788487">
 										SC IT MASTER 37 DebugKing<br> All Rights Reserved
 									</p>
 									<ul class="social-icons">

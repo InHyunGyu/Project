@@ -55,17 +55,7 @@ public class ListController {
 	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile"; 
 
 
-	@RequestMapping(value="/notice", method=RequestMethod.GET)
-	public String notice(Model model){
-		
-		int startRecord=0;
-        int lastPerPage=3;   
-        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
-        model.addAttribute("noticeList",noticeList);
-        System.out.println("공지 목록: " + noticeList);
-
-		return "userBoard/notice";
-	}
+	
 
 
 	@RequestMapping(value="/streaming", method=RequestMethod.GET)

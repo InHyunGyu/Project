@@ -20,7 +20,7 @@ import com.debugking.www.util.PageNavigator;
 
 
 
-
+ 
 @Controller
 public class CommunityController {
 
@@ -59,9 +59,9 @@ public class CommunityController {
 		
         int startRecord=0;
         int lastPerPage=3;   
-        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
-        model.addAttribute("noticeList",noticeList);
-        System.out.println("공지 목록: " + noticeList);
+        List<Posts> noticeList2 = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList2);
+        System.out.println("공지 목록: " + noticeList2);
 		
 		return "userBoard/community";
 	}

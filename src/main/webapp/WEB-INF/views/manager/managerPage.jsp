@@ -777,83 +777,106 @@
             </section>
             <!-- Blog end-->
 
-            <!-- Footer-->
-            <footer class="footer">
-                <div class="footer-widgets">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <!-- Text widget-->
-                                <aside class="widget widget-text">
-                                    <div class="widget-title">
-                                        <h6>About Us</h6>
-                                    </div>
-                                    <div class="textwidget">
-                                        <p>Map where your photos were taken and discover local points of interest. Map where your photos.</p>
-                                        <p>
-                                            Location: 12 London Avenue, Suite 18<br>
-                                            E-mail: support@theme.com<br>
-                                            Phone: 8 800 123 4567<br>
-                                        </p>
-                                        <ul class="social-icons">
-                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
+         	<!-- Footer-->
+		<footer class="footer">
+			<div class="footer-widgets">
+				<div class="container">
+					<div class="row">
+					<div class="col-md-3">       
+							<!-- Recent works-->
+							<aside class="widget widget-recent-works">
+								<div class="widget-title">
+									<h6>Team Members</h6>  
+								</div>      
+								<ul>   
+									<li><a href="https://github.com/HeejuKim96" target="_blank" title="김 희주"><img
+											src="resources/assets/images/team/heeju_cartoon.jpg" alt=""></a></li>
+									<li><a href="https://www.linkedin.com/in/hans-lee-6737b0120" target="_blank"  title="이 학민"><img
+											src="resources/assets/images/team/hakmin_cartoon.jpg" alt=""></a></li>
+								</ul>
+								<ul>
+									<li><a href="https://github.com/InHyunGyu" target="_blank"><img   
+											src="resources/assets/images/team/hyungyu_cartoon.jpg"  title="인 현규" alt=""></a></li>
+									<li><a href="https://github.com/ymh1994" target="_blank"><img
+											src="resources/assets/images/team/minhyuk_cartoon.jpg"  title="유 민혁" alt=""></a></li>        
+								</ul>
+							</aside>   
+						</div>
+						
+						
+
 						<div class="col-md-3">
 							<!-- Recent entries widget-->
 							<aside class="widget widget-recent-entries">
 								<div class="widget-title">
-									<h6>Announcement</h6>
+									<h6>Announcement</h6>  
 								</div>
 								<ul>
 									<c:forEach var="item" items="${noticeList}">
-										<li><a href="#">${item.postTitle}</a><span
-											class="post-date">${item.postDate} </span></li>
+										<li><a href="file_detail?postNo=${item.postNo}">${item.postTitle}</a><span class="post-date">${item.postDate}
+												</span></li> 
 									</c:forEach>
 								</ul>
 							</aside>
 						</div>
+
 						<div class="col-md-3">
-                                <!-- Twitter widget-->
-                                <aside class="widget twitter-feed-widget">
-                                    <div class="widget-title">
-                                        <h6>Twitter Feed</h6>
-                                    </div>
-                                    <div class="twitter-feed" data-twitter="double_theme" data-number="1"></div>
-                                </aside>
-                            </div>
-                            <div class="col-md-3">
-                                <!-- Recent works-->
-                                <aside class="widget widget-recent-works">
-                                    <div class="widget-title">
-                                        <h6>Portfolio</h6>
-                                    </div>
-                                    <ul>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
-                                    </ul>
-                                </aside>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bar">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>© 2018 Boomerang, All Rights Reserved. Design with love by <a href="#">2theme</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!-- Footer end--> 
+							<!-- Twitter widget-->
+							<aside class="widget twitter-feed-widget">
+								<div class="widget-title">
+									<h6>About Us</h6>   
+								</div>
+								<ul>
+									<li><a href="companyIntro" target="_blank"><img
+											src="resources/assets/images/aboutUs2.jpg" width="500" alt=""></a></li>   
+								</ul>   
+           
+								<div class="twitter-feed" data-twitter="double_theme"
+									data-number="1"></div>
+							</aside>
+						</div>
+						
+						<div class="col-md-3">  
+							<!-- Text widget-->
+							<aside class="widget widget-text">
+								<div class="widget-title">  
+									
+								</div> 
+								<div class="textwidget">   
+									<p style="color:#788487">
+									<br>우타짱이 마련한 음악을 통한 특별한 만남. 당신을 찾아갑니다.</p>
+									<p style="color:#788487">
+										SC IT MASTER 37 DebugKing<br> All Rights Reserved
+									</p> 
+									<ul class="social-icons">
+										<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+										<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+										<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+									</ul>   
+								</div>
+							</aside> 
+						</div> 
+						
+					</div>
+				</div>
+			</div>
+			<div class="footer-bar">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="copyright">
+								<p>
+									© 2019 Utajjang, All Rights Reserved. Design with love by <a
+										href="#">Debugking</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Footer end-->
         </div>
         <!-- Wrapper end-->
       <!-- Off canvas-->
