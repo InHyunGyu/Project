@@ -218,9 +218,12 @@ $(function(){
   <!-- Sliders-->
 		<section class="module-cover-slides" data-module-cover-slides-options="{&quot;animation&quot;: &quot;fade&quot;}" style="margin-top: 100px;">
   
+  <%-- <c:forEach var="item" items="${noticeList}" >
    <ul class="slides-container">
        <li class="parallax" data-overlay="0.5">
-           <img src="assets/images/module-1.jpg" alt="">
+          <!-- <img src="assets/images/module-1.jpg" alt=""> -->
+          <img src="download?contentseq=${item.postNo}"/>
+          <img src="${item.savedFile}"/>
            <div class="container">
                <div class="row">
                    <div class="col-md-12">
@@ -229,8 +232,11 @@ $(function(){
                </div>
            </div>
        </li>
-       <li class="parallax text-center" data-overlay="0.5">
+   </ul>
+  </c:forEach> --%>
+      <!--  <li class="parallax text-center" data-overlay="0.5">
            <img src="assets/images/module-21.jpg" alt="">
+           <img src="download?contentseq='+item.contentseq+ '"/>'
            <div class="container">
                <div class="row">
                    <div class="col-md-12">
@@ -241,6 +247,7 @@ $(function(){
        </li>
        <li class="parallax text-right" data-overlay="0.7" data-gradient="1">
            <img src="assets/images/module-25.jpg" alt="">
+           <img src="download?contentseq='+item.contentseq+ '"/>'
            <div class="container">
                <div class="row">
                    <div class="col-md-12">
@@ -249,7 +256,7 @@ $(function(){
                </div>
            </div>
        </li>
-   </ul>
+   </ul> -->
    <div class="slides-navigation">
        <a class="prev" href="#"><span class="ti-angle-left"></span></a>
        <a class="next" href="#"><span class="ti-angle-right"></span></a>

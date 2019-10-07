@@ -151,6 +151,14 @@
 	</select>
 	
 	
+	<!-- Main 공지글 3개 출력 -->
+	<select id="selectMainNotice"  resultType="Post">
+	select postNo,postTitle
+    From Posts
+    Where isAnnouncement='Y' and savedFile != '(null)'
+    Order by PostNo DESC
+		
+	</select>
 	
 	
 </mapper>

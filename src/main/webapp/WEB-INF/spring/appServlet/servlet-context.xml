@@ -28,7 +28,7 @@
 	
 
 	 <resources mapping="/img/*" location="/img/" />
-	 
+	  <resources mapping="/img/**" location="/resources/assets/userFiles" />
 	 <!-- 인터셉터 설정 -->
 	 <beans:bean id="LoginInterceptor" class="com.debugking.www.interceptor.LoginInterceptor">
 	 </beans:bean>
