@@ -289,7 +289,7 @@
 									<h6>Announcement</h6>  
 								</div>
 								<ul>
-									<c:forEach var="item" items="${noticeList}">
+									<c:forEach var="item" items="${noticeLists}">
 										<li><a href="file_detail?postNo=${item.postNo}">${item.postTitle}</a><span class="post-date">${item.postDate}
 												</span></li>
 									</c:forEach>

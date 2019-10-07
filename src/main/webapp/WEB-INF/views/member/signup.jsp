@@ -42,7 +42,8 @@
 	$(function(){
 		var flagid = false;
 		var flagpwd = false;
-		var flagreco = true;
+		
+		var flagemail = false;
 		
 		var memberId = $("#memberId").val();
 		var memberpwd = $("#memberpwd").val();
@@ -59,6 +60,13 @@
 		
 		//이메일 중복 검사
 		
+		 
+		$("#memberEmail").on('keyup',function(){
+			
+			flagemail = false;
+		})
+		
+		
 		$("#checkEmail").on("click",function(){
 			var memberEmail = $("#memberEmail").val(); 
 			$.ajax({
@@ -68,8 +76,12 @@
 				success: function(resp){
 					if(resp == memberEmail){
 						swal("이미 이메일이 존재합니다.");
+						flagemail=false;
+						return;
+						
 					}else{
 						swal("사용 가능한 이메일입니다.");
+						flagemail=true;
 					}
 				}
 			})
@@ -141,33 +153,6 @@
 		});
 		
 		
-		$("#recommender").on("keyup",function(){
-			flagreco=false;
-		})
-		//추천인 유효성 검사 이거까지 해야됩니까?
-		$("#recocheckbtn").on("click",function(){
-			var recommender=$("#recommender").val();
-			if(recommender != "" || recommender!=null){
-				$.ajax({
-					method:"GET",
-					url:"idCheck",
-					data: "memberId="+ recommender,
-					success: function(result){
-						if(result=="true"){
-							flagreco=true;
-							swal("확인");
-							
-						}
-						else {
-							flagreco=false;
-							swal("동일한 ID가 존재하지 않습니다.");
-						}
-					}
-				})
-
-			}
-		});
-		
 		//이름, 전화번호 , 생일,추천자
 		//회원 등록하기
 		$("#signupbtn").on('click',function(){
@@ -179,12 +164,9 @@
 			var tel2 = 	$("#tel2").val();
 			var tel3 = 	$("#tel3").val();
 			var memberbirth = $("#memberbirth").val();
-			var recommender =$("#recommender").val();
 			
 			//swal("tel2"+tel2+"tel3"+tel3);
-			if(!recommender){
-				flagreco=true;
-			}
+			
 			if(tel2 == "" || tel3 == ""||tel2 == null||tel3 == null ||isNaN(tel2) || isNaN(tel3)){
 				swal("전화번호 제대로 입력하세요");
 				tel2.select();
@@ -206,7 +188,7 @@
 				} */else{
 					//swal("flagid"+flagid+"//flagpwd"+flagpwd+"//memberphone"+memberphone+"//memberEmail"+memberEmail)
 		 			
-					if(flagid==true && flagpwd==true && memberphone.length>0 && memberEmail.length>0 ){
+					if(flagid==true && flagpwd==true && flagemail==true && memberphone.length>0 && memberEmail.length>0 ){
 						$.ajax({
 							method:"post",
 							url:"signup",
@@ -216,13 +198,12 @@
 								"memberEmail" : memberEmail,
 								"memberName" :membername,
 								"memberPhone" : memberphone,
-								"memberBirth" :memberbirth,
-								"recommender" : recommender
+								"memberBirth" :memberbirth
 							},
 							success : function(mesa){
 								if(mesa == "ok"){
 									location.href="emailSendAction";
-								}
+								} 
 							/* 
 								if(mesa === "success"){
 									swal("등록 성공하였습니다. 화면 이동합니다.");
@@ -341,7 +322,7 @@
                                         <input class="form-control" type="text" name="memberId" id="memberId" placeholder="ID" style="width: 70%">
                                         <button type="button" class="form-control" id="checkid" style="width: 30%">중복확인</button>
                                     </div>
-                                    <span id="checkidline" color></span>
+                                    <span id="checkidline" ></span>
                                     <div class="form-group" >
                                         <input class="form-control" type="password" name="memberPwd" id="memberpwd" placeholder="Pasword">
                                         <span id="checkpwdline"></span>
@@ -372,10 +353,7 @@
 									<div class="form-group" >
                                         <input type="date" class="form-control" name="memberBirth" id="memberbirth" placeholder="Birth"/>
                                     </div>
-									 <div class="form-group" style="display:inline-flex; width: 100%;" >
-                                        <input class="form-control" type="text" name="recommender" id="recommender" placeholder="recommender" style="width: 70%;">
-                                        <input class="form-control" type="button" id="recocheckbtn" value="추천인 검사" style="width: 30%;">
-                                    </div>
+									
                                      <div class="form-group">
                                         <button class="btn btn-block btn-round btn-brand" type="button"id="signupbtn">Sign Up</button>
                                     </div>

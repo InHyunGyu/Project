@@ -14,7 +14,6 @@
 			,memberBirth
 			,to_char(signupDate, 'YYYY-MM-DD') as signupDate
 			,memberEmail
-			,memberPoint
 			,photoname
 			,savefile
 			,myintro
@@ -67,10 +66,7 @@
 			,memberBirth
 			,signupDate			
 			,memberEmail	
-			,memberPoint
-			<if test="recommender !=null">	
-				,recommender
-			</if>
+		
 		)
 		values
 		(
@@ -81,10 +77,7 @@
 			,#{memberBirth}
 			,sysdate
 			,#{memberEmail}		
-			,#{memberPoint}
-			<if test="recommender !=null">
-				,#{recommender}		
-			</if>
+			
 		)
 	</insert>
 	
@@ -103,7 +96,7 @@
 	<update id="memberUpdate" parameterType="Member">
 		UPDATE
 			memberinfo
-		SET	
+		SET	 
 			memberPwd   = #{memberPwd},
 			memberName  = #{memberName},
 			memberPhone = #{memberPhone},
@@ -111,7 +104,7 @@
 			myintro     = #{myintro},
 			photoname   = #{photoname},
 			savefile    = #{savefile}
-		   
+		
 		    WHERE
 			memberId = #{memberId}      
 			

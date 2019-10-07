@@ -273,6 +273,13 @@ public class ManagerController {
 		
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("navi", navi);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeLists = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeLists",noticeLists);
+        System.out.println("공지 목록: " + noticeLists);
+		
 		return"userBoard/notice";
 	}
 	

@@ -5,7 +5,7 @@
 <configuration>
 <typeAliases>
 		<typeAlias type="com.debugking.www.dto.MemberInfo" alias="Member" />
-		<typeAlias type="com.debugking.www.dto.Pointslog" alias="Pointlog" />
+	
 		<typeAlias type="com.debugking.www.dto.Posts" alias="Post" />
 		<typeAlias type="com.debugking.www.dto.Replies" alias="Reply" />
 		<typeAlias type="com.debugking.www.dto.Follower" alias="Follower" />
@@ -14,7 +14,7 @@
 	
 	<mappers>
 		<mapper resource="mappers/MemberMapper.xml" />
-		<mapper resource="mappers/PointslogMapper.xml" />
+	
 		<mapper resource="mappers/VoiceMapper.xml" />
 		<mapper resource="mappers/ManagerMapper.xml" />
 

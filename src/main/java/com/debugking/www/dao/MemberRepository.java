@@ -70,9 +70,10 @@ public class MemberRepository {
 	
 	//유저 이메일 가져오기
 	public String getUserEmail(String userid){
+	
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
 		String useremail = mapper.getUserEmail(userid);
-		
+		 
 		return useremail;
 	}
 	

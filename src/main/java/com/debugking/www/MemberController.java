@@ -38,18 +38,16 @@ import com.debugking.www.dao.ManagerRepository;
 import com.debugking.www.dao.MemberRepository;
 import com.debugking.www.dto.MemberInfo;
 import com.debugking.www.dto.Posts;
-import com.debugking.www.service.MemberService;
 import com.debugking.www.util.Gmail;
 import com.debugking.www.util.PageNavigator;
-import com.debugking.www.util.SHA256;
+import com.debugking.www.util.SHA256; 
 
 
 
 
 @Controller
 public class MemberController {
-	@Autowired
-	MemberService serivce;
+
 	@Autowired
 	MemberRepository repo;
 	@Autowired
@@ -382,13 +380,15 @@ public class MemberController {
 		
 		int startRecord=0;
         int lastPerPage=3;   
+        System.out.println("1234"+member);
         List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
         model.addAttribute("noticeList",noticeList);
         System.out.println("공지 목록: " + noticeList);
         
         
 		HttpServletResponse response = null;
-		int temp = serivce.signup(member);
+		
+		repo.signup(member);
 		
 		//session 영역에 유저 아이디와 패스워드 저장
 		session.setAttribute("userid", member.getMemberId());
@@ -397,8 +397,10 @@ public class MemberController {
 		//회원가입을 위해 본인 확인 이메일 보내기 위한 코드 설정
 		String host = "http://localhost:8999/www/";
 		String from = "dlgkrals6000@gmail.com"; 
+		System.out.println("난멤버아이디"+member.getMemberId());
 		String to   = repo.getUserEmail(member.getMemberId()); 
-		System.out.println(to);
+		
+		
 		String subject = "이메일 인증 메일입니다.";
 		String content = "다음 링크에 접속하여 이메일 인증을 진행하세요." + 
 		"<a href='" +  host + "emailCheckAction?code=" + new SHA256().getSHA256(to) + "'>이메일 인증하기</a>";
@@ -428,6 +430,7 @@ public class MemberController {
 			msg.addRecipient(Message.RecipientType.TO, toAddr);
 			msg.setContent(content, "text/html;charset=UTF8");
 			Transport.send(msg);
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			PrintWriter script;
