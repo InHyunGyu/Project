@@ -19,8 +19,8 @@
       and p.postType = 'voice' and p.memberId != 'admin'
       and m.memberLevel !='Z' 
     <if test="searchItem != null">
-         and ${searchItem} LIKE '%'||#{searchWord}||'%'
-      </if>
+         and p.${searchItem} LIKE '%'||#{searchWord}||'%' 
+      </if>  
    </select>
    
    <select id="selectAll" resultType="Post" parameterType="map">
@@ -42,7 +42,7 @@
       and p.postType = 'voice' and p.memberId != 'admin'
       and m.memberLevel !='Z' 
       <if test="searchItem != null">
-         and ${searchItem} LIKE '%'||#{searchWord}||'%'
+         and p.${searchItem} LIKE '%'||#{searchWord}||'%'
       </if>
       ORDER BY p.postNo DESC
    </select>
@@ -91,7 +91,7 @@
       and m.memberLevel !='Z' 
       and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
       <if test="searchItem != null">
-         and ${searchItem} LIKE '%'||#{searchWord} || '%'
+         and p.${searchItem} LIKE '%'||#{searchWord} || '%'
       </if>
        <![CDATA[
         and postDate >=(select TRUNC(sysdate,'IW') from dual) AND postDate < (select TRUNC(sysdate,'IW')+6 from dual)
@@ -109,7 +109,7 @@
       and m.memberLevel !='Z' 
       and  0 > To_date(TO_CHAR(SYSDATE, 'YYYYMMDD'))-postDate
       <if test="searchItem != null">
-         and ${searchItem} LIKE '%'||#{searchWord} || '%'
+         and p.${searchItem} LIKE '%'||#{searchWord} || '%'
       </if>
       
        <![CDATA[

@@ -230,7 +230,7 @@ $(function(){
 			</div>
 		</section>
 	
-	 
+	  
 		<!-- Hero end-->
 		
 
