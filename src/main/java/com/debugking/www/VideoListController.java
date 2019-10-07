@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.debugking.www.dao.ManagerRepository;
 import com.debugking.www.dao.MemberRepository;
 import com.debugking.www.dao.VideoListRepository;
 import com.debugking.www.dto.MemberInfo;
@@ -27,7 +28,8 @@ public class VideoListController {
 	VideoListRepository repo;
 	@Autowired
 	MemberRepository repo2;
-	
+	@Autowired
+	ManagerRepository Managerrepo;
 	
 	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile";
 	
@@ -51,7 +53,11 @@ public class VideoListController {
 		model.addAttribute("navi", navi);
 		model.addAttribute("list", list);
 		
-	
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return "userBoard/video_new";
 		
@@ -76,6 +82,12 @@ public class VideoListController {
 		model.addAttribute("list", list);
 		System.out.println(list); 
 		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+		
 		return "userBoard/video_weekly";
 	}
 
@@ -97,6 +109,12 @@ public class VideoListController {
 		model.addAttribute("navi", navi);
 		model.addAttribute("list", list);
 		System.out.println(list); 
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
       
 		
 			
@@ -104,7 +122,14 @@ public class VideoListController {
 	}
 
 	@RequestMapping(value="/video_all", method=RequestMethod.GET)
-	public String video_all(){
+	public String video_all(Model model){
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
+        
 		return "userBoard/video_all";
 	}
 

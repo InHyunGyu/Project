@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.debugking.www.dao.ListRepository;
+import com.debugking.www.dao.ManagerRepository;
 import com.debugking.www.dao.MemberRepository;
 import com.debugking.www.dao.likereportRepository;
 import com.debugking.www.dto.MemberInfo;
@@ -46,19 +47,35 @@ public class ListController {
 	@Autowired
 	likereportRepository lrrepo;
 	
+	@Autowired
+	ManagerRepository Managerrepo;
+	
 	
 	
 	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile"; 
 
 	
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
-	public String notice(){
+	public String notice(Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 
 		return "userBoard/notice";
 	}
 
 	@RequestMapping(value="/streaming", method=RequestMethod.GET)
-	public String streaming(){
+	public String streaming(Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		return"userBoard/streaming";
 	}
 
@@ -66,13 +83,19 @@ public class ListController {
 	public String write(String postType, Model model){
 
 		model.addAttribute("postType", postType);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 
 		return "userBoard/write";
 	}
 
 	//글쓰기
 	@RequestMapping(value="/writing", method=RequestMethod.POST)
-	public String writing(Posts post, HttpSession session, MultipartFile upload){
+	public String writing(Posts post, HttpSession session, MultipartFile upload,Model model){
 		post.setMemberId((String)session.getAttribute("memberId"));
 
 		String originalfile = upload.getOriginalFilename();
@@ -82,6 +105,12 @@ public class ListController {
 		post.setSavedFile(savedfile);
 
 		serivce.writing(post);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		if(post.getPostType().equals("community")){
 			return "redirect:community"; 
@@ -132,48 +161,87 @@ public class ListController {
 		repo.postView(postNo); //조회수 증가
 		System.out.println("4");
 		System.out.println("배열에 존재하지 않습니다.");
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
+        
 		return "userBoard/file_detail";
 	}
 
 	@ResponseBody
 	@RequestMapping(value="/replyinsert", method=RequestMethod.POST)
-	public String replyinsert(String replyContent, int postNo, HttpSession session){
+	public String replyinsert(String replyContent, int postNo, HttpSession session,Model model){
 		
 		String memberId = (String)session.getAttribute("memberId");
 		
 		repo.replyInsert(replyContent, postNo, memberId);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return "ok";
 	}
 
 	@ResponseBody
 	@RequestMapping(value="/replyDel", method=RequestMethod.GET)
-	public String replyDel(int replyNo){
+	public String replyDel(int replyNo,Model model){
 		
 		repo.replyDel(replyNo);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return "ok";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/replyUp", method=RequestMethod.POST)
-	public String replyUP(Replies reply){
+	public String replyUP(Replies reply,Model model){
 		System.out.println(reply.getReplyContent());
 		System.out.println(reply.getReplyNo());
 		
 		
 		repo.replyUp(reply);
 		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+		
 		return "ok";
 	}
 	
 	@RequestMapping(value="/streaming_write", method=RequestMethod.GET)
-	public String streamingPage(){
+	public String streamingPage(Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		return "userBoard/streaming_write";
 	}
 
 	@RequestMapping(value="/streaming_detail", method=RequestMethod.GET)
-	public String streaming_detail(){
+	public String streaming_detail(Model model){
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		return "userBoard/streaming_detail";
 	}
 	
@@ -188,6 +256,13 @@ public class ListController {
 	    replyList = repo.replyList(postNo);
 	    model.addAttribute("replyCount", replyCount);
 	    model.addAttribute("replyList", replyList);
+	    
+	    ///
+	    int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 
 	    //확인하고 조회수 증가 후 페이지 이동
 	    Posts post = repo.selectOne(postNo);
@@ -232,6 +307,13 @@ public class ListController {
 	    
 		List<likereport> result = lrrepo.selectList(postNo,report); 
 		String memberId = (String)session.getAttribute("memberId");
+		
+		//
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		for(likereport lr : result){
 			if(lr.getMemberId().equals(memberId)){

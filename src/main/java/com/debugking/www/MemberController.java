@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -33,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.debugking.www.dao.FollowRepository;
 import com.debugking.www.dao.ListRepository;
+import com.debugking.www.dao.ManagerRepository;
 import com.debugking.www.dao.MemberRepository;
 import com.debugking.www.dto.MemberInfo;
 import com.debugking.www.dto.Posts;
@@ -54,6 +56,8 @@ public class MemberController {
 	ListRepository listRepo;
 	@Autowired
 	FollowRepository followRepo;
+	@Autowired
+	ManagerRepository Managerrepo;
 	
 
 	final String uploadPath = "/resources/assets/userFiles"; 
@@ -67,6 +71,8 @@ public class MemberController {
 		String realpathTemp = request.getServletContext().getRealPath("/resources/assets/");
 		System.out.println("실제주소==============> "+realpath);
 		File theDir = new File("userFiles"); 
+		
+        
 		if(!theDir.exists()){
 			//new File(realpathTemp + "\\userFiles").mkdir();
 			new File(realpathTemp + "\\userFiles").mkdir();
@@ -93,7 +99,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/imageFetch", method=RequestMethod.GET)
 	@ResponseBody
-	public String imageFetch(HttpSession session, HttpServletRequest request,String memberId){
+	public String imageFetch(HttpSession session, HttpServletRequest request,String memberId, Model model){
 	
 		System.out.println(memberId);
 		MemberInfo member = repo.selectOne(memberId);
@@ -102,6 +108,12 @@ public class MemberController {
 		
 		String realpath = request.getServletContext().getRealPath("/resources/assets/userFiles");
 		String filepath = realpath + "\\" + photoname;
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		
 		return "download?memberId=" + memberId;
@@ -112,7 +124,7 @@ public class MemberController {
 	@ResponseBody
 	public String ajaxFileUpload(MemberInfo member, HttpServletRequest request,
 								MultipartFile[] uploadFile, HttpServletResponse response,
-								HttpSession session)
+								HttpSession session, Model model)
 	{
 		response.setHeader("Content-Type", "text/html;charset=utf-8");
 		String memberId = (String) session.getAttribute("memberId");
@@ -128,6 +140,12 @@ public class MemberController {
 		
 		repo.setPhotoname(member);
 		repo.setSavefile(member);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		
 		//multipart로 받아온 파일을 지정한 realpath경로에  savedFilename의 이름으로 저장한다.  
@@ -155,7 +173,7 @@ public class MemberController {
 	@ResponseBody
 	public String memberUpdate(MemberInfo member, HttpServletRequest request,
 			MultipartFile[] uploadFile, HttpServletResponse response,
-			HttpSession session)
+			HttpSession session, Model model)
 	{
 		System.out.println("정보 수정 메서드 호출 ");
 		response.setHeader("Content-Type", "text/html;charset=UTF-8");
@@ -173,6 +191,12 @@ public class MemberController {
 		int result = repo.memberUpdate(member);
 		
 		if(result > 0) System.out.println("삽입성공!");
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		//multipart로 받아온 파일을 지정한 realpath경로에  savedFilename의 이름으로 저장한다.  
 		
@@ -196,9 +220,15 @@ public class MemberController {
 	//파일 다운로드 및 이미지 
 		@RequestMapping(value="/download", method=RequestMethod.GET) 
 		@ResponseBody
-		public String download(MemberInfo member, HttpServletResponse response, HttpSession session,String memberId) 
+		public String download(MemberInfo member, HttpServletResponse response, HttpSession session,String memberId, Model model) 
 		/*참고: 만일 리턴 타입이 void이면 download.jsp를 찾는다. */
 		{
+			int startRecord=0;
+	        int lastPerPage=3;   
+	        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+	        model.addAttribute("noticeList",noticeList);
+	        System.out.println("공지 목록: " + noticeList);
+	        
 		
 			MemberInfo fetchedMember 		= repo.selectOne(memberId);
 			System.out.println(fetchedMember);
@@ -259,7 +289,13 @@ public class MemberController {
 */	
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginPage (){
+	public String loginPage (Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return "member/login";
 	}
@@ -268,8 +304,14 @@ public class MemberController {
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public MemberInfo login(HttpSession session, MemberInfo member) {
+	public MemberInfo login(HttpSession session, MemberInfo member, Model model) {
 		MemberInfo result = repo.login(member);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		if(result != null){
 			session.setAttribute("memberId", result.getMemberId());
@@ -283,17 +325,31 @@ public class MemberController {
 	}
 	//로그아웃
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
-	public String signup(HttpSession session){
+	public String signup(HttpSession session, Model model){
 		session.removeAttribute("memberId");
 		session.removeAttribute("memberName");
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		return "redirect:/";
 
 	}
 	//회원탈퇴
 	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
-	public String memberDelete(HttpSession session, MemberInfo member){
+	public String memberDelete(HttpSession session, MemberInfo member, Model model){
 		member.setMemberId((String)session.getAttribute("memberId"));
 		MemberInfo temp = repo.selectOne(member.getMemberId());
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		int result = repo.memberDelete(temp);
 		if(result == 1){
 			session.removeAttribute("memberId");
@@ -306,14 +362,26 @@ public class MemberController {
 	
 	//화면이동
 	@RequestMapping(value="/emailSendAction", method=RequestMethod.GET)
-	public String emailSendAction(){
+	public String emailSendAction(Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 
 		return "member/emailSendAction";
 	}
 		
 	//화면이동
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
-	public String signup(){
+	public String signup(Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 
 		return "member/signup";
 
@@ -321,7 +389,15 @@ public class MemberController {
 	//회원등록하기
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	@ResponseBody
-	public String signupPro(MemberInfo member, HttpSession session){
+	public String signupPro(MemberInfo member, HttpSession session, Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
+        
 		HttpServletResponse response = null;
 		int temp = serivce.signup(member);
 		
@@ -401,6 +477,13 @@ public class MemberController {
 									HttpSession session) 
 	{
 		System.out.println("emailCheckAction 호출");
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -444,15 +527,30 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/myblog", method=RequestMethod.GET)
-	public String myblog(){
+	public String myblog(Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
+        
 		return "member/myblog";
 	}
 
 	//ID체크 한명불러오기
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
 	@ResponseBody
-	public String idCheck(String memberId){
+	public String idCheck(String memberId, Model model){
 		MemberInfo result = repo.idCheck(memberId);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		if(result!=null){
 			return "true";
 		}
@@ -466,27 +564,46 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/id_pwd", method=RequestMethod.GET)
-	public String id_pwd(){
+	public String id_pwd(Model model){
+		  
+		int startRecord=0; 
+        int lastPerPage=3;    
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		return "member/id_pwd";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/findid", method=RequestMethod.POST)
-	public MemberInfo findid(MemberInfo member){
+	public MemberInfo findid(MemberInfo member, Model model){
 		System.out.println(member);
 		
 		MemberInfo fetchedMember = repo.getMemberId(member);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return fetchedMember;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/findpwd", method=RequestMethod.POST)
-	public MemberInfo findpwd(MemberInfo member){
+	public MemberInfo findpwd(MemberInfo member, Model model){
 		System.out.println(member);
 		
 		MemberInfo fetchedMember = repo.getMemberPwd(member);
 		System.out.println("fetchedMember="+fetchedMember );
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return fetchedMember;
 	}
@@ -494,7 +611,14 @@ public class MemberController {
 	//이메일을 이용한 패스워드 찾기
 	@RequestMapping(value="/pwfindMailSend", method=RequestMethod.POST)
 	@ResponseBody
-	public String findpwd(MemberInfo member, HttpSession session){
+	public String findpwd(MemberInfo member, HttpSession session, Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		
 		HttpServletResponse response = null;
 		// 이메일 보내기 위한 코드 설정
@@ -553,9 +677,15 @@ public class MemberController {
 	}
 	@RequestMapping(value="/checkEmail", method=RequestMethod.GET)
 	@ResponseBody
-	public String checkEmail(String memberEmail){
+	public String checkEmail(String memberEmail, Model model){
 		System.out.println("이메일 중복확인 컨트롤러 호출");
 		String result = repo.checkEmail(memberEmail);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return result;
 	}
@@ -578,6 +708,12 @@ public class MemberController {
 		model.addAttribute("list", list);
 		model.addAttribute("followCount", followCount);
 		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+		
 		return"member/follow_page";
 }
 
@@ -585,12 +721,18 @@ public class MemberController {
 	
 
 	@RequestMapping(value="/tempPwdSet", method=RequestMethod.GET)
-	public String tempPwdSet(MemberInfo member, HttpSession session){
+	public String tempPwdSet(MemberInfo member, HttpSession session, Model model){
 		
 		String memberEmail = member.getMemberEmail(); 
 		String memberPwd = member.getMemberPwd(); 
 		System.out.println("멤버 이메일:" + memberEmail + "/ 멤버 패스워드:" + memberPwd);
 		int result = repo.tempPwdSet(member); 
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return "main"; 
 	}
@@ -612,6 +754,12 @@ public class MemberController {
 		model.addAttribute("myintro", myintro);
 		model.addAttribute("memberPhone", memberPhone);
 		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+		
 		return"member/modify";
 	}
 	
@@ -631,6 +779,12 @@ public class MemberController {
 		list = listRepo.memberPost(memberId, navi.getStartRecord(), countPerPage);
 		
 		model.addAttribute("navi", navi);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return list;
 	}
