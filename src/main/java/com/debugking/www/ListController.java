@@ -107,24 +107,9 @@ public class ListController {
 		ArrayList<Replies> replyList = new ArrayList<>();
 		int replyCount = repo.replyCount(postNo);
 
-	   
-		List<likereport> result = lrrepo.selectList(postNo,view); 
-		String memberId = (String)session.getAttribute("memberId");
-		for(likereport lr : result){
-			if(lr.getMemberId().equals(memberId)){
-				System.out.println("배열에 존재합니다.");
-				return "userBoard/file_detail";
-			}
-		}
-		if(memberId==null){
-			System.out.println("로그인 하지 않습니다.");
-			return "userBoard/file_detail";
-		}
 
 		replyList = repo.replyList(postNo);
-		
-		repo.postView(postNo);
-		
+
 		Posts post = repo.selectOne(postNo);
 		
 		String postType = post.getPostType();
@@ -139,13 +124,27 @@ public class ListController {
 		model.addAttribute("replyList", replyList);
 
 		
-		post.setMemberId(memberId);
-		post.setPostNo(postNo);
+		
+		List<likereport> result = lrrepo.selectList(postNo,view); 
+		
+		String memberId = (String)session.getAttribute("memberId");
+		
+		for(likereport lr : result){
+			if(lr.getMemberId().equals(memberId)){
+				System.out.println("배열에 존재합니다.");
+				return "userBoard/file_detail";
+			}
+		}
+		
+		if(memberId == null) {
+			return "userBoard/file_detail"; 
+		}
+		
+	
+
 		lrrepo.viewinsertLR(post,view); //배열에 입력
-		System.out.println("3");
 		repo.postView(postNo); //조회수 증가
-		System.out.println("4");
-		System.out.println("배열에 존재하지 않습니다.");
+		
 		return "userBoard/file_detail";
 	}
 

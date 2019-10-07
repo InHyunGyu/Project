@@ -44,7 +44,7 @@
       <if test="searchItem != null">
          and ${searchItem} LIKE '%'||#{searchWord}||'%'
       </if>
-      ORDER BY postDate DESC
+      ORDER BY p.postNo DESC
    </select>
    <select id="selectNoticeAll" resultType="Post" parameterType="map">
       SELECT
@@ -147,7 +147,7 @@
       <if test="searchItem != null">
          and ${searchItem} LIKE '%'||#{searchWord}||'%'
       </if> 
-      ORDER BY postDate DESC
+      ORDER BY postNo DESC
    </select>
    
    
@@ -176,7 +176,7 @@
         and postDate >=(select TRUNC(sysdate,'IW') from dual) AND postDate < (select TRUNC(sysdate,'IW')+6 from dual)
     ]]>
         
-      ORDER BY p.postDate DESC
+      ORDER BY p.postLike DESC
    </select>
    
    
@@ -205,7 +205,7 @@
         and postDate >=(select TRUNC(sysdate,'MM') from dual) AND postDate < (SELECT LAST_DAY(SYSDATE) FROM DUAL)
     ]]> 
        
-      ORDER BY p.postDate DESC
+      ORDER BY p.postLike DESC
    </select>
     
    
