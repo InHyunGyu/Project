@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.debugking.www.dao.CommunityRepository;
+import com.debugking.www.dao.ManagerRepository;
 import com.debugking.www.dto.Posts;
 import com.debugking.www.util.FileService;
 import com.debugking.www.util.PageNavigator;
@@ -25,6 +26,8 @@ public class CommunityController {
 
 	@Autowired
 	CommunityRepository repo;
+	@Autowired
+	ManagerRepository Managerrepo;
 	
 	final String uploadPath="/Users/heeju/Documents/fileIO";
 	
@@ -54,6 +57,12 @@ public class CommunityController {
 		model.addAttribute("navi", navi);
 		model.addAttribute("list", list);
 		
+        int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+		
 		return "userBoard/community";
 	}
 
@@ -64,11 +73,17 @@ public class CommunityController {
 		
 		model.addAttribute("post", post);
 		
+        int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+		
 		return "userBoard/post_modify";
 	}	
 	
 	@RequestMapping(value="/post_modify", method=RequestMethod.POST)
-	public String commu_update(Posts post, MultipartFile upload, RedirectAttributes rttr){
+	public String commu_update(Posts post, MultipartFile upload, RedirectAttributes rttr, Model model){
 		int result = 0;
 		int postNo = post.getPostNo();
 		
@@ -91,18 +106,31 @@ public class CommunityController {
 		}
 		
 		rttr.addAttribute("postNo", postNo);
+		
+        int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		return "redirect:/file_detail";
 
 	}
 
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String delete(int postNo){
+	public String delete(int postNo, Model model){
 		Posts post = repo.selectOne(postNo);
 		
 		if(post.getSavedFile() != null){
 			FileService.deleteFile(uploadPath+"/"+post.getSavedFile()); 
 		}
 		repo.postDelete(postNo);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return "redirect:/community";
 	}

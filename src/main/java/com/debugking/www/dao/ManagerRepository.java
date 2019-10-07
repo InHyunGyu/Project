@@ -143,4 +143,11 @@ public class ManagerRepository {
 			return 1;
 		}
 	}
+	
+	public List<Posts> selectNotice(int startRecord, int countPerPage) {
+	      RowBounds rb = new RowBounds(startRecord, countPerPage);
+	      ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+	      List<Posts> noticeList = mapper.selectMainNotice(rb);
+	      return noticeList;
+	   }
 }

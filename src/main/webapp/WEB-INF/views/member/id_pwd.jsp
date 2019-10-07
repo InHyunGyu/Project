@@ -346,18 +346,13 @@ img#profileThumb{
 							<!-- Recent entries widget-->
 							<aside class="widget widget-recent-entries">
 								<div class="widget-title">
-									<h6>Recent Posts</h6>
+									<h6>Announcement</h6>
 								</div>
 								<ul>
-									<li><a href="#">Map where your photos were taken and
-											discover local points.</a><span class="post-date">May 8,
-											2018</span></li>
-									<li><a href="#">Map where your photos were taken and
-											discover local points.</a><span class="post-date">April 7,
-											2018</span></li>
-									<li><a href="#">Map where your photos were taken and
-											discover local points.</a><span class="post-date">September
-											7, 2018</span></li>
+									<c:forEach var="item" items="${noticeList}">
+										<li><a href="#">${item.postTitle}</a><span
+											class="post-date">${item.postDate} </span></li>
+									</c:forEach>
 								</ul>
 							</aside>
 						</div>
