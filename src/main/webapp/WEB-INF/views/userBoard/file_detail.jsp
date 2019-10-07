@@ -330,28 +330,10 @@
                             <!-- Post-->
                             <article class="post">
                             	<c:if test="${post.originalFile == null}">
-                            	<div class="post-preview"><img src="resources/assets/images/blog/1.jpg" alt=""></div>
+                            	
                             	</c:if>
                             	<c:if test="${post.originalFile != null}">
-                                <div class="post-preview"><img src="<c:url value=""/>" alt=""></div>
-                                </c:if>
-                                <div class="post-wrapper">
-                                    <div class="post-header">
-                                        <h1 class="post-title">${post.postTitle}</h1>
-                                        <ul class="post-meta">
-                                            <li>${post.postDate}</li>
-                                            <li><a href="follow_page?memberId=${post.memberId}">${post.memberId}</a></li>
-                                        </ul>
-                                        <ul class="post-meta">
-                                            <li>View : ${post.postView}</li>
-                                            <li>Like : ${post.postLike}</li>
-                                            <li>Report : ${post.reported}</li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-content">
-                                    
-                                    
-                                    <!-- 영상목록 시작 -->
+                               <!-- 영상목록 시작 -->
                                          <div id="music_video_list_wrap" style="display: block;">
 											<div
 												class="music_video_list_item to-animate-2 fadeInUp animated"
@@ -373,11 +355,27 @@
 
 												<div class="music_video_list_item_wrap">
 													<div style="position: relative;"></div>
-												</div>
+												</div> 
 											</div>
 										</div>
 										<!-- 영상목록 끝 -->
-										 
+                                </c:if>
+                                <div class="post-wrapper">
+                                    <div class="post-header">
+                                        <h1 class="post-title">${post.postTitle}</h1>
+                                        <ul class="post-meta">
+                                            <li>${post.postDate}</li>
+                                            <li><a href="follow_page?memberId=${post.memberId}">${post.memberId}</a></li>
+                                        </ul>
+                                        <ul class="post-meta">
+                                            <li>View : ${post.postView}</li>
+                                            <li>Like : ${post.postLike}</li>
+                                            <li>Report : ${post.reported}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="post-content">
+                                    
+                                    
 										     <br>	
 										     <p>${post.postContent}</p>
 										
