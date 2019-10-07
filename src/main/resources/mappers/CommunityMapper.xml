@@ -40,25 +40,26 @@
 	</select>
 	 
 	<select id="selectAll" parameterType="map" resultType="Post">
-		SELECT
-			postNo
-			,memberId
-			,postTitle
-			,postContent
-			,to_char(postDate, 'YYYY-MM-DD') as postDate
-			,postView
-			,postLike
-			<if test="originalFile != null">
-			,originalFile
-			,savedFile
-			</if>
-			,reported
-		FROM Posts 
-		where postType = #{postType}
-		<if test="searchItem != null">
-			and ${searchItem} LIKE '%'||#{searchWord}||'%'
-		</if>
-		ORDER BY postNo DESC
+		 SELECT
+         p.postNo 
+         ,p.memberId 
+         ,p.postTitle 
+         ,p.postContent 
+         ,to_char(postDate, 'YYYY-MM-DD') as postDate
+         ,p.postView 
+         ,p.postLike 
+         <if test="originalFile != null">
+         ,p.originalFile 
+         ,p.savedFile 
+         </if>
+         ,p.reported 
+      FROM Posts p , MemberInfo m
+      where p.memberId = m.memberId
+      and p.postType = 'community' and p.memberId != 'admin'
+      <if test="searchItem != null">
+         and p.${searchItem} LIKE '%'||#{searchWord}||'%'
+      </if>
+      ORDER BY p.postNo DESC
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="Post">
@@ -85,4 +86,31 @@
 		where
 			postNo = #{postNo}
 	</delete>
+	
+	 <select id="commuNoCount" resultType="int">
+      select count(*)
+      From Posts
+      where isAnnouncement='Y'  
+      and postType='community'
+      
+   </select>
+   
+   <select id="commuNoList" resultType="Post" >
+      SELECT
+         postNo
+         ,memberId
+         ,postTitle
+         ,postContent
+         ,to_char(postDate, 'YYYY-MM-DD') as postDate
+         ,postView
+         ,postLike
+         <if test="originalFile != null">
+         ,originalFile
+         ,savedFile
+         </if>
+         ,reported
+      FROM Posts 
+      where isAnnouncement='Y' and postType='community'
+      ORDER BY postNo DESC
+   </select>
   </mapper>

@@ -30,6 +30,9 @@ public class ManagerController {
 	@Autowired
 	PostsService servicePost;
 	
+	@Autowired
+	ManagerRepository Managerrepo;
+	
 	final String uploadPath="/uploadfile";
 	//게시글
 	@RequestMapping(value="/managerPage", method=RequestMethod.GET)
@@ -48,6 +51,12 @@ public class ManagerController {
 		model.addAttribute("navi", navi);
 		model.addAttribute("list", list);
 		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+		
 		return "manager/managerPage";
 	}
 	//등급
@@ -62,6 +71,13 @@ public class ManagerController {
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
 		List<MemberInfo> ratingList = repo.selectMemberInfoAll(memberLevel, navi.getStartRecord(), countPerPage);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		return ratingList;
 	}
 	
@@ -82,7 +98,14 @@ public class ManagerController {
 	@RequestMapping(value="/deleted", method=RequestMethod.POST)
 	@ResponseBody
 	public int deleted(
-			@RequestParam(value="listchecked") List<String> listchecked){
+			@RequestParam(value="listchecked") List<String> listchecked,Model model){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		int result = service.deleted(listchecked);
 		return result;
 	}
@@ -90,8 +113,16 @@ public class ManagerController {
 	@RequestMapping(value="/rep_delete", method=RequestMethod.POST)
 	@ResponseBody
 	public int rep_delete(
-			@RequestParam(value="listchecked") List<String> listchecked
+			@RequestParam(value="listchecked") List<String> listchecked,Model model
 			){
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
+        
 		int result = service.deleted(listchecked);
 		return result;
 	}
@@ -99,9 +130,16 @@ public class ManagerController {
 	//등업하기 등급 변경하기
 	@RequestMapping(value="/change", method=RequestMethod.POST)
 	@ResponseBody
-	public int change(@RequestParam(value="listchecked") List<String> listchecked,String memberLevel){
+	public int change(@RequestParam(value="listchecked") List<String> listchecked,String memberLevel,Model model){
 		System.out.println("postNo"+listchecked+"//////"+"postType"+memberLevel);
 		int result = service.change(listchecked,memberLevel);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 	
 		return result;
 	}
@@ -111,16 +149,28 @@ public class ManagerController {
 	//공지글 취소하기 (내리기>N)
 	@RequestMapping(value="/cancel", method=RequestMethod.POST)
 	@ResponseBody
-	public int cancel(@RequestParam(value="listchecked") List<String> listchecked){
+	public int cancel(@RequestParam(value="listchecked") List<String> listchecked,Model model){
 		int result = service.cancel(listchecked);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 	
 		return result;
 	}
 	//공지글 재등록하기 (올리기>Y)
 	@RequestMapping(value="/registration", method=RequestMethod.POST)
 	@ResponseBody
-	public int registration(@RequestParam(value="listchecked") List<String> listchecked){
+	public int registration(@RequestParam(value="listchecked") List<String> listchecked,Model model){
 		int result = service.registration(listchecked);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 	
 		return result;
 	}
@@ -128,18 +178,30 @@ public class ManagerController {
 	
 	//등업 글쓰기 페이지 이동
 	@RequestMapping(value="/notice_write", method=RequestMethod.GET)
-	public String notice_writeMove(){
+	public String notice_writeMove(Model model){
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		return "manager/notice_write";
 	}
 	//공지 글쓰기
 	@RequestMapping(value="/notice_write", method=RequestMethod.POST)
-	public String notice_write(Posts post , HttpSession session, MultipartFile upload){
+	public String notice_write(Posts post , HttpSession session, MultipartFile upload, Model model){
 		post.setMemberId((String)session.getAttribute("memberId"));
 		String originalfile = upload.getOriginalFilename();
 		String savedfile = FileService.saveFile(upload,uploadPath);
 		
 		post.setOriginalFile(originalfile);
 		post.setSavedFile(savedfile);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		
 		int result = servicePost.writing(post);
@@ -153,7 +215,7 @@ public class ManagerController {
 	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Posts> noticeList(
-			@RequestParam(value="currentPage", defaultValue="1")     int currentPage
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage, Model model
 			){
 		
 		int countPerPage=10;
@@ -163,6 +225,12 @@ public class ManagerController {
 		
 		List<Posts> noticeList = repo.selectNoticeAll( navi.getStartRecord(), countPerPage);
 		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeLists = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeLists);
+        System.out.println("공지 목록: " + noticeLists);
+		
 		
 		return noticeList;
 	}
@@ -171,7 +239,7 @@ public class ManagerController {
 	@RequestMapping(value="/reportList", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Posts> reportList(
-			@RequestParam(value="currentPage", defaultValue="1")     int currentPage
+			@RequestParam(value="currentPage", defaultValue="1")     int currentPage, Model model
 			){
 		
 		int countPerPage=10;
@@ -180,7 +248,31 @@ public class ManagerController {
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		List<Posts> reportList = repo.selectreportAll( navi.getStartRecord(), countPerPage);
 		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
+		
 		return reportList;
+	}
+
+	
+	
+	@RequestMapping(value="/notice", method=RequestMethod.GET)
+	public String notice (@RequestParam(value="currentPage", defaultValue="1")     int currentPage
+			, Model model){
+		
+		int countPerPage=10;
+		int totalRecordCount = repo.getNoticeCount();
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
+		
+		List<Posts> noticeList = repo.selectNoticeAll( navi.getStartRecord(), countPerPage);
+		
+		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("navi", navi);
+		return"userBoard/notice";
 	}
 	
 }

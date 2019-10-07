@@ -53,12 +53,24 @@
   <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet"> 
  
    
+   
+   
+
+   
+   
+   
+   
+   
+   
+   
 <!-- musicom css end -->
 
 
 <style>
 	img#profileThumb{
 		 border-radius: 50%;
+		 width:150px;
+		 height:150px;
 	}
 
 </style>
@@ -102,6 +114,14 @@ $(function(){
 		
 		}
 	})	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -195,73 +215,58 @@ $(function(){
 	<!-- Wrapper-->
 	<div class="wrapper">
 		<!-- Hero-->
-		<section class="module-cover parallax text-center "
-			data-background="resources/assets/images/main/back5.jpg"
-			data-overlay="0.6">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-						<p class="m-b-40">
-							
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
+
+		<section class="module-cover-slides" data-module-cover-slides-options="{&quot;animation&quot;: &quot;fade&quot;}" >
+
+  
+   <ul class="slides-container">
+       <li class="parallax" data-overlay="0.5">
+           <img src="resources/assets/images/main/back6.jpg" alt="">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
+                   </div>
+               </div>
+           </div>
+       </li>
+       <li class="parallax text-center" data-overlay="0.5">
+           <img src="resources/assets/images/main/back4.jpg" alt="">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
+                   </div>
+               </div>
+           </div>
+       </li>
+       <li class="parallax text-right" data-overlay="0.7">
+           <img src="resources/assets/images/main/back5.jpg" alt="">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+                       <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
+                   </div>
+               </div>
+           </div>
+       </li>
+   </ul>
+   <div class="slides-navigation">
+       <a class="prev" href="#"><span class="ti-angle-left"></span></a>
+       <a class="next" href="#"><span class="ti-angle-right"></span></a>
+   </div>
+</section>
 	
 	 
 		<!-- Hero end-->
 		
 
 
+
+
+
   <!-- Sliders-->
-		<section class="module-cover-slides" data-module-cover-slides-options="{&quot;animation&quot;: &quot;fade&quot;}" style="margin-top: 100px;">
-  
-  <%-- <c:forEach var="item" items="${noticeList}" >
-   <ul class="slides-container">
-       <li class="parallax" data-overlay="0.5">
-          <!-- <img src="assets/images/module-1.jpg" alt=""> -->
-          <img src="download?contentseq=${item.postNo}"/>
-          <img src="${item.savedFile}"/>
-           <div class="container">
-               <div class="row">
-                   <div class="col-md-12">
-                       <h1>첫번째공지</h1>
-                   </div>
-               </div>
-           </div>
-       </li>
-   </ul>
-  </c:forEach> --%>
-      <!--  <li class="parallax text-center" data-overlay="0.5">
-           <img src="assets/images/module-21.jpg" alt="">
-           <img src="download?contentseq='+item.contentseq+ '"/>'
-           <div class="container">
-               <div class="row">
-                   <div class="col-md-12">
-                       <h1>두번째공지</h1>
-                   </div>
-               </div>
-           </div>
-       </li>
-       <li class="parallax text-right" data-overlay="0.7" data-gradient="1">
-           <img src="assets/images/module-25.jpg" alt="">
-           <img src="download?contentseq='+item.contentseq+ '"/>'
-           <div class="container">
-               <div class="row">
-                   <div class="col-md-12">
-                       <h1>세번째공지</h1> 
-                   </div>
-               </div>
-           </div>
-       </li>
-   </ul> -->
-   <div class="slides-navigation">
-       <a class="prev" href="#"><span class="ti-angle-left"></span></a>
-       <a class="next" href="#"><span class="ti-angle-right"></span></a>
-   </div>
-</section>
+		
   <!-- Sliders end-->
          
 		           
@@ -497,18 +502,71 @@ $(function(){
 			<div class="footer-widgets">
 				<div class="container">
 					<div class="row">
+					<div class="col-md-3">       
+							<!-- Recent works-->
+							<aside class="widget widget-recent-works">
+								<div class="widget-title">
+									<h6>Team Members</h6>  
+								</div>      
+								<ul>   
+									<li><a href="https://github.com/HeejuKim96" target="_blank" title="김 희주"><img
+											src="resources/assets/images/team/heeju_cartoon.jpg" alt=""></a></li>
+									<li><a href="https://www.linkedin.com/in/hans-lee-6737b0120" target="_blank"  title="이 학민"><img
+											src="resources/assets/images/team/hakmin_cartoon.jpg" alt=""></a></li>
+								</ul>
+								<ul>
+									<li><a href="https://github.com/InHyunGyu" target="_blank"><img   
+											src="resources/assets/images/team/hyungyu_cartoon.jpg"  title="인 현규" alt=""></a></li>
+									<li><a href="https://github.com/ymh1994" target="_blank"><img
+											src="resources/assets/images/team/minhyuk_cartoon.jpg"  title="유 민혁" alt=""></a></li>        
+								</ul>
+							</aside>   
+						</div>
+						
+						
+
 						<div class="col-md-3">
+							<!-- Recent entries widget-->
+							<aside class="widget widget-recent-entries">
+								<div class="widget-title">
+									<h6>Announcement</h6>  
+								</div>
+								<ul>
+									<c:forEach var="item" items="${noticeList}">
+										<li><a href="file_detail?postNo=${item.postNo}">${item.postTitle}</a><span class="post-date">${item.postDate}
+												</span></li>
+									</c:forEach>
+								</ul>
+							</aside>
+						</div>
+
+						<div class="col-md-3">
+							<!-- Twitter widget-->
+							<aside class="widget twitter-feed-widget">
+								<div class="widget-title">
+									<h6>About Us</h6>   
+								</div>
+								<ul>
+									<li><a href="companyIntro" target="_blank"><img
+											src="resources/assets/images/aboutUs2.jpg" width="500" alt=""></a></li>   
+								</ul>   
+           
+								<div class="twitter-feed" data-twitter="double_theme"
+									data-number="1"></div>
+							</aside>
+						</div>
+						
+						<div class="col-md-3">  
 							<!-- Text widget-->
 							<aside class="widget widget-text">
-								<div class="widget-title">
-									<h6>About Us</h6>
-								</div>
-								<div class="textwidget">
-									<p>Map where your photos were taken and discover local
-										points of interest. Map where your photos.</p>
-									<p>
-										Location: 12 London Avenue, Suite 18<br> E-mail:
-										support@theme.com<br> Phone: 8 800 123 4567<br>
+								<div class="widget-title">  
+									
+								</div> 
+								<div class="textwidget">   
+									<p style="color:#788487">
+									<br>우타짱이 마련한 음악을 통한 특별한 만남. 당신을 찾아갑니다.</p>
+									<p style="color:#788487">
+										SC IT MASTER 37 DebugKing<br> All Rights Reserved
 									</p>
 									<ul class="social-icons">
 										<li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -519,57 +577,7 @@ $(function(){
 								</div>
 							</aside>
 						</div>
-						<div class="col-md-3">
-							<!-- Recent entries widget-->
-							<aside class="widget widget-recent-entries">
-								<div class="widget-title">
-									<h6>Recent Posts</h6>
-								</div>
-								<ul>
-									<li><a href="#">Map where your photos were taken and
-											discover local points.</a><span class="post-date">May 8,
-											2018</span></li>
-									<li><a href="#">Map where your photos were taken and
-											discover local points.</a><span class="post-date">April 7,
-											2018</span></li>
-									<li><a href="#">Map where your photos were taken and
-											discover local points.</a><span class="post-date">September
-											7, 2018</span></li>
-								</ul>
-							</aside>
-						</div>
-						<div class="col-md-3">
-							<!-- Twitter widget-->
-							<aside class="widget twitter-feed-widget">
-								<div class="widget-title">
-									<h6>Twitter Feed</h6>
-								</div>
-								<div class="twitter-feed" data-twitter="double_theme"
-									data-number="1"></div>
-							</aside>
-						</div>
-						<div class="col-md-3">
-							<!-- Recent works-->
-							<aside class="widget widget-recent-works">
-								<div class="widget-title">
-									<h6>Portfolio</h6>
-								</div>
-								<ul>
-									<li><a href="#"><img
-											src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
-									<li><a href="#"><img
-											src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
-									<li><a href="#"><img
-											src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
-									<li><a href="#"><img
-											src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
-									<li><a href="#"><img
-											src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
-									<li><a href="#"><img
-											src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
-								</ul>
-							</aside>
-						</div>
+						
 					</div>
 				</div>
 			</div>

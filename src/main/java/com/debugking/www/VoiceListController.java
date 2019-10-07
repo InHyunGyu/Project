@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.debugking.www.dao.ManagerRepository;
 import com.debugking.www.dao.VoiceListRepository;
 import com.debugking.www.dto.Posts;
 import com.debugking.www.service.PostsService;
@@ -24,6 +25,8 @@ public class VoiceListController {
 	PostsService serivce;
 	@Autowired
 	VoiceListRepository repo;
+	@Autowired
+	ManagerRepository Managerrepo;
 	
 	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile";
 	
@@ -39,9 +42,10 @@ public class VoiceListController {
 		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
 		
 		int noticeCount = getNoticeCount();
-		List<Posts> noticeList = selectNoticeAll();
+		List<Posts> noticeList = selectNoticeAll(); 
 		model.addAttribute("noticeCount", noticeCount);
 		model.addAttribute("noticeList", noticeList);
+		
 		
 		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("searchItem", searchItem);
@@ -127,16 +131,26 @@ public class VoiceListController {
 		 
 		model.addAttribute("navi", navi);
 		model.addAttribute("list", list);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeLists = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeLists);
+        System.out.println("공지 목록: " + noticeLists);
+        
 		return "userBoard/voice_all"; 
 	}
 	
 
 	public int getNoticeCount(){
 		int noticeCount = repo.getNoticeCount();
+		
+        
 		return noticeCount;
 	}
 	public List<Posts> selectNoticeAll(){
 		List<Posts> list = repo.selectNoticeAll();
+		
 		return list;
 	}
 

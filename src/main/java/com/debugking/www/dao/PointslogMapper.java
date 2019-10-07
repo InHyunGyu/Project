@@ -10,3 +10,4 @@ public interface PointslogMapper {
 	int updatepointslog(Pointslog pointlog); //업데이트
 
 }
+ 

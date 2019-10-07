@@ -103,6 +103,7 @@ public class ManagerRepository {
 		
 		ManagerMapper mapper = session.getMapper(ManagerMapper.class);
 		list = mapper.selectNoticeAll(rb);
+		
 		return list;
 	}
 	//신고 글 출력
@@ -142,10 +143,11 @@ public class ManagerRepository {
 			return 1;
 		}
 	}
+	
 	public List<Posts> selectNotice(int startRecord, int countPerPage) {
-		RowBounds rb = new RowBounds(startRecord, countPerPage);
-		ManagerMapper mapper = session.getMapper(ManagerMapper.class);
-		List<Posts> noticeList = mapper.selectMainNotice(rb);
-		return noticeList;
-	}
+	      RowBounds rb = new RowBounds(startRecord, countPerPage);
+	      ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+	      List<Posts> noticeList = mapper.selectMainNotice(rb);
+	      return noticeList;
+	   }
 }

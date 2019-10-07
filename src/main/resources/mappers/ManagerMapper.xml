@@ -150,6 +150,16 @@
 		ORDER BY memberLevel ASC, signupDate DESC
 	</select>
 	
+	<select id="selectMainNotice" resultType="Post">
+		select 
+			postNo, postTitle, to_char(postDate,'yyyy-mm-dd') as postDate    
+		From    
+			Posts
+		Where 
+			isAnnouncement='Y' 
+		Order by 
+			PostNo DESC
+	</select>
 	
 	<!-- Main 공지글 3개 출력 -->
 	<select id="selectMainNotice"  resultType="Post">

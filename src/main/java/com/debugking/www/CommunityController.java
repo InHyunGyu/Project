@@ -1,7 +1,7 @@
 package com.debugking.www;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,18 +13,21 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.debugking.www.dao.CommunityRepository;
+import com.debugking.www.dao.ManagerRepository;
 import com.debugking.www.dto.Posts;
 import com.debugking.www.util.FileService;
 import com.debugking.www.util.PageNavigator;
 
 
 
-
+ 
 @Controller
 public class CommunityController {
 
 	@Autowired
 	CommunityRepository repo;
+	@Autowired
+	ManagerRepository Managerrepo;
 	
 	final String uploadPath="/Users/heeju/Documents/fileIO";
 	
@@ -43,15 +46,26 @@ public class CommunityController {
 		
 		list = repo.selectAll(postType, searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		
+		int noticeCount = repo.commuNoCount();
+		List<Posts> noticeList = repo.commuNoList();
+		
+		
+		model.addAttribute("noticeCount", noticeCount);
+		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
 		model.addAttribute("list", list);
 		
+        int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList2 = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList2);
+        System.out.println("공지 목록: " + noticeList2);
+		
 		return "userBoard/community";
 	}
-	
-	
+
 	@RequestMapping(value="/post_modify", method=RequestMethod.GET)
 	public String commu_update(int postNo, Model model){
 		
@@ -59,11 +73,17 @@ public class CommunityController {
 		
 		model.addAttribute("post", post);
 		
+        int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+		
 		return "userBoard/post_modify";
 	}	
 	
 	@RequestMapping(value="/post_modify", method=RequestMethod.POST)
-	public String commu_update(Posts post, MultipartFile upload, RedirectAttributes rttr){
+	public String commu_update(Posts post, MultipartFile upload, RedirectAttributes rttr, Model model){
 		int result = 0;
 		int postNo = post.getPostNo();
 		
@@ -86,18 +106,31 @@ public class CommunityController {
 		}
 		
 		rttr.addAttribute("postNo", postNo);
+		
+        int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
+        
 		return "redirect:/file_detail";
 
 	}
 
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String delete(int postNo){
+	public String delete(int postNo, Model model){
 		Posts post = repo.selectOne(postNo);
 		
 		if(post.getSavedFile() != null){
 			FileService.deleteFile(uploadPath+"/"+post.getSavedFile()); 
 		}
 		repo.postDelete(postNo);
+		
+		int startRecord=0;
+        int lastPerPage=3;   
+        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
+        model.addAttribute("noticeList",noticeList);
+        System.out.println("공지 목록: " + noticeList);
 		
 		return "redirect:/community";
 	}

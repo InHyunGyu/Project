@@ -26,7 +26,7 @@ public interface ManagerMapper {
 	public int getreportCount();
 	public List<Posts> selectreportAll(RowBounds rb);
 	
-	public int notice(Map hm);
+	public int notice(Map hm); 
 	public List<Posts> selectMainNotice(RowBounds rb);
 	
 	
