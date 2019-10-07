@@ -2,6 +2,7 @@ package com.debugking.www.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -69,5 +70,22 @@ public class CommunityRepository {
 		
 		return result;
 	}
+
+	public int commuNoCount() {
+		CommunityMapper mapper = session.getMapper(CommunityMapper.class);
+		
+		int commuNoCount = mapper.commuNoCount();
+		
+		return commuNoCount;
+	}
+
+	public List<Posts> commuNoList() {
+		CommunityMapper mapper = session.getMapper(CommunityMapper.class);
+		
+		List<Posts> list = mapper.commuNoList();
+		
+		return list;
+	}
+
 
 }

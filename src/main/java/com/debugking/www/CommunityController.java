@@ -1,7 +1,7 @@
 package com.debugking.www;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +43,12 @@ public class CommunityController {
 		
 		list = repo.selectAll(postType, searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		
+		int noticeCount = repo.commuNoCount();
+		List<Posts> noticeList = repo.commuNoList();
+		
+		
+		model.addAttribute("noticeCount", noticeCount);
+		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
@@ -50,8 +56,7 @@ public class CommunityController {
 		
 		return "userBoard/community";
 	}
-	
-	
+
 	@RequestMapping(value="/post_modify", method=RequestMethod.GET)
 	public String commu_update(int postNo, Model model){
 		

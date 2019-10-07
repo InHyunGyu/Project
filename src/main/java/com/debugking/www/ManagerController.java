@@ -183,5 +183,22 @@ public class ManagerController {
 		
 		return reportList;
 	}
+
+	
+	
+	@RequestMapping(value="/notice", method=RequestMethod.GET)
+	public String notice (@RequestParam(value="currentPage", defaultValue="1")     int currentPage
+			, Model model){
+		
+		int countPerPage=10;
+		int totalRecordCount = repo.getNoticeCount();
+		PageNavigator navi = new PageNavigator(currentPage, totalRecordCount,countPerPage);
+		
+		List<Posts> noticeList = repo.selectNoticeAll( navi.getStartRecord(), countPerPage);
+		
+		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("navi", navi);
+		return"userBoard/notice";
+	}
 	
 }

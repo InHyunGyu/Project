@@ -176,30 +176,6 @@
           <section class="module p-t-30 p-b-100">
 		<div class="container">
 
-			<div class="col-md-12 m-auto">
-				<div class="table-responsive">
-					<!-- 검색창 -->
-					<div style="float: right; margin-bottom: 10px;">
-						<form action="community" method="get">
-							<div class="form-group"
-								style="height: 50px; display: inline-flex;">
-								<select class="form-control col-md-3" name="searchItem"
-									style="height: 100%; width: 130px;">
-									<option value="postTitle"
-										${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
-									<option value="memberId"
-										${searchItem == 'memberId' ? 'selected' : ''}>글쓴이</option>
-									<option value="postContent"
-										${searchItem == 'postContent' ? 'selected' : ''}>내용</option>
-								</select> <input class="form-control col-md-6" type="text"
-									name="searchWord" value="${searchWord}" style="height: 100%;" />
-								<input class="col-md-2" type="submit" value="검색" id="inputStyle" />
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-
 
 
 
@@ -220,7 +196,7 @@
 
 						<tbody>
 							<!-- 게시글이 없는 경우 -->
-							<c:if test="${empty list}">
+						
 								<c:if test="${not empty noticeList}">
 								<c:forEach var="board" items="${noticeList}">
 									<tr style="background-color: #c9ccc8;" align="center">
@@ -238,48 +214,7 @@
 								<tr>
 									<td colspan="6" align="center" style="text-align:center;">데이터가 없습니다.</td>
 								</tr>
-							</c:if>
-							<!-- 게시글이 있는 경우 -->
-							
-							
 					
-					
-					
-					
-
-							<c:if test="${not empty list}">
-							
-							
-							
-							<c:if test="${not empty noticeList}">
-								<c:forEach var="board" items="${noticeList}">
-									<tr style="background-color: #c9ccc8;" align="center">
-										<td class="column1">공지</td>
-										<td class="column2"><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
-										<td class="column3"><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
-										<td class="column4">${board.postDate}</td>
-										<td class="column5">${board.postView}</td>
-										<td class="column6">${board.postLike}</td>
-									</tr>
-								</c:forEach> 
-							</c:if> 
-							
-							
-							
-							
-								<c:forEach var="board" items="${list}" varStatus="stat" >
-									<tr align="center">
-										<td class="column1">${stat.count + navi.startRecord}</td>
-										<td class="column2"><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
-										<td class="column3"><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
-										<td class="column4">${board.postDate}</td>
-										<td class="column5">${board.postView}</td>
-										<td class="column6">${board.postLike}</td>
-									</tr>
-
-								</c:forEach>
-							</c:if>
-
 							<!-- 페이징 하기 -->
 
 						</tbody>
@@ -316,6 +251,7 @@
 
 
 	</section>
+	</div>
             <!-- Footer-->
             <footer class="footer">
                 <div class="footer-widgets">
@@ -374,10 +310,10 @@
                                     <ul>
                                         <li><a href="#"><img src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
                                         <li><a href="#"><img src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
+                                    </ul>
+                                    <ul>
+                                    	<li><a href="#"><img src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
                                         <li><a href="#"><img src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
-                                        <li><a href="#"><img src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
                                     </ul>
                                 </aside>
                             </div>

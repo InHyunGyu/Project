@@ -103,6 +103,7 @@ public class ManagerRepository {
 		
 		ManagerMapper mapper = session.getMapper(ManagerMapper.class);
 		list = mapper.selectNoticeAll(rb);
+		
 		return list;
 	}
 	//신고 글 출력
