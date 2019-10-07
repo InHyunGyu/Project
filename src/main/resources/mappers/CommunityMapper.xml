@@ -41,23 +41,23 @@
 	 
 	<select id="selectAll" parameterType="map" resultType="Post">
 		 SELECT
-         p.postNo
-         ,p.memberId
-         ,p.postTitle
-         ,p.postContent
+         p.postNo 
+         ,p.memberId 
+         ,p.postTitle 
+         ,p.postContent 
          ,to_char(postDate, 'YYYY-MM-DD') as postDate
-         ,p.postView
-         ,p.postLike
+         ,p.postView 
+         ,p.postLike 
          <if test="originalFile != null">
-         ,p.originalFile
-         ,p.savedFile
+         ,p.originalFile 
+         ,p.savedFile 
          </if>
-         ,p.reported
+         ,p.reported 
       FROM Posts p , MemberInfo m
       where p.memberId = m.memberId
       and p.postType = 'community' and p.memberId != 'admin'
       <if test="searchItem != null">
-         and ${searchItem} LIKE '%'||#{searchWord}||'%'
+         and p.${searchItem} LIKE '%'||#{searchWord}||'%'
       </if>
       ORDER BY p.postNo DESC
 	</select>

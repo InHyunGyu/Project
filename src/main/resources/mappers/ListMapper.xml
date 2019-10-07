@@ -197,6 +197,7 @@
 				MIN(postNo) 
 			from posts 
 			where postNo > #{postNo} and postType=#{postType})
+			and memberId != 'admin'
 	</select>
 	
 	<select id="before" parameterType="Post" resultType="Post">
@@ -212,5 +213,6 @@
 				MAX(postNo)
 			from posts 
 			where #{postNo} > postNo and postType = #{postType})
+			and memberId != 'admin'
 	</select>
 </mapper>
