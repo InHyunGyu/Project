@@ -43,6 +43,7 @@ public class VoiceListController {
 		model.addAttribute("noticeCount", noticeCount);
 		model.addAttribute("noticeList", noticeList);
 		
+		
 		List<Posts> list = repo.selectAll(searchItem, searchWord, navi.getStartRecord(), countPerPage);
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);

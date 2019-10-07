@@ -18,8 +18,8 @@
       where p.memberId = m.memberId
       and p.postType = 'voice' and p.memberId != 'admin'
       and m.memberLevel !='Z' 
-      <if test="searchItem != null">
-         and ${searchItem} LIKE '%'||#{searchWord} || '%'
+    <if test="searchItem != null">
+         and ${searchItem} LIKE '%'||#{searchWord}||'%'
       </if>
    </select>
    

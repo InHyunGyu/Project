@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Boomerang - Template</title>
+        <title>Utajjang</title>
         <!-- Favicons-->
         <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
@@ -21,18 +21,22 @@
         <link href="resources/assets/css/plugins.min.css" rel="stylesheet">
         <!-- Template core CSS-->
         <link href="resources/assets/css/template.css" rel="stylesheet">
+<!-- swal -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
         <!-- JavaScripts -->
       <script src="resources/assets/js/jquery-3.4.1.min.js"></script>
       <script src="resources/assets/js/login2.js"></script>
-      <!-- swal -->
-<script src="https://unpkg.com/sweetswal/dist/sweetswal.min.js"></script>
       
+   
       <!-- 홈아이콘바꾸기 -->
 <link rel="icon" type="image/png" href="resources/board/images/icons/favicon.ico"/>
       
    <style>
    img#profileThumb{
 		 border-radius: 50%;
+		  width:150px;
+		 height:150px;
 	}
    
    
@@ -264,7 +268,6 @@
       tag3 += '<select class="form-control col-lg-2" style="height: 30px;" id="moveSelect">'
        tag3 += '<option value="voice">voice</option>'
        tag3 += '<option value="video">video</option>'
-       tag3 += '<option value="streaming">streaming</option>'
        tag3 += '<option value="community">community</option>'
        tag3 += '</select>'
       tag3 += '<div class="form-group" style="float: right;">'
@@ -274,10 +277,9 @@
       tag3 += '</div>'
       
       var tag4 = '';
-      tag4 += '<select class="form-control col-lg-3" name="searchItem">'
+      tag4 += '<select class="form-control col-lg-3" name="searchItem" >'
       tag4 += "<option value='voice' ${searchItem == 'voice' ? 'selected' : ''}>voice</option>"
       tag4 += "<option value='video' ${searchItem == 'video' ? 'selected' : ''}>video</option>"
-      tag4 += "<option value='streaming' ${searchItem == 'streaming' ? 'selected' : ''}>streaming</option>"
       tag4 += "<option value='community' ${searchItem == 'community' ? 'selected' : ''}>community</option>"
       tag4 += '</select>'
       tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
@@ -850,7 +852,7 @@
                     </div>
                 </div>
             </footer>
-            <!-- Footer end-->
+            <!-- Footer end--> 
         </div>
         <!-- Wrapper end-->
       <!-- Off canvas-->
