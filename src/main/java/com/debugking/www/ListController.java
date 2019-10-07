@@ -51,12 +51,6 @@ public class ListController {
 	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile"; 
 
 	
-	@RequestMapping(value="/notice", method=RequestMethod.GET)
-	public String notice(){
-
-		return "userBoard/notice";
-	}
-
 	@RequestMapping(value="/streaming", method=RequestMethod.GET)
 	public String streaming(){
 		return"userBoard/streaming";
@@ -270,4 +264,7 @@ public class ListController {
 		System.out.println("배열에 존재하지 않습니다.");
 		return 1;
 	}
+	
+	
+	
 }

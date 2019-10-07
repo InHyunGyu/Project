@@ -215,59 +215,37 @@ $(function(){
 	<!-- Wrapper-->
 	<div class="wrapper">
 		<!-- Hero-->
-		<section class="module-cover parallax text-center "
-			data-background="resources/assets/images/main/back5.jpg"
-			data-overlay="0.6">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
-						<p class="m-b-40">
-							
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-	
-	  
-		<!-- Hero end-->
-		
 
+		<section class="module-cover-slides" data-module-cover-slides-options="{&quot;animation&quot;: &quot;fade&quot;}" >
 
-
-
-
-  <!-- Sliders-->
-		<section class="module-cover-slides" data-module-cover-slides-options="{&quot;animation&quot;: &quot;fade&quot;}" style="margin-top: 100px;">
   
    <ul class="slides-container">
        <li class="parallax" data-overlay="0.5">
-           <img src="assets/images/module-1.jpg" alt="">
+           <img src="resources/assets/images/main/back6.jpg" alt="">
            <div class="container">
                <div class="row">
                    <div class="col-md-12">
-                       <h1>첫번째공지</h1>
+                       <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
                    </div>
                </div>
            </div>
        </li>
        <li class="parallax text-center" data-overlay="0.5">
-           <img src="assets/images/module-21.jpg" alt="">
+           <img src="resources/assets/images/main/back4.jpg" alt="">
            <div class="container">
                <div class="row">
                    <div class="col-md-12">
-                       <h1>두번째공지</h1>
+                       <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
                    </div>
                </div>
            </div>
        </li>
-       <li class="parallax text-right" data-overlay="0.7" data-gradient="1">
-           <img src="assets/images/module-25.jpg" alt="">
+       <li class="parallax text-right" data-overlay="0.7">
+           <img src="resources/assets/images/main/back5.jpg" alt="">
            <div class="container">
                <div class="row">
                    <div class="col-md-12">
-                       <h1>세번째공지</h1> 
+                       <h1 class="demo-heading"><strong>Uta<span>J</span>Jang</strong></h1>
                    </div>
                </div>
            </div>
@@ -278,6 +256,17 @@ $(function(){
        <a class="next" href="#"><span class="ti-angle-right"></span></a>
    </div>
 </section>
+	
+	 
+		<!-- Hero end-->
+		
+
+
+
+
+
+  <!-- Sliders-->
+		
   <!-- Sliders end-->
          
 		           

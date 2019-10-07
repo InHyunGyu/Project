@@ -17,10 +17,11 @@
       FROM Posts p , MemberInfo m
       where p.memberId = m.memberId
       and p.postType = 'voice' and p.memberId != 'admin'
-      and m.memberLevel !='Z' 
-    <if test="searchItem != null">
-         and p.${searchItem} LIKE '%'||#{searchWord}||'%' 
-      </if>  
+
+      <if test="searchItem != null">
+         and p.${searchItem} LIKE '%'||#{searchWord} || '%'
+      </if>
+
    </select>
    
    <select id="selectAll" resultType="Post" parameterType="map">
@@ -40,13 +41,12 @@
       FROM Posts p , MemberInfo m
       where p.memberId = m.memberId
       and p.postType = 'voice' and p.memberId != 'admin'
-      and m.memberLevel !='Z' 
       <if test="searchItem != null">
          and p.${searchItem} LIKE '%'||#{searchWord}||'%'
       </if>
       ORDER BY p.postNo DESC
    </select>
-   <select id="selectNoticeAll" resultType="Post" parameterType="map">
+   <select id="selectNoticeAll" resultType="Post">
       SELECT
          postNo
          ,memberId
@@ -61,10 +61,7 @@
          </if>
          ,reported
       FROM Posts 
-      where isAnnouncement='Y'
-      <if test="searchItem != null">
-         and ${searchItem} LIKE '%'||#{searchWord}||'%'
-      </if>
+      where isAnnouncement='Y' and postType='voice'
       ORDER BY postNo DESC
    </select>
    

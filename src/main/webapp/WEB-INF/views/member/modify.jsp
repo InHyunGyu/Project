@@ -309,7 +309,7 @@
 									<input class="form-control" type="text" value="${memberName}" name="memberName" id="memberName">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" value="${memberPhone }" name="memberPhone" id="memberPhone">
+									<input class="form-control" type="text" value="${memberPhone}" name="memberPhone" id="memberPhone">
 								</div>
 								<div class="form-group">
 									<input class="form-control" type="email" value="${memberEmail}" name="memberEmail" id="memberEmail">
