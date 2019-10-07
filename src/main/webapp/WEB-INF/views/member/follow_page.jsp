@@ -413,7 +413,7 @@ table {
 				data:send,
 				success:function(res){
 					if(res == 'ok') {
-						swal('ok');
+						swal('follow 등록 완료');
 						following(followName, login)
 						return;
 					} else {
@@ -423,7 +423,7 @@ table {
 				}
 			})	
 		} else {
-			swal('팔로우 할 수 없습니다.');
+			swal('팔로우 할 수 없습니다.'); 
 		}
 	}
 	
@@ -442,10 +442,10 @@ table {
 				data: send,
 				success:function (res) {
 					if(res='ok') {
-						swal('삭제 완료');
+						swal('follow 취소 완료');
 						return;
 					} else {
-						swal('삭제 실패');
+						swal('follow를 하지 않았습니다.');
 						return;
 					}
 					

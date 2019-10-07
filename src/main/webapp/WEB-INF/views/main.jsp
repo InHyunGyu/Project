@@ -53,6 +53,16 @@
   <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet"> 
  
    
+   
+   
+
+   
+   
+   
+   
+   
+   
+   
 <!-- musicom css end -->
 
 
@@ -102,6 +112,14 @@ $(function(){
 		
 		}
 	})	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -213,6 +231,9 @@ $(function(){
 	 
 		<!-- Hero end-->
 		
+
+
+
 
 
   <!-- Sliders-->

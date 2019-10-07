@@ -633,4 +633,31 @@ public class MemberController {
 		return list;
 	}
 	
+	
+	
+	
+	
+	
+      @ResponseBody
+      @RequestMapping(value="/attendances",method=RequestMethod.GET)
+      public String attendances(String memberId){
+    	    
+    	  return memberId;
+      }
+	
+      
+      
+      
+	
+    
+    
+      
+      
+      
+	
+	
+	
+	
+	
+	
 }
