@@ -472,13 +472,13 @@
 							<p class="text-center">${sessionScope.memberId}</p>
 							<p class="text-center">
 								<a href="follow_page?memberId=${sessionScope.memberId}" style="color: #788487">내 블로그</a>
-							</p><br>
+							</p>
 							<p class="text-center">
 								<a href="modify" style="color: #788487">정보 수정</a>
-							</p><br>
+							</p>
 							<p class="text-center">
 								<a href="logout" style="color: #788487">로그 아웃</a>
-							</p><br>
+							</p>
 							<p class="text-center">
 								<a href="#" id="memberDelete" style="color: #788487">탈퇴</a>
 							</p>

@@ -215,34 +215,42 @@ table {
 					$.each(res.list, function(index, item){
 						var memberId = item.memberId;
 						var followName = '';
-						var flag = false;
+						var flag1 = false;
+						var flag2 = false;
+						
 						$.each(res.memList, function(index, item2){
 							followName = item2.followName;
 							
-							if(followName == memberId) {
-								flag = true;
-							}
+							if(memberId == login) {
+								flag1 = true;
+							} else if (memberId == followName) {
+								flag2 = true;
+							} 
+							
 						})
-	
-						if(flag) {
-							tag += '<tr>';
-							tag += '<td><a href="follow_page?memberId='+item.memberId+'">'+item.memberId+'</a></td>';
-							tag += '<td>'+item.memberLevel+'</td>';
-							tag += '<td><button type="button" class="blockReq" data-value="'+item.memberId+'" >block</button></td>';
-						} else {
-							tag += '<tr>';
-							tag += '<td><a href="follow_page?memberId='+item.memberId+'">'+item.memberId+'</a></td>';
-							tag += '<td>'+item.memberLevel+'</td>';
-							tag += '<td>'
-							if(login != item.memberId) {
-								tag += '<button type="button" class="followReq" data-value="'+item.memberId+'" >follow</button>';
+							
+							if(flag1) {
+								tag += '<tr>';
+								tag += '<td><a href="follow_page?memberId='+item.memberId+'">'+item.memberId+'</a></td>';
+								tag += '<td>'+item.memberLevel+'</td>';
+								tag += '<td></td>';
+								tag += '</td>'
 							} else {
-								
+								if(flag2) {
+								tag += '<tr>';
+								tag += '<td><a href="follow_page?memberId='+item.memberId+'">'+item.memberId+'</a></td>';
+								tag += '<td>'+item.memberLevel+'</td>';
+								tag += '<td><button type="button" class="blockReq" data-value="'+item.memberId+'" >block</button></td>';
+								tag += '</td>'
+								} else {
+									tag += '<tr>';
+									tag += '<td><a href="follow_page?memberId='+item.memberId+'">'+item.memberId+'</a></td>';
+									tag += '<td>'+item.memberLevel+'</td>';
+									tag += '<td><button type="button" class="followReq" data-value="'+item.memberId+'" >follow</button></td>';
+									tag += '</td>'
+								}
 							}
-							
-							tag += '</td>'
-							
-						}
+						
 						
 						tag += '</tr>';
 						
@@ -301,17 +309,21 @@ table {
 					tag += '</tr>';
 				} else {
 					$.each(res.list, function(index, item){
-						var followName = '';
-						var flag = false;
+						var followName1 = item.followName;
+						var flag1 = false;
+						var flag2 = false;
+						
 						$.each(res.memList, function(index, item2){
-							followName = item2.followName;
+							var followName2 = item2.followName;
 							
-							if(followName == memberId) {
-								flag = true;
+							if(followName1 == memberId) {
+								flag1 = true;
+							} else if (followName1 == followName2) {
+								flag2 = true;
 							}
 						})
 	
-						if(flag) {
+						if(flag2) {
 							tag += '<tr>';
 							tag += '<td><a href="follow_page?memberId='+item.followName+'">'+item.followName+'</a></td>';
 							tag += '<td>'+item.memberLevel+'</td>';
@@ -322,7 +334,7 @@ table {
 							tag += '<td>'+item.memberLevel+'</td>';
 							tag += '<td>'
 							
-							if(login != item.followName) {
+							if(flag1) {
 								tag += '<button type="button" class="followReq" data-value="'+item.followName+'" >follow</button>';
 
 							} else {
@@ -387,7 +399,9 @@ table {
 						tag += ' <hr class="m-t-30 m-b-30">	 ';
 								
 					})
-					$("#postContent").html(tag);	
+				
+				$("#postContent").html(tag);	
+				
 		}
 	
 
@@ -416,7 +430,6 @@ table {
 				success:function(res){
 					if(res == 'ok') {
 						swal('follow 등록 완료');
-						following(followName, login)
 						return;
 					} else {
 						swal('follow 등록에 실패하였습니다.');
@@ -544,12 +557,7 @@ table {
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h1>Spacé Đecor</h1>
-						<ol class="breadcrumb justify-content-center">
-							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item"><a href="#">Portfolio</a></li>
-							<li class="breadcrumb-item active">Sidebar Stack</li>
-						</ol>
+						<h1>Follow_Page</h1>
 					</div>
 				</div>
 			</div>
@@ -566,11 +574,6 @@ table {
 						<article class="post" id="postContent"></article>
 						<!-- Post end-->
 
-						<!-- Page Navigation-->
-						<div id="navigation">
-							
-						</div>
-						<!-- Page Navigation end-->
 					</div>
 
 						

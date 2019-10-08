@@ -765,31 +765,16 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="/memberPost", method=RequestMethod.GET)
-	public ArrayList<Posts> memberPost(String memberId, Model model){
-		int countPerPage=10;
-		int postCount = listRepo.postCount(memberId);
-		int currentPage = 1;
-		PageNavigator navi = new PageNavigator(currentPage, postCount,countPerPage);
-		
+	public ArrayList<Posts> memberPost(String memberId){
+	
 		ArrayList<Posts> list = new ArrayList<>();
 		
-		list = listRepo.memberPost(memberId, navi.getStartRecord(), countPerPage);
-		
-		model.addAttribute("navi", navi);
-		
-		int startRecord=0;
-        int lastPerPage=3;   
-        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
-        model.addAttribute("noticeList",noticeList);
-        System.out.println("공지 목록: " + noticeList);
-		
+
+		list = listRepo.memberPost(memberId);
+
+
 		return list;
 	}
-	
-	
-	
-	
-	
 	
       @ResponseBody
       @RequestMapping(value="/attendances",method=RequestMethod.GET)
@@ -797,20 +782,5 @@ public class MemberController {
     	    
     	  return memberId;
       }
-	
-      
-      
-      
-	
-    
-    
-      
-      
-      
-	
-	
-	
-	
-	
 	
 }

@@ -207,8 +207,8 @@
 									<option value="postContent"
 										${searchItem == 'postContent' ? 'selected' : ''}>내용</option>
 								</select> <input class="form-control col-md-6" type="text"
-									name="searchWord" value="${searchWord}" style="height: 100%;" />
-								<input class="col-md-2" type="submit" value="검색" id="inputStyle" />
+									name="searchWord" value="${searchWord}" style="height: 100%; color: #495057" />
+								<input class="col-md-2" type="submit" value="검색" id="inputStyle" style=" color: #495057"/>
 							</div>
 						</form>
 					</div>
@@ -306,8 +306,8 @@
 			<!-- 페이징 하기 -->
 
 			
-					<nav>
-						<ul class="pagination justify-content-center">
+					<nav style="margin-top: 20px;">
+						<ul class="pagination justify-content-center" >
 							<li class="page-item"><a class="page-link"
 								href="voice_new?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}"><span
 									class="fas fa-angle-left"></span></a></li>
