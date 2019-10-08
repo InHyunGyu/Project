@@ -111,7 +111,7 @@ public class ListController {
 	public String commuDetail(int postNo, HttpSession session,Model model){
 /*		 ModelAndView view = new ModelAndView();*/
 		
-		
+
 
 		String checkType = "view";
 	        
@@ -169,6 +169,7 @@ public class ListController {
         System.out.println("공지 목록: " + noticeList);
         
         
+
 		return "userBoard/file_detail";
 
 	}
