@@ -117,9 +117,17 @@ $(function(){
 	
 	
 	
+	$(".weeklyOn").on('click',function(){
+		alert("ㅎㅇ"); 
+	})
 	
+	$(".monthlyOn").on('click',function(){
+		alert("ㅎㅇ"); 
+	})
 	
-	
+	$(".newOn").on('click',function(){
+		alert("ㅎㅇ"); 
+	})
 	
 	
 	
@@ -315,15 +323,15 @@ $(function(){
                         
                         
                                 <c:forEach var="board" items="${weekList}" varStatus="stat">
-                                 <div class="portfolio-item weekly" style="position: absolute; left: 0px; top: 0px;display:none;">
+                                 <div class="portfolio-item weekly" style="position: absolute; left: 0px; top: 0px; display:none;">
                             <div class="portfolio-item-wrapper">
 							<div id="music_video_list_wrap" style="display: block;">
 								<div   
 									class="music_video_list_item to-animate-2 fadeInUp animated" 
 									 style="width: 100%">
 									<div class="music_video_list_item_wrap"> 
-										<div style="position: relative;">
-											
+										<div style="position: relative;"> 
+											 
 
 											<video width="550" height="300" controls="controls"
 												preload="metadata" poster="resources/images/thumbnail.jpg">
@@ -416,7 +424,7 @@ $(function(){
                         
                         
                          <c:forEach var="board" items="${newList}" varStatus="stat">
-                        <div class="portfolio-item new" style="position: absolute; left: 0px; top: 466.4px;">
+                        <div class="portfolio-item new" style="position: absolute; left: 0px; top: 466.4px; "> 
                             <div class="portfolio-item-wrapper">
                               
                               

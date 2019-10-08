@@ -703,7 +703,7 @@ table {
 					<div class="row">
 						<div class="col-md-12">
 							<div class="copyright">
-								<p>
+								<p style=color:#788487>
 									© 2019 Utajjang, All Rights Reserved. Design with love by <a
 										href="#">Debugking</a>
 								</p>

@@ -11,8 +11,6 @@ public class MemberInfo {
 	private String memberBirth;	//생일
 	private String signupDate;	//가입날짜
 	private String memberEmail;	//이메일
-	private int memberPoint;	//유저의 포인트 보유수 
-	private String recommender;	//추천인 
 	private String memberLevel;	//DEFAULT 'beginner'
 	private String photoname;  //파일 이름
 	private String savefile;   //파일이 저장되는 위치

@@ -144,7 +144,6 @@
 			,memberPhone
 			,memberBirth
 			,memberEmail
-			,memberPoint
 			,memberLevel
 		FROM MemberInfo 
 		ORDER BY memberLevel ASC, signupDate DESC

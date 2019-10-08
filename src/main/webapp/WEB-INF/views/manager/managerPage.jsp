@@ -46,14 +46,14 @@
       
       .set_list {
     width: 769px;
-    height: 48px;
+    height: 78px;
     padding: 12px 20px 0;
     border-top: 1px solid #E4E4E4;
     background: #FAFAFA;
     white-space: nowrap;
     letter-spacing: -0.5px;
    }
-   
+    
    </style>
    
    <script>
@@ -265,25 +265,26 @@
       
       
       var tag3 = ''
-      tag3 += '<select class="form-control col-lg-2" style="height: 30px;" id="moveSelect">'
+      tag3 += '<select class="form-control col-lg-2" style="height: 60px; " id="moveSelect">'
        tag3 += '<option value="voice">voice</option>'
-       tag3 += '<option value="video">video</option>'
+       tag3 += '<option value="video">video</option>' 
        tag3 += '<option value="community">community</option>'
        tag3 += '</select>'
-      tag3 += '<div class="form-group" style="float: right;">'
+      tag3 += '<div class="form-group" style="float: right; margin-top:10px;">'
       tag3 += '<a href="#" onclick="move();">move</a>'      
       tag3 += '<a> | </a>'
       tag3 += '<a href="#" onclick="deleted();">delete</a>'
       tag3 += '</div>'
       
-      var tag4 = '';
+      tag4 =''
+ 
       tag4 += '<select class="form-control col-lg-3" name="searchItem" >'
       tag4 += "<option value='voice' ${searchItem == 'voice' ? 'selected' : ''}>voice</option>"
       tag4 += "<option value='video' ${searchItem == 'video' ? 'selected' : ''}>video</option>"
       tag4 += "<option value='community' ${searchItem == 'community' ? 'selected' : ''}>community</option>"
       tag4 += '</select>'
-      tag4 += '<button class="search-button" type="submit"><span class="fas fa-search"></span></button>'
-      
+      tag4 += '<button class="search-button" type="submit" style="padding-right:240px;"><span class="fas fa-search"></span></button>'
+         
    
       $("#content_title").html(tag1);
       $("#add").html(tag4);
@@ -732,13 +733,16 @@
                         <div class="col-lg-10">
                             <h2 id="content_title"> </h2>
                             <hr class="m-t-30 m-b-30">    
-                                <div class="form-group" style="float: right;">
+                                <div class="form-group" style="float:right;"> 
                                 <aside class="widget widget-search">
                                 <!-- 페이징 하기 -->
             
-                                    <form id="add">
-                                        
-                                    </form>
+<!-- 검색창 -->
+					<div style="float: right; margin-bottom: 10px; ">
+						<form id="add" style="width:400px";>
+							
+						</form>
+					</div>
                                     
                                 </aside>
                                 
@@ -866,10 +870,10 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="copyright">
-								<p>
+								<p style=color:#788487>
 									© 2019 Utajjang, All Rights Reserved. Design with love by <a
 										href="#">Debugking</a>
-								</p>
+								</p> 
 							</div>
 						</div>
 					</div>

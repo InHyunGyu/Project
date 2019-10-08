@@ -58,17 +58,6 @@ public class ListController {
 	
 
 
-	@RequestMapping(value="/streaming", method=RequestMethod.GET)
-	public String streaming(Model model){
-		
-		int startRecord=0;
-        int lastPerPage=3;   
-        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
-        model.addAttribute("noticeList",noticeList);
-        System.out.println("공지 목록: " + noticeList);
-        
-		return"userBoard/streaming";
-	}
 
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String write(String postType, Model model){
@@ -234,28 +223,8 @@ public class ListController {
 		return "ok";
 	}
 	
-	@RequestMapping(value="/streaming_write", method=RequestMethod.GET)
-	public String streamingPage(Model model){
-		
-		int startRecord=0;
-        int lastPerPage=3;   
-        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
-        model.addAttribute("noticeList",noticeList);
-        System.out.println("공지 목록: " + noticeList);
-        
-		return "userBoard/streaming_write";
-	}
 
-	@RequestMapping(value="/streaming_detail", method=RequestMethod.GET)
-	public String streaming_detail(Model model){
-		int startRecord=0;
-        int lastPerPage=3;   
-        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
-        model.addAttribute("noticeList",noticeList);
-        System.out.println("공지 목록: " + noticeList);
-        
-		return "userBoard/streaming_detail";
-	}
+
 	
 	@ResponseBody
 	@RequestMapping(value="/postLike", method=RequestMethod.GET)

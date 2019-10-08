@@ -126,6 +126,8 @@
 			
 			var memberId  = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
+			var pwdcheck = $("#pwdcheck").val();
+			
 			
 			//파일 추츨하기
 	        //확장명이 붙은 파일명을 저장하기
@@ -139,6 +141,16 @@
 	        //파일을 담아서 보내주기 위해 변수 설정
 	        var inputFile = $("input[name='photoname']");
 			var files = inputFile[0].files;
+			
+			
+			if(memberPwd.length<3){
+				swal("비밀번호를 입력해주세요.");
+				return;
+			}
+			if(memberPwd!=pwdcheck){
+				swal("비밀번호를 제대로 입력해주세요.");
+				return;
+			}
 			
 			
 			
@@ -309,8 +321,9 @@
 									<input class="form-control" type="text" value="${memberName}" name="memberName" id="memberName">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" value="${memberPhone}" name="memberPhone" id="memberPhone">
+									<input class="form-control" type="text" value="${memberPhone}" name="memberPhone" id="memberPhone" maxlength="11">
 								</div>
+								
 								<div class="form-group">
 									<input class="form-control" type="email" value="${memberEmail}" name="memberEmail" id="memberEmail">
 								</div>
@@ -421,7 +434,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="copyright">
-								<p>
+								<p style=color:#788487>
 									© 2019 Utajjang, All Rights Reserved. Design with love by <a
 										href="#">Debugking</a>
 								</p>
