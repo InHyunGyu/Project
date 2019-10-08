@@ -272,7 +272,7 @@
 																	href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
 															</div>
 															<a class="music_video_list_item_artist"
-																href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+										 						href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
 															<span class="music_video_list_item_release_date">${board.postDate}</span>
 														</div>
 														<div class="music_video_list_item_fav_div"

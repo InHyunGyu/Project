@@ -275,7 +275,7 @@ var login = '${sessionScope.memberId}';
 														
 										
                                                        	<video width="100%" height="100%" controls="controls" 
-															preload="metadata" poster="download?memberId=${board.memberId}">
+															preload="metadata" poster="resources/images/thumbnail.jpg">
 															<source src="resources/savefile/${board.savedFile}"
 																type="video/webm">
 														</video>

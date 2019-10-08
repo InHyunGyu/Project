@@ -651,7 +651,7 @@
                                             <li><a href="voice_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="voice_all">ALL</a></li>
+                                 
                                 </ul>
                             </li>
                   
@@ -664,7 +664,7 @@
                                             <li><a href="video_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="video_all">ALL</a></li>
+                                   
                                 </ul>
                             </li>
                   
