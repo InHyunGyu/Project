@@ -261,7 +261,7 @@
       
       
       var tag3 = ''
-      tag3 += '<select class="form-control col-lg-2" style="height: 30px;" id="moveSelect">'
+      tag3 += '<select class="form-control col-lg-2" style="height: 40px; " id="moveSelect">'
        tag3 += '<option value="voice">voice</option>'
        tag3 += '<option value="video">video</option>'
        tag3 += '<option value="streaming">streaming</option>'
@@ -274,7 +274,7 @@
       tag3 += '</div>'
       
       var tag4 = '';
-      tag4 += '<select class="form-control col-lg-3" name="searchItem">'
+      tag4 += '<select class="form-control col-lg-12" name="searchItem" style="height:40px;">'
       tag4 += "<option value='voice' ${searchItem == 'voice' ? 'selected' : ''}>voice</option>"
       tag4 += "<option value='video' ${searchItem == 'video' ? 'selected' : ''}>video</option>"
       tag4 += "<option value='streaming' ${searchItem == 'streaming' ? 'selected' : ''}>streaming</option>"
@@ -383,14 +383,15 @@
       tag2 += '</tbody>'
       
       var tag3 = ''
-      tag3 += '<div class="form-group" style="float: right;">'
-      tag3 += '<select class="form-control col-lg-4" style="height: 30px;" id="changeLevel">'
+    	  tag3 += '<div class="form-group" style="float: right; margin-right:30px;">'
+      tag3 += '<select class="form-control col-lg-5" style="height: 40px; margin-top:0px;" id="changeLevel">'
       tag3 += '<option value="A">A</option>'
       tag3 += '<option value="B">B</option>'
       tag3 += '<option value="C">C</option>'
       tag3 += '<option value="Z">Z</option>'
       tag3 += '</select>'
-      tag3 += '<a href="#" id="change">change</a>'
+   		
+      tag3 += '<a href="#" id="change" style="margin-left:20px;">change</a>'
       tag3 += '<a> | </a>'
       tag3 += '<a href="#" id="stop_activity">stop</a>'
       tag3 += '</div>'
@@ -730,7 +731,7 @@
                         <div class="col-lg-10">
                             <h2 id="content_title"> </h2>
                             <hr class="m-t-30 m-b-30">    
-                                <div class="form-group" style="float: right;">
+                                <div class="form-group" style="float: right; height: 50px;">
                                 <aside class="widget widget-search">
                                 <!-- 페이징 하기 -->
             
@@ -753,17 +754,14 @@
                   <a href="managerPage?currentPage=${navi.currentPage-1}&searchItem=${searchItem}&searchWord=${searchWord}">◁</a><!-- 앞 페이지 요청 -->
                   
                   <c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
-                     <a href="managerPage?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">&nbsp&nbsp${page}&nbsp&nbsp  </a>
+                     <a href="managerPage?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">&nbsp;&nbsp;${page}&nbsp;&nbsp;  </a>
                   </c:forEach>
                   
                   <a href="managerPage?currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}">▷</a>
                   <a href="managerPage?currentPage=${navi.currentPage+navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">▶</a>
             </p>
-               <div class="set_list" style="width: 100%;">
-               <div class="bundle_set" id="content_select">
-               
-                  
-               </div>
+               <div class="set_list" style="width: 100%; height: 60px; vertical-align: middle;" id="content_select">
+             
             </div>
                 
                         
@@ -771,6 +769,7 @@
                         
                        
                     </div>
+                </div>
                 </div>
             </section>
             <!-- Blog end-->
