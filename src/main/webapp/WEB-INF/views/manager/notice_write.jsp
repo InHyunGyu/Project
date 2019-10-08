@@ -174,9 +174,7 @@
 							<div class="m-b-20" id="write">
 								<div class="form-group">	
 									<select class="form-control col-md-3" name="postType" >
-										<option value="ALL">All</option>
 										<option value="voice">voice</option>
-										
 										<option value="community">community</option>
 									</select>
 									<input class="form-control col-md-9" type="text" placeholder="Title" id="postTitle" name="postTitle"

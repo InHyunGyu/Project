@@ -27,15 +27,16 @@ public class likereportRepository {
 		return result;
 	}
 
-	public int viewinsertLR(Posts post,String view) {
+	public int viewinsertLR(String memberId, int postNo, String checkType) {
 		likereportMapper mapper = session.getMapper(likereportMapper.class);
 		Map check = new HashMap();
 		
-		check.put("postNo", post.getPostNo());
-		check.put("memberId", post.getMemberId());
-		check.put("checkType", view);
+		check.put("postNo", postNo);
+		check.put("memberId", memberId);
+		check.put("checkType", checkType);
 		
 		int result = mapper.insertLR(check);
 		return result;
+		
 	}
 }

@@ -268,7 +268,6 @@
 										<li><a href="voice_weekly">Weekly</a></li>
 										<li><a href="voice_monthly">Monthly</a></li>
 									</ul></li>
-								<li><a href="voice_all">ALL</a></li>
 							</ul></li>
 
 						<li class="menu-item-has-children"><a href="#"><span

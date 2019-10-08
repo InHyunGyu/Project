@@ -110,64 +110,52 @@ public class ListController {
 	@RequestMapping(value="/file_detail", method=RequestMethod.GET)
 	public String commuDetail(int postNo, HttpSession session,Model model){
 /*		 ModelAndView view = new ModelAndView();*/
-		
-		
 
 		String checkType = "view";
 	        
-	      //댓글 받아와 모델에 입력하기
-	      ArrayList<Replies> replyList = new ArrayList<>();
-	      int replyCount = repo.replyCount(postNo);
-	       replyList = repo.replyList(postNo);
-	       model.addAttribute("replyCount", replyCount);
-	       model.addAttribute("replyList", replyList);
-	       
-	       
-	       
-	       
+	    //댓글 받아와 모델에 입력하기
+	    ArrayList<Replies> replyList = new ArrayList<>();
+	    int replyCount = repo.replyCount(postNo);
+	    replyList = repo.replyList(postNo);
+	    model.addAttribute("replyCount", replyCount);
+	    model.addAttribute("replyList", replyList);
 
-	       //확인하고 조회수 증가 후 페이지 이동
-	       Posts post = repo.selectOne(postNo);
-
-			String postType = post.getPostType();
-			
-			Posts after = repo.after(postNo, postType);
-			
-			Posts before = repo.before(postNo, postType);
-			
-			model.addAttribute("before", before);
-			model.addAttribute("after", after);
-			model.addAttribute("post", post);
-	       
-	      
-	      List<likereport> result = lrrepo.selectList(postNo,checkType); 
-	      String memberId = (String)session.getAttribute("memberId");
-	      for(likereport lr : result){
-	         if(lr.getMemberId().equals(memberId)){
+	    //이전 게시물 + 다음게시물 가져오기
+        Posts post = repo.selectOne(postNo);
+		String postType = post.getPostType();
+		
+		Posts after = repo.after(postNo, postType);
+		
+		Posts before = repo.before(postNo, postType);
+		
+		model.addAttribute("before", before);
+		model.addAttribute("after", after);
+		model.addAttribute("post", post);
+		
+	      System.out.println("post11"+post);
+		//확인하고 조회수 증가 후 페이지 이동
+	    List<likereport> result = lrrepo.selectList(postNo,checkType); 
+	    String memberId = (String)session.getAttribute("memberId");
+	    for(likereport lr : result){
+	        if(lr.getMemberId().equals(memberId)){
+	        	System.out.println("post22"+post);
 	            System.out.println("배열에 존재합니다."); 
 	            return "userBoard/file_detail";
-	         }
-	      }
-	      if(memberId==null){
-	         System.out.println("로그인 하지 않습니다.");
-	         return "userBoard/file_detail";
-	      }
-	      
-	      post.setMemberId(memberId);
-	      post.setPostNo(postNo);
-	      lrrepo.viewinsertLR(post,checkType); //배열에 입력
-	      System.out.println("3");
-	      repo.postView(postNo); //조회수 증가
-	      System.out.println("4");
-	      System.out.println("배열에 존재하지 않습니다.");
-
-		
+	        	}
+	    }
+	    if(memberId==null){
+	       System.out.println("로그인 하지 않습니다.");
+	       return "userBoard/file_detail";
+	    }
+	     
+	    lrrepo.viewinsertLR(memberId,postNo,checkType); //배열에 입력
+	    repo.postView(postNo); //조회수 증가
+	    System.out.println("배열에 존재하지 않습니다.");
+	    System.out.println("post33"+post);
 		int startRecord=0;
         int lastPerPage=3;   
         List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
         model.addAttribute("noticeList",noticeList);
-        System.out.println("공지 목록: " + noticeList);
-        
         
 		return "userBoard/file_detail";
 
@@ -261,9 +249,8 @@ public class ListController {
 			System.out.println("로그인 하지 않습니다.");
 			return 0;
 		}
-		post.setMemberId(memberId);
-		post.setPostNo(postNo);
-		lrrepo.viewinsertLR(post,checkType); //배열에 입력
+
+		lrrepo.viewinsertLR(memberId,postNo,checkType); //배열에 입력
 		
 		repo.postLike(postNo); //조회수 증가
 		System.out.println("배열에 존재하지 않습니다.");
@@ -306,9 +293,8 @@ public class ListController {
 			System.out.println("로그인 하지 않습니다.");
 			return 0;
 		}
-		post.setMemberId(memberId);
-		post.setPostNo(postNo);
-		lrrepo.viewinsertLR(post,checkType); //배열에 입력
+
+		lrrepo.viewinsertLR(memberId,postNo,checkType); //배열에 입력
 		
 		repo.reported(postNo); //조회수 증가
 		System.out.println("배열에 존재하지 않습니다.");
