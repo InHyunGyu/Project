@@ -159,7 +159,14 @@
 			memberEmail = #{memberEmail}
 	</update>
 	
-	
+	<update id="setUserTempPwd" parameterType="Member">
+		UPDATE
+			memberinfo
+		SET
+			memberPwd = #{memberPwd}
+		WHERE
+			memberId = #{memberId}
+	</update>
 
 </mapper>
 
