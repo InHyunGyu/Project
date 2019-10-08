@@ -101,8 +101,7 @@
 		$("#replyBTN").on('click', function(){
 			var replyContent = $("#replyContent").val();
 			var postNo = "${post.postNo}";
-			
-			swal(login);
+		
 			if(login.length == 0) {
 				swal("로그인을 해주세요.");
 				return;

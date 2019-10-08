@@ -33,7 +33,7 @@ public class VideoListController {
 	ManagerRepository Managerrepo;
 
 	
-	final String uploadPath="C:/Spring/DebugKing/src/main/webapp/resources/savefile";
+	final String uploadPath="D:/apachetomcat8045/apache-tomcat-8.0.45/webapps/DebugKing/resources/savefile";
 	
 
 	

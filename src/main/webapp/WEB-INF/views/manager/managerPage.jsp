@@ -653,13 +653,13 @@
                                 </ul>
                             </li>
                   
-                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="community">Board</a></li>
-                                    <li><a href="myblog">My Blog</a></li>
+                                    <li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
                                 </ul>
                             </li>
                             <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>

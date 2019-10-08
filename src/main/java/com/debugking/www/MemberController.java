@@ -396,7 +396,7 @@ public class MemberController {
 		session.setAttribute("userpwd", member.getMemberPwd());
 		
 		//회원가입을 위해 본인 확인 이메일 보내기 위한 코드 설정
-		String host = "http://localhost:8999/www/";
+		String host = "http://203.233.196.18:8999/DebugKing/";
 		String from = "dlgkrals6000@gmail.com"; 
 		System.out.println("난멤버아이디"+member.getMemberId());
 		String to   = repo.getUserEmail(member.getMemberId()); 
@@ -612,7 +612,7 @@ public class MemberController {
         // 이메일 보내기 위한 코드 설정
 		HttpServletResponse response = null;
 		
-		String host = "http://localhost:8999/www/";
+		String host = "http://203.233.196.18:8999/DebugKing/";
 		String from = "dlgkrals6000@gmail.com"; 
 		String to   = repo.getUserEmail(member.getMemberId()); 
 		System.out.println(to);

@@ -210,6 +210,14 @@
 			<div class="wrap-table100">
 				<div class="table100">
 					<table>
+					 <colgroup>
+      <col style="width: 15%;" />
+      <col style="width: auto;" />
+      <col style="width: 10%;" /> 
+      <col style="width: 10%;" />
+      <col style="width: 15%;" />
+	  <col style="width: 15%;" />
+      </colgroup>
 						<thead>
 							<tr class="table100-head">
 								<th class="column1">No</th>

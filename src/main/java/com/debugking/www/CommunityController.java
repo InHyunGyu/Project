@@ -29,7 +29,7 @@ public class CommunityController {
 	@Autowired
 	ManagerRepository Managerrepo;
 	
-	final String uploadPath="/Users/heeju/Documents/fileIO";
+	final String uploadPath="D:/apachetomcat8045/apache-tomcat-8.0.45/webapps/DebugKing/resources/savefile";
 	
 
 	@RequestMapping(value="/community", method=RequestMethod.GET)

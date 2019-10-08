@@ -35,7 +35,7 @@ public class HomeController {
    ManagerRepository Managerrepo;
    
    
-   final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile";
+   final String uploadPath="D:/apachetomcat8045/apache-tomcat-8.0.45/webapps/DebugKing/resources/savefile";
    
    @RequestMapping(value = "/companyIntro", method = RequestMethod.GET)
    public String companyIntro(){

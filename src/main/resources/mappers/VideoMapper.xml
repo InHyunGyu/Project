@@ -72,7 +72,7 @@
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>
-		ORDER BY postDate DESC
+		ORDER BY postDate,postNo DESC
 	</select>
 	
 	

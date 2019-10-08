@@ -24,7 +24,7 @@ public class VoiceListController {
 	@Autowired
 	ManagerRepository Managerrepo;
 	
-	final String uploadPath="D:/workspace/DebugKing/src/main/webapp/resources/savefile";
+	final String uploadPath="D:/apachetomcat8045/apache-tomcat-8.0.45/webapps/DebugKing/resources/savefile";
 	
 	@RequestMapping(value="/voice_new", method=RequestMethod.GET)
 	public String voice_new(
