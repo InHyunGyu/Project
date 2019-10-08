@@ -742,8 +742,8 @@
                                 <!-- 페이징 하기 -->
             
 <!-- 검색창 -->
-					<div style="float: right; margin-bottom: 10px; ">
-						<form id="add" style="width:400px";>
+					<div style="float: right; margin-bottom: 10px;">
+						<form id="add" style="width:400px;">
 							
 						</form>
 					</div>
