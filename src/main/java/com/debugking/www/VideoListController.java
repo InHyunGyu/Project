@@ -109,10 +109,6 @@ public class VideoListController {
 		return "userBoard/video_monthly";
 	}
 
-	@RequestMapping(value="/video_all", method=RequestMethod.GET)
-	public String video_all(){
-		return "userBoard/video_all";
-	}
 
 	
 	

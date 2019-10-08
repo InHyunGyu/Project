@@ -91,7 +91,7 @@
       select count(*)
       From Posts
       where isAnnouncement='Y'  
-      and postType='community'
+      and postType='community' or postType='ALL'
       
    </select>
    
@@ -110,7 +110,7 @@
          </if>
          ,reported
       FROM Posts 
-      where isAnnouncement='Y' and postType='community'
+      where isAnnouncement='Y' and postType='community'  or postType='ALL'
       ORDER BY postNo DESC
    </select>
   </mapper>

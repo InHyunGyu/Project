@@ -8,7 +8,7 @@
       select count(*)
       From Posts
       where isAnnouncement='Y'  
-      and postType='voice'
+      and postType='voice' or postType='ALL'
       
    </select>
    
@@ -59,7 +59,7 @@
          </if>
          ,reported
       FROM Posts 
-      where isAnnouncement='Y' and postType='voice'
+      where isAnnouncement='Y' and postType='voice' or postType='ALL'
       ORDER BY postNo DESC
    </select>
    

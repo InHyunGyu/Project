@@ -86,7 +86,7 @@ public class VoiceListRepository {
 			map.put("searchItem", searchItem);
 			map.put("searchWord", searchWord);
 			
-			int total = mapper.getVoiceNewCount(map);
+			int total = mapper.getVoiceWeekCount(map);
 			return total;
 		};
 		
@@ -98,7 +98,7 @@ public class VoiceListRepository {
 					map.put("searchItem", searchItem);
 					map.put("searchWord", searchWord);
 					
-					int total = mapper.getVoiceNewCount(map);
+					int total = mapper.getVoiceMonthCount(map);
 					return total;
 				};
 		
@@ -144,17 +144,7 @@ public class VoiceListRepository {
 		list = mapper.selectMonth(map, rb);
 		return list;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//글쓰기
 	public int writing(Posts post) {
 		VoiceListMapper mapper = session.getMapper(VoiceListMapper.class);
