@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -613,23 +614,31 @@ public class MemberController {
 	@ResponseBody
 	public String findpwd(MemberInfo member, HttpSession session, Model model){
 		
+		//footer 공지 목록 뽑기(3개)
 		int startRecord=0;
         int lastPerPage=3;   
         List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
         model.addAttribute("noticeList",noticeList);
         System.out.println("공지 목록: " + noticeList);
         
-		
+        // 이메일 보내기 위한 코드 설정
 		HttpServletResponse response = null;
-		// 이메일 보내기 위한 코드 설정
+		
 		String host = "http://localhost:8999/www/";
 		String from = "dlgkrals6000@gmail.com"; 
 		String to   = repo.getUserEmail(member.getMemberId()); 
 		System.out.println(to);
+		String temppwd = new SHA256().getSHA256(to);
+		String trimedpwd = temppwd.substring(45); 
+		System.out.println("trimed 패스워드:" + trimedpwd);
+		
+		member.setMemberPwd(trimedpwd);
+		repo.setUserTempPwd(member); 
+		
 		String subject = "[우타짱] 임시 비밀번호입니다."; 
-		String content = "다음 임시비밀번호로 로그인하여 비밀번호를 재설정 해 주시기 바랍니다. 임시비밀번호:" + 
-		new SHA256().getSHA256(to) + "<br><a href='" + host + "tempPwdSet?memberPwd=" 
-		+ new SHA256().getSHA256(to) + "&memberEmail=" + to + "'>홈페이지로 돌아가기</a>";
+		String content = "다음 임시비밀번호로 로그인하여 비밀번호를 재설정 해 주시기 바랍니다. 임시비밀번호:" 
+		+ temppwd + "<br><a href='" + host + "tempPwdSet?memberPwd=" 
+		+ temppwd + "&memberEmail=" + to + "'>홈페이지로 돌아가기</a>";
 		
 		Properties p = new Properties();
 		p.put("mail.smtp.user", from);

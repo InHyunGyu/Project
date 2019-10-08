@@ -122,5 +122,12 @@ public class MemberRepository {
 	}
 
 
+	public int setUserTempPwd(MemberInfo member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = mapper.setUserTempPwd(member);
+		
+		return result;
+	}
+
 
 }
