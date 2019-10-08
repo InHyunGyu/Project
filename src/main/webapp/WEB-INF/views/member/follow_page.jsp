@@ -495,7 +495,7 @@ table {
 										<li><a href="voice_weekly">Weekly</a></li>
 										<li><a href="voice_monthly">Monthly</a></li>
 									</ul></li>
-								<li><a href="voice_all">ALL</a></li>
+								
 							</ul></li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -507,7 +507,7 @@ table {
 										<li><a href="video_weekly">Weekly</a></li>
 										<li><a href="video_monthly">Monthly</a></li>
 									</ul></li>
-								<li><a href="video_all">ALL</a></li>
+								
 							</ul></li>
 
 						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
