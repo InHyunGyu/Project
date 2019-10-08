@@ -132,7 +132,6 @@ public class ManagerController {
 	@ResponseBody
 	public int change(@RequestParam(value="listchecked") List<String> listchecked,String memberLevel,Model model){
 		System.out.println("postNo"+listchecked+"//////"+"postType"+memberLevel);
-		
 		int result = service.change(listchecked,memberLevel);
 		
 		int startRecord=0;

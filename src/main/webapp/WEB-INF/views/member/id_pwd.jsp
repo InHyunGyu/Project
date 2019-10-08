@@ -71,6 +71,8 @@ img#profileThumb{
 			var memberId = $("#memberId").val();
 			var memberPwd = $("#memberPwd").val();
 			
+			alert("memberId"+memberId+"++memberPwd"+memberPwd)
+			
 			if(memberId.length == 0 || memberPwd.length == 0) {
 				swal("다시입력해주세요.");
 				return;
@@ -129,6 +131,7 @@ img#profileThumb{
 			var memberName = $("#memberName").val();
 			var memberEmail = $("#memberEmail").val();
 			
+			alert("memberName"+memberName+"++memberEmail"+memberEmail)
 			if(memberName.length == 0 || memberEmail.length ==0) {
 				swal("다시입력해주세요.");
 				return;
@@ -144,8 +147,13 @@ img#profileThumb{
 				url:'findid',
 				data: send,
 				success:function(resp){
-					swal("아이디:" + resp.memberId);
-					location.href="main";
+					if(!resp){
+						alert("아이디 없습니다.");
+					}
+					else{
+						alert("아이디:" + resp.memberId);
+						location.href="main";
+					}
 				}
 			})	
 		})
@@ -153,16 +161,16 @@ img#profileThumb{
 		/* 패스워드 찾기 버튼 클릭 시 */
 			
 		$("#pwdBTN").on('click', function(){
-			var memberId = $("#memberId").val();
+			var memberIdsearch = $("#memberIdsearch").val();
 			var memberEmail = $("#memberEmail4pwd").val();
-			
-			if(memberId.length == 0 || memberEmail.length == 0) {
+			alert("memberIdsearch"+memberIdsearch+"++memberEmail"+memberEmail)
+			if(memberIdsearch.length == 0 || memberEmail.length == 0) {
 				swal("다시입력해주세요.");
 				return;
 			}
 			
 			var send = {
-					"memberId":memberId,
+					"memberId":memberIdsearch,
 					"memberEmail":memberEmail
 			}
 			
@@ -171,8 +179,13 @@ img#profileThumb{
 				url:'pwfindMailSend',
 				data:send,
 				success:function(resp){
-					if(resp == "ok")
-					location.href="emailSendAction";
+					
+					if(resp == "ok"){
+						location.href="emailSendAction";
+					}
+					else{
+						alert("회원이 아닙니다.");
+					}
 				}
 			})
 		})
@@ -296,7 +309,7 @@ img#profileThumb{
 							<div class="m-b-20" id="pwdShow" display='none'>
 								<div class="form-group">
 									<input class="form-control" type="text" placeholder="memberId"
-										id="memberId" name="memberId">'
+										id="memberIdsearch" name="memberId">'
 								</div>
 
 								<div class="form-group">

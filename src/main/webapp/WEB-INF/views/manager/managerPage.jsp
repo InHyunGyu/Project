@@ -60,27 +60,7 @@
 
    $(function(){
       writingList();
-      //체크박스 체크 된 것 배열에 추가하기 
-      var DATA = [];
-      $("#content_table").on("change","#postNoBTN",function(){
-             if($(this).is(':checked')){
-                 DATA.push($(this).val());
-                 console.log(DATA);
-            } else{
-               DATA.pop($(this).val());
-               console.log(DATA);
-            } 
-      })
-      
-      /* $("#move").on("click",function(){
-         move(DATA);
-         DATA=[];
-      });
-      $("#deleted").on("click",function(){
-         deleted(DATA);
-         DATA=[];
-      }); */
-      
+
       //등급 이동버튼         
       $("#memberRating").on('click',function(){
          $.ajax({
@@ -107,21 +87,7 @@
             success:reportList
          })
       })
-      
-      
-      
-      //전체선택 정적(모델)
-      /* $("#checkAll").click(function() {
-         $("input[id=postNoBTN]:checkbox").each(function() {
-            $(this).attr("checked", true)
-            if($(this).is(':checked')){
-                    DATA.push($(this).val());
-               } else{
-                  $(this).attr("checked", false)
-                  DATA.pop($(this).val());
-               }
-         });
-      }); */
+
       $("#checkAll").click(function(){ 
          //만약 전체 선택 체크박스가 체크된상태일경우 
          //해당화면에 전체 checkbox들을 체크해준다 
@@ -134,27 +100,9 @@
             $("input[type=checkbox]").prop("checked",false); 
          } 
       });
-      
-      //$("input[id=postNoBTN]:checked").each(function() {
-      //   var test = $(this).val();
-      //})
-      /* $("input[id=postNoBTN]:checked").each(function(){
-            DATA += $('"data-boardno":checked').val();
-            console.log(DATA);
-         })  */
-      //var a= $(this).attr("data-boardno");
-         //유저 등급 체크 된 것 배열에 추가하기
-         /*var memberDATA=[];
-          $("#content_select").on("change","#memberIdBTN",function(){
-              if($(this).is(':checked')){
-                  memberDATA.push($(this).val());
-                   console.log(memberDATA);
-              } else{
-                 memberDATA.pop($(this).val());
-                 console.log(memberDATA);
-              }
-            }) */
    })      //끝.
+   
+   
    // 게시글 이동 
    function move(){
       jQuery.ajaxSettings.traditional = true;
@@ -170,11 +118,6 @@
          "listchecked" : list.toString(),
          "postType" : postType
       }
-       
-      /* var fd = new FormData();
-      fd.append("listchecked", DATA);
-      fd.append("postType", postType); */
-      
       
       $.ajax({
          method:"POST",
@@ -266,11 +209,11 @@
       
       var tag3 = ''
 
-      tag3 += '<select class="form-control col-lg-2" style="height: 40px; " id="moveSelect">'
-       tag3 += '<option value="voice">voice</option>'
-       tag3 += '<option value="video">video</option>' 
-       tag3 += '<option value="community">community</option>'
-       tag3 += '</select>'
+      tag3 += '<select class="form-control col-lg-2" style="height: 60px; " id="moveSelect">'
+      tag3 += '<option value="voice">voice</option>'
+      tag3 += '<option value="video">video</option>' 
+      tag3 += '<option value="community">community</option>'
+      tag3 += '</select>'
       tag3 += '<div class="form-group" style="float: right; margin-top:10px;">'
       tag3 += '<a href="#" onclick="move();">move</a>'      
       tag3 += '<a> | </a>'
@@ -292,6 +235,19 @@
       $("#content_table").html(tag2);
       $("#content_select").html(tag3);
       $(".paging").html("");
+      
+      $("#checkAll").click(function(){ 
+          //만약 전체 선택 체크박스가 체크된상태일경우 
+          //해당화면에 전체 checkbox들을 체크해준다 
+          if($("#checkAll").prop("checked")) { 
+             $("input[type=checkbox]").prop("checked",true); 
+          }
+          // 전체선택 체크박스가 해제된 경우
+          //해당화면에 모든 checkbox들의 체크를해제시킨다. 
+          else { 
+             $("input[type=checkbox]").prop("checked",false); 
+          } 
+       });
       
    }
    function reportList(reportList){
@@ -324,7 +280,7 @@
          $.each(reportList,function(index,item){
             tag2 += '<tr>'
             tag2 += '<td><input type="checkbox" id="memberIdBTN" value="'+item.postNo+'" data-boardno="'+item.postNo+'"></td>'
-            tag2 += '<td>'+item.postTitle+'</td>'      
+            tag2 += '<td><a href="file_detail?postNo='+item.postNo+'">'+item.postTitle+'</a></td>'      
             tag2 += '<td>'+item.memberId+'</td>'
             tag2 += '<td>'+item.postDate+'</td>'
             tag2 += '<td>'+item.reported+'</td>'
@@ -343,6 +299,19 @@
       $("#content_table").html(tag2);
       $("#content_select").html(tag3);
       $(".paging").html("");
+      
+      $("#checkAll").click(function(){ 
+          //만약 전체 선택 체크박스가 체크된상태일경우 
+          //해당화면에 전체 checkbox들을 체크해준다 
+          if($("#checkAll").prop("checked")) { 
+             $("input[type=checkbox]").prop("checked",true); 
+          }
+          // 전체선택 체크박스가 해제된 경우
+          //해당화면에 모든 checkbox들의 체크를해제시킨다. 
+          else { 
+             $("input[type=checkbox]").prop("checked",false); 
+          } 
+       });
       
    } 
    
@@ -407,12 +376,18 @@
       $(".paging").html("");
       
       $("#change").on("click",change);
-      //전체선택 동적(ajax)
-      $("#checkAll").click(function() {
-         $("input[id=memberIdBTN]:checkbox").each(function() {
-            $(this).attr("checked", true)
-         });
-      });
+      $("#checkAll").click(function(){ 
+          //만약 전체 선택 체크박스가 체크된상태일경우 
+          //해당화면에 전체 checkbox들을 체크해준다 
+          if($("#checkAll").prop("checked")) { 
+             $("input[type=checkbox]").prop("checked",true); 
+          }
+          // 전체선택 체크박스가 해제된 경우
+          //해당화면에 모든 checkbox들의 체크를해제시킨다. 
+          else { 
+             $("input[type=checkbox]").prop("checked",false); 
+          } 
+       });
    }
       
    function noticeList(noticeList){
@@ -446,7 +421,7 @@
                tag2 += '<tr>'
                tag2 += '<td ><input type="checkbox" id="memberIdBTN" value="'+item.postNo+'"></td>'
                tag2 += '<td>'+item.postType+'</td>'      
-               tag2 += '<td>'+item.postTitle+'</td>'
+               tag2 += '<td><a href="file_detail?postNo='+item.postNo+'">'+item.postTitle+'</a></td>'
                tag2 += '<td>'+item.isAnnouncement+'</td>'
                tag2 += '<td>'+item.postDate+'</td>'
                tag2 += '</tr>'
@@ -470,11 +445,18 @@
          $("#content_table").html(tag2);
          $("#content_select").html(tag3);
          $(".paging").html("");
-         $("#checkAll").click(function() {
-            $("input[id=memberIdBTN]:checkbox").each(function() {
-               $(this).attr("checked", true)
-            });
-         });
+         $("#checkAll").click(function(){ 
+             //만약 전체 선택 체크박스가 체크된상태일경우 
+             //해당화면에 전체 checkbox들을 체크해준다 
+             if($("#checkAll").prop("checked")) { 
+                $("input[type=checkbox]").prop("checked",true); 
+             }
+             // 전체선택 체크박스가 해제된 경우
+             //해당화면에 모든 checkbox들의 체크를해제시킨다. 
+             else { 
+                $("input[type=checkbox]").prop("checked",false); 
+             } 
+          });
       }
    function notice_write(){
       location.href="notice_write";
@@ -565,6 +547,7 @@
          }
       })
    }
+   
    // 공지 등록
    function registration(){
       var list = [];
@@ -756,7 +739,6 @@
                             
                              
                             <table id="content_table" class="table table-striped table-sm table-hover">
-                     
                      </table>
             <p class="paging">
                   <a href="managerPage?currentPage=${navi.currentPage-navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">◀</a><!-- 앞그룹 요청 -->

@@ -230,11 +230,11 @@
 							<c:if test="${empty list}">
 								<c:if test="${not empty noticeList}">
 								<c:forEach var="board" items="${noticeList}">
-									<tr style="background-color: #c9ccc8;" align="center">
-										<td class="column1">공지</td>
+									<tr style="background-color: #c9ccc8;" align="center"> 
+										<td class="column1">공지</td> 
 										<td class="column2"><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
 										<td class="column3"><a href="follow_page?memberId=${board.memberId}">${board.memberId}</a></td>
-										<td class="column4">${board.postDate}</td>
+										<td class="column4">${board.postDate}</td> 
 										<td class="column5">${board.postView}</td>
 										<td class="column6">${board.postLike}</td>
 									</tr>
@@ -248,9 +248,6 @@
 							</c:if>
 							<!-- 게시글이 있는 경우 -->
 							
-							
-					
-					
 					
 					
 
@@ -259,7 +256,7 @@
 							
 							
 							<c:if test="${not empty noticeList}">
-								<c:forEach var="board" items="${noticeList}">
+								<c:forEach var="board" items="${noticeList2}">
 									<tr style="background-color: #c9ccc8;" align="center">
 										<td class="column1">공지</td>
 										<td class="column2"><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>

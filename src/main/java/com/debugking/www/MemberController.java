@@ -567,7 +567,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/findid", method=RequestMethod.POST)
 	public MemberInfo findid(MemberInfo member, Model model){
-		System.out.println(member);
+		System.out.println("13223143223"+member);
 		
 		MemberInfo fetchedMember = repo.getMemberId(member);
 		

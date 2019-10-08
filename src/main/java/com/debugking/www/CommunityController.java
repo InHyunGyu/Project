@@ -48,10 +48,10 @@ public class CommunityController {
 		
 		int noticeCount = repo.commuNoCount();
 		List<Posts> noticeList = repo.commuNoList();
-		
+	 
 		
 		model.addAttribute("noticeCount", noticeCount);
-		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("noticeList2", noticeList);
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("navi", navi);
