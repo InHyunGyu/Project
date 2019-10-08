@@ -681,11 +681,3 @@ $(function(){
 	<script src="resources/assets/js/custom/custom.min.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
