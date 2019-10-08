@@ -34,7 +34,7 @@ public interface ListMapper {
 
 	public int postCount(String memberId);
 
-	public ArrayList<Posts> memberPost(String memberId, RowBounds rb);
+	public ArrayList<Posts> memberPost(String memberId);
 
 	public ArrayList<String> postLikeList(int postNo);
 

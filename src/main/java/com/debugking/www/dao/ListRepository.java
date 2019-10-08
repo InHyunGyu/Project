@@ -112,11 +112,10 @@ public class ListRepository {
 			return postCount;
 		}
 
-		public ArrayList<Posts> memberPost(String memberId, int startRecord, int countPerPage) {
+		public ArrayList<Posts> memberPost(String memberId) {
 			ListMapper mapper = session.getMapper(ListMapper.class);
-			RowBounds rb = new RowBounds(startRecord, countPerPage);
 			
-			ArrayList<Posts> list = mapper.memberPost(memberId, rb);
+			ArrayList<Posts> list = mapper.memberPost(memberId);
 			
 			return list;
 		}
