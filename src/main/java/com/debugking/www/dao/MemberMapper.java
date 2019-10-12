@@ -30,6 +30,8 @@ public interface MemberMapper {
 	public int tempPwdSet(MemberInfo member); // 임시 비밀번호 설정
 
 	public String checkEmail(String memberEmail);
+
+	public int setUserTempPwd(MemberInfo member); 
 	 
 	
 

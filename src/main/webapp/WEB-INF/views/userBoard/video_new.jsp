@@ -230,16 +230,18 @@ var login = '${sessionScope.memberId}';
             </section>
 			
             
-              <section class="module p-t-30 p-b-30">
+               <section class="module p-t-30 p-b-30">
               
                 <div class="container" >
                 
                     <div class="row">
                         <div class="col-md-12 m-auto">
+
                       
                           
-                             <div class="row" style="float: right; margin-bottom: -10px;  "> 
-						<form action="video_new" method="get"> 
+
+                             <div class="row" style="float: right; margin-bottom: -10px;  ">
+						<form action="video_new" method="get">
 						<div class="form-group" style= "height: 50px;">
 							<select class="form-control col-md-3" name="searchItem" style="height: 100%;">
 								<option value="postTitle" ${searchItem == 'postTitle' ? 'selected' : ''}>제목</option>
@@ -251,13 +253,13 @@ var login = '${sessionScope.memberId}';
 							<input class="form-control col-md-6" type="text" name="searchWord" value="${searchWord}" style="height: 100%;"/> 
 							<input class="col-md-2" type="submit" value="검색" id="inputStyle"/>
 						</div>
-						</form> 
+						</form>
 					</div>
 				
                            <h4 class="text-special text-center m-b-40" style="margin-left:300px;"><a href="https:www.utarecording.shop">Go to the Recording</a></h4>
 
- 
- 
+   
+
 
 						<div id="main_index_body">
 
@@ -273,15 +275,12 @@ var login = '${sessionScope.memberId}';
 												<div class="music_video_list_item_wrap">
 													<div style="position: relative;">
 														
-										
-                                                       	<video width="100%" height="100%" controls="controls" 
-															preload="metadata" poster="download?memberId=${board.memberId}">
+
+														<video width="350" height="300" controls="controls"
+															preload="metadata" poster="resources/images/thumbnail.jpg">
 															<source src="resources/savefile/${board.savedFile}"
 																type="video/webm">
 														</video>
-                                                       
-                                                       
-                                                       
 
 														<div class="music_video_list_item_title_div">
 															<div class="music_video_list_item_music_name_div">
@@ -289,7 +288,7 @@ var login = '${sessionScope.memberId}';
 																	href="file_detail?postNo=${board.postNo}">${board.postTitle}</a>
 															</div>
 															<a class="music_video_list_item_artist"
-																href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
+										 						href="follow_page?memberId=${board.memberId}">${board.memberId}</a>
 															<span class="music_video_list_item_release_date">${board.postDate}</span>
 														</div>
 														<div class="music_video_list_item_fav_div"
@@ -348,11 +347,11 @@ var login = '${sessionScope.memberId}';
                       
                  </section>
           
+         
            
-							
-                      
-            
-           	<!-- Footer-->
+       
+
+          	<!-- Footer-->
 		<footer class="footer">
 			<div class="footer-widgets">
 				<div class="container">

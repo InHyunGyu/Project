@@ -33,7 +33,7 @@ public class VideoListController {
 	ManagerRepository Managerrepo;
 
 	
-	final String uploadPath="C:/Spring/DebugKing/src/main/webapp/resources/savefile";
+	final String uploadPath="D:/apachetomcat8045/apache-tomcat-8.0.45/webapps/DebugKing/resources/savefile";
 	
 
 	
@@ -131,17 +131,6 @@ public class VideoListController {
 		return "userBoard/video_monthly";
 	}
 
-	@RequestMapping(value="/video_all", method=RequestMethod.GET)
-	public String video_all(Model model){
-		int startRecord=0;
-        int lastPerPage=3;   
-        List<Posts> noticeList = Managerrepo.selectNotice(startRecord,lastPerPage);
-        model.addAttribute("noticeList",noticeList);
-        System.out.println("공지 목록: " + noticeList);
-        
-        
-		return "userBoard/video_all";
-	}
 
 	
 	

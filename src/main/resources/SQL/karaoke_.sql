@@ -1,4 +1,3 @@
-
 /* Drop Tables */
 
 DROP TABLE follower CASCADE CONSTRAINTS;

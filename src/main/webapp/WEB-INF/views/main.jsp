@@ -116,19 +116,7 @@ $(function(){
 	})	
 	
 	
-	
-	$(".weeklyOn").on('click',function(){
-		alert("ㅎㅇ"); 
-	})
-	
-	$(".monthlyOn").on('click',function(){
-		alert("ㅎㅇ"); 
-	})
-	
-	$(".newOn").on('click',function(){
-		alert("ㅎㅇ"); 
-	})
-	
+
 	
 	
 	
@@ -297,10 +285,10 @@ $(function(){
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="filters serif" style="font-family: 'Love Ya Like A Sister', cursive;">
-						
+						    <li><a href="#" class="newOn" data-filter=".new">New</a></li>
 							<li><a href="#" class="weeklyOn" data-filter=".weekly">Weekly</a></li>
 							<li><a href="#" class="monthlyOn" data-filter=".monthly">Monthly</a></li>
-							<li><a href="#" class="newOn" data-filter=".new">New</a></li>
+							
 						</ul>
 					</div>
 				</div>

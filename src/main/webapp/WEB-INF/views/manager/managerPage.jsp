@@ -207,26 +207,27 @@
       tag2 += '</tbody>'
       
       
-      var tag3 = ''
-      tag3 += '<select class="form-control col-lg-2" style="height: 60px; " id="moveSelect">'
+      var tag3 = '' 
+
+      tag3 += '<select class="form-control col-lg-2" style="height: 60px;" id="moveSelect">'
       tag3 += '<option value="voice">voice</option>'
       tag3 += '<option value="video">video</option>' 
       tag3 += '<option value="community">community</option>'
       tag3 += '</select>'
-      tag3 += '<div class="form-group" style="float: right; margin-top:10px;">'
+      tag3 += '<div class="form-group" style="float: right; margin-top:20px;">'
       tag3 += '<a href="#" onclick="move();">move</a>'      
       tag3 += '<a> | </a>'
       tag3 += '<a href="#" onclick="deleted();">delete</a>'
       tag3 += '</div>'
       
-      tag4 =''
- 
-      tag4 += '<select class="form-control col-lg-3" name="searchItem" >'
+
+      var tag4 = '';
+      tag4 += '<select class="form-control col-lg-12" name="searchItem" style="height:60px;">'
       tag4 += "<option value='voice' ${searchItem == 'voice' ? 'selected' : ''}>voice</option>"
       tag4 += "<option value='video' ${searchItem == 'video' ? 'selected' : ''}>video</option>"
       tag4 += "<option value='community' ${searchItem == 'community' ? 'selected' : ''}>community</option>"
       tag4 += '</select>'
-      tag4 += '<button class="search-button" type="submit" style="padding-right:240px;"><span class="fas fa-search"></span></button>'
+      tag4 += '<button class="search-button" type="submit" ><span class="fas fa-search"></span></button>'
          
    
       $("#content_title").html(tag1);
@@ -355,19 +356,18 @@
       tag2 += '</tbody>'
       
       var tag3 = ''
-      tag3 += '<div class="form-group" style="float: right;">'
-      tag3 += '<select class="form-control col-lg-4" style="height: 30px;" id="changeLevel">'
+    	  tag3 += '<div class="form-group" style="float: right; margin-right:30px;">'
+      tag3 += '<select class="form-control col-lg-5" style="height: 60px; margin-top:0px;" id="changeLevel">'
       tag3 += '<option value="A">A</option>'
       tag3 += '<option value="B">B</option>'
       tag3 += '<option value="C">C</option>'
       tag3 += '<option value="Z">Z</option>'
       tag3 += '</select>'
-      tag3 += '<a href="#" id="change">change</a>'
-      tag3 += '<a> | </a>'
-      tag3 += '<a href="#" id="stop_activity">stop</a>'
+   		
+      tag3 += '<a href="#" id="change" style="margin-left:40px;">change</a>'
       tag3 += '</div>'
       
-      $("#content_title").html(tag1);
+      $("#content_title").html(tag1); 
       $("#content_table").html(tag2);
       $("#content_select").html(tag3);
       $("#add").html("");
@@ -634,7 +634,7 @@
                                             <li><a href="voice_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="voice_all">ALL</a></li>
+                                 
                                 </ul>
                             </li>
                   
@@ -647,17 +647,17 @@
                                             <li><a href="video_monthly">Monthly</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="video_all">ALL</a></li>
+                                   
                                 </ul>
                             </li>
                   
-                            <li><a href="streaming"><span class="menu-item-span">Streaming</span></a>
+                            <li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
                             </li>
                             
                              <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Community</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="community">Board</a></li>
-                                    <li><a href="myblog">My Blog</a></li>
+                                    <li><a href="follow_page?memberId=${sessionScope.memberId}">My Blog</a></li>
                                 </ul>
                             </li>
                             <li><a href="notice"><span class="menu-item-span">Notice</span></a></li>
@@ -716,13 +716,15 @@
                         <div class="col-lg-10">
                             <h2 id="content_title"> </h2>
                             <hr class="m-t-30 m-b-30">    
-                                <div class="form-group" style="float:right;"> 
+
+                                <div class="form-group" style="float: right; height: 50px;">
+
                                 <aside class="widget widget-search">
                                 <!-- 페이징 하기 -->
             
 <!-- 검색창 -->
-					<div style="float: right; margin-bottom: 10px; ">
-						<form id="add" style="width:400px";>
+					<div style="float: right; margin-bottom: 10px; height:50px;">
+						<form id="add" style="width:150px; ">
 							
 						</form>
 					</div>
@@ -741,17 +743,14 @@
                   <a href="managerPage?currentPage=${navi.currentPage-1}&searchItem=${searchItem}&searchWord=${searchWord}">◁</a><!-- 앞 페이지 요청 -->
                   
                   <c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup }">
-                     <a href="managerPage?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">&nbsp&nbsp${page}&nbsp&nbsp  </a>
+                     <a href="managerPage?currentPage=${page}&searchItem=${searchItem}&searchWord=${searchWord}">&nbsp;&nbsp;${page}&nbsp;&nbsp;  </a>
                   </c:forEach>
                   
                   <a href="managerPage?currentPage=${navi.currentPage+1}&searchItem=${searchItem}&searchWord=${searchWord}">▷</a>
                   <a href="managerPage?currentPage=${navi.currentPage+navi.pagePerGroup}&searchItem=${searchItem}&searchWord=${searchWord}">▶</a>
             </p>
-               <div class="set_list" style="width: 100%;">
-               <div class="bundle_set" id="content_select">
-               
-                  
-               </div>
+               <div class="set_list" style="width: 100%; height: 100px; vertical-align: middle;" id="content_select">
+             
             </div>
                 
                         
@@ -759,6 +758,7 @@
                         
                        
                     </div>
+                </div>
                 </div>
             </section>
             <!-- Blog end-->

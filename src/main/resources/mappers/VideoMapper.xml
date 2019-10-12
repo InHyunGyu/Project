@@ -9,7 +9,8 @@
 <select id="getVideoCount" parameterType="map" resultType="int">
 		select count(*)
 		From Posts
-		where postType = 'video'
+		where postType = 'video' and memberId !='admin'
+		
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord} || '%'
 		</if>
@@ -20,7 +21,8 @@
 <select id="getVideoWeekCount" parameterType="map" resultType="int">
 		select count(*)
 		From Posts
-		where postType = 'video'
+		where postType = 'video' and memberId !='admin'
+		
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord} || '%'
 		</if>
@@ -35,7 +37,8 @@
 <select id="getVideoMonthCount" parameterType="map" resultType="int">
 		select count(*)
 		From Posts
-		where postType = 'video'
+		where postType = 'video' and memberId !='admin'
+		
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord} || '%'
 		</if>
@@ -68,11 +71,12 @@
 			,savedFile
 			,reported
 		FROM Posts 
-		where postType = 'video'
+		where postType = 'video' and memberId !='admin'
+		
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>
-		ORDER BY postDate DESC
+		ORDER BY postDate DESC 
 	</select>
 	
 	
@@ -92,7 +96,8 @@
 			,savedFile
 			,reported
 		FROM Posts 
-		where postType = 'video'
+		where postType = 'video' and memberId !='admin'
+		
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>
@@ -121,7 +126,8 @@
 			,savedFile
 			,reported
 		FROM Posts 
-		where postType = 'video'
+		where postType = 'video' and memberId !='admin'
+		
 		<if test="searchItem != null">
 			and ${searchItem} LIKE '%'||#{searchWord}||'%'
 		</if>

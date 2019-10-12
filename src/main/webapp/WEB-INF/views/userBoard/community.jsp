@@ -214,6 +214,15 @@
 			<div class="wrap-table100">
 				<div class="table100">
 					<table>
+					 <colgroup>
+      <col style="width: 15%;" />
+      <col style="width: auto;" />
+      <col style="width: 10%;" /> 
+      <col style="width: 10%;" />
+      <col style="width: 15%;" />
+	  <col style="width: 15%;" />
+      </colgroup>
+					
 						<thead>
 							<tr class="table100-head">
 								<th class="column1">No</th>
@@ -228,8 +237,8 @@
 						<tbody>
 							<!-- 게시글이 없는 경우 -->
 							<c:if test="${empty list}">
-								<c:if test="${not empty noticeList}">
-								<c:forEach var="board" items="${noticeList}">
+								<c:if test="${not empty noticeList2}">
+								<c:forEach var="board" items="${noticeList2}">
 									<tr style="background-color: #c9ccc8;" align="center"> 
 										<td class="column1">공지</td> 
 										<td class="column2"><a href="file_detail?postNo=${board.postNo}">${board.postTitle}</a></td>
@@ -255,7 +264,7 @@
 							
 							
 							
-							<c:if test="${not empty noticeList}">
+							<c:if test="${not empty noticeList2}">
 								<c:forEach var="board" items="${noticeList2}">
 									<tr style="background-color: #c9ccc8;" align="center">
 										<td class="column1">공지</td>

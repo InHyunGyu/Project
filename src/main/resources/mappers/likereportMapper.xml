@@ -11,7 +11,7 @@
 		Where postNo = #{postNo} and checkType = #{checkType}
 	</select>
 	<insert id="insertLR" parameterType="map" >
-		insert into likereport
+		insert into likereport 
 		(
 			  likeseq
 			  ,postNo

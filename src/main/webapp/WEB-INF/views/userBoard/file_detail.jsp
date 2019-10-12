@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Boomerang - Template</title>
+        <title>Utajjang</title>
         <!-- Favicons-->
         <link rel="shortcut icon" href="resources/assets/images/favicon.png">
         <link rel="apple-touch-icon" href="resources/assets/images/apple-touch-icon.png">
@@ -28,7 +28,7 @@
 		<script src="resources/assets/js/jquery-3.4.1.min.js"></script>
 		<script src="resources/assets/js/login2.js"></script>
 		
-  
+    
         
         <!-- musicom css -->
   <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="resources/images/favicon.ico">
@@ -101,8 +101,7 @@
 		$("#replyBTN").on('click', function(){
 			var replyContent = $("#replyContent").val();
 			var postNo = "${post.postNo}";
-			
-			swal(login);
+		
 			if(login.length == 0) {
 				swal("로그인을 해주세요.");
 				return;
@@ -268,6 +267,7 @@
 										<li><a href="voice_weekly">Weekly</a></li>
 										<li><a href="voice_monthly">Monthly</a></li>
 									</ul></li>
+
 							</ul></li>
 
 						<li class="menu-item-has-children"><a href="#"><span
@@ -279,7 +279,7 @@
 										<li><a href="video_weekly">Weekly</a></li>
 										<li><a href="video_monthly">Monthly</a></li>
 									</ul></li>
-								<li><a href="video_all">ALL</a></li>
+								
 							</ul></li>
 
 						<li><a href="https://utajjang.shop"><span class="menu-item-span">Streaming</span></a>
@@ -402,7 +402,7 @@
 											
 											<div class="comment-body">
 												<div class="comment-meta">
-													<div class="comment-meta-author"><a href="follow_page?memberId={reply.memberId}">${reply.memberId}</a></div>
+													<div class="comment-meta-author"><a href="follow_page?memberId=${reply.memberId}">${reply.memberId}</a></div>
 													<div class="comment-meta-date">${reply.replyDate}</div>
 												</div>
 												<div class="comment-content">

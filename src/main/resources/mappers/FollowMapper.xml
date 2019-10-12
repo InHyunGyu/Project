@@ -26,8 +26,8 @@
 			m.memberLevel
 		from 
 			memberInfo m, follower f
-		where m.memberId = f.memberId and f.memberId = #{memberId}	
-	</select>
+		where m.memberId = f.followName and f.memberId = #{memberId}	
+	</select> 
 	
 	<insert id="insert" parameterType="Follower">
 		insert into follower(

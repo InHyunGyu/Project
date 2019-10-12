@@ -150,7 +150,7 @@ img#profileThumb{
 	<div class="wrapper">
 		<!-- Hero-->
 		<section class="module-cover parallax text-center fullscreen"
-			data-background="assets/images/module-5.jpg" data-overlay="0.6">
+			data-background="resources/assets/images/main/login4.jpg" data-overlay="0.6">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4 col-md-6 m-auto">
@@ -168,9 +168,8 @@ img#profileThumb{
 										name="memberPwd" placeholder="password">
 								</p>
 								<p class="text-center">
-									<button class="btn btn-outline-secondary" type="button"
-										name="loginBTN" id="loginBTN"
-										style="width: 350px; height: 54px;">Login</button>
+									<button class="btn btn-block btn-round btn-brand" type="button"
+										name="loginBTN" id="loginBTN" >Login</button>
 								<p class="text-center">
 									<a href="signup" style="color: #FFFFFF">회원가입</a> &ensp; <a
 										href="id_pwd" style="color: #FFFFFF">ID/Password 찾기</a>
