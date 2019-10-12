@@ -89,18 +89,18 @@
       })
 
       $("#checkAll").click(function(){ 
-         //만약 전체 선택 체크박스가 체크된상태일경우 
-         //해당화면에 전체 checkbox들을 체크해준다 
+         //もし全体選択チェックボックスがチェックされた状態である場合 
+         //該当画面に全体のcheckboxをチェックしてくれる。
          if($("#checkAll").prop("checked")) { 
             $("input[type=checkbox]").prop("checked",true); 
          }
-         // 전체선택 체크박스가 해제된 경우
-         //해당화면에 모든 checkbox들의 체크를해제시킨다. 
+         // 全体選択のチェックボックスが解除された場合。
+         //該当画面にすべてのcheckboxのチェックを解除させる。
          else { 
             $("input[type=checkbox]").prop("checked",false); 
          } 
       });
-   })      //끝.
+   })     
    
    
    // 게시글 이동 

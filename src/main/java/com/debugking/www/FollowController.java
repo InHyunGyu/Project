@@ -58,8 +58,10 @@ public class FollowController {
 		ArrayList<MemberInfo> list = new ArrayList<>();
 		ArrayList<Follower> mem = new ArrayList<>();
 		
-		mem = repo.followlist(login);
+		
 		list = repo.following(memberId);
+		mem = repo.followlist(login);
+		
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("list", list);
