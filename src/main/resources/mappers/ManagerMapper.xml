@@ -153,7 +153,7 @@
 	<select id="selectMainNotice"  resultType="Post">
 	select postNo,postTitle
     From Posts
-    Where isAnnouncement='Y' and savedFile != '(null)'
+    Where isAnnouncement='Y'
     Order by PostNo DESC
 		
 	</select>

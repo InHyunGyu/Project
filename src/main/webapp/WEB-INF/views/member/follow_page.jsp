@@ -41,8 +41,6 @@
 
 img#profileThumb{
 		 border-radius: 50%;
-		  width:150px;
-		 height:150px;
 	}
 
 
@@ -120,6 +118,59 @@ table {
 	$(function(){
 		
 
+		
+		
+		if(res.list.length == 0) {
+			tag += '<tr>';
+			tag += '<td colspan="3" align="center">팔로잉이 없습니다. </td>';
+			tag += '</tr>';
+		} else {
+			var login = "${sessionScope.memberId}";
+			$.each(res.list, function(index, item){
+				var followName1 = item.followName;
+				var flag1 = false;
+				var flag2 = false;
+				$.each(res.memList, function(index, item2){
+					var followName2 = item2.followName;
+					if(followName1 == login) {
+						flag1 = true;
+					} else if (followName1 == followName2) {
+						flag2 = true;
+					}
+				})
+			tag += '<tr>';
+			tag += '<td><a href="follow_page?memberId='+item.followName+'">'+item.followName+'</a></td>';
+			tag += '<td>'+item.memberLevel+'</td>';
+				if(flag1) {
+					tag += '<td></td>';
+					tag += '</td>'
+				} else {
+					if(flag2) {
+					tag += '<td><button type="button" class="blockReq" data-value="'+item.followName+'" >block</button></td>';
+					tag += '</td>'
+					} else {
+						tag += '<td><button type="button" class="followReq" data-value="'+item.followName+'" >follow</button></td>';
+						tag += '</td>'
+					}
+				}
+				tag += '</tr>';			
+			})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		$('.click').hover(function() {
 			  $(this).css("color", "#505cfd");
@@ -258,18 +309,19 @@ table {
 				}
 			
 				tag += '</table>'
+				var type='follower'
 				
 				$("#postContent").html(tag);
 				
 				$(".followReq").on('click', function(){
 					var followName = $(this).attr("data-value");
-					followBTN(followName);
+					followBTN(followName, type);
 				})
 				
 				$(".blockReq").on('click', function() {
 					var memberId = $(this).attr("data-value");
 					
-					blockBTN(memberId, login);
+					blockBTN(memberId, login, type);
 				})
 			}
 		})
@@ -303,45 +355,58 @@ table {
 				tag += '<th>Follow</th>';
 				tag += '</tr>';
 				
-				if(res.length == 0) {
+				if(res.list.length == 0) {
 					tag += '<tr>';
 					tag += '<td colspan="3" align="center">팔로잉이 없습니다. </td>';
 					tag += '</tr>';
 				} else {
+					var login = "${sessionScope.memberId}";
+				
+					
 					$.each(res.list, function(index, item){
 						var followName1 = item.followName;
 						var flag1 = false;
 						var flag2 = false;
 						
+						
+						
 						$.each(res.memList, function(index, item2){
 							var followName2 = item2.followName;
 							
-							if(followName1 == memberId) {
+							
+						
+							if(followName1 == login) {
 								flag1 = true;
 							} else if (followName1 == followName2) {
 								flag2 = true;
 							}
-						})
-	
-						if(flag2) {
-							tag += '<tr>';
-							tag += '<td><a href="follow_page?memberId='+item.followName+'">'+item.followName+'</a></td>';
-							tag += '<td>'+item.memberLevel+'</td>';
-							tag += '<td><button type="button" class="blockReq" data-value="'+item.followName+'" >block</button></td>';
-						} else {
-							tag += '<tr>';
-							tag += '<td><a href="follow_page?memberId='+item.followName+'">'+item.followName+'</a></td>';
-							tag += '<td>'+item.memberLevel+'</td>';
-							tag += '<td>'
 							
-							if(flag1) {
-								tag += '<button type="button" class="followReq" data-value="'+item.followName+'" >follow</button>';
-
+							
+						})
+						
+						
+						if(flag1) {
+								tag += '<tr>';
+								tag += '<td><a href="follow_page?memberId='+item.followName+'">'+item.followName+'</a></td>';
+								tag += '<td>'+item.memberLevel+'</td>';
+								tag += '<td></td>';
+								tag += '</td>'
 							} else {
+								if(flag2) {
+								tag += '<tr>';
+								tag += '<td><a href="follow_page?memberId='+item.followName+'">'+item.followName+'</a></td>';
+								tag += '<td>'+item.memberLevel+'</td>';
+								tag += '<td><button type="button" class="blockReq" data-value="'+item.followName+'" >block</button></td>';
+								tag += '</td>'
+								} else {
+									tag += '<tr>';
+									tag += '<td><a href="follow_page?memberId='+item.followName+'">'+item.followName+'</a></td>';
+									tag += '<td>'+item.memberLevel+'</td>';
+									tag += '<td><button type="button" class="followReq" data-value="'+item.followName+'" >follow</button></td>';
+									tag += '</td>'
 								
 							}
-							tag += '</td>'
-							
+
 						}
 						
 						tag += '</tr>';
@@ -351,17 +416,18 @@ table {
 				}
 			
 				tag += '</table>'
+				var type = 'following'
 				$("#postContent").html(tag);
 				
 				$(".followReq").on('click', function(){
 					var followName = $(this).attr("data-value");
-					followBTN(followName);
+					followBTN(followName, type);
 				})
 				
 				$(".blockReq").on('click', function() {
 					var memberId = $(this).attr("data-value");
 					
-					blockBTN(memberId, login);
+					blockBTN(memberId, login, type);
 				})
 			}
 				
@@ -379,7 +445,7 @@ table {
 			success:function(res){
 				
 				var tag = ''
-				 
+				 if(res.length != 0) {
 					$.each(res, function(index, item){
 						tag += '<div class="post-preview"><a href="#"><img src="resources/images/thumbnail.jpg" alt=""></a></div>';
 						tag += '<div class="post-wrapper">'; 
@@ -399,7 +465,7 @@ table {
 						tag += ' <hr class="m-t-30 m-b-30">	 ';
 								
 					})
-				
+				 }
 				$("#postContent").html(tag);	
 				
 		}
@@ -411,8 +477,8 @@ table {
 
 		}
 	
-	function followBTN(followName) {
-		swal(followName);
+	function followBTN(followName, type) {
+		
 		var login = '${sessionScope.memberId}'
 		
 		
@@ -429,10 +495,16 @@ table {
 				data:send,
 				success:function(res){
 					if(res == 'ok') {
-						swal('follow 등록 완료');
+						var id= "${memberInfo.memberId}";
+						if(type='follower'){
+							follower(id,login);
+							return;
+						} else {
+							following(id,login);
+							return;
+						}
 						return;
 					} else {
-						swal('follow 등록에 실패하였습니다.');
 						return;
 					}
 				}
@@ -457,7 +529,14 @@ table {
 				data: send,
 				success:function (res) {
 					if(res='ok') {
-						swal('follow 취소 완료');
+						var id = "${memberInfo.memberId}";
+						if(type='follower'){
+							follower(id,login);
+							return;
+						} else {
+							following(id,login);
+							return;
+						}
 						return;
 					} else {
 						swal('follow를 하지 않았습니다.');
@@ -617,76 +696,23 @@ table {
 
 
 
-			<!-- Footer-->
+		<!-- Footer-->
 		<footer class="footer">
 			<div class="footer-widgets">
 				<div class="container">
 					<div class="row">
-					<div class="col-md-3">       
-							<!-- Recent works-->
-							<aside class="widget widget-recent-works">
-								<div class="widget-title">
-									<h6>Team Members</h6>  
-								</div>      
-								<ul>   
-									<li><a href="https://github.com/HeejuKim96" target="_blank" title="김 희주"><img
-											src="resources/assets/images/team/heeju_cartoon.jpg" alt=""></a></li>
-									<li><a href="https://www.linkedin.com/in/hans-lee-6737b0120" target="_blank"  title="이 학민"><img
-											src="resources/assets/images/team/hakmin_cartoon.jpg" alt=""></a></li>
-								</ul>
-								<ul>
-									<li><a href="https://github.com/InHyunGyu" target="_blank"><img   
-											src="resources/assets/images/team/hyungyu_cartoon.jpg"  title="인 현규" alt=""></a></li>
-									<li><a href="https://github.com/ymh1994" target="_blank"><img
-											src="resources/assets/images/team/minhyuk_cartoon.jpg"  title="유 민혁" alt=""></a></li>        
-								</ul>
-							</aside>   
-						</div>
-						
-						
-
 						<div class="col-md-3">
-							<!-- Recent entries widget-->
-							<aside class="widget widget-recent-entries">
-								<div class="widget-title">
-									<h6>Announcement</h6>  
-								</div>
-								<ul>
-									<c:forEach var="item" items="${noticeList}">
-										<li><a href="file_detail?postNo=${item.postNo}">${item.postTitle}</a><span class="post-date">${item.postDate}
-												</span></li>
-									</c:forEach>
-								</ul>
-							</aside>
-						</div>
-
-						<div class="col-md-3">
-							<!-- Twitter widget-->
-							<aside class="widget twitter-feed-widget">
-								<div class="widget-title">
-									<h6>About Us</h6>   
-								</div>
-								<ul>
-									<li><a href="companyIntro" target="_blank"><img
-											src="resources/assets/images/aboutUs2.jpg" width="500" alt=""></a></li>   
-								</ul>   
-           
-								<div class="twitter-feed" data-twitter="double_theme"
-									data-number="1"></div>
-							</aside>
-						</div>
-						
-						<div class="col-md-3">  
 							<!-- Text widget-->
 							<aside class="widget widget-text">
-								<div class="widget-title">  
-									
-								</div> 
-								<div class="textwidget">   
-									<p style="color:#788487">
-									<br>우타짱이 마련한 음악을 통한 특별한 만남. 당신을 찾아갑니다.</p>
-									<p style="color:#788487">
-										SC IT MASTER 37 DebugKing<br> All Rights Reserved
+								<div class="widget-title">
+									<h6>About Us</h6>
+								</div>
+								<div class="textwidget">
+									<p>Map where your photos were taken and discover local
+										points of interest. Map where your photos.</p>
+									<p>
+										Location: 12 London Avenue, Suite 18<br> E-mail:
+										support@theme.com<br> Phone: 8 800 123 4567<br>
 									</p>
 									<ul class="social-icons">
 										<li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -697,7 +723,57 @@ table {
 								</div>
 							</aside>
 						</div>
-						
+						<div class="col-md-3">
+							<!-- Recent entries widget-->
+							<aside class="widget widget-recent-entries">
+								<div class="widget-title">
+									<h6>Recent Posts</h6>
+								</div>
+								<ul>
+									<li><a href="#">Map where your photos were taken and
+											discover local points.</a><span class="post-date">May 8,
+											2018</span></li>
+									<li><a href="#">Map where your photos were taken and
+											discover local points.</a><span class="post-date">April 7,
+											2018</span></li>
+									<li><a href="#">Map where your photos were taken and
+											discover local points.</a><span class="post-date">September
+											7, 2018</span></li>
+								</ul>
+							</aside>
+						</div>
+						<div class="col-md-3">
+							<!-- Twitter widget-->
+							<aside class="widget twitter-feed-widget">
+								<div class="widget-title">
+									<h6>Twitter Feed</h6>
+								</div>
+								<div class="twitter-feed" data-twitter="double_theme"
+									data-number="1"></div>
+							</aside>
+						</div>
+						<div class="col-md-3">
+							<!-- Recent works-->
+							<aside class="widget widget-recent-works">
+								<div class="widget-title">
+									<h6>Portfolio</h6>
+								</div>
+								<ul>
+									<li><a href="#"><img
+											src="resources/assets/images/widgets/1.jpg" alt=""></a></li>
+									<li><a href="#"><img
+											src="resources/assets/images/widgets/2.jpg" alt=""></a></li>
+									<li><a href="#"><img
+											src="resources/assets/images/widgets/3.jpg" alt=""></a></li>
+									<li><a href="#"><img
+											src="resources/assets/images/widgets/7.jpg" alt=""></a></li>
+									<li><a href="#"><img
+											src="resources/assets/images/widgets/8.jpg" alt=""></a></li>
+									<li><a href="#"><img
+											src="resources/assets/images/widgets/6.jpg" alt=""></a></li>
+								</ul>
+							</aside>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -706,9 +782,9 @@ table {
 					<div class="row">
 						<div class="col-md-12">
 							<div class="copyright">
-								<p style=color:#788487>
-									© 2019 Utajjang, All Rights Reserved. Design with love by <a
-										href="#">Debugking</a>
+								<p>
+									© 2018 Boomerang, All Rights Reserved. Design with love by <a
+										href="#">2theme</a>
 								</p>
 							</div>
 						</div>

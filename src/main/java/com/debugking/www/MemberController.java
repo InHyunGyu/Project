@@ -625,15 +625,15 @@ public class MemberController {
 		
 		String subject = "[우타짱] 임시 비밀번호입니다."; 
 		String content = "다음 임시비밀번호로 로그인하여 비밀번호를 재설정 해 주시기 바랍니다. 임시비밀번호:" 
-		+ temppwd + "<br><a href='" + host + "tempPwdSet?memberPwd=" 
-		+ temppwd + "&memberEmail=" + to + "'>홈페이지로 돌아가기</a>";
+		+ trimedpwd + "<br><a href='" + host + "tempPwdSet?memberPwd=" 
+		+ trimedpwd + "&memberEmail=" + to + "'>홈페이지로 돌아가기</a>";
 		
 		Properties p = new Properties();
 		p.put("mail.smtp.user", from);
 		p.put("mail.smtp.host", "smtp.googlemail.com");
 		p.put("mail.smtp.port", "465");
 		p.put("mail.smtp.starttls.enable", "true");
-		p.put("mail.smtp.auth", "true");
+		p.put("mail.smtp.auth", "true"); 
 		p.put("mail.smtp.debug", "true");
 		p.put("mail.smtp.socketFactory.port", "465");
 		p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
